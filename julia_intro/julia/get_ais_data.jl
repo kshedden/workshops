@@ -4,7 +4,11 @@
 #
 #   https://en.m.wikipedia.org/wiki/Automatic_identification_system
 #
-# AIS data for ships travelling near the US coastline are available
+# Real-time AIS data drive commercial sites such as vesseltracker.com:
+#
+#   https://www.vesseltracker.com/
+#
+# Free AIS data for ships travelling near the US coastline are available
 # from the US government from this site:
 #
 #   https://marinecadastre.gov/ais/
