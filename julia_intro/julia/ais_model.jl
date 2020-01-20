@@ -1,6 +1,24 @@
+# This script fits a basic regression model to the AIS data.
+#
+# See the comments in the `get_ais_data.jl` script or notebook for
+# more information about the data.
+#
+# To run this script, enter the following in a julia session:
+#
+# ~~~
+# include("ais_model.jl")
+# ~~~
+#
+# If you get a `LoadError` when running this script, most likely you
+# have not installed one or more packages that are used by the script.
+# Follow the instructions on the screen to install the missing
+# packages using `Pkg.add`.
+
 using DataFrames, GLM
 
-include("read_data.jl")
+# Read the data.  This code is included in another script so that it
+# can be re-used elsewhere.
+include("read_ais_data.jl")
 
 # Reduce to a dataset of vessels.  Take the maximum speed as a measure of how fast
 # the vessel is capable of travelling.  Length, width, and draft should be constant

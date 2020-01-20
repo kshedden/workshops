@@ -1,3 +1,18 @@
+# The utility script loads the AIS data into a dataframe.
+#
+# You should run the `get_ais_data.jl` script (or notebook) to
+# download data before running this script.  Also, the `data_dir`
+# variable in this script should be set to match the `data_dir`
+# variable used in `get_ais_data.jl`.  Finally, the `data_year` and
+# `data_file` variables below should be set to the name of one of the
+# data files that you want to analyze.
+#
+#
+# If you get a `LoadError` when running this script, most likely you
+# have not installed one or more packages that are used by the script.
+# Follow the instructions on the screen to install the missing
+# packages using `Pkg.add`.
+
 # Package imports
 using DataFrames, CSV, GZip
 

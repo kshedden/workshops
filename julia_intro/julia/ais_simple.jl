@@ -1,30 +1,30 @@
-# Perform some basic analyses of the AIS data.
+# This script performs some basic analyses of the AIS data.
+#
+# See the comments in the `get_ais_data.jl` script or notebook for
+# more information about the data.
 #
 # To run this script, enter the following in a julia session:
 #
-#   include("ais_simple.jl")
+# ~~~
+# include("ais_simple.jl")
+# ~~~
 #
 # See these links for information about some of the data values:
-#     https://www.navcen.uscg.gov/?pageName=AISMessagesA
-#     https://www.navcen.uscg.gov/pdf/AIS/AISGuide.pdf
 #
-# You should run the get_ais_data.jl script to download data before
-# running this script.  Also, the data_dir variable in this script
-# should be set to match the data_dir variable used in get_ais_data.jl.
-# Finally, the data_year and data_file variables below should
-# be set to the name of one of the data files that you want to analyze.
+# * https://www.navcen.uscg.gov/?pageName=AISMessagesA
+# * https://www.navcen.uscg.gov/pdf/AIS/AISGuide.pdf
 #
-# If you get a LoadError when running this script, most likely you
+# If you get a `LoadError` when running this script, most likely you
 # have not installed one or more packages that are used by the script.
-# Follow the instructions on the screen to install the missing packages
-# using Pkg.add.
+# Follow the instructions on the screen to install the missing
+# packages using `Pkg.add`.
 
 # Package imports
 using DataFrames, CSV, Clustering, StatsBase, GZip, Printf
 
-# Read the data.  This code is included in another file so it can
-# be re-used elsewhere.
-include("read_data.jl")
+# Read the data.  This code is included in another script so that it
+# can be re-used elsewhere.
+include("read_ais_data.jl")
 
 # Count the number of unique vessels.  DataFrame columns can be accessed
 # with the dot syntax used here for brevity.

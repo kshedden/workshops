@@ -30,6 +30,9 @@
 # to point to a directory that you can write to.  Also, you can modify
 # the year, month, and zone ranges below to customize how much data
 # are obtained.
+#
+# This script uses the `wget` and `unzip` programs, which must be
+# executable from your shell.
 
 using Printf
 
@@ -52,7 +55,7 @@ mkpath("$data_dir/raw")
 
 # Download a collection of AIS data archive files in InfoZip format,
 # extract the csv files from them, and compress them using gzip.
-function julia_download()
+function ais_download()
 
     # Process this range of years
     for year in 2016:2016
@@ -107,4 +110,4 @@ function julia_download()
 end
 
 # Run the function to download the data
-download()
+ais_download()
