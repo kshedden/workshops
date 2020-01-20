@@ -104,7 +104,7 @@ function julia_download()
             end
         end
     end
-
 end
 
+# Run the function to download the data
 download()
