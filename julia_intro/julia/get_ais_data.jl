@@ -1,4 +1,4 @@
-# Download AIS data for analysis.
+# This script downloads AIS data for later analysis.
 #
 # AIS is a system for tracking ships:
 #
@@ -9,7 +9,7 @@
 #
 #   https://marinecadastre.gov/ais/
 #
-# There is a separate data file for each year/month/zone, where zone
+# There is a separate data file for each year/month/zone, where 'zone'
 # is a geographical zone numbered from 1 to 20.  A map of the zones is
 # here:
 #
@@ -21,7 +21,9 @@
 #
 # To run this script, use the following line in a julia session:
 #
-#   include("get_ais_data.jl")
+# ~~~
+# include("get_ais_data.jl")
+# ~~~
 #
 # You may get a LoadError if you are missing some packages.  Follow the
 # commands on the screen for using Pkg.add to resolve this.

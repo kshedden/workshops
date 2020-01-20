@@ -14,7 +14,7 @@
 # Follow the instructions on the screen to install the missing
 # packages using `Pkg.add`.
 
-using DataFrames, GLM
+using DataFrames, GLM, Statistics
 
 # Read the data.  This code is included in another script so that it
 # can be re-used elsewhere.
