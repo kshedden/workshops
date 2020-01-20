@@ -4,14 +4,12 @@
 #
 #   https://en.m.wikipedia.org/wiki/Automatic_identification_system
 #
-# Real-time AIS data drive commercial sites such as vesseltracker.com:
-#
-#   https://www.vesseltracker.com/
+# Real-time AIS data drive commercial sites such as [vesseltracker.com](https://www.vesseltracker.com)
 #
 # Free AIS data for ships travelling near the US coastline are available
 # from the US government from this site:
 #
-#   https://marinecadastre.gov/ais/
+#   https://marinecadastre.gov/ais
 #
 # There is a separate data file for each year/month/zone, where 'zone'
 # is a geographical zone numbered from 1 to 20.  A map of the zones is
@@ -40,27 +38,34 @@
 # This script uses the `wget` and `unzip` programs, which must be
 # executable from your shell.
 
+# Import packages needed in this script
+
 using Printf
 
 # The download directory.  This must be writeable by you and have enough
 # space to store the files.  You can delete the zip directory within
 # data_dir after running this script.
+
 data_dir = "/nfs/kshedden/AIS"
 
 # This is the base url for all data files
+
 base_url = "https://coast.noaa.gov/htdata/CMSP/AISDataHandler"
 
 # The subdirectory of data_dir/raw that will contain the data files
 # after the script completes running.
+
 ais_dir = "AIS_ASCII_by_UTM_Month"
 
 # Create directories for storing the raw zip files and the extracted
 # csv files.
+
 mkpath("$data_dir/zip")
 mkpath("$data_dir/raw")
 
 # Download a collection of AIS data archive files in InfoZip format,
 # extract the csv files from them, and compress them using gzip.
+
 function ais_download()
 
     # Process this range of years
@@ -116,4 +121,5 @@ function ais_download()
 end
 
 # Run the function to download the data
+
 ais_download()
