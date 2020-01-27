@@ -11,8 +11,8 @@
 # At a high level, regression analysis is a way of relating *inputs*
 # to *outputs*.  For example, if we want to understand how the fuel
 # efficiency of a car, measured in gallons per mile, relates to the
-# vehicle weight and engine displacement, then the vehicle weight and
-# engine displacement could be taken as the inputs, with the fuel efficiency
+# vehicle's weight and engine displacement, then vehicle weight and
+# engine displacement could be taken as the inputs, with fuel efficiency
 # as the output.  Note that this does not mean that we view
 # vehicle weight and engine displacement as being the only direct
 # determinants of fuel efficiency.  For example, the cross sectional
@@ -40,31 +40,31 @@
 # blood pressure values in this population, which can be estimated
 # using the sample mean (average value) of all the blood pressure
 # values in our data set.  There are also many different "conditional
-# means", which capture the mean blood pressure for all adults in the
-# US with a particular age and gender.
+# means", which capture the mean blood pressure for the subset of all adults in the
+# US having a particular age and gender.
 #
 # It is common to use the term "expectation" to refer to a mean or
 # average value in a population, and denote it by the letter "E".
-# Thus, $E[y]$ is the (marginal) expected blood for all US adults, and
-# $E[y | a, g]$ is the conditional mean blood pressure for all adults
-# of a particular age and gender.  For example, $E[y | a=35, g=F]$ is
+# Thus, $E[y]$ is the (marginal) expected blood pressure for all US adults, and
+# $E[y \;|\; a, g]$ is the conditional mean blood pressure for all adults
+# of a particular age and gender.  For example, $E[y \;|\; a=35, g=F]$ is
 # the conditional mean blood pressure for all 35 year-old women in our
 # population.
 
 # Directly analogous to conditional means is the concept of
 # "conditional variance".  The marginal variance $Var[y]$ is the
 # variance (expected squared deviation from the mean) of the whole
-# population.  The conditional variance $Var[y | a=35, g=F]$ is the
+# population.  The conditional variance $Var[y \;|\; a=35, g=F]$ is the
 # variance of $y$ for the subpopulation of 35 year-old women.
 
 # As with most forms of statistical analysis, the goal of regression is
-# to use the sample to learn about the population, and to quantfy the
-# estimation error in doing so.  Since we have a finite sample of data,
-# we are not able to recover $E[y | a,g]$ directly, but rather will only
+# to use the sample to learn about the population, and to quantify the
+# uncertainty in doing so.  Since we have a finite sample of data,
+# we are not able to recover $E[y \;|\; a,g]$ directly, but rather will only
 # be able to estimate it.  We can then use the tools of statistical
 # inference (e.g. standard errors, confidence intervals, and hypothesis
 # tests) to assess how precisely we have recovered the "estimation
-# target" $E[y | a, g]$.
+# target" $E[y \;|\; a, g]$.
 
 ## NHANES
 
@@ -82,8 +82,8 @@
 # in general should be analyzed as such.  This means that survey
 # design information such as sampling weights, strata, and clusters
 # should be accounted for in any analysis using NHANES.  But to
-# introduce how linear regression is used with independent samples of
-# data, or with convenience samples, we will not incorporate the
+# introduce how linear regression is most commonly used,
+# we will not incorporate the
 # survey structure of the NHANES sample into the analyses conducted
 # here.
 
@@ -115,7 +115,8 @@ da = da[vars].dropna()
 ## Linear regression and least squares
 
 # The *regression function* $E[y | x]$ (for one or more covariates
-# $x$) could in principle be any function of $x$.  To make the
+# $x$) could in principle be any function of $x$, i.e. a mathematical
+# function mapping vectors $x$ to real numbers $y$.  To make the
 # analysis more tractable, many forms of regression analysis estimate
 # $E[y | x]$ by modeling it, often in a parametric form.
 # Specifically, we may use the *linear mean structure*
@@ -137,9 +138,9 @@ da = da[vars].dropna()
 # discuss this point in more detail below.
 
 # The most widely-used approach for fitting models with linear mean
-# structures to data is *least squares*.  We will not discuss the
+# structures to observed data sets is *least squares*.  We will not discuss the
 # theory of least squares analysis here further, except to note that
-# it has a number of advantages, including being fast to compute, and
+# it has a number of good properties, including being fast to compute, and
 # allowing for relatively straightforward statistical inference.
 # Although there are some settings where least squares is known to
 # perform poorly, in many commonly-encountered settings it should give
@@ -157,8 +158,10 @@ da = da[vars].dropna()
 # (i.e. people with greater body mass index or BMI), and also differs
 # among demographic groups, for example among gender and ethnic groups.
 
-# Since SBP is a quantitative variable, we will model it using linear
-# regression.  While linear regression is commonly used with
+# Since SBP is a quantitative variable, we will model it
+# using least squares to fit a regression model with a linear
+# mean structure.  This is commonly referred to as simply "linear regression".
+# While linear regression is commonly used with
 # quantitative outcome variables, it is not the only regression method
 # that can be used with quantitative outcomes, nor is it the case that
 # linear regression can only be used with quantitative outcomes.
@@ -173,14 +176,14 @@ da = da[vars].dropna()
 # contains the first recorded measurement of SBP for a subject, and
 # [RIDAGEYR](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.htm#RIDAGEYR)
 # is the subject's age in years.  The model that is fit in the next
-# cell expresses the expected SBP as a linear function of age:
+# code cell expresses the expected SBP as a linear function of age:
 
 model = sm.OLS.from_formula("BPXSY1 ~ RIDAGEYR", data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # Much of the output above is not relevant for us, so focus on the
-# center section of the output where the header begins with __coef__.
+# center section of the output where the header row begins with __coef__.
 # This section contains the estimated values of the parameters of the
 # regression model, their standard errors, and other values that are
 # used to quantify the uncertainty in the regression parameter
@@ -203,19 +206,58 @@ result.summary()
 
 da.BPXSY1.std()
 
+# The standard deviation of around 18.5 tells us that a randomly
+# selected person from the population has SBP that deviates by
+# around 18.5 mm/Hg on average from the population mean SBP value.
+# Thus, there are around 18.5 standard deviation units of variation
+# in the outcome that we are studying here.  The goal of a regression
+# analysis is to explain this variation using other known factors.
+
 # The standard deviation of around 18.5 is large compared to the
 # regression slope of 0.48.  However the regression slope corresponds to
-# the average change in SBP for a single year of age, and this effect
+# the change in average SBP for a single year of age, and this effect
 # accumulates with age.  Comparing a 40 year-old person to a 60 year-old
 # person, there is a 20 year difference in age, which translates into a
 # `20 * 0.48 = 9.6` unit difference in average SBP between these two
 # people.  This difference is around half of one standard deviation, and
 # would generally be considered to be an important and meaningful shift.
 
+# Below we visualize the distributions of SBP for the whole population
+# (i.e. the marginal distribution), and for the subpopulations of people
+# who are 40 and 60 years old, respectively.  This visualization is based
+# on a model that has been fit to the data.  It may be misleading if the
+# model do not fit the data well.  This is an important topic, but we
+# will set it aside for now.
+
+# +
+sbp = np.linspace(50, 200, 100) # Grid of possible blood pressure values
+mn0 = da.BPXSY1.mean() # marginal mean blood pressure
+sd0 = da.BPXSY1.std() # marginal SD of blood pressure
+
+from scipy.stats.distributions import norm
+
+y0 = norm.pdf(sbp, mn0, sd0)
+
+mn1 = np.dot(result.params, [1, 40]) # Conditional mean for a 40 year old person
+sd1 = np.sqrt(result.scale)
+y1 = norm.pdf(sbp, mn1, sd1)
+
+mn2 = np.dot(result.params, [1, 60]) # Conditional mean for a 60 year old person
+sd2 = np.sqrt(result.scale)
+y2 = norm.pdf(sbp, mn2, sd2)
+
+sns.set_style("whitegrid")
+ax = sns.lineplot(sbp, y0, label="Overall")
+sns.lineplot(sbp, y1, label="40 year old")
+sns.lineplot(sbp, y2, label="60 year old")
+ax.set_xlabel("SBP (mm/Hg)", size=15)
+_ = ax.set_ylabel("Density", size=15)
+# -
+
 ### R-squared and correlation
 
-# In the case of regression with a single independent variable, as we
-# have here, there is a very close correspondence between the regression
+# In the case of regression with a single independent variable,
+# there is a very close correspondence between a linear regression
 # analysis and a Pearson correlation analysis.  The primary summary
 # statistic for assessing the strength of a predictive relationship in a
 # regression model is the *R-squared*, which is shown to be 0.207 in the
@@ -235,7 +277,7 @@ print(cc.BPXSY1.RIDAGEYR**2)
 # function of their age.  If we calculate the Pearson correlation
 # coefficient between the fitted values from the regression, and the
 # actual SBP values, and then square this correlation coefficient, we
-# see that we also get the R-squared from the regression:
+# see that we again get the R-squared from the regression model:
 
 cc = np.corrcoef(da.BPXSY1, result.fittedvalues)
 print(cc[0, 1]**2)
@@ -253,7 +295,7 @@ print(cc[0, 1]**2)
 # covariate predicting an outcome.  As noted above, SBP is expected to
 # be related to gender as well as to age, so we next add gender to the
 # model.  The NHANES variable for gender is named
-# [RIAGENDR](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.htm#RIAGENDR)
+# [RIAGENDR](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.htm#RIAGENDR).
 
 # We begin by creating a relabeled version of the gender variable:
 
@@ -264,7 +306,7 @@ da["RIAGENDRx"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
 
 model = sm.OLS.from_formula("BPXSY1 ~ RIDAGEYR + RIAGENDRx", data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # The syntax `RIDAGEYR + RIAGENDRx` in the cell above does not mean
 # that these two variables are literally added together.  Instead, it
@@ -334,7 +376,7 @@ print(cc[0, 1]**2)
 # We could alternatively have set 'male' to be the reference level, in
 # which case males would be the default, and the female coefficient
 # would have been around -3.23 (meaning that female blood pressure is
-# 3.23 units lower than the male blood pressure).
+# 3.23 units lower than the male blood pressure at a fixed age).
 
 # When using a categorical variable as a predictor in a regression
 # model, it is recoded into "dummy variables" (also known as "indicator
@@ -350,14 +392,14 @@ print(cc[0, 1]**2)
 # that here).  When interpreting the regression output, the level that
 # is omitted should be seen as having a coefficient of 0, with a
 # standard error of 0.  It is important to note that the selection of a
-# reference level is arbitrary and does not imply an assumption or
-# constraint about the model, or about the population that it is
+# reference level is arbitrary and does not imply a constraint on the model,
+# or an assumption about the population that it is
 # intended to capture.
 
 ### A model with three variables
 
-# Next we add a third variable, body mass index (BMI), to the model
-# predicting SBP.  [BMI](https://en.wikipedia.org/wiki/Body_mass_index)
+# Next we add a third variable, body mass index (BMI), to the model.
+# [BMI](https://en.wikipedia.org/wiki/Body_mass_index)
 # is a measure that is used to assess if a person has healthy weight
 # given their height.
 # [BMXBMI](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.htm#BMXBMI)
@@ -365,7 +407,7 @@ print(cc[0, 1]**2)
 
 model = sm.OLS.from_formula("BPXSY1 ~ RIDAGEYR + BMXBMI + RIAGENDRx", data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # Not surprisingly, BMI is positively associated with SBP.  Given two
 # subjects with the same gender and age, and whose BMI differs by 1
@@ -397,8 +439,8 @@ da[["RIDAGEYR", "RIAGENDR", "BMXBMI"]].corr()
 # function of the covariates.  These plots help to show the estimated
 # role of one variable when the other variables are held fixed.  We will
 # also plot 95% *simultaneous confidence bands* around these fitted
-# lines.  Although the estimated mean curve is never exactly correct,
-# since we are using a finite sample of data, we can be 95% confident
+# lines.  The estimated mean curve is never exactly correct, but
+# we can be 95% confident
 # that the true mean curve falls somewhere within the shaded regions of
 # the plots below.
 
@@ -409,6 +451,7 @@ da[["RIDAGEYR", "RIAGENDR", "BMXBMI"]].corr()
 # the relationship between expected SBP and age for women with BMI equal
 # to 25.
 
+# +
 from statsmodels.sandbox.predict_functional import predict_functional
 
 # Fix certain variables at reference values.  Not all of these
@@ -420,24 +463,31 @@ values = {"RIAGENDRx": "Female", "RIAGENDR": 2, "BMXBMI": 25,
 pr, cb, fv = predict_functional(result, "RIDAGEYR",
                 values=values, ci_method="simultaneous")
 
+sns.set_style("whitegrid")
+
 ax = sns.lineplot(fv, pr, lw=4)
 ax.fill_between(fv, cb[:, 0], cb[:, 1], color='grey', alpha=0.4)
 ax.set_xlabel("Age")
 _ = ax.set_ylabel("SBP")
+# -
 
 # The analogous plot for BMI is shown next.  Here we fix the gender as
 # "female" and the age at 50, so we are looking at the relationship
 # between expected SBP and age for women of age 50.
 
+# +
 del values["BMXBMI"]
 values["RIDAGEYR"] = 50
 pr, cb, fv = predict_functional(result, "BMXBMI",
                 values=values, ci_method="simultaneous")
 
+sns.set_style("whitegrid")
+
 ax = sns.lineplot(fv, pr, lw=4)
 ax.fill_between(fv, cb[:, 0], cb[:, 1], color='grey', alpha=0.4)
 ax.set_xlabel("BMI")
 _ = ax.set_ylabel("SBP")
+# -
 
 # The error band for BMI is notably wider than the error band for age,
 # indicating that there is less certainty about the relationsuip
@@ -472,7 +522,7 @@ _ = ax.set_ylabel("SBP")
 # called *homoescedasticity*, or *constant variance*.  When there are
 # multiple covariates, it is hard to assess whether the variance is
 # constant in this sense, but we can easily check for a "mean/variance
-# relationship", in which there is a systematic relationship between the
+# relationship". This means that there is a systematic relationship between the
 # variance and the mean, i.e. the variance either increases or decreases
 # systematically with the mean.  The plot of residuals on fitted values
 # is used to assess whether such a mean/variance relationship is
@@ -509,12 +559,15 @@ _ = pp.set_ylabel("Residuals")
 # right-skewed, with exceptionally high SBP values being more common
 # than exceptionally low SBP values.
 
+# +
 from statsmodels.graphics.regressionplots import plot_ccpr
 
+plt.clf()
 ax = plt.axes()
 plot_ccpr(result, "RIDAGEYR", ax)
 ax.lines[0].set_alpha(0.2) # Reduce overplotting with transparency
 _ = ax.lines[1].set_color('orange')
+# -
 
 # Next we have a partial residual plot that shows how BMI (horizontal
 # axis) and SBP (vertical axis) would be related if gender and age were
@@ -524,16 +577,18 @@ _ = ax.lines[1].set_color('orange')
 # for age. Thus there seems to be less information about SBP in BMI,
 # although a trend certainly exists.
 
+# +
 ax = plt.axes()
 plot_ccpr(result, "BMXBMI", ax)
 ax.lines[0].set_alpha(0.2)
-ax.lines[1].set_color('orange')
+_ = ax.lines[1].set_color('orange')
+# -
 
 ## Assessing curvature
 
 # As noted above, a linear model is "linear" in an important technical
 # sense, but this does not mean that linear regression can only be used
-# to model linear phenomena.  The models that we fit above, however, are
+# to model linear phenomena.  The models that we fit above are
 # all linear in terms of the specified mean structure relationship
 # between the covariates (age, etc.)  and the response (blood pressure).
 # To assess whether the data support this linear relationship, we can
@@ -542,7 +597,7 @@ ax.lines[1].set_color('orange')
 # independently of how this relationship is specified in the model.
 # Thus, although we have modeled the mean structure relationship between
 # age (for example) and blood pressure as linear, the added variable
-# plot will allow us to see if the relationship deviates from this form.
+# plot will allow us to see if the actual relationship deviates from this form.
 
 # The cell below shows the added variable plot for age in a model
 # including main effects for age, BMI, and gender.  Note that we are
@@ -553,6 +608,7 @@ ax.lines[1].set_color('orange')
 # is necessary to use GLM when fitting linear models if we want to
 # produce added variable plots.
 
+# +
 from statsmodels.graphics.regressionplots import add_lowess
 
 model = sm.GLM.from_formula("BPXSY1 ~ RIDAGEYR + BMXBMI + RIAGENDRx", data=da)
@@ -561,6 +617,7 @@ result = model.fit()
 fig = result.plot_added_variable("RIDAGEYR")
 fig.axes[0].lines[0].set_alpha(0.2)
 _ = add_lowess(fig.axes[0], frac=0.5)
+# -
 
 # The plot above suggests that the increasing trend identified by the
 # linear model is approximately correct, but that the true relationship
@@ -575,6 +632,7 @@ _ = add_lowess(fig.axes[0], frac=0.5)
 
 # As another example, below is the added variable plot for BMI:
 
+# +
 from statsmodels.graphics.regressionplots import add_lowess
 
 model = sm.GLM.from_formula("BPXSY1 ~ RIDAGEYR + BMXBMI + RIAGENDRx", data=da)
@@ -583,6 +641,7 @@ result = model.fit()
 fig = result.plot_added_variable("BMXBMI")
 fig.axes[0].lines[0].set_alpha(0.2)
 _ = add_lowess(fig.axes[0], frac=0.5)
+# -
 
 ## Basis functions and splines
 
@@ -597,7 +656,7 @@ _ = add_lowess(fig.axes[0], frac=0.5)
 # the mean structure of the regression model:
 
 # $$
-# E[{\rm SBP} | {\rm age}, {\rm BMI}] = b_0 + b_1\cdot {\rm age} + b_2\cdot{\rm age}^2 + b_3\cdot {\rm BMI}.
+# E[{\rm SBP} \;|\; {\rm age}, {\rm BMI}] = b_0 + b_1\cdot {\rm age} + b_2\cdot{\rm age}^2 + b_3\cdot {\rm BMI}.
 # $$
 
 # Note that this is still a linear model, since we can treat ${\rm
@@ -610,9 +669,10 @@ _ = add_lowess(fig.axes[0], frac=0.5)
 # in the model (e.g. for both age and BMI).
 
 da["RIDAGEYR_z"] = (da.RIDAGEYR - da.RIDAGEYR.mean()) / da.RIDAGEYR.std()
-model = sm.OLS.from_formula("BPXSY1 ~ RIDAGEYR_z + I(RIDAGEYR_z**2) + RIAGENDRx", data=da)
+fml = "BPXSY1 ~ RIDAGEYR_z + I(RIDAGEYR_z**2) + RIAGENDRx"
+model = sm.OLS.from_formula(fml, data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # As seen above, the coefficient for ${\rm age}^2$ is not significantly
 # different from zero.  This is not the only arbiter of whether there is
@@ -630,12 +690,13 @@ result.summary()
 
 model = sm.OLS.from_formula("BPXSY1 ~ bs(RIDAGEYR, 5) + BMXBMI + RIAGENDRx", data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # Below we plot the fitted mean curve, which is an estimate of $E[{\rm
 # SBP} | {\rm age}, {\rm gender}=F, {\rm BMI}=25]$, along with a 95%
 # simultaneous confidence band to assess the uncertainty.
 
+# +
 del da["RIDAGEYR_z"]
 values = {"RIAGENDRx": "Female", "RIAGENDR": 2, "BMXBMI": 25,
           "DMDEDUC2": 1, "RIDRETH1": 1, "SMQ020": 1}
@@ -643,10 +704,12 @@ values = {"RIAGENDRx": "Female", "RIAGENDR": 2, "BMXBMI": 25,
 pr, cb, fv = predict_functional(result, "RIDAGEYR",
                 values=values, ci_method="simultaneous")
 
+sns.set_style("whitegrid")
 ax = sns.lineplot(fv, pr, lw=4)
 ax.fill_between(fv, cb[:, 0], cb[:, 1], color='grey', alpha=0.4)
 ax.set_xlabel("RIDAGEYR")
 _ = ax.set_ylabel("SBP")
+# -
 
 ## Interactions
 
@@ -666,11 +729,13 @@ _ = ax.set_ylabel("SBP")
 # in mean blood pressure between a 50 year-old man and a 40 year-old
 # man.  In fact, this may not be the case.
 
-# Although nonlinearities and interactions can be considered jointly,
-# for simplicity we will return now to modeling the age and BMI
-# effects linearly, but include an *interaction* between age and
+# We now return to modeling the SBP as predicted by age and BMI,
+# including here an *interaction* between age and
 # gender in the model.  This interaction allows us to explore
 # non-additivity between these variables.
+# Note that while nonlinearities and interactions can be considered
+# jointly, for simplicity we have removed the nonlinear part of the
+# model (the basis splines) so we can focus only on the interaction.
 
 # Note that here we have centered the age variable.  While not
 # strictly required, there are several advantages to centering
@@ -686,7 +751,7 @@ _ = ax.set_ylabel("SBP")
 da["RIDAGEYR_cen"] = da.RIDAGEYR - da.RIDAGEYR.mean()
 model = sm.OLS.from_formula("BPXSY1 ~ RIDAGEYR_cen*RIAGENDRx + BMXBMI", data=da)
 result = model.fit()
-result.summary()
+print(result.summary())
 
 # The results shown above show that the main effects and interactions
 # are all statistically significant, which suggests that the roles of
@@ -694,10 +759,13 @@ result.summary()
 # Men have a higher intercept but lower slope than women.  The easiest
 # way to see what this tells us is through a graph:
 
+# +
 values["RIAGENDRx"] = "Female"
 values["RIDAGEYR"] = np.nan
 pr1, cb1, fv1 = predict_functional(result, "RIDAGEYR_cen",
                 values=values, ci_method="simultaneous")
+
+sns.set_style("whitegrid")
 ax = sns.lineplot(fv1, pr1, lw=4, label="Female")
 
 values["RIAGENDRx"] = "Male"
@@ -707,3 +775,4 @@ ax = sns.lineplot(fv2, pr2, lw=4, label="Male")
 
 ax.set_xlabel("RIDAGEYR")
 _ = ax.set_ylabel("SBP")
+# -
