@@ -1,6 +1,6 @@
-# Basic regression using Python and Statsmodels -- a case study using the NHANES data
+## Basic regression using Python and Statsmodels -- a case study using the NHANES data
 
-# This notebook introduces the main ideas of regression analysis,
+# This notebook introduces some of the main ideas of regression analysis,
 # focusing on the practical aspects of fitting regression models in
 # Python using the [Statsmodels](http://www.statsmodels.org)
 # package. We will also be using the
@@ -12,27 +12,28 @@
 # to *outputs*.  For example, if we want to understand how the fuel
 # efficiency of a car, measured in gallons per mile, relates to the
 # vehicle weight and engine displacement, then the vehicle weight and
-# engine displacement would be the inputs, and the fuel efficiency
-# would be the output.  Note that this does not mean that we view
+# engine displacement could be taken as the inputs, with the fuel efficiency
+# as the output.  Note that this does not mean that we view
 # vehicle weight and engine displacement as being the only direct
 # determinants of fuel efficiency.  For example, the cross sectional
 # area of the vehicle would also matter a lot (for aerodynamics).
 # Regression modeling can be used when we have one or more input
 # factors that may partially explain the output, allowing us to
-# estimate the precise way in which the inputs and outputs are
+# estimate how the inputs and outputs are statistically
 # related.
 
-# Regression analysis has a long history, and there are multiple terms
-# for most of the key concepts.  The "output" discussed above is more
+# Regression analysis has a long history, with roots in many different
+# fields.  As a result, there are multiple terms
+# for many of the key concepts.  For example, the "output" discussed above is
 # often called the *dependent variable*, the *outcome*, or the
-# *response*.  The "inputs" discussed above are more often called the
+# *response*.  The "inputs" discussed above are often called the
 # *covariates*, *regressors*, or *independent variables*.
 
 ## Regression analysis and conditional distributions
 
 # A more formal way of looking at regression analysis is through the
 # idea of a *conditional distribution*.  Switching to another example
-# that we will consider in more detail below, let $y$ denote a
+# let $y$ denote a
 # person's blood pressure, and let $a$ and $g$ denote their age and
 # gender, respectively.  Our data represent a population, for example,
 # all adults in the United States.  There is a "marginal mean" of all
@@ -41,7 +42,7 @@
 # values in our data set.  There are also many different "conditional
 # means", which capture the mean blood pressure for all adults in the
 # US with a particular age and gender.
-
+#
 # It is common to use the term "expectation" to refer to a mean or
 # average value in a population, and denote it by the letter "E".
 # Thus, $E[y]$ is the (marginal) expected blood for all US adults, and
@@ -523,12 +524,10 @@ _ = ax.lines[1].set_color('orange')
 # for age. Thus there seems to be less information about SBP in BMI,
 # although a trend certainly exists.
 
-```python
 ax = plt.axes()
 plot_ccpr(result, "BMXBMI", ax)
 ax.lines[0].set_alpha(0.2)
 ax.lines[1].set_color('orange')
-```
 
 ## Assessing curvature
 
