@@ -33,10 +33,11 @@
 # Before using this script, you should set the data_dir variable below
 # to point to a directory that you can write to.  Also, you can modify
 # the year, month, and zone ranges below to customize how much data
-# are obtained.
+# are obtained.
 #
 # This script uses the `wget` and `unzip` programs, which must be
-# executable from your shell.
+# executable from your shell.  If `wget` is not available there is
+# an option below to use curl instead.
 
 # Import packages needed in this script
 
@@ -57,11 +58,17 @@ base_url = "https://coast.noaa.gov/htdata/CMSP/AISDataHandler"
 
 ais_dir = "AIS_ASCII_by_UTM_Month"
 
+# By default use wget to download the files, optionall use curl if
+# use_curl is set to true.
+
+use_curl = false
+
 # Create directories for storing the raw zip files and the extracted
 # csv files.
 
-mkpath("$data_dir/zip")
-mkpath("$data_dir/raw")
+mkpath(data_dir)
+mkpath(joinpath(data_dir, "zip"))
+mkpath(joinpath(data_dir, "raw"))
 
 # Download a collection of AIS data archive files in InfoZip format,
 # extract the csv files from them, and compress them using gzip.
@@ -83,7 +90,7 @@ function ais_download()
 
                 # Download the data from the url.  The file is a zip file
                 # (i.e. an InfoZip archive).
-                cmd = `wget $u -O $data_dir/zip/$b`
+                cmd = use_curl ? `curl $u -o $data_dir/zip/$b` : `wget $u -O $data_dir/zip/$b`
                 run(cmd)
 
                 # Unzip the file.  Each zip archive should contain exactly
