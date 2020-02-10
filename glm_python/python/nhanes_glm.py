@@ -10,10 +10,10 @@
 # Most of the GLM support within Python Statsmodels is implemented in
 # [this source file](https://github.com/statsmodels/statsmodels/blob/master/statsmodels/genmod/generalized_linear_model.py).
 # You do not need to read or understand this source code to be able to use the
-# software to fit GLM's.  But more advanced users may want to understand
+# software to fit GLMs.  But more advanced users may want to understand
 # how the fitting is implemented.
 
-# GLM's are a mature
+# GLMs are a mature
 # and well-established methodology.  The GLM parameter estimates for a given dataset are usually unique,
 # and the algorithms for finding the estimates are very robust.  Therefore, the results of fitting a GLM to
 # a data set should be essentially identical in all packages (Python
@@ -120,7 +120,7 @@ da = da[vars].dropna()
 # Writing $\mu = E[y | x_1, \ldots, x_p]$, we have ${\rm Var} =
 # \mu\cdot(1-\mu)$.
 
-# Thus, GLM's explicitly incorporate heteroscedasticicity (non-constant
+# Thus, GLMs explicitly incorporate heteroscedasticicity (non-constant
 # variance) through this *mean/variance relationship*.  The parameter
 # $\phi$ is called the *scale parameter* and will be discussed further
 # below.
@@ -189,7 +189,7 @@ da = da[vars].dropna()
 # The variance function for logistic regression is determined by the
 # fact that for a binary random variable with success probability $p$,
 # the variance is $p\cdot(1-p)$.  Thus, the mean variance relationship
-# is given by the ${\rm Var}(\mu) = \mu(1-\mu)$.  Unlike other GLM's
+# is given by the ${\rm Var}(\mu) = \mu(1-\mu)$.  Unlike other GLMs
 # that we will see later, the variance is uniquely determined by the
 # mean, so the scale parameter $\phi$ is fixed at 1.
 
@@ -494,7 +494,7 @@ _ = ax.set_ylabel("Smoking", size=15)
 # working with the linear predictor
 
 # $$
-# \beta_0 + \beta_1{\rm Male} + \cdots + \beta_5{\rm Educ9_11} + h({\rm RIDAGEYR}),
+# \beta_0 + \beta_1{\rm Male} + \cdots + \beta_5{\rm Educ9\_11} + h({\rm RIDAGEYR}),
 # $$
 
 # and the CERES analysis estimates the shape of the function $h$.
@@ -603,12 +603,12 @@ print(dx.head())
 # poverty level (mean INDFMPIR), gender (proportion of males), and
 # marriage rates as predictors.
 
-# Note that in practice, we would not normally take an individual-level
-# dataset like NHANES and summarize it like this before doing regression
+# Note that we would not generally take an individual-level
+# dataset like NHANES and collapse it to group summaries like this before doing regression
 # analysis.  Instead, we would generally prefer to analyze the
-# individual-level data directly.  However there are many important data
-# sets that provide only block-level summaries, so this is an
-# illustration of a technique that is often useful in practice.
+# individual-level data directly via regression.  However there are many important data
+# sets that provide only block-level summaries, so this example
+# illustrates a technique that is often useful in practice.
 
 # As discussed above, Poisson regression is especially useful for an
 # outcome variable that is a count.  Here, all the people in one block
@@ -617,8 +617,8 @@ print(dx.head())
 # than others, and all else being equal, those blocks are expected to
 # have more people with high blood pressure.  We account for this by
 # including the log of the sample size as a covariate (we will explain
-# why this variable is log transformed below).  In addition, some blocks
-# will have older people (on average), or will have greater prevalence
+# why this variable is log transformed below).  In addition, the populations of some blocks
+# will tend to be older (on average), or will have greater prevalence
 # of other risk factors for high blood pressure.  We can use Poisson
 # regression to assess which block-level characteristics are associated
 # with higher or lower prevalence of high blood pressure.
@@ -657,7 +657,7 @@ print(result.scale)
 # than expected under 1:1 scaling.
 
 # The mean/variance relationship for a Poisson model is ${\rm
-# Var}(\mu) = \mu$.  There is a larger class of GLM's called
+# Var}(\mu) = \mu$.  There is a larger class of GLMs called
 # *quasi-Poisson GLMs* which have the mean/variance relationship ${\rm
 # Var}(\mu) = \phi\mu$, for an unknown scale parameter $\phi$ that can
 # be estimated from the data.  It turns out that the parameter
@@ -673,10 +673,10 @@ print(result.scale)
 # binomial* family.  These GLMs typically also use the log as the link
 # function, but have a more general mean/variance relationship of the
 # form ${\rm Var}(\mu) = \mu + \alpha\mu^2$.  The additional parameter
-# $\alpha$ here is a shape parameter that controls how the mean and
+# $\alpha$ here is a *shape parameter* that controls how the mean and
 # variance are related.  If $\alpha = 0$, we have a Poisson-like
-# mean/variance relationship.  Larger values of $\alpha$ capture one
-# form of overdispersion.
+# mean/variance relationship.  Larger values of $\alpha$ reflect
+# overdispersion.
 
 # The shape parameter in a negative binomial GLM can be estimated
 # using maximum likelihood.  Here we consider a sequence of possible
@@ -748,7 +748,7 @@ for gender in "Female", "Male":
     ax = sns.lineplot(fv, pr, lw=4, label=gender)
 
 ax.set_xlabel("Age")
-ax.set_ylabel("Log expected household size")
+_ = ax.set_ylabel("Log expected household size")
 # -
 
 # Marital status likely also plays a role, and it turns out that a role
@@ -825,7 +825,8 @@ print(result.scale)
 
 # +
 # A linear model fit with least squares
-model0 = sm.OLS.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx", data=da)
+fml = "DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx"
+model0 = sm.OLS.from_formula(fml, data=da)
 result0 = model0.fit()
 print("OLS AIC:", result0.aic)
 
@@ -835,7 +836,7 @@ print("Poisson AIC:", result.aic)
 # Fit some negative binomial models
 print("Negative binomial AICs:")
 for shape in 0.1, 0.5, 1, 2:
-    model1 = sm.GLM.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx", family=sm.families.NegativeBinomial(alpha=shape), data=da)
+    model1 = sm.GLM.from_formula(fml, family=sm.families.NegativeBinomial(alpha=shape), data=da)
     result1 = model1.fit()
     print(result1.aic)
 # -
