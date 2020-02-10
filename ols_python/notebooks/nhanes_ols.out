@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Basic regression using Python and Statsmodels – a case study using the NHANES data}{}% 1
+\BOOKMARK [1][-]{section.2}{Regression\040analysis\040and\040conditional\040distributions}{}% 2
+\BOOKMARK [1][-]{section.3}{NHANES}{}% 3
+\BOOKMARK [1][-]{section.4}{Linear\040regression\040and\040least\040squares}{}% 4
+\BOOKMARK [1][-]{section.5}{Regression\040analysis\040with\040the\040NHANES\040data}{}% 5
+\BOOKMARK [2][-]{subsection.5.1}{Interpreting\040regression\040parameters\040in\040a\040basic\040model}{section.5}% 6
+\BOOKMARK [2][-]{subsection.5.2}{R-squared\040and\040correlation}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.3}{Adding\040a\040second\040variable}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.4}{Categorical\040variables\040and\040reference\040levels}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.5}{A\040model\040with\040three\040variables}{section.5}% 10
+\BOOKMARK [1][-]{section.6}{Visualization\040of\040the\040fitted\040models}{}% 11
+\BOOKMARK [2][-]{subsection.6.1}{Visualizing\040variance\040structure}{section.6}% 12
+\BOOKMARK [1][-]{section.7}{Assessing\040curvature}{}% 13
+\BOOKMARK [1][-]{section.8}{Basis\040functions\040and\040splines}{}% 14
+\BOOKMARK [1][-]{section.9}{Interactions}{}% 15
