@@ -1,18 +1,21 @@
-# Generalized Linear Models (GLM), a case study with the NHANES data
+## Generalized Linear Models (GLM), a case study with the NHANES data
 
 # This notebook demonstrates a framework for regression analysis called
-# "generalized linear modeling", or GLM.  The focus here will be on
-# fitting these models to data using Python statistical modeling
-# libraries in the [Jupyter](https://jupyter.org) notebook environment.
-# This notebook is primarily presented as a case study using the
+# *generalized linear modeling*, or GLM.  The focus here will be on
+# fitting this type of model to data using the statsmodels statistical modeling
+# library in the [Jupyter](https://jupyter.org) notebook environment.
+# This notebook is primarily a case study based on the
 # [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) data.
 
 # Most of the GLM support within Python Statsmodels is implemented in
 # [this source file](https://github.com/statsmodels/statsmodels/blob/master/statsmodels/genmod/generalized_linear_model.py).
 # You do not need to read or understand this source code to be able to use the
 # software to fit GLM's.  But more advanced users may want to understand
-# how the fitting is implemented.  GLM's constitute a fairly mature
-# and well-established methodology.  Therefore, the results of fitting a GLM to
+# how the fitting is implemented.
+
+# GLM's are a mature
+# and well-established methodology.  The GLM parameter estimates for a given dataset are usually unique,
+# and the algorithms for finding the estimates are very robust.  Therefore, the results of fitting a GLM to
 # a data set should be essentially identical in all packages (Python
 # Statsmodels, R, Stata, SAS, etc.).  Statsmodels uses a large number of
 # unit tests (e.g. [here](https://github.com/statsmodels/statsmodels/blob/master/statsmodels/genmod/tests/test_glm.py))
@@ -21,7 +24,7 @@
 # Note that the NHANES data were collected as a designed survey, and in
 # general should be analyzed as such.  This means that survey design
 # information such as weights, strata, and clusters should be accounted
-# for in any analysis using NHANES.  But to introduce how generalized
+# for in most analyses using NHANES.  But to introduce how generalized
 # linear models are used with independent data or with convenience
 # samples, we will not incorporate the survey structure of the NHANES
 # sample into the analyses conducted here.
@@ -49,14 +52,14 @@ import numpy as np
 # up-front all rows with missing values in any of the key variables that
 # we will use in this notebook.
 
-#+
+# +
 url = "https://raw.githubusercontent.com/kshedden/statswpy/master/NHANES/merged/nhanes_2015_2016.csv"
 da = pd.read_csv(url)
 
 # Drop unused columns, drop rows with any missing values.
 vars = ["BPXSY1", "RIDAGEYR", "RIAGENDR", "RIDRETH1", "DMDEDUC2", "BMXBMI", "SMQ020"]
 da = da[vars].dropna()
-#-
+# -
 
 ## Mean/variance relationships
 
@@ -81,10 +84,9 @@ da = da[vars].dropna()
 # procedure called *least squares*.  When using least squares to fit a
 # linear regression model, the estimates of the mean structure
 # parameters $b_0, \ldots, b_p$ achieve their greatest accuracy when the
-# population variance is approximately homoscedastic.  But with a loss
-# of efficiency (that in many settings is not large), the mean structure
-# parameters remain accurately estimated by least squares even when the
-# variance structure is not homoscedastic.
+# population variance is approximately homoscedastic.  Even when the variance
+# structure is not homoscedastic, we can still estimate the mean structure
+# using least squares, but there is a loss of efficiency.
 
 # Generalized linear models (GLMs) are a collection of approaches for
 # regression analysis that extend the basic linear model in two ways:
@@ -119,12 +121,12 @@ da = da[vars].dropna()
 # \mu\cdot(1-\mu)$.
 
 # Thus, GLM's explicitly incorporate heteroscedasticicity (non-constant
-# variance) through this "mean/variance relationship".  The parameter
+# variance) through this *mean/variance relationship*.  The parameter
 # $\phi$ is called the *scale parameter* and will be discussed further
 # below.
 
 # Note that we can use the identity link function $g(x) = x$ and the
-# constant mean/variance relationship $f(x) = 1$, which gives us back
+# constant mean/variance relationship $f(x) = 1$, which gives back
 # the linear model.  Thus, the linear model is one type of GLM.
 
 # Note that linear regression is often used after applying a
@@ -138,30 +140,28 @@ da = da[vars].dropna()
 
 # This is closely related to fitting a GLM with a log link function, but
 # is not exactly equivalent to it, since $E[\log(y)]$ is not equal to
-# $\log(E[y])$.  Either of these approaches may provide a good model,
-# but the two models that are being fit are not the same.
+# $\log(E[y])$.  Either of these approaches has the potential to provide a good model,
+# depending on the data, but the two models that are being fit are not the same.
 
 # ## Limited dependent variables
 
 # Another perspective on GLMs is that they are useful when the dependent
 # variable is restricted to lie in a subset of values.  The most common
 # such subsets are the non-negative integers, the positive real line,
-# and the unit interval.  Specific GLMs that we will discuss below are
-# defined in terms of probability distributions that obey these
-# constraints.
+# and the unit interval.
 
 # ## Logistic regression
 
-# Logistic regression is by far the most commonly used GLM.  It is used
+# Logistic regression is the most commonly used GLM.  It is used
 # when the outcome variable is *binary*, meaning that it can take on
 # only two distinct values.  The behavior of a binary random value is
 # entirely determined by its "success probability", where "success" is a
 # generic term for one of the two possible outcomes.  For example, in a
-# clinical trial, substantial improvement might be deemed a success,
+# clinical trial, substantial improvement in symptoms might be deemed a success,
 # with less than substantial improvement being viewed as a failure.  The
 # success probability in this setting would be the probability that a
 # substantial improvement in symptoms occurs.  Sometimes this is called
-# instead the "event probability".
+# the "event probability".
 
 # The distribution of a binary random variable is entirely determined by
 # the success probability $p$.  In a regression analysis, we have many
@@ -209,19 +209,20 @@ da["smq"] = da.SMQ020.replace({2: 0, 7: np.nan, 9: np.nan})
 # Logistic regression provides a model for the *odds* of an event
 # happening.  Recall that if an event has probability `p`, then the odds
 # for this event is `p/(1-p)`.  The odds is a mathematical
-# transformation of the probability onto a different scale.  For
+# transformation that maps the probability to a different scale.  For
 # example, if the probability is 1/2, then the odds is 1.
 
 # To begin, we look at the odds of alcohol use for women and men separately.
 
 # Create a labeled version of the gender variable
 
-#+
+# +
 da["RIAGENDRx"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
 
 c = pd.crosstab(da.RIAGENDRx, da.smq).apply(lambda x: x/x.sum(), axis=1)
 c["odds"] = c.loc[:, 1] / c.loc[:, 0]
-#-
+print(c)
+# -
 
 # We see that the probability that a woman has ever smoked is
 # substantially lower than the probability that a man has ever smoked
@@ -238,33 +239,36 @@ c["odds"] = c.loc[:, 1] / c.loc[:, 0]
 
 c.odds.Male / c.odds.Female
 
-# It is conventional to work with odds on the logarithmic scale.  To
+# It is conventional to work with odds and odds ratios on the logarithmic scale.  To
 # understand the motivation for doing this, first note that the neutral
-# point for a probability is 0.5, which is equivalent to an odds of 1
-# and a log odds of 0.  Populations where men smoke more than women will
-# have odds between 1 and infinity, with the exact value depending on
+# point for an odds ratio is 1, which is equivalent to a log odds ratio of 0.
+# Populations where men smoke more than women will
+# have odds ratios between 1 and infinity, with the exact value depending on
 # the magnitude of the relationship between the male and female smoking
-# rates.  Populations where women smoke more than men would have odds
+# rates.  Populations where women smoke more than men would have odds ratios
 # falling between 0 and 1.
 
-# We see that the scale of the odds statistic is not symmetric.  It is
+# We see that the scale of the odds ratio statistic is not symmetric.  It is
 # usually arbitrary in which order we compare two groups -- we could
-# compare men to women, or compare women to men.  An odds of 2 (men have
+# compare men to women, or compare women to men.  An odds ratio of 2 (men have
 # twice the odds of smoking as women) is equivalent in strength to an
-# odds of 1/2 (women have twice the odds of smoking as men).  Taking the
-# log of the odds centers the scale at zero, and symmetrizes the
+# odds ratio of 1/2 (women have twice the odds of smoking as men).  Similarly,
+# an odds ratio of 10 for men would be equivalent to an odds ratio of 1/10 for women.
+# Taking the
+# log of the odds ratio centers the scale at zero, and symmetrizes the
 # interpretation of the scale.
 
-# To interpret the log odds when comparing the odds for two groups, it
+# To interpret the log odds ratio when comparing the odds for two groups, it
 # is important to remember the following facts:
 
-# * A probability of 1/2, an odds of 1, and a log odds of 0 are all
-# equivalent.
+# * A probability of 1/2 is equivalent to an odds of 1.
 
-# * A positive log odds indicates that the first group being compared
+# * An odds ratio of 1 is equivalent to a log odds ratio of 0.
+
+# * A positive log odds ratio indicates that the first group being compared
 # has greater odds (and greater probability) than the second group.
 
-# * A negative log odds indicates that the second group being compared
+# * A negative log odds ratio indicates that the second group being compared
 # has greater odds (and greater probability) than the first group.
 
 # * The scale of the log odds statistic is symmetric in the sense that a
@@ -275,17 +279,18 @@ c.odds.Male / c.odds.Female
 # If you know that the log odds when comparing two groups is a given
 # value, say 2, and you want to report the odds, you simply exponentiate
 # the log odds to get the odds, e.g. `exp(2)` is around 7.4. Note
-# however that you cannot recover the individual probabilities (or their
-# ratio) from an odds ratio.`
+# however that you cannot recover the individual probabilities
+# from an odds ratio.`
 
 # Below we show the log odds for smoking history status of females and
 # males in the NHANES data.  The fact that the log odds for females is
 # negative reflects that fact that substantially less than 50% of
 # females have a history of smoking.  The log odds for males is closer to
-# 0, consistent with around half of males having a history of smoking.
+# 0, since around half of males have a history of smoking.
 
 # Add a column containing the log odds
 c["logodds"] = np.log(c.odds)
+print(c)
 
 ### A basic logistic regression model
 
@@ -441,6 +446,7 @@ result.summary()
 # simultaneous 95% simultaneous confidence band, as discussed above in
 # the case of a linear model.
 
+# +
 from statsmodels.sandbox.predict_functional import predict_functional
 
 values = {"RIAGENDRx": "Female", "RIAGENDR": 1, "BMXBMI": 25,
@@ -453,7 +459,8 @@ pr, cb, fv = predict_functional(result, "RIDAGEYR",
 ax = sns.lineplot(fv, pr, lw=4)
 ax.fill_between(fv, cb[:, 0], cb[:, 1], color='grey', alpha=0.4)
 ax.set_xlabel("Age")
-ax.set_ylabel("Smoking")
+_ = ax.set_ylabel("Smoking")
+# -
 
 # We can display the same plot in terms of probabilities instead of in
 # terms of log odds.  The probability can be obtained from the log odds
@@ -468,7 +475,7 @@ cb1 = 1 / (1 + np.exp(-cb))
 ax = sns.lineplot(fv, pr1, lw=4)
 ax.fill_between(fv, cb1[:, 0], cb1[:, 1], color='grey', alpha=0.4)
 ax.set_xlabel("Age", size=15)
-ax.set_ylabel("Smoking", size=15)
+_ = ax.set_ylabel("Smoking", size=15)
 
 # Next we turn to diagnostic plots that are intended to reveal certain
 # aspects of the data that may not be correctly captured by the model.
@@ -503,6 +510,7 @@ ax.set_ylabel("Smoking", size=15)
 # high confidence using the present data.
 
 
+# +
 fig = result.plot_partial_residuals("RIDAGEYR")
 ax = fig.get_axes()[0]
 ax.lines[0].set_alpha(0.2)
@@ -519,6 +527,7 @@ fig = result.plot_ceres_residuals("RIDAGEYR")
 ax = fig.get_axes()[0]
 ax.lines[0].set_alpha(0.2)
 _ = add_lowess(ax)
+# -
 
 ## Poisson regression
 
@@ -529,7 +538,7 @@ _ = add_lowess(ax)
 # particularly useful when we are observing the number of times that
 # some event happened, when there were a large number of opportunities
 # for the event to happen, each with a small probability.  For example,
-# suppose we have a large sample of drivers and divide them into
+# suppose we have a large sample of automobile drivers and divide them into
 # disjoint groups of 10,000 drivers at random.  If we were then to count
 # the total number of traffic accidents per group, these counts may
 # follow a Poisson distribution.
@@ -571,6 +580,7 @@ _ = add_lowess(ax)
 # Within each block, we will calculate summary statistics and analyze
 # them using Poisson regression.
 
+# +
 url = "https://raw.githubusercontent.com/kshedden/statswpy/master/NHANES/merged/nhanes_2015_2016.csv"
 da = pd.read_csv(url)
 
@@ -585,6 +595,7 @@ dx = dx.rename(columns={"RIDAGEYR:mean": "Age", "BPXSY1:size": "N",
                         "BPXSY1:<lambda_0>": "HighBP", "INDFMPIR:mean": "INDFMPIR",
                         "RIAGENDR:<lambda>": "Male", "DMDMARTL:<lambda>": "Married"})
 print(dx.head())
+# -
 
 # As a specific example, below we take the number of people in each
 # block who have high blood pressure (systolic blood pressure greater
@@ -613,7 +624,6 @@ print(dx.head())
 # with higher or lower prevalence of high blood pressure.
 
 dx["logN"] = np.log(dx.N)
-
 model = sm.GLM.from_formula("HighBP ~ logN + Age + INDFMPIR + Male + Married", family=sm.families.Poisson(), data=dx)
 result = model.fit(scale="X2")
 print(result.summary())
@@ -675,6 +685,7 @@ print(result.scale)
 # the shape parameter, this is further evidence that the data we are
 # working with here is well-described by the Poisson GLM.
 
+# +
 # Fit some negative binomial models
 print("Negative binomial log-likelihoods:")
 for shape in 0.1, 0.5, 1, 2:
@@ -682,6 +693,7 @@ for shape in 0.1, 0.5, 1, 2:
                   family=sm.families.NegativeBinomial(alpha=shape), data=dx)
     result = model.fit()
     print(shape, result.llf)
+# -
 
 ### Poisson regression for household size
 
@@ -696,6 +708,7 @@ for shape in 0.1, 0.5, 1, 2:
 # (`DMDHHSIZ`), along with some other variables that may be related to
 # it.
 
+# +
 url = "https://raw.githubusercontent.com/kshedden/statswpy/master/NHANES/merged/nhanes_2015_2016.csv"
 da = pd.read_csv(url)
 
@@ -708,6 +721,7 @@ print(pd.isnull(da).sum(0))
 print(da.shape)
 print(da.dropna().shape)
 da = da.dropna()
+# -
 
 # Next we fit a model predicting the size of a person's household from
 # the person's age and gender, including an interaction between age
@@ -723,6 +737,7 @@ result.summary()
 # Nevertheless we will make a plot of the fitted means by gender just
 # to see how they look:
 
+# +
 values = {"DMDHHSIZ": 0, "DMDCITZN": 0, "RIAGENDR": 0, "DMDEDUC2": 0, "INDFMPIR": 0,
           "RIDRETH1": 0, "DMDMARTL": 0}
 
@@ -734,16 +749,19 @@ for gender in "Female", "Male":
 
 ax.set_xlabel("Age")
 ax.set_ylabel("Log expected household size")
+# -
 
 # Marital status likely also plays a role, and it turns out that a role
 # for gender also emerges now that we consider marital status:
 
+# +
 # 1 if the person is married, 0 otherwise
 da["Married"] = (da.DMDMARTL == 1).astype(np.int)
 
 model = sm.GLM.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx", family=sm.families.Poisson(), data=da)
 result = model.fit(scale="X2")
 result.summary()
+# -
 
 # The model fit above includes all two-way interactions among age,
 # gender, and marital status.  The model with three-way interactions
@@ -754,6 +772,7 @@ result.summary()
 # To understand this model, we can plot the mean curves for married
 # and unmarried women and for married and unmarried men:
 
+# +
 values["Married"] = 0
 
 for married in 0, 1:
@@ -766,6 +785,7 @@ for married in 0, 1:
 
 ax.set_xlabel("Age")
 ax.set_ylabel("Log expected household size")
+# -
 
 # There is a lot going on here, but here are some possible
 # interpretations:
@@ -787,6 +807,7 @@ ax.set_ylabel("Log expected household size")
 # parameter which allows the variance to be proportional to, but not
 # necessarily equal to the mean.
 
+# +
 da["fit"] = result.fittedvalues
 da["fitd"] = pd.qcut(da.fit, 10)
 dx = da.groupby("fitd").agg({"fit": np.mean, "DMDHHSIZ": np.var})
@@ -794,6 +815,7 @@ dx = da.groupby("fitd").agg({"fit": np.mean, "DMDHHSIZ": np.var})
 sns.scatterplot(x="fit", y="DMDHHSIZ", data=dx)
 
 print(result.scale)
+# -
 
 # The plot above shows little evidence of an increasing trend between
 # the mean and the variance.  This leads us to wonder whether the
@@ -801,6 +823,7 @@ print(result.scale)
 # the AIC (lower is better) for a linear model, the Poisson model, and
 # a series of negative binomial models to assess this.
 
+# +
 # A linear model fit with least squares
 model0 = sm.OLS.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx", data=da)
 result0 = model0.fit()
@@ -815,6 +838,7 @@ for shape in 0.1, 0.5, 1, 2:
     model1 = sm.GLM.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3)*RIAGENDRx + Married*RIAGENDRx", family=sm.families.NegativeBinomial(alpha=shape), data=da)
     result1 = model1.fit()
     print(result1.aic)
+# -
 
 # Based on the AIC's shown above, the linear model appears to fit the
 # data best among these alternatives.
