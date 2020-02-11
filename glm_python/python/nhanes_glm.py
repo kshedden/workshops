@@ -73,25 +73,24 @@ da = da[vars].dropna()
 # where $b_0 + b_1x_1 + \cdots + x_px_p$ is called the *linear
 # predictor*.
 
-# Linear regression works best when the population variance structure is
-# homoscedastic:
+# Linear regression models are most commonly fit using the fitting
+# procedure called *least squares*.  When using least squares to fit a
+# linear regression model, the estimates of the mean structure
+# parameters $b_0, \ldots, b_p$ achieve their greatest accuracy when the
+# population variance is approximately *homoscedastic*:
 
 # $$
 # {\rm Var}[y | x_1, \ldots, x_p] = \sigma^2.
 # $$
 
-# Linear regression models are most commonly fit using the fitting
-# procedure called *least squares*.  When using least squares to fit a
-# linear regression model, the estimates of the mean structure
-# parameters $b_0, \ldots, b_p$ achieve their greatest accuracy when the
-# population variance is approximately homoscedastic.  Even when the variance
-# structure is not homoscedastic, we can still estimate the mean structure
+# Even when the variance
+# structure is not homoscedastic (i.e. is *heteroscedastic*), we can still estimate the mean structure
 # using least squares, but there is a loss of efficiency.
 
 # Generalized linear models (GLMs) are a collection of approaches for
 # regression analysis that extend the basic linear model in two ways:
 
-# * The mean structure can be related to the linear prediction via a
+# * The mean structure is related to the linear prediction via a
 # *link function*, e.g. the $\log$ link function:
 
 # $$
@@ -129,7 +128,14 @@ da = da[vars].dropna()
 # constant mean/variance relationship $f(x) = 1$, which gives back
 # the linear model.  Thus, the linear model is one type of GLM.
 
-# Note that linear regression is often used after applying a
+# In general, any choice for $g: {\cal R}\rightarrow{\cal R}$,
+# $f: {\cal R}\rightarrow{\cal R}^+$, and $\phi > 0$ gives a valid GLM.
+# We will discuss a few possibilities below, but this only scratches
+# the surface.
+
+# ## Relationship to transforming the response variable
+
+# Linear regression is often used after applying a
 # transformation to the dependent variable.  For example, if we log
 # transform the dependent variable and then fit a linear regression
 # model, we are estimating the mean structure
@@ -161,10 +167,9 @@ da = da[vars].dropna()
 # with less than substantial improvement being viewed as a failure.  The
 # success probability in this setting would be the probability that a
 # substantial improvement in symptoms occurs.  Sometimes this is called
-# the "event probability".
+# the "event probability".  The success or event probability is often denoted $p$.
 
-# The distribution of a binary random variable is entirely determined by
-# the success probability $p$.  In a regression analysis, we have many
+# In a regression analysis, we have many
 # observations $y_i$ of the dependent variable, and each is accompanied
 # with a covariate vector $x_i$.  This covariate vector may determine
 # the success probability, so we write $p(x)$ for the success
@@ -210,11 +215,12 @@ da["smq"] = da.SMQ020.replace({2: 0, 7: np.nan, 9: np.nan})
 # happening.  Recall that if an event has probability `p`, then the odds
 # for this event is `p/(1-p)`.  The odds is a mathematical
 # transformation that maps the probability to a different scale.  For
-# example, if the probability is 1/2, then the odds is 1.
+# example, if the probability is 1/2, then the odds is 1; if the probability
+# is 1/3, the odds is 1/2.
 
 # To begin, we look at the odds of alcohol use for women and men separately.
 
-# Create a labeled version of the gender variable
+# First we create a labeled version of the gender variable:
 
 # +
 da["RIAGENDRx"] = da.RIAGENDR.replace({1: "Male", 2: "Female"})
@@ -762,12 +768,6 @@ model = sm.GLM.from_formula("DMDHHSIZ ~ bs(RIDAGEYR, 3)*Married + bs(RIDAGEYR, 3
 result = model.fit(scale="X2")
 result.summary()
 # -
-
-# The model fit above includes all two-way interactions among age,
-# gender, and marital status.  The model with three-way interactions
-# did not converge.  There are ways to work around such convergence
-# issues, but here we will focus on the simpler model without the
-# three-way interaction.
 
 # To understand this model, we can plot the mean curves for married
 # and unmarried women and for married and unmarried men:
