@@ -1,22 +1,23 @@
 # # GEE analysis of growth trajectories of children
 
-# GEE is commonly used in Longitudinal data analysis.  Here we
+# GEE is commonly used in longitudinal data analysis.  Here we
 # consider a dataset in which repeated measures of weight were made on
-# young children.  GEE allows us to use linear modeling techniques
+# young children over several years in early childhood.
+# GEE allows us to use linear modeling techniques
 # similar to OLS, and still rigorously account for the repeated
 # measures aspect of the data.
 
-# The data we will use are obvtained from this page:
+# The data we will use are obtained from this page:
 # http://www.bristol.ac.uk/cmm/learning/support/datasets
 
-# These are the packages we will be using.
+# These are the packages we will be using:
 
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
 
 # The data are in "fixed width" format, so we use some special
-# techniques for reading them.
+# techniques for reading them:
 
 # +
 colspecs = [(0, 4), (4, 7), (7, 12), (12, 16), (16, 17)]
@@ -26,14 +27,14 @@ df["Female"] = 1*(df.Gender == 2)
 df = df.dropna()
 # -
 
-# Some of the analyses below will use logged data.
+# Some of the analyses below will use logged data:
 
 # +
 df["LogWeight"] = np.log(df.Weight) / np.log(2)
 df["LogBWeight"] = np.log(df.BWeight) / np.log(2)
 # -
 
-# The first model treats weight as a linear function of age, and
+# The first model that we consider treats weight as a linear function of age, and
 # ignores the repeated measures structure.  The point estimates from
 # this model are valid, but the standard errors are not.
 
@@ -44,7 +45,7 @@ print(rslt0.summary())
 # -
 
 # Here is a GEE model with the same mean structure as in the cell
-# above, but using GEE gives us meaningful standard errors.
+# above, but using GEE gives us meaningful standard errors:
 
 # +
 model1 = sm.GEE.from_formula("Weight ~ Age + BWeight + Female", groups="Id", data=df)
@@ -54,15 +55,15 @@ print(rslt1.summary())
 
 # Now we fit the same model as a log/log regression.  Specifically,
 # the relationship between weight in childhood at a given age and
-# birth weight has a log/log relationship.  This means that when
-# comparing two children of the same sex whose birthweights differed
+# birth weight is modeled as a log/log relationship.  This means that when
+# comparing two children of the same sex whose birth weights differed
 # by a given percentage, say $x$, then their childhood weights at a
 # given age differ on average by a corresponding percentage $b\cdot
-# x$, where $b$ is the coefficient of LogBWeight.  Typically we
+# x$, where $b$ is the coefficient of LogBWeight in the model.  Typically we
 # anticipate that $0 \le b \le 1$ in this type of regression.  If $b
-# \approx 1$ then, say, two kids whose weights at birth differend by
-# 20%% will continue to have weights differing by 20%% as they age.
-# If $b < 1$, then the 20%% difference at birth will attenuate as the
+# \approx 1$ then, say, two kids whose weights at birth differ by
+# 20% will continue to have weights differing by 20% as they age.
+# If $b < 1$, then the 20% difference at birth will attenuate as the
 # kids age.
 
 # +
@@ -104,12 +105,12 @@ print(rslt5.summary())
 print(rslt5.cov_struct.summary())
 # -
 
-# In genral, it is better to use the default "robust" approach for
+# In general, it is better to use the default "robust" approach for
 # covariance estimation.  This allows the covariance model to be
 # mis-specified, while still yielding valid parameter estimates and
 # standard errors.  If you are very confident that your working
 # covariance model is correct, you can specify the "naive" approach to
-# covariance estimation.  In this case, the standard errors will be
+# covariance estimation, as below.  In this case, the standard errors will be
 # meaningful only if the working correlation model is correct.
 
 # +
