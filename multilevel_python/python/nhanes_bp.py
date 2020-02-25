@@ -4,6 +4,8 @@
 # The study has data for two blood
 # pressure measurement types (systolic BP and diastolic BP), with up to 4
 # repeated measures per subject for each type.
+
+# The data files can be obtained from these links:
 #
 # https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT
 # https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BPX_G.XPT
@@ -44,7 +46,7 @@ dx = dx.dropna()
 
 # Since we have pivoted all BP measures to rows, we will need variables
 # telling us whether we are looking at systolic (SY) or diastolic (DI)
-# blood pressure, and we need a way to to know the order of the BP values
+# blood pressure, and we need a way to know the order of the BP values
 # within each person.  These repeated measures are not exchangeable,
 # since the BP readings tend to drop slightly as people relax.
 
@@ -62,14 +64,14 @@ dx = pd.merge(dx, di_mean, left_on="SEQN", right_index=True)
 print(dx.head())
 # -
 
-# Subsample to make the script run faster.  Statsmodels MixedLM is
-# unfortunatley not very fast.
+# We subsample the data to make the script run faster.  Statsmodels MixedLM is
+# unfortunately not very fast.
 
 dx = dx.iloc[0:5000, :]
 
 # Fit a linear mean structure model using OLS. The variance structure of
 # this model is misspecified.  Since this is a linear model, the coefficient
-# point estimates are still meaningful despite the variance misspecification.
+# point estimates are still meaningful despite the variance mis-specification.
 
 model1 = sm.OLS.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI", dx)
 result1 = model1.fit()
@@ -127,7 +129,7 @@ result6 = model6.fit()
 print(result6.summary())
 
 # Fit a mixed model to both types of BP jointly with a random intercept
-# per subject.  Note that the random intercept is share between the two
+# per subject.  Note that the random intercept is shared between the two
 # types of blood pressure (systolic and diastolic).
 
 model7 = sm.MixedLM.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI",
@@ -135,8 +137,8 @@ model7 = sm.MixedLM.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI",
 result7 = model7.fit()
 print(result7.summary())
 
-# Fit a mixed model to both types of BP with subject random intercept
-# and unique random effect per BP type with common variance.
+# Fit a mixed model to both types of BP with a subject random intercept
+# and a unique random effect per BP type with common variance.
 
 model8 = sm.MixedLM.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI",
                                  groups="SEQN", re_formula="1",
@@ -145,8 +147,8 @@ model8 = sm.MixedLM.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI",
 result8 = model8.fit()
 print(result8.summary())
 
-# Fit a mixed model to both types of BP with subject random intercept
-# and unique random effect per BP type with unique variance.
+# Fit a mixed model to both types of BP with a subject random intercept
+# and a unique random effect per BP type with unique variance.
 
 dx["sy"] = (dx.bpt == "SY").astype(np.int)
 dx["di"] = (dx.bpt == "DI").astype(np.int)
@@ -157,7 +159,7 @@ model9 = sm.MixedLM.from_formula("bp ~ RIDAGEYR + female + C(bpt) + BMXBMI",
 result9 = model9.fit()
 print(result9.summary())
 
-# Below we consider the possibility that theremay be heteroscedasticity
+# Below we consider the possibility that there may be heteroscedasticity
 # between the two blood pressure types.  That is, systolic blood pressure
 # measurements may be more variable than diastolic measurements, or vice
 # versa.  This analysis is a bit awkward to conduct.  Below we fit two
