@@ -28,16 +28,23 @@ f = os.path.join("../data", "adult.dat.gz")
 df = pd.read_fwf(f, colspecs=colspecs, names=names, compression="gzip")
 df = pd.merge(surv, df, left_on="seqn", right_on="seqn")
 
+# Recode region with text labels
+
+df["region"] = df.region.replace({1: "NE", 2: "MW", 3: "S", 4: "W"})
+
 # These are variables that may predict mortality.
 
 df["poverty"] = df["poverty"].replace({888888: np.nan})
 df["female"] = (df.sex == 2).astype(np.int)
 df["rural"] = (df.urbanrural == 2).astype(np.int)
 
-# Calculate the age at death or censoring
+# Calculate the age in months at study entry (NHANES interview)
 
-df["age_int"] = 12*df.age  # months
-df["end"] = df.age_int + df.permth_int  # months
+df["age_months"] = 12 * df.age
+
+# Calculate the age in months at final status determination (death or censoring)
+
+df["end"] = df.age_months + df.permth_int
 
 # It is possible to do something more sophisticated about missing data, but here we
 # will do a complete case analysis.
@@ -46,12 +53,12 @@ df = df.dropna()
 
 # SurvfuncRight can't handle 0 survival times
 
-df = df.loc[df.end > df.age_int]
+df = df.loc[df.end > df.age_months]
 
-# The hazard function is the derivative of the cumulative hazard function.
-# Here we calculate the derivative numerically using second differences.
-# This tends to produce a noisy estimate of the derivative, so we smooth
-# it below with local polynomial smoothing.
+# The hazard function is the derivative of -log(S(t)), where S(t) is the
+# survival function.  Here we calculate the derivative numerically using
+# second differences. This tends to produce a noisy estimate of the derivative,
+# so we smooth it below with local polynomial smoothing.
 
 def hazard(sf):
     tm = s.surv_times
@@ -69,7 +76,7 @@ plt.grid(True)
 sex = {0: "Male", 1: "Female"}
 for female in (0, 1):
     ii = df.female == female
-    s = sm.SurvfuncRight(df.loc[ii, "end"], df.loc[ii, "mortstat"], entry=df.loc[ii, "age_int"])
+    s = sm.SurvfuncRight(df.loc[ii, "end"], df.loc[ii, "mortstat"], entry=df.loc[ii, "age_months"])
     tm, hz = hazard(s)
     ha = sm.nonparametric.lowess(np.log(hz), tm/12)
     plt.plot(ha[:, 0], ha[:, 1], lw=3, label=sex[female])
@@ -80,19 +87,49 @@ plt.xlabel("Age", size=15)
 plt.ylabel("Log hazard", size=15)
 _ = plt.xlim(18, 90)
 
+# Plot "reverse survival functions" to get a sense of the follow up time.
+
+plt.grid(True)
+sex = {0: "Male", 1: "Female"}
+for female in (0, 1):
+    ii = df.female == female
+    s = sm.SurvfuncRight(df.loc[ii, "end"], 1 - df.loc[ii, "mortstat"], entry=df.loc[ii, "age_months"])
+    plt.plot(s.surv_times, s.surv_prob, lw=3, label=sex[female])
+ha, lb = plt.gca().get_legend_handles_labels()
+leg = plt.figlegend(ha, lb, "upper center", ncol=2)
+leg.draw_frame(False)
+plt.xlabel("Age (months)", size=15)
+plt.ylabel("Probability not censored", size=15)
+
+# Here is another reverse survival function, looking here at follow-up time
+# rather than age.
+
+plt.grid(True)
+sex = {0: "Male", 1: "Female"}
+for female in (0, 1):
+    ii = df.female == female
+    t = df.loc[ii, "end"]- df.loc[ii, "age_months"]
+    s = sm.SurvfuncRight(t, 1 - df.loc[ii, "mortstat"])
+    plt.plot(s.surv_times, s.surv_prob, lw=3, label=sex[female])
+ha, lb = plt.gca().get_legend_handles_labels()
+leg = plt.figlegend(ha, lb, "upper center", ncol=2)
+leg.draw_frame(False)
+plt.xlabel("Follow up time (months)", size=15)
+plt.ylabel("Probability not censored", size=15)
+
 # Fit a proportional hazards regression model, using sex, urbanicity, and
 # poverty status to explain the variation in life span.
 
-fml = "end ~ female + rural + C(region) + poverty"
-model1 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_int,
+fml = "end ~ female + rural + region + poverty"
+model1 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_months,
                                data=df)
 result1 = model1.fit()
 print(result1.summary())
 
 # Fit the same model as above, not stratifying by state of residence.
 
-fml = "end ~ female + rural + C(region) + poverty"
-model2 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_int,
+fml = "end ~ female + rural + poverty"
+model2 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_months,
                                strata=df.state, data=df)
 result2 = model2.fit()
 print(result2.summary())
@@ -104,8 +141,8 @@ print(result2.summary())
 # we compare people living in rural areas to people living in non-rural areas
 # without the requirement that they live in the same county.
 
-fml = "end ~ female + rural + C(region) + poverty"
-model3 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_int,
+fml = "end ~ female + rural + poverty"
+model3 = sm.PHReg.from_formula(fml, status="mortstat", entry=df.age_months,
                                strata=df.county, data=df)
 result3 = model3.fit()
 print(result3.summary())
