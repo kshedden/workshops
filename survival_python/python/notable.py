@@ -1,3 +1,5 @@
+# # Lifespans of notable people
+
 # This noteboook uses survival analysis to understand how the lifespans of
 # "notable people" have varied over the centuries, and between notable
 # women and notable men.
