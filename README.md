@@ -1,0 +1,1 @@
+See [here](http://github.com/kshedden/godata_workshop) for Go materials.
