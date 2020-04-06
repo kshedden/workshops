@@ -1,6 +1,11 @@
+# ## Basic mediation analysis with simulated data
+
 import numpy as np
 import statsmodels.api as sm
 import pandas as pd
+
+# Make the simulation reproducible
+np.random.seed(2343)
 
 # The sample size
 n = 400
@@ -98,5 +103,5 @@ for mode in 0, 1, 2:
     df = gendat(mode)
     outcome_model = sm.OLS.from_formula("y ~ x + m", data=df)
     mediator_model = sm.OLS.from_formula("m ~ x", data=df)
-    med = sm.stats.Mediation(outcome_model, mediator_model, "x", "m").fit()
+    med = sm.stats.Mediation(outcome_model, mediator_model, "x", "m").fit(n_rep=100)
     print(med.summary())
