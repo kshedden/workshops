@@ -28,7 +28,7 @@ regressing Y on X1 alone, we often will find that the coefficient for
 X1 becomes smaller in magnitude when including ("controlling for") X2.
 Mediation analysis may explain why this "effect attenuation" is
 occurring.  It may also happen that the coefficient for X1 becomes larger
-when controlling for X2.  Mediation analysis can shed light on this
+when controlling for X2 ("reverse attenuation").  Mediation analysis can shed light on this
 as well.
 
 Rigorous mediation analysis is a branch of causal inference, and
@@ -49,6 +49,9 @@ has other consequences such as improving cardiovascular functioning,
 that might also lead to lower blood pressure for reasons that have
 nothing to do with weight loss.  These are the "direct" or
 "unmediated" effects of exercise on blood pressure.
+
+Mediation via imputed counterfactuals
+-------------------------------------
 
 To define a mediated effect, we will consider "counterfactual"
 outcomes (also known as "potential" outcomes).  These are outcomes for
@@ -158,6 +161,22 @@ plug these simulated potential outcomes into the defining expressions
 for indirect, direct, and total effects given above.  Standard errors
 for these quantities can be defined in a straightforward way, but we
 do not provide details of that calculation here.
+
+Mediation with continuous exposures and mediators
+-------------------------------------------------
+
+The main idea behind mediation is easiest to grasp if the exposure
+and mediator variables are both binary (i.e. each subject is either treated,
+or not treated).  But in practice, many exposure and mediator
+variables of interest are measured on a continuous scale.  In fact
+there is no need to have binary variables when conducting a mediation
+analysis.  All of the methods developed above can be applied when
+the exposure variable and/or the mediator variable are continuously
+distributed.  When reporting out results in such a setting, the
+usual practice is to refer to "anchor points" within the
+range of each variable.  This might be, for example, the mean,
+and one standard deviation above the mean (termed "low" and
+"high", respectively).
 
 Uncertainty assessment
 ----------------------
