@@ -5,16 +5,22 @@ import statsmodels.api as sm
 import pandas as pd
 
 # Make the simulation reproducible
+
 np.random.seed(2343)
 
 # The sample size
+
 n = 400
+
+# The function below simulates data that exhibits different types of
+# mediation behavior.  The type of mediation behavior is controlled by
+# the 'mode' argument.
 
 def gendat(mode):
     """
-    Generate data for demonstrating a mediation analysis.  mode = 0,
-    1, 2, correspond, respectively, to no, full, and partial mediation
-    analysis.
+    Generate data for demonstrating a mediation analysis.  Setting
+    mode = 0, 1, 2, correspond, respectively, to no, full, and partial
+    mediation, respectively.
     """
 
     # The exposure
@@ -35,6 +41,11 @@ def gendat(mode):
         y = m + x + np.random.normal(size=n)
 
     return pd.DataFrame({"x": x, "m": m, "y": y})
+
+# The function below carries out a simplified mediation analysis.  The
+# purpose of this analysis is to illustrate the main idea behind how
+# estimates of mediation are constructed.  It omits a few important
+# but technical steps for the sake of clarity.
 
 def fake_mediation(mode):
     """
@@ -93,10 +104,16 @@ def fake_mediation(mode):
     return aie, aie_se, ade, ade_se
 
 
+# Run the simplified mediation analysis for each type of mediation (no
+# mediation, full mediation, partial mediation).
+
 for mode in 0, 1, 2:
     aie, aie_se, ade, ade_se = fake_mediation(mode)
     print("AIE=%8.4f (%.4f)  ADE=%8.4f (%.4f)" % (aie, aie_se, ade, ade_se))
 
+
+# Run a mediation analysis using the Mediation package for each type
+# of mediation (no/full/partial).
 
 for mode in 0, 1, 2:
 
@@ -104,4 +121,4 @@ for mode in 0, 1, 2:
     outcome_model = sm.OLS.from_formula("y ~ x + m", data=df)
     mediator_model = sm.OLS.from_formula("m ~ x", data=df)
     med = sm.stats.Mediation(outcome_model, mediator_model, "x", "m").fit(n_rep=100)
-    print(med.summary())
+    print(med.summary(), "\n")

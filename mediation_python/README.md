@@ -5,7 +5,7 @@ The approach to mediation analysis discussed here is covered in this paper:
 
 http://imai.princeton.edu/research/files/BaronKenny.pdf
 
-The Statsmodels source code for mediation analysis is here:
+The Python/Statsmodels source code for mediation analysis is here:
 
 https://github.com/statsmodels/statsmodels/blob/master/statsmodels/stats/mediation.py
 
@@ -26,8 +26,10 @@ If we use multiple regression to model the relationship between X1,
 X2, and Y, and we compare a model regressing Y on X1 and X2 to a model
 regressing Y on X1 alone, we often will find that the coefficient for
 X1 becomes smaller in magnitude when including ("controlling for") X2.
-Mediation analysis aims to explain why this "effect attenuation" is
-occurring.
+Mediation analysis may explain why this "effect attenuation" is
+occurring.  It may also happen that the coefficient for X1 becomes larger
+when controlling for X2.  Mediation analysis can shed light on this
+as well.
 
 Rigorous mediation analysis is a branch of causal inference, and
 involves careful specification of the assumptions (some of which are
@@ -48,24 +50,24 @@ that might also lead to lower blood pressure for reasons that have
 nothing to do with weight loss.  These are the "direct" or
 "unmediated" effects of exercise on blood pressure.
 
-To define a mediated effect, we need to consider "counterfactual"
+To define a mediated effect, we will consider "counterfactual"
 outcomes (also known as "potential" outcomes).  These are outcomes for
 a given subject that were not actually observed, because the subject
-was not seen in the setting under which the variable is defined.  In
+was not seen in the corresponding setting.  In
 the notation above, the counterfactual outcomes are notated as Y(t, m)
 -- this is the blood pressure that would be seen for a particular
 subject, had they been in treatment group t (e.g. t=1 is the exercise
-program group, t=0 are the others), and had they achieved BMI m.
+program group, t=0 are the others), and had they achieved BMI equal to m.
 
 In a mediation setting, we view the value of the mediator variable as
 a function of the treatment status, that is m = m(t).  Thus, for a
 particular subject, it may be that m(1) = 30 and m(0) = 32.  This
 means that this particular person would have had a BMI of 30 had they
-been on the treatment arm, and 32 had they been on the control arm.
+been in the treatment arm, and 32 had they been in the control arm.
 
 When the exposure variable T is binary, there are two "indirect" or
 "mediated" effects, one for treated subjects and one for untreated
-subjects.  Expressed in terms of potential outcomes, the these are
+subjects.  Expressed in terms of potential outcomes, these are
 given by:
 
 ```
@@ -78,10 +80,10 @@ whose BMI changes as if they were treated, but whose treatment status
 is held fixed, so that any other consequences of the treatment are
 "blocked".
 
-Note that we observe Y(1, m(1)) and Y(0, m(0)) in our data, but we
-never observe Y(1, m(0)) or Y(0, m(1)).  This is the reason that
-mediation analysis involves making untestable assumptions that allow
-us to infer these unobserved values from the observed data.
+Note that we only observe Y(1, m(1)) and Y(0, m(0)) in our data, but we
+never observe the counterfactual values Y(1, m(0)) or Y(0, m(1)).  This is the reason that
+mediation analysis involves making untestable assumptions, because we must
+infer these unobserved values from the observed data.
 
 Complementing the mediated (indirect) effects defined above, we have
 the "direct effects", defined as
@@ -128,9 +130,10 @@ There are two main limitations of the product of coefficients approach:
 
 * it defines the mediation structure in terms of a specific model (two
   linear models) that may or may not fit well in a particular setting;
-  in contrast, the approach defined above defines the mediation effects
-  in terms of means, which does not require any particular model to
-  hold
+  in contrast, the approach developed above based on counterfactuals
+  defines the mediation effects
+  in terms of linear contrasts of means, which can be estimated from many
+  types of statistical models.
 
 * the product of coefficients method does not hold for nonlinear
   models, e.g. logistic regression
@@ -156,6 +159,30 @@ for indirect, direct, and total effects given above.  Standard errors
 for these quantities can be defined in a straightforward way, but we
 do not provide details of that calculation here.
 
+Uncertainty assessment
+----------------------
+
+To properly assess the uncertainty in the results of a mediation analysis based on
+imputed counterfactuals, it is important to consider two sources of uncertainty
+that contribute to the uncertainty in the overall result.
+
+First,
+we do not know the exact structure of the population models for the
+mediator and for the outcome.  We estimate these population models,
+e.g. using linear regression or another statistical model.  But these
+regression fits are estimates of the population structure.  This
+is the reason that it is important to perturb the parameter estimates
+of these models using a draw from their sampling distribution (or
+alternatively to use a bootstrapping approach).
+
+Second, we cannot predict the exact value of a person's counterfactual
+outcome or mediator.  This is true even if we know the exact probability model that
+produced the data.  Therefore, when we generate counterfactual values of
+the outcome or mediator variable for one person, we generate a draw from
+their predictive distribution, rather than using, say, their conditional
+mean value.  Doing this builds the predictive uncertainty for the imputed
+counterfactual values into the analysis.
+
 Moderated mediation
 -------------------
 
@@ -172,3 +199,11 @@ way to proceed is by including interactions with possible moderators
 in the regressions discussed above.  We will not provide all the
 details here, but the Statsmodels mediation procedures allows such
 moderator variables to be specified.
+
+Multiple mediation
+------------------
+
+In many research settings it is desirable to know how much of
+the effect of an exposure is mediated through each of several
+potential mediator variables.  This is an important but more
+advanced topic that we do not discuss further here.
