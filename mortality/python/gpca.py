@@ -58,11 +58,11 @@ class GPCA(base.LikelihoodModel):
         self.endog = np.asarray(endog)
         self.ndim = ndim
 
-        if offset != None:
-            if all(offset.shape != endog.shape):
+        if offset is not None:
+            if offset.shape != endog.shape:
                 msg = "endog and offset must have the same shape"
                 raise ValueError(msg)
-            offset = self.offset
+            self.offset = np.asarray(offset)
 
         # Calculate the saturated parameter
         if isinstance(family, families.Poisson):
@@ -83,6 +83,8 @@ class GPCA(base.LikelihoodModel):
         qm = params[p:].reshape((p, self.ndim))
 
         resid = self.satparam - icept
+        if hasattr(self, "offset"):
+            resid -= self.offset
 
         lp = icept + np.dot(np.dot(resid, qm), qm.T)
 
@@ -93,6 +95,26 @@ class GPCA(base.LikelihoodModel):
 
 
     def predict(self, params, linear=False):
+        """
+        Return the fitted mean or its linear predictor.
+
+        Parameters
+        ----------
+        params : array-like
+            The parameters to use to produce the fitted mean
+        linear : boolean
+            If true, return the linear predictor, otherwise
+            return the fitted mean, which is the inverse
+            link function evaluated at the linear predictor.
+
+        Returns an array with the same shape as endog, containing
+        fitted values corresponding to the given parameters.
+
+        Notes
+        -----
+        If an offset is present, it is included in the linear
+        predictor.
+        """
 
         _, _, _, lp = self._linpred(params)
 
@@ -100,6 +122,26 @@ class GPCA(base.LikelihoodModel):
             return lp
         else:
             return self.family.fitted(lp)
+
+
+    def scores(self, params):
+        """
+        Returns the PC scores for each case.
+
+        Parameters
+        ----------
+        params : array-like
+            The parameters at which the scores are
+            calculated.
+
+        Returns
+        -------
+        An array of scores.
+        """
+
+        _, qm, resid, _ = self._linpred(params)
+
+        return np.dot(resid, qm)
 
 
     def loglike(self, params):
@@ -142,7 +184,11 @@ class GPCA(base.LikelihoodModel):
 
         # Starting values
         icept = self.satparam.mean(0)
+        if hasattr(self, "offset"):
+            icept -= self.offset.mean(0)
         cnp = self.satparam - icept
+        if hasattr(self, "offset"):
+            cnp -= self.offset
         _, _, vt = np.linalg.svd(cnp,0)
         v = vt.T
         v = v[:, 0:d]

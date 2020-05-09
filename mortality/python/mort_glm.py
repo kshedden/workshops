@@ -43,9 +43,9 @@ df.loc[:, "offset"] = np.log(df.Population)
 # for women in June.
 #
 # The above discussion applies to models with no interactions.  If
-# there are interactions, then the morality for men in January could
+# there are interactions, then the mortality for men in January could
 # be either greater than, or less than 1.05*1.03, depending on the
-# sign and magnitude of the interaction term.
+# sign and magnitude of the interaction term between sex and month.
 
 # We begin by fitting an initial Poisson GLM treating all counts as
 # being independent.
@@ -55,7 +55,7 @@ m1 = sm.GLM.from_formula(fml, family=sm.families.Poisson(), offset=df.offset, da
 r1 = m1.fit(scale="X2")
 
 # Next we use generalized estimating equations (GEE) to fit a model in
-# which counts within the same year/month are independent.  Note that
+# which counts within the same year/month are dependent.  Note that
 # many of the standard errors are larger in the GEE analysis compared
 # to the GLM analysis.  This is expected since dependence between
 # measured values often reduces the information in the data.
@@ -72,50 +72,50 @@ r2 = m2.fit()
 # mortality rates vary by sex.  The score test results indicate that
 # there is strong evidence for this.
 
-#+
+# +
 fml3 = "Deaths ~ Age_group * Sex + C(Year) + C(Month)"
 m3 = sm.GEE.from_formula(fml3, family=sm.families.Poisson(), groups="yearmonth",
           offset=df.offset, cov_struct=sm.cov_struct.Independence(), data=df)
 r3 = m3.fit()
 
 print(m3.compare_score_test(r2))
-#-
+# -
 
 # Next we assess whether the seasonality patterns vary by sex.  There
 # is strong evidence for this moderation as well.
 
-#+
+# +
 fml4 = "Deaths ~ (Age_group + C(Month)) * Sex + C(Year)"
 m4 = sm.GEE.from_formula(fml4, family=sm.families.Poisson(), groups="yearmonth",
           offset=df.offset, cov_struct=sm.cov_struct.Independence(), data=df)
 r4 = m4.fit()
 
 print(m4.compare_score_test(r3))
-#-
+# -
 
 # There is also strong evidence that the long term trend varies by
 # sex.
 
-#+
+# +
 fml5 = "Deaths ~ (Age_group + C(Year) + C(Month)) * Sex"
 m5 = sm.GEE.from_formula(fml5, family=sm.families.Poisson(), groups="yearmonth",
           offset=df.offset, cov_struct=sm.cov_struct.Independence(), data=df)
 r5 = m5.fit(scale="X2")
 
 print(m5.compare_score_test(r4))
-#-
+# -
 
 # Below we check whether the sex-specific seasonality patterns vary by
 # year.  There isn't much evidence for this form of moderation.
 
-#+
+# +
 fml6 = "Deaths ~ (Age_group + C(Year) * C(Month)) * Sex"
 m6 = sm.GEE.from_formula(fml6, family=sm.families.Poisson(), groups="yearmonth",
           offset=df.offset, cov_struct=sm.cov_struct.Independence(), data=df)
 r6 = m6.fit()
 
 print(m6.compare_score_test(r5))
-#-
+# -
 
 # Now that we have used hypothesis testing to assess which moderating
 # effects might be real, we can look at the effects sizes to
