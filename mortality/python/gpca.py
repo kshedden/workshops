@@ -6,7 +6,7 @@ import warnings
 
 class GPCA(base.LikelihoodModel):
 
-    def __init__(self, endog, ndim, offset=None, family=None):
+    def __init__(self, endog, ndim, offset=None, family=None, penmat=None):
         """
         Fit a generalized principal component analysis.
 
@@ -64,16 +64,36 @@ class GPCA(base.LikelihoodModel):
                 raise ValueError(msg)
             self.offset = np.asarray(offset)
 
+        if penmat is not None:
+            pm = []
+            if len(penmat) != 2:
+                msg = "penmat must be a tuple of length 2"
+                raise ValueError(msg)
+            for j in range(2):
+                if np.isscalar(penmat[j]):
+                    n, p = endog.shape
+                    pm.append(self._gen_penmat(penmat[j], n, p))
+                else:
+                    pm.append(penmat[j])
+            self.penmat = pm
+
         # Calculate the saturated parameter
         if isinstance(family, families.Poisson):
-            satparam = np.log(endog)
-            satparam = np.where(endog == 0, -3, satparam)
+            satparam = np.where(endog != 0, np.log(endog), -3)
+        elif isinstance(family, families.Binomial):
+            satparam = np.where(endog == 1, 3, -3)
         elif isinstance(family, families.Gaussian):
             satparam = endog
         else:
             raise ValueError("Unknown family")
         self.satparam = satparam
 
+
+    def _gen_penmat(self, f, n, p):
+        pm = np.zeros((p-2, p))
+        for k in range(p-2):
+            pm[k, k:k+3] = [-1, 2, -1]
+        return f * pm * n
 
     def _linpred(self, params):
 
@@ -87,12 +107,23 @@ class GPCA(base.LikelihoodModel):
             resid -= self.offset
 
         lp = icept + np.dot(np.dot(resid, qm), qm.T)
-
         if hasattr(self, "offset"):
             lp += self.offset
 
         return icept, qm, resid, lp
 
+    def _flip(self, params):
+        """
+        Multiply factors by -1 so that the majority of entries
+        are positive.
+        """
+        p = self.endog.shape[1]
+        icept = params[0:p]
+        qm = params[p:].reshape((p, self.ndim))
+        for j in range(self.ndim):
+            if np.sum(qm[:, j] < 0) > np.sum(qm[:, j] > 0):
+                qm[:, j] *= -1
+        return np.concatenate((icept, qm.ravel()))
 
     def predict(self, params, linear=False):
         """
@@ -146,15 +177,30 @@ class GPCA(base.LikelihoodModel):
 
     def loglike(self, params):
 
-        _, _, _, lp = self._linpred(params)
+        icept, qm, _, lp = self._linpred(params)
         expval = self.family.link.inverse(lp)
 
-        return self.family.loglike(self.endog.ravel(), expval.ravel())
+        ll = self.family.loglike(self.endog.ravel(), expval.ravel())
+
+        if hasattr(self, "penmat"):
+            pm = self.penmat
+            ll -= np.sum(np.dot(pm[0], icept)**2)
+            for j in range(self.ndim):
+                ll -= np.sum(np.dot(pm[1], qm[:, j])**2)
+
+        return ll
+
+    def _orthog(self, qm, v):
+        for i in range(5):
+            v -= np.dot(qm, np.dot(qm.T, v))
+            if np.max(np.abs(np.dot(qm.T, v))) < 1e-10:
+                break
+        return v
 
 
-    def score(self, params):
+    def score(self, params, project=False):
 
-        _, qm, resid, lp = self._linpred(params)
+        icept, qm, resid, lp = self._linpred(params)
 
         # The fitted means
         mu = self.family.fitted(lp)
@@ -166,16 +212,76 @@ class GPCA(base.LikelihoodModel):
 
         # The score with respect to the intercept
         si = sf.sum(0)
-        si -= np.dot(np.dot(sf, qm), qm.T).sum(0)
+        si = self._orthog(qm, si)
 
         # The score with respect to the factors
         rts = np.dot(resid.T, sf)
         df = np.dot(rts, qm) + np.dot(rts.T, qm)
 
+        if hasattr(self, "penmat"):
+            pm = self.penmat
+            si -= 2 * np.dot(pm[0].T, np.dot(pm[0], icept))
+            for j in range(self.ndim):
+                df[:, j] -= 2 * np.dot(pm[1].T, np.dot(pm[1], qm[:, j]))
+
+        if project:
+            df = self._orthog(qm, df)
+
         sc = np.concatenate((si, df.ravel()))
 
         return sc
 
+    def _update_icept(self, pa, gm, p):
+
+        def f(t):
+            qp = pa.copy()
+            qp[0:p] += t*gm
+            return qp, self.loglike(qp)
+
+        _, f0 = f(0)
+
+        # Take an uphill step
+        def search(t, s, pa):
+            while t > 1e-18:
+                qp, f1 = f(t*s)
+                if f1 > f0:
+                    pa = qp
+                    return pa, False
+                t /= 2
+            return pa, True
+
+        pa, fail = search(1.0, 1, pa)
+
+        return pa, fail
+
+    def _update_factors(self, pa, icept, qm, gf):
+
+        fail = False
+        u, s, vt = np.linalg.svd(gf, 0)
+        v = vt.T
+
+        def f(t):
+            co = np.cos(s*t)
+            si = np.sin(s*t)
+            qq = np.dot(qm, np.dot(v, co[:, None] * vt)) + np.dot(u, si[:, None] * vt)
+            qp = np.concatenate((icept, qq.ravel()))
+            return qp, self.loglike(qp)
+
+        _, f0 = f(0)
+
+        # Take an uphill step
+        def search(t, s, pa):
+            while t > 1e-14:
+                qp, f1 = f(s*t)
+                if f1 > f0:
+                    pa = qp
+                    return pa, True
+                t /= 2
+            return pa, False
+
+        pa, fail = search(1.0, 1, pa)
+
+        return pa, fail
 
     def fit(self, maxiter=1000, gtol=1e-8):
 
@@ -188,7 +294,7 @@ class GPCA(base.LikelihoodModel):
             icept -= self.offset.mean(0)
         cnp = self.satparam - icept
         if hasattr(self, "offset"):
-            cnp -= self.offset
+            cnp -= (self.offset - self.offset.mean(0))
         _, _, vt = np.linalg.svd(cnp,0)
         v = vt.T
         v = v[:, 0:d]
@@ -198,66 +304,42 @@ class GPCA(base.LikelihoodModel):
 
         for itr in range(maxiter):
 
-            icept = pa[0:p]
-            qm = pa[p:].reshape((p, d))
-            grad = self.score(pa)
-
             if itr % 2 == 0:
 
                 # If we fail to update both the intecept
                 # and the factor matrix, then stop
                 fail1, fail2 = False, False
 
+                for ii in range(3):
+                    grad = self.score(pa)
+                    gm = grad[0:p]
+                    if np.sqrt(np.sum(gm**2)) < 1e-4:
+                        break
+                    pa, fail1 = self._update_icept(pa, gm, p)
+
                 # Update the intercept parameters
                 gm = grad[0:p]
                 gsn = np.sum(gm**2)
 
-                def f(t):
-                    qp = pa.copy()
-                    qp[0:p] += t*gm
-                    return qp, self.loglike(qp)
-
-                # Take an uphill step
-                t = 1.0
-                _, f0 = f(0)
-                while t > 1e-14:
-                    qp, f1 = f(t)
-                    if f1 > f0:
-                        pa = qp
-                        break
-                    t /= 2
-
-                if t <= 1e-14:
-                    fail1 = True
                 continue
 
-            # Update the projection parameters
-            gf = grad[p:].reshape((p, d))
+            for ii in range(3):
+                icept = pa[0:p]
+                qm = pa[p:].reshape((p, d))
+                grad = self.score(pa)
 
-            gf -= np.dot(qm, np.dot(qm.T, gf))
-            gsn += np.sum(gf**2)
-            u, s, vt = np.linalg.svd(gf, 0)
-            v = vt.T
+                # Update the projection parameters
+                gf = grad[p:].reshape((p, d))
 
-            def f(t):
-                co = np.cos(s*t)
-                si = np.sin(s*t)
-                qq = np.dot(qm, np.dot(v, co[:, None] * vt)) + np.dot(u, si[:, None] * vt)
-                qp = np.concatenate((icept, qq.ravel()))
-                return qp, self.loglike(qp)
-
-            # Take an uphill step
-            t = 1.0
-            _, f0 = f(0)
-            while t > 1e-14:
-                qp, f1 = f(t)
-                if f1 > f0:
-                    pa = qp
+                # Orthogonalize twice due to roundoff
+                gf -= np.dot(qm, np.dot(qm.T, gf))
+                gf -= np.dot(qm, np.dot(qm.T, gf))
+                if np.sqrt(np.sum(gf**2)) < 1e-4:
                     break
-                t /= 2
 
-            if t <= 1e-14:
-                fail2 = True
+                pa, fail2 = self._update_factors(pa, icept, qm, gf)
+
+            gsn += np.sum(gf**2)
 
             if np.sqrt(gsn) < gtol:
                 converged = True
@@ -269,6 +351,7 @@ class GPCA(base.LikelihoodModel):
         if not converged:
             warnings.warn("GPCA did not converge")
 
+        pa = self._flip(pa)
         icept = pa[0:p]
         qm = pa[p:].reshape((p, d))
 
@@ -337,13 +420,17 @@ def test_fit_gaussian():
 
     for d in range(1, 6):
         endog = np.random.normal(size=(n, p)) + np.random.normal(size=p)
+        endog += 10*np.arange(p)
         pca = GPCA(endog, d)
-        r = pca.fit(gtol=1e-12)
+        r = pca.fit(gtol=1e-10)
+        assert(r.converged)
         icept, fac = r.intercept, r.factors
 
+        # GPCA fitted values
         resid0 = endog - icept
         fv = np.dot(resid0, np.dot(fac, fac.T)) + icept
 
+        # PCA fitted values
         icept1 = endog.mean(0)
         endogc = endog - icept1
         u, s, vt = np.linalg.svd(endogc, 0)
@@ -351,13 +438,24 @@ def test_fit_gaussian():
         fv0 = np.dot(u, np.dot(np.diag(s), vt)) + icept1
         fac1 = vt.T[:, 0:d]
 
+        # Check that PCA and GPCA factors agree
         p1 = np.dot(fac, fac.T)
         p2 = np.dot(fac1, fac1.T)
+        assert_allclose(np.trace(np.dot(p1, p2)), d, rtol=1e-10,
+                        atol=1e-10)
 
-        assert(np.abs(np.trace(np.dot(p1, p2)) - d) < 1e-4)
-        assert(np.max(np.abs(fv - fv0)) < 1e-10)
-        assert(r.converged)
+        # Check that PCA and GPCA fitted values agree
+        assert_allclose(fv, fv0, rtol=1e-10, atol=1e-10)
 
+        # The scores should be centered at zero
+        scores = pca.scores(r.params)
+        assert_allclose(scores.mean(0), 0, rtol=1e-8, atol=1e-8)
+
+        # The GPCA scores and PCA scores should agree up to
+        # ordering.
+        scores1 = u[:, 0:d] * s[0:d]
+        c = np.corrcoef(scores.T, scores1.T)
+        assert_allclose(np.abs(c).sum(0), 2*np.ones(2*d))
 
 def test_fit_poisson():
 
@@ -377,13 +475,21 @@ def test_fit_poisson():
 
         endog = np.random.poisson(mu, size=(n, p))
         pca = GPCA(endog, d, family=families.Poisson())
-        r = pca.fit()
+        r = pca.fit(maxiter=50)
         icept1, fac1 = r.intercept, r.factors
 
+        # Check intercepts
+        assert_allclose(icept, icept1, atol=1e-2, rtol=1e-1)
+
+        # Check factors
         p1 = np.dot(fac, fac.T)
         p2 = np.dot(fac1, fac1.T)
+        assert_allclose(np.trace(np.dot(p1, p2)), d, atol=1e-2)
 
-        assert(np.abs(d - np.trace(np.dot(p1, p2))) < 1e-2)
+        # Scores should be approximately centered
+        scores = pca.scores(r.params)
+        assert_allclose(scores.mean(), 0, atol=1e-3)
+
         assert(r.score_norm < 0.005)
 
 

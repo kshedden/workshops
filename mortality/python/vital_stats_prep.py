@@ -2,10 +2,10 @@
 #
 # Running the script (with the run function) produces an analysis file
 # containing the number of deaths (due to all causes), and the US
-# population in sex x age x year x month x weekday strata.
+# population in sex x age x year x month strata.
 #
 # Each row of the resulting data set contains the number of deaths in
-# a specific demographic stratum, on a particular weekday in a
+# a specific demographic stratum, in a
 # particular month.  For example, a row may contain the number of
 # deaths for 0-5 year old girls, in November of 2013.
 #
