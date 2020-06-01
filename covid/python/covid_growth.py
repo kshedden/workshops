@@ -1,5 +1,7 @@
 # https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
 
+# https://www.frontiersin.org/articles/10.3389/fphy.2020.00217/full
+
 import pandas as pd
 import numpy as np
 from datetime import datetime

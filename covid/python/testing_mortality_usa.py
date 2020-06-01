@@ -1,4 +1,4 @@
-# ## Testing, prevalence, and mortality in Covid
+# ## Testing, prevalence of active cases, and mortality in Covid
 
 # This notebook considers several topics related to Covid mortality
 # and SARS-CoV-2 virus testing, using data from the [Covid Tracking
@@ -27,9 +27,9 @@
 # non-representative subpopulation has been tested.  Therefore, we
 # will not actually be aiming literally for the prevalence here
 # (e.g. cases per thousand population).  Instead, we take the point of
-# view that the question of whether ``enough'' testing has been done
+# view that the question of whether enough testing has been done
 # can largely be settled by assessing to what extent testing results
-# predict mortality, which is the main ``hard endpoint'' for Covid.
+# predict mortality, which is the main hard endpoint for Covid.
 #
 # We note that there are other possible uses of testing such as for
 # use in contact tracing, identifying emerging disease hotspots, and
@@ -72,7 +72,7 @@ if not os.path.exists("states.csv"):
     ta = ta.sort_values(by="state")
     ta.to_csv("states.csv", index=None)
 
-# Load and merge the Covid data and the state population data.
+# Next we load and merge the Covid data and the state population data.
 
 df = pd.read_csv("ctp_daily.csv")
 dp = pd.read_csv("states.csv")
@@ -301,7 +301,7 @@ print(r1.summary())
 # expect the regression coefficients for the log number of positive
 # tests to be equal to 1 (assuming that cases and mortality are 1-1 at
 # some lag).  As we see above, the coefficient for the log number of
-# positive tests in the week immediately preceeding the mortality
+# positive tests in the week immediately preceding the mortality
 # count is around 0.56, and the coefficients for the two weeks prior
 # to that were 0.19 and 0.04 respectively.  Note that these
 # coefficients sum to around 0.8 -- if the positive tests in two
@@ -310,7 +310,7 @@ print(r1.summary())
 # that these effects are spread across several lagged terms may
 # reflect variation in the timing of death relative to infection.
 #
-# Note also that there is a statistically significant negative
+# Note also that there is a statistically significant inverse
 # relationship between the log number of negative tests in the prior
 # weeks and mortality.  However the coefficients of the negative test
 # result variables do not sum to a value close to 1.  This would argue
@@ -332,13 +332,24 @@ print(r1.summary())
 
 # ## State effects and variation in the IFR
 
+# The analysis above uses state-level fixed effects to account
+# for state-to-state differences from various sources.  From a
+# statistical perspective, this is one of several ways to address
+# this issue.  Including large numbers of fixed effects in any
+# regression model can raise concerns about there being sufficient
+# data to estimate these parameters.  This is classically known
+# as the "Neyman-Scott" problem.  Alternatives to fixed effects
+# include mutilevel analysis, shrunken fixed effects, and marginal
+# analysis with covariances within states (which we have also
+# done here via GEE).
+
 # If we believe that the positive and negative testing data are
 # sufficiently informative about the prevalence of the disease at each
 # state/time, then the state fixed effects in the above model might
 # reflect state-to-state differences in the infection/fatality ratio.
 # The analysis below shows that these state effects have a range of
-# around 5.26 on the log scale, with a standard deviation of 0.86.
-# Since exp(0.86) ~ 2.36, this might suggest that most states have IFR
+# around 4.4 on the log scale, with a standard deviation of 0.82.
+# Since exp(0.82) ~ 2.27, this might suggest that most states have IFR
 # values that are within a factor of around 2.5 of the mean
 # state-level IFR -- however, see below for a more refined analysis.
 # Variation on the order of 2 or more would be quite interesting
@@ -367,9 +378,10 @@ print(st.std())
 # The state fixed effects discussed above are estimates, not exact
 # values.  The estimation errors in these quantities inflate their
 # variance when estimated naively as in the preceding cell.  This can
-# be addressed as shown below.  The results suggest that most states
-# are within 12% of the mean state, suggesting that the IFR values may
-# actually be quite similar from state to state.
+# be addressed as shown below.  However the results show that the
+# bias is not great in this case, and the relationship between testing
+# and mortality may commonly differ from state-to-state by factors on
+# the order of 2-3.
 
 # +
 ii = [i for i, x in enumerate(pa.index) if "state" in x]
@@ -380,11 +392,13 @@ c = r1.cov_params().iloc[ii, ii]
 # here.
 p = len(st)
 oo = np.ones(p)
-qm = np.eye(p) - np.outer(oo, oo) / p
-vv = np.trace(np.dot(qm, np.dot(c, qm))) / p
+qm = np.eye(p) - np.outer(oo, oo) / p # Centering matrix
+bias = np.trace(np.dot(qm, np.dot(c, qm)))
+v = np.dot(st, np.dot(qm, st)) - bias
+v /= p
 
 print("Adjusted variance and SD of state effects:")
-print("variance=%f, SD=%f\n" % (vv, np.sqrt(vv)))
+print("variance=%f, SD=%f\n" % (v, np.sqrt(v)))
 # -
 
 # ## Alternative models and confounding
@@ -464,7 +478,7 @@ print(r3.scale)
 # times greater than the conditional mean.
 #
 # The conventional approach for estimating the scale parameter is
-# analagous to the sample variance, using the "Pearson residuals".
+# analogous to the sample variance, using the "Pearson residuals".
 
 # +
 resid = r2.resid_pearson
@@ -595,4 +609,3 @@ print(scale_2group(3.3, 0.02))
 # parameter that is in-range with our estimated values.
 
 print(scale_2group(2.0, 0.5))
-

@@ -3,7 +3,7 @@
 # In another notebook we have analyzed the relationship between
 # coronavirus testing data and mortality counts using Poisson
 # regression.  This is a statistical
-# approach rather than an explcitly mechanistic approach.  Viral epidemics are
+# approach rather than an explicitly mechanistic approach.  Viral epidemics are
 # generally modeled using first principles mathematical models that
 # reflect the assumed disease dynamics.  Here we will simulate data
 # from a simple compartmental model for a viral epidemic, fit

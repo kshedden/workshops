@@ -1,6 +1,7 @@
 # ## Covid case/mortality analysis for 173 countries
 #
-# We use data from this site:
+# We use data from the European Center for Disease Prevention and Control, that can be found
+# at this site:
 #
 # https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
 #
@@ -11,16 +12,16 @@ import statsmodels.api as sm
 import pandas as pd
 from datetime import datetime
 
-# Load the data
+# Load the data.
 
 df = pd.read_csv("ecdpc.csv")
 
-# Simplify some variable names
+# Simplify some variable names.
 
 df["country"] = df.countryterritoryCode
 df = df.loc[pd.notnull(df.country), :]
 
-# Clean up the dates
+# Clean up the dates.
 
 # +
 def f(x):
@@ -43,7 +44,6 @@ df = df.loc[df.date <= today]
 n = df.groupby("country").size()
 n = n[n > 30]
 df = df.loc[df.country.isin(n.index), :]
-print(df.country.unique().size)
 
 # Sort first by country, then within country by date.
 
@@ -94,10 +94,14 @@ df = pd.merge(df, xx, left_on="country", right_index=True)
 
 df["rdays"] = (df.date - df.firstdeath).dt.days
 df = df.loc[df.rdays >= 10, :]
+
+print(df.country.unique().size)
 # -
 
 # Here is a basic regression analysis looking at all the countries, with data filtered
-# as described above.
+# as described above.  We use fixed effects to account for differences by country
+# in case ascertainment, infection fatality rates, death reporting, and other
+# factors.
 
 # +
 fml = "deaths ~ 0 + C(country) + "
