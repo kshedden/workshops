@@ -31,6 +31,15 @@
 # can largely be settled by assessing to what extent testing results
 # predict mortality, which is the main hard endpoint for Covid.
 #
+# Two very important unkowns in this area are the "case ascertainment
+# ratio" (CAR) -- the number of actual cases per case that is detected via
+# testing, and the "infection mortality ratio" (IFR) -- the probability of
+# dying if infected.  Using only observed mortality and testing data,
+# these two numbers are not separately identifiable.  Suppose we observer
+# 1000 positive cases and 10 deaths (ignore the issue of time lags for
+# the moment).  These data are compatible with a CAR of 1 and an IFR
+# of 1/100, and are also compatible with a CAR of 10 and an IFR of 1/1000.
+#
 # We note that there are other possible uses of testing such as for
 # use in contact tracing, identifying emerging disease hotspots, and
 # assessing cumulative prevalence of past exposure to the virus.
