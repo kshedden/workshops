@@ -41,6 +41,10 @@ import numpy as np
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
+# Make the notebook reproducible.
+
+np.random.seed(3443)
+
 # +
 # Simulate for this number of days
 ntime = 85
@@ -304,8 +308,4 @@ for x in sird:
 # US states.  As a result, the actual data analysis has much greater
 # power.  In the simulated data, the coefficients for the log number
 # of positive tests are not always statistically significant.  As in
-# the actual data, their sum is around 0.8.  Interestingly, the scale
-# parameter is slightly less than 1, sometimes termed "under-dispersion".
-# This may be because in the simulation we use the same infection
-# fatality ratio (IFR) and Rt sequence for every person, but in fact
-# these are likely variable.
+# the actual data, their sum is around 0.8.
