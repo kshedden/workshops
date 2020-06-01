@@ -301,9 +301,9 @@ print(r1.summary())
 # expect the regression coefficients for the log number of positive
 # tests to be equal to 1 (assuming that cases and mortality are 1-1 at
 # some lag).  As we see above, the coefficient for the log number of
-# positive tests in the week immediately preceding the mortality
-# count is around 0.56, and the coefficients for the two weeks prior
-# to that were 0.19 and 0.04 respectively.  Note that these
+# positive tests in the week immediately preceding the day of the mortality
+# count is around 0.62, and the coefficients for the two weeks prior
+# to that were 0.16 and 0.04 respectively.  Note that these
 # coefficients sum to around 0.8 -- if the positive tests in two
 # states/4 week time periods differ by a factor of two, the state/time
 # with more positive tests will have around 80% more deaths.  The fact
@@ -340,7 +340,7 @@ print(r1.summary())
 # data to estimate these parameters.  This is classically known
 # as the "Neyman-Scott" problem.  Alternatives to fixed effects
 # include mutilevel analysis, shrunken fixed effects, and marginal
-# analysis with covariances within states (which we have also
+# analysis that allow for covariances within states (which we have
 # done here via GEE).
 
 # If we believe that the positive and negative testing data are
@@ -351,16 +351,13 @@ print(r1.summary())
 # around 4.4 on the log scale, with a standard deviation of 0.82.
 # Since exp(0.82) ~ 2.27, this might suggest that most states have IFR
 # values that are within a factor of around 2.5 of the mean
-# state-level IFR -- however, see below for a more refined analysis.
-# Variation on the order of 2 or more would be quite interesting
-# because it would suggest a major contribution of some state-level
-# factor to Covid mortality.
+# state-level IFR.
 #
-# Although there is substantial heterogeneity among the US states,
-# 2-fold or greater differences in mortality to SARS-CoV-2 infection
-# would be large.  For reasons discussed below, it turns out that this
-# factor of 2.5 is likely an over-estimate, and the true extent of
-# state-to-state differences is likely much smaller.
+# Variation on the order of 2 or more suggests major contributions
+# of state-level factors to Covid mortality.  Note in particular
+# that Michigan, New York, Pennsylvania and other hard-hit states
+# have large fixed effects, suggesting that they either have lower
+# case ascertainment, or higher infection fatality rates.
 
 # +
 # Extract the state fixed effects
@@ -418,7 +415,7 @@ print("variance=%f, SD=%f\n" % (v, np.sqrt(v)))
 # state's first recorded Covid death) is not statistically
 # significant.
 
-fml = "ddeath ~ C(state) + bs(rdate, 5) + "
+fml = "ddeath ~ 0 + C(state) + bs(rdate, 5) + "
 fml += " + ".join(["logcumpos%d" % j for j in range(4)])
 fml += " + "
 fml += " + ".join(["logcumneg%d" % j for j in range(4)])
@@ -450,7 +447,7 @@ dx["lpop"] = np.log(dx["pop"])
 # statistically significant based on the score test.
 
 dx["lpop_cen"] = dx.lpop - dx.lpop.mean()
-fml = "ddeath ~ C(state) + bs(rdate, 5) + "
+fml = "ddeath ~ 0 + C(state) + bs(rdate, 5) + "
 fml += " + ".join(["lpop_cen*logcumpos%d" % j for j in range(4)])
 fml += " + "
 fml += " + ".join(["lpop_cen*logcumneg%d" % j for j in range(4)])
