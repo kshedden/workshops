@@ -22,7 +22,9 @@
 
 * It's not straightforward to use math to precisely talk about
   randomness.  Mathematical probability only became rigorous in the 20th century,
-  largely due to _measure theory_.
+  largely due to the formal development of
+  [measure theory](https://en.wikipedia.org/wiki/Measure_(mathematics)) and
+  the work of [Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov).
 
 * Key terms to understand:
 
