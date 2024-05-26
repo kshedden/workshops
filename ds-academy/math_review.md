@@ -257,28 +257,28 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
   - The [law of total variation](https://en.wikipedia.org/wiki/Law_of_total_variance) states that
 
-    ${\rm Var}(Y) = {\rm Var}E[Y|X] + E{\rm Var}[Y|X]$
+    ${\rm Var}(Y) = {\rm Var}[E[Y|X]] + E[{\rm Var}[Y|X]]$
 
-    The term ${\rm Var}E[Y|X]$ is the _between variation_ while
-    the term $E{\rm Var}[Y|X]$ is the _within variation_.  The law of
+    The term ${\rm Var}[E[Y|X]]$ is the _between variation_ while
+    the term $E[{\rm Var}[Y|X]]$ is the _within variation_.  The law of
     total variation states that the overall variation is the sum of the
     between and within variations.
 
   - The identity can also be written as:
 
-    $1 = {\rm Var}E[Y|X]/{\rm Var}(Y) + E{\rm Var}[Y|X]/{\rm Var}(Y)$
+    $1 = {\rm Var}[E[Y|X]] / {\rm Var}(Y) + E[{\rm Var}[Y|X]] / {\rm Var}(Y)$
 
     This shows that the proportion of the variance in $Y$
-    explained by $X$, ${\rm Var}E[Y|X]/{\rm Var}(Y)$ is complementary to
+    explained by $X$, ${\rm Var}[E[Y|X]] / {\rm Var}(Y)$ is complementary to
     the proportion of variance in
-    $Y$ that is not explained by $X$, $E{\rm Var}[Y|X]/{\rm Var}(Y)$.
+    $Y$ that is not explained by $X$, $E[{\rm Var}[Y|X]] / {\rm Var}(Y)$.
 
 ## Independence and measures of association
 
 * Two jointly distributed random variables $X$ and $Y$ are
   [independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)) if
 
-  $P(X \in E_1 \\& Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
+  $P(X \in E_1 \; \\& \; Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
   for all events $E_1$ and $E_2$.  This essentially means that knowing the
   value of $X$ tells you nothing about the value of $Y$.
@@ -288,9 +288,9 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
 * The [covariance](https://en.wikipedia.org/wiki/Covariance) is a
   measure of the relationship between $X$ and
-  $Y$.  It is a moment that is defined to be $E[(X-EX)(Y-EY)]$.  The
+  $Y$.  It is a moment that is defined to be $E[(X-EX)\cdot (Y-EY)]$.  The
   _correlation coefficient_ is the covariance calculated for
-  standardized versions of $X$ and $Y$, that is $E[(X-EX)(Y-EY)]/({\rm
+  standardized versions of $X$ and $Y$, that is $E[(X-EX)\cdot (Y-EY)]/({\rm
   SD}(X)\cdot {\rm SD}(Y))$.
 
 * The correlation coefficient always lies between $-1$ and $1$.  When
