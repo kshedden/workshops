@@ -27,27 +27,27 @@
 
 * Key terms to understand:
 
-- Sample space: all outcomes that can be observed
+  - Sample space: all outcomes that can be observed
 
-- Event: a subset of the sample space to which we can assign a
-  probability.  Not all subsets are events.
+  - Event: a subset of the sample space to which we can assign a
+    probability.  Not all subsets are events.
 
-- Probability measure: a function that assigns a probability to each
-  event.
+  - Probability measure: a function that assigns a probability to each
+    event.
 
 * A probability measure has these properties:
 
-- The probability of every event is non-negative.
+  - The probability of every event is non-negative.
 
-- The probability of the event that includes the entire sample space
-  is equal to 1.
+  - The probability of the event that includes the entire sample space
+    is equal to 1.
 
-- If $E$ is an event and $E^c$ is its complement, then the
-  probability of $E^c$ is 1 minus the probability of $E$.
+  - If $E$ is an event and $E^c$ is its complement, then the
+    probability of $E^c$ is 1 minus the probability of $E$.
 
-- If events $A$ and $B$ are disjoint (they contain no elements in
-  common), then the probability of the union of $A$ and $B$ is the
-  sum of the probability of $A$ and the probability of $B$.
+  - If events $A$ and $B$ are disjoint (they contain no elements in
+    common), then the probability of the union of $A$ and $B$ is the
+    sum of the probability of $A$ and the probability of $B$.
 
 * The term _random variable_ is used to refer to a symbol such as $X$
   that represents a value drawn from a pronbability distribution.  We
