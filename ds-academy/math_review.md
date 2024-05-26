@@ -323,7 +323,8 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
 ## Stochastic processes
 
-* A stochastic process is a random object indexed by a variable $t$ that is well-ordered.
+* A [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) is a
+  random object indexed by a variable $t$ that is well-ordered.
   Usually $t$ is either integer-valued or real-valued.
 
 * The domain for the index $t$ is usually infinite, either countable (in the case
@@ -331,15 +332,17 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
   lie in infinite dimensional vector spaces, which introduces many issues that are not
   present in the case of finite dimensional random vectors.
 
-* A _finite dimensional_ distribution of a stochastic process $Y$ is $Y[T] = [Y[T_1}, \ldots, Y[T_m]]]$,
+* A [finite dimensional distribution](https://en.wikipedia.org/wiki/Finite-dimensional_distribution)
+  of a stochastic process $Y$ is $Y[T] = [Y[T_1], \ldots, Y[T_m]]]$,
   where $T$ is a fixed sequence of $m$ index values.
 
-* A _Gaussian process_ is a stochastic process whose finite-dimensional distributions are
-  Gaussian.  _Brownian motion_ is a Gaussian process with continuous sample paths.
+* A [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) is a stochastic process whose finite-dimensional distributions are
+  Gaussian.  [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion) is a Gaussian process with continuous sample paths.
 
 # Linear algebra
 
-* A _vector space_ over the real numbers is a collection of abstract objects that can be added
+* A [vector space](https://en.wikipedia.org/wiki/Vector_space) over the real numbers is a
+  collection of abstract objects that can be added
   together, and that can be scaled by (real) numbers.  These properties
   of addition and (scalar) multiplication must satistfy the following axioms,
   for vectors $x$, $y$ and real scalars $c$, $d$:
@@ -362,7 +365,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
 * Inner products and norms
 
-  - The _dot product_ or _inner product_ between two vectors is a mapping that takes two vectors and
+  - The _dot product_ or [inner product](https://en.wikipedia.org/wiki/Inner_product_space) between two vectors is a mapping that takes two vectors and
     yields a scalar.  It must satisfy certain properties such as $\langle x, y\rangle = \langle y, x\rangle$,
     $\langle x+y, z \rangle = \langle x, z \rangle + \langle y, z\rangle$, and
     $\langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are vectors and $c$ is a scalar.
@@ -370,7 +373,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
   - If we are working with the vector space of k-tuples, then the dot product is formed as
     $\langle x, y\rangle = \sum_{j=1}^k x_j y_j$.
 
-  - A _norm_ on a vector space is a mapping from the vectors to the non-negative reals.  It is a way
+  - A [norm](https://en.wikipedia.org/wiki/Norm_(mathematics)) on a vector space is a mapping from the vectors to the non-negative reals.  It is a way
     of defining the length or magnitude of a vector.  A dot product always yields a norm via
     $\|x\|^2 = \langle x, x\rangle$.
 
@@ -378,14 +381,14 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
 * Linear transformations
 
-  - A _linear transformation_ is a mapping from one vector space to another, or from a vector space to itself.
+  - A [linear transformation](https://en.wikipedia.org/wiki/Linear_map) is a mapping from one vector space to another, or from a vector space to itself.
     A transformation $T$ must satisfy $T(cx) = cT(x)$ and $T(x+y) = T(x) + T(y)$, for a scalar $c$ and vectors
     $x$ and $y$.
 
   - For most of the rest of this document, we focus on vector spaces consisting of k-tuples of real
     numbers, i.e. ${\mathbb R}^k$.
 
-  - A _matrix_ is an array of numbers, with $r$ rows and $c$ columns.
+  - A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is an array of numbers, with $r$ rows and $c$ columns.
 
   - A _column vector_ is a matrix with $1$ column, i.e. an $r\times 1$
     matrix.  A _row vector_ is a $1\times c$ matrix.  A vector that is
