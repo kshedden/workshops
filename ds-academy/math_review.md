@@ -26,13 +26,15 @@
 
 * Key terms to understand:
 
-  - _Sample space_: all outcomes that can be observed
+  - [Sample space](https://en.wikipedia.org/wiki/Sample_space): all
+    outcomes that can be observed
 
-  - _Event_: a subset of the sample space to which we can assign a
-    probability.  Not all subsets are events.
+  - [Event](https://en.wikipedia.org/wiki/Event_(probability_theory)):
+    a subset of the sample space to which we can assign a probability.
+    Not all subsets are events.
 
-  - _Probability measure_: a function that assigns a probability to each
-    event.
+  - [Probability measure](https://en.wikipedia.org/wiki/Probability_measure):
+    a function that assigns a probability to each event.
 
 * A probability measure has these properties:
 
@@ -48,28 +50,31 @@
     common), then the probability of the union of $A$ and $B$ is the
     sum of the probability of $A$ and the probability of $B$.
 
-* The term _random variable_ is used to refer to a symbol such as $X$
-  that represents a value drawn from a probability distribution.  We
-  can write expressions such as $P(X \le 3)$, $P(X = 4)$, $P(1 \le X <
-  2)$, etc.  Keep in mind that $X$ has no fixed value, every time
-  we view or refer to $X$ its value changes.
+* The term [random
+  variable](https://en.wikipedia.org/wiki/Random_variable) is used to
+  refer to a symbol such as $X$ that represents a value drawn from a
+  probability distribution.  We can write expressions such as $P(X \le
+  3)$, $P(X = 4)$, $P(1 \le X < 2)$, etc.  Keep in mind that $X$ has
+  no fixed value, every time we view or refer to $X$ its value
+  changes.
 
 ## Probability distributions
 
 There are several effective ways to represent a probability distribution.
 
 * If the sample space is finite, we can list the points in the sample
-  space and their probabilities.  This type of probability distribution
-  takes the form of a
-  table, which is often called a _probability mass function_ (pmf).
+  space and their probabilities.  This type of probability
+  distribution takes the form of a table, which is often called a
+  [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function).
 
 * If the sample space is countable, individual "atoms" (points in the
   sample space) have positive probability and there is a function
   mapping each atom to its probability.
 
 * If the sample space is the real line, or an interval on the real
-  line, we have the _cumulative distribution function (CDF)_ $F(t) =
-  P(X \le t)$.  The probabilities of all other events can be inferred
+  line, we have the
+  [cumulative distribution function (CDF)](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
+  $F(t) = P(X \le t)$.  The probabilities of all other events can be inferred
   from the CDF using the probabilities, e.g. the probability that $X$
   is between $1$ and $2$ or between $6$ and $7$ is
   $F(2) - F(1) + F(7) - F(6)$.
@@ -78,34 +83,41 @@ There are several effective ways to represent a probability distribution.
   that point, e.g. $P(X=x)$ is the jump in the CDF at $x$.
 
 * Many common distributions whose sample space is the real numbers
-  have a _density_, which is a function $f$ such that $\int_a^bf(x)dx
+  have a [density](https://en.wikipedia.org/wiki/Probability_density_function),
+  which is a function $f$ such that $\int_a^bf(x)dx
   = F(b) - F(a)$ is the probability that $X$ falls between $a$ and
   $b$.
 
 * Some other ways to represent a probability distribution are its
-  _quantile function_ and its _characteristic function_.
+  [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and
+  its [characteristic function](https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)).
 
 ## Examples of probability distributions
 
-* The uniform distribution is either the distribution in which every
+* The uniform distribution is either the
+  [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
+  in which every
   atom has the same probability (for finite sample spaces), or (for
-  distributions on a real interval $(a, b)$), a distribution in which
+  distributions on a real interval $(a, b)$), a
+  [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) in which
   the probability of any interval is proportional to its length.
 
-* The exponential distribution with CDF $P(X \le t) = 1 -
+* The [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution)
+  with CDF $P(X \le t) = 1 -
   \exp(-\lambda t)$ and density $f(x) = \lambda \exp(-\lambda x)$.
   The value of $\lambda$ is a _parameter_, so there are actually
   infinitely many exponential distributions, determined by the value
   of $\lambda$.
 
-* The normal (Gaussian) distribution with density $f(x) =
-  \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$.  The values
+* The [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution)
+  with density $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$.  The values
   of $\mu$ and $\sigma$ are parameters, referring to the expected
   value and standard deviation, respectively.
 
 ## Expectation
 
-* The _expectation_ is a summary statistic of a quantitative random
+* The [expectation](https://en.wikipedia.org/wiki/Expected_value)
+  is a summary statistic of a quantitative random
   variable $X$.
 
 * For a random variable with a density $f(x)$, the expectation $E[X]$ is
@@ -187,17 +199,30 @@ a _moment_ or as a _quantile_.
     general means for constructing higher order summary statistics from
     quantiles.
 
-## Conditional expectations and variances
+## Conditional distributions, expectations and variances
 
-* Conditional expectation
+* In most research we are working with more than one quantity at a
+  time.  This leads to the concept of a _random vector_ that has a
+  _joint distribution_.
+  Suppose that we have two jointly-distributed random variables $X$
+  and $Y$, yielding a random vector $[X, Y]$.
 
-  - In most research we are working with more than one quantity at a
-    time.  This leads to the concept of a _joint distribution_.
-    Suppose that we have two jointly-distributed random variables $X$
-    and $Y$.  The joint CDF of $X$ and $Y$ is the function
-    $F(s, t) = P(X \le s, Y \le t)$.  There is also a joint density but
+  - The joint CDF of $X$ and $Y$ is the function
+    $F(s, t) = P(X \le s, Y \le t)$.  There is also a concept of
+    a joint density (which does not always exist). But
     generalizing quantiles to joint distributions is not
     straightforward.
+
+  - If $f(x, y)$ is the joint density of $(X, Y)$, then the marginal
+    density of $X$ is $f(x) = \int f(x, y)dy$, and an analogous
+    result gives the marginal density of $Y$.
+
+  - The conditional distribution $P(Y | X)$ is the distribution of
+    $Y$ that results when the value of $X$ is known.  Suppose that
+    there is a joint density $f(x, y)$.  Then the densithy of the
+    conditional distribution $P(Y | X)$ is $f(x, y) / f(x)$.
+
+* Conditional expectation
 
   - Suppose that $Y$ is quantitative and is jointly distributed with
     $X$ (which may or may not be quantitative).  The _conditional
@@ -211,7 +236,9 @@ a _moment_ or as a _quantile_.
     effectively partitions into groups. $E[Y | X=x]$ is the expected
     value of $Y$ when we are in group $x$.
 
-  - The _double expectation theorem_ or _smoothing theorem_ states that
+  - The _double expectation theorem_ or _smoothing theorem_ or
+    [law of total expectation](https://en.wikipedia.org/wiki/Law_of_total_expectation)
+    states that
     $E[E[Y|X]] = E[Y]$.  That is, if we compute the conditional
     expectation of $Y$ at each fixed value of $X$, and then average
     these values over the (marginal) distribution of $X$, we get the
@@ -219,11 +246,11 @@ a _moment_ or as a _quantile_.
 
 * Conditional variance
 
-  - The conditional variance is analogous to the conditional expectation.
-    ${\rm Var}[Y|X=x]$ is the variance restricted to $(X, Y)$ values such
-    that $X=x$.
+  - The conditional variance is analogous to the conditional
+    expectation.  ${\rm Var}[Y|X=x]$ is the variance restricted to
+    $(X, Y)$ values such that $X=x$.
 
-  - The _law of total variation_ states that
+  - The [law of total variation](https://en.wikipedia.org/wiki/Law_of_total_variance) states that
 
     ${\rm Var}(Y) = {\rm Var}E[Y|X] + E{\rm Var}[Y|X]$
 
@@ -236,20 +263,72 @@ a _moment_ or as a _quantile_.
 
     $1 = {\rm Var}E[Y|X]/{\rm Var}(Y) + E{\rm Var}[Y|X]/{\rm Var}(Y)$
 
-    This shows that the variance in $Y$ is the sum of the variance in $Y$
-    explained by $X$, ${\rm Var}E[Y|X]/{\rm Var}(Y)$, and the variance in
+    This shows that the proportion of the variance in $Y$
+    explained by $X$, ${\rm Var}E[Y|X]/{\rm Var}(Y)$ is complementary to
+    the proportion of variance in
     $Y$ that is not explained by $X$, $E{\rm Var}[Y|X]/{\rm Var}(Y)$.
 
+## Independence and measures of association
 
-## Categorical distributions
+* Two jointly distributed random variables $X$ and $Y$ are
+  _independent_ if
 
-## Multivariate distributions
+  $P(X \in E_1 & Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
-## Measures of association
+  for all events $E_1$ and $E_2$.  This essentially means that knowing the
+  value of $X$ tells you nothing about the value of $Y$.
+
+* If $X$ and $Y$ are independent then $E[Y|X=x] = E[Y]$ for all values
+  of $x$, and ${\rm Var}[Y|X=x] = {\rm Var}[Y]$ for all values of $x$.
+
+* The _covariance_ is a measure of the relationship between $X$ and
+  $Y$.  It is a moment that is defined to be $E[(X-EX)(Y-EY)]$.  The
+  _correlation coefficient_ is the covariance calculated for
+  standardized versions of $X$ and $Y$, that is $E[(X-EX)(Y-EY)]/({\rm
+  SD}(X)\cdot {\rm SD}(Y))$.
+
+* The correlation coefficient always lies between $-1$ and $1$.  When
+  it is equal to $1$, $Y$ is a linear function of $X$ with positive
+  slope.  When it is equal to $-1$ $Y$ is a linear function of $X$
+  with negative slope.  If the correlation coefficient is equal to
+  zero then $X$ and $Y$ are said to be _uncorrelated_.  The
+  correlation coefficient is undefined if either ${\rm SD}(X) = 0$ or
+  ${\rm SD}(Y) = 0$.
+
+* The correlation coefficient (often called the _Pearson_ or _product
+  moment_ correlation coefficient) is a _measure of association_.
+  Note that the product $(X-EX)\cdot(Y-EY)$ is positive when $X$ and
+  $Y$ lie on the same side of their respective expected values, and is
+  greater when they both lie far on the same side of their expected
+  values.  Thus, the correlation coefficient tends to be positive and
+  larger when this happens frequently.
+
+* The (Pearson) correlation coefficient is often said to be a measure
+  of the _linear_ association between $X$ and $Y$, and strictly
+  speaking this is true.  [Anscombe's
+  quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet) shows
+  many different joint distributions that have the same linear
+  correlation and hence the same correlation coefficient.  However the
+  correlation coefficient is able to detect many forms of dependence
+  beyond that which is strictly linear.
 
 ## Limits and concentration
 
 ## Stochastic processes
+
+* A stochastic process is a random object indexed by a variable $t$ that is well-ordered.
+  Usually $t$ is either integer-valued or real-valued.
+
+* The domain for the index $t$ is usually infinite, either countable (in the case
+  of integers) or uncountable (in the case of a real index).  Thus stochastic processes
+  lie in infinite dimensional vector spaces, which introduces many issues that are not
+  present in the case of finite dimensional random vectors.
+
+* A _finite dimensional_ distribution of a stochastic process $Y$ is $Y[T] = [Y[T_1}, \ldots, Y[T_m]]]$,
+  where $T$ is a fixed sequence of $m$ index values.
+
+* A _Gaussian process_ is a stochastic process whose finite-dimensional distributions are
+  Gaussian.  _Brownian motion_ is a Gaussian process with continuous sample paths.
 
 # Linear algebra
 
