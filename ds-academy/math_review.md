@@ -166,7 +166,7 @@ a _moment_ or as a _quantile_.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
   the CDF then the quantile function is $Q(p) = F^{-1}(p)$.  If $F$ is
-  not invertible then $Q(p)$ is defined as ${\rm inf}\\{t | F(t) \ge
+  not invertible then $Q(p)$ is defined as ${\rm inf}\\{t \;|\; F(t) \ge
   p\\}$.  The $p^{\rm th}$ quantile answers the question "for a given
   $p$, what is the value $t$ such that $p$ of the mass of the
   distribution falls on or below $t$".
@@ -179,8 +179,13 @@ a _moment_ or as a _quantile_.
     absolute deviation (MAD)_ which is the median of $|X - EX|$.
 
   - Quantile anaolgues of higher order moments exist, e.g. a
-    quantile-based measure of skewness is $Q(3/4) - 2Q(1/2) +
-    Q(1/4))/(Q(3/4) - Q(1/4))$.  The theory of _L-moments_ provides a
+    quantile-based measure of skewness is
+
+    $$
+    (Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).
+    $$
+
+    The theory of _L-moments_ provides a
     general means for constructing higher order summary statistics from
     quantiles.
 
@@ -209,7 +214,7 @@ a _moment_ or as a _quantile_.
     value of $X$ when we are in group $y$.
 
   - The _double expectation theorem_ or _smoothing theorem_ states that
-    $E E[X|Y] = E[X]$.  That is, if we compute the conditional
+    $E[E[X|Y]] = E[X]$.  That is, if we compute the conditional
     expectation of $X$ at each fixed value of $Y$, and then average
     these values over the (marginal) distribution of $Y$, we get the
     same result as if we compute the (marginal) mean of $X$ directly.
