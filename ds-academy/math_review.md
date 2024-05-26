@@ -69,14 +69,14 @@ There are several effective ways to represent a probability distribution.
   [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function).
 
 * If the sample space is countable, individual "atoms" (points in the
-  sample space) have positive probability and there is a function
+  sample space) have positive probability and there is a probability mass function
   mapping each atom to its probability.
 
 * If the sample space is the real line, or an interval on the real
   line, we have the
   [cumulative distribution function (CDF)](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
-  $F(t) = P(X \le t)$.  The probabilities of all other events can be inferred
-  from the CDF using the probabilities, e.g. the probability that $X$
+  $F(t) = P(X \le t)$.  The probabilities of all events can be inferred
+  from the CDF, e.g. the probability that $X$
   is between $1$ and $2$ or between $6$ and $7$ is
   $F(2) - F(1) + F(7) - F(6)$.
 
@@ -89,7 +89,7 @@ There are several effective ways to represent a probability distribution.
   = F(b) - F(a)$ is the probability that $X$ falls between $a$ and
   $b$.
 
-* Some other ways to represent a probability distribution are its
+* Some other ways to represent a probability distribution are through its
   [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and
   its [characteristic function](https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)).
 
@@ -99,7 +99,7 @@ There are several effective ways to represent a probability distribution.
   [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
   in which every
   atom has the same probability (for finite sample spaces), or (for
-  distributions on a real interval (a, b)), a
+  distributions on a real interval (a, b)), it is a
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) in which
   the probability of any interval is proportional to its length.
 
@@ -278,7 +278,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 * Two jointly distributed random variables $X$ and $Y$ are
   [independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)) if
 
-  $P(X \in E_1 & Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
+  $P(X \in E_1 \& Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
   for all events $E_1$ and $E_2$.  This essentially means that knowing the
   value of $X$ tells you nothing about the value of $Y$.
