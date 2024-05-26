@@ -2,6 +2,8 @@
 
 ## Basic concepts of probability
 
+* How do we formalize the notion of an outcome that occurs "at random"?
+
 * The most basic example is a random outcome that can have only two
   states, e.g.  flipping a coin.  We can talk about the "probability
   of observing a head" and the "probability of observing a tail".
@@ -10,8 +12,8 @@
  * We often wish to use probability in situations where the outcome is
    quantitative (numeric, continuous).  If I scoop a volume of water
    from the ocean, what is the probability that I scoop exactly 300ml
-   of water?  Arguably it is zero!  Actually, every possible outcome
-   has probability zero, yet some outcome always occurs!
+   of water?  Arguably it is zero.  Actually, every possible outcome
+   has probability zero, yet some outcome always occurs.
 
 * With quantitative outcomes, we should only assign probabilities to
   ranges, not specific outcomes, e.g. what is the probability that I
@@ -25,27 +27,27 @@
 
 * Key terms to understand:
 
-** Sample space: all outcomes that can be observed
+- Sample space: all outcomes that can be observed
 
-** Event: a subset of the sample space to which we can assign a
-   probability.  Not all subsets are events.
+- Event: a subset of the sample space to which we can assign a
+  probability.  Not all subsets are events.
 
-** Probability measure: a function that assigns a probability to each
-   event.
+- Probability measure: a function that assigns a probability to each
+  event.
 
 * A probability measure has these properties:
 
-** The probability of every event is non-negative.
+- The probability of every event is non-negative.
 
-** The probability of the event that includes the entire sample space
-   is equal to 1.
+- The probability of the event that includes the entire sample space
+  is equal to 1.
 
-** If $E$ is an event and $E^c$ is its complement, then the
-   probability of $E^c$ is 1 minus the probability of $E$.
+- If $E$ is an event and $E^c$ is its complement, then the
+  probability of $E^c$ is 1 minus the probability of $E$.
 
-** If events $A$ and $B$ are disjoint (they contain no elements in
-   common), then the probability of the union of $A$ and $B$ is the
-   sum of the probability of $A$ and the probability of $B$.
+- If events $A$ and $B$ are disjoint (they contain no elements in
+  common), then the probability of the union of $A$ and $B$ is the
+  sum of the probability of $A$ and the probability of $B$.
 
 * The term _random variable_ is used to refer to a symbol such as $X$
   that represents a value drawn from a pronbability distribution.  We
@@ -138,23 +140,24 @@ a _moment_ or as a _quantile_.
 
 * Moments are expectations of (possibly) transformed values.
 
-** The expected value $E[X]$ is a moment, but so is $E[X^4]$ and
-   $E[\exp(X)]$.
+- The expected value $E[X]$ is a moment, but so is $E[X^4]$ and
+  $E[\exp(X)]$.
 
-** The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$
-   central moment is $E[(X - EX)^k]$.
+- The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$
+  central moment is $E[(X - EX)^k]$.
 
-** The _variance_ is the second central moment $E(X - EX)^2$.  It is a
-   measure of dispersion but its units are the square of the units of
-   $X$.  Therefore we often use the _standard deviation_ which is the
-   square root of the variance.  It has the same units as the data.
+- The _variance_ is the second central moment $E(X - EX)^2$.  It is a
+  measure of dispersion but its units are the square of the units of
+  $X$.  Therefore we often use the _standard deviation_ which is the
+  square root of the variance.  It has the same units as the data.
 
-** The $k^{\rm th}$ standardized moment is the $k^{\rm th}$ raw moment
-   of the standardized variate $(X - EX)/{\rm SD}(X)$
+- The $k^{\rm th}$ standardized moment is the $k^{\rm th}$ raw moment
+  of the standardized variate $(X - EX)/{\rm SD}(X)$
 
-** The third standardized moment $E[Z^3]$ where $Z = (X - EX)/{\rm
-   SD}(X)$ is a measure of _skewness_.  The fourth moment measures
-   _kurtosis_, higher order moments are quite subtle to interpret.
+- The third standardized moment $E[Z^3]$ where
+  $Z = (X - EX)/{\rm SD}(X)$ is a measure of _skewness_.  The fourth
+  moment measures _kurtosis_, higher order moments are quite subtle to
+  interpret.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
   the CDF then the quantile function is $Q(p) = F^{-1}(p)$.  If $F$ is
@@ -163,49 +166,48 @@ a _moment_ or as a _quantile_.
   $p$, what is the value $t$ such that $p$ of the mass of the
   distribution falls on or below $t$".
 
-** The median is a measure of location that is a quantile, it is
-   $Q(1/2)$.
+- The median is a measure of location that is a quantile, it is
+  $Q(1/2)$.
 
-** Quantiles can be used to define measures of dispersion, e.g. the
-   _interquartile range_ which is $Q(3/4) - Q(1/4)$ or the _median
-   absolute deviation (MAD)_ which is the median of $|X - EX|$.
+- Quantiles can be used to define measures of dispersion, e.g. the
+  _interquartile range_ which is $Q(3/4) - Q(1/4)$ or the _median
+  absolute deviation (MAD)_ which is the median of $|X - EX|$.
 
-** Quantile anaolgues of higher order moments exist, e.g. a
-   quantile-based measure of skewness is $Q(3/4) - 2Q(1/2) +
-   Q(1/4))/(Q(3/4) - Q(1/4))$.  The theory of _L-moments_ provides a
-   general means for constructing higher order summary statistics from
-   quantiles.
+- Quantile anaolgues of higher order moments exist, e.g. a
+  quantile-based measure of skewness is $Q(3/4) - 2Q(1/2) +
+  Q(1/4))/(Q(3/4) - Q(1/4))$.  The theory of _L-moments_ provides a
+  general means for constructing higher order summary statistics from
+  quantiles.
 
 ## Conditional expectations and variances
 
 * Conditional expectation
 
-** In most research we are working with more than one quantity at a
-   time.  This leads to the concept of a _joint distribution_.
-   Suppose that we have two jointly-distributed random variables $X$
-   and $Y$.  The joint CDF of $X$ and $Y$ is the function $F(s, t) =
-   P(X \le s, Y \le t)$.  There is also a joint density but
-   generalizing quantiles to joint distributions is not
-   straightforward.
+- In most research we are working with more than one quantity at a
+  time.  This leads to the concept of a _joint distribution_.
+  Suppose that we have two jointly-distributed random variables $X$
+  and $Y$.  The joint CDF of $X$ and $Y$ is the function
+  $F(s, t) = P(X \le s, Y \le t)$.  There is also a joint density but
+  generalizing quantiles to joint distributions is not
+  straightforward.
 
-** Suppose that $X$ is quantitative and is jointly distributed with
-   $Y$ (which may or may not be quantitative).  The _conditional
-   expectation_ of $X$ given $Y$, $E[X|Y=y]$ is (roughly speaking) the
-   expected value of $X$ when we know that $Y$ takes on the value $y$.
-   The rigorous definition of conditional expectation is somewhat
-   different but this is the way that most people think about
-   conditional expectation.
+- Suppose that $X$ is quantitative and is jointly distributed with
+  $Y$ (which may or may not be quantitative).  The _conditional
+  expectation_ of $X$ given $Y$, $E[X|Y=y]$ is (roughly speaking) the
+  expected value of $X$ when we know that $Y$ takes on the value $y$.
+  The rigorous definition of conditional expectation is somewhat
+  different but this is the way that most people think about
+  conditional expectation.
 
 ** A special case is when $Y$ has a finite sample space, so that $Y$
    effectively partitions into groups. $E[X | Y=y]$ is the expected
    value of $X$ when we are in group $y$.
 
-** The _double expectation theorem_ or _smoothing theorem_ states that
-   $E E[X|Y] = E[X]$.  That is, if we compute the conditional
-   expectation of $X$ at each fixed value of $Y$, and then average
-   these values over the (marginal) distribution of $Y$, we get the
-   same result as if we compute the (marginal) mean of $X$ directly.
-
+- The _double expectation theorem_ or _smoothing theorem_ states that
+  $E E[X|Y] = E[X]$.  That is, if we compute the conditional
+  expectation of $X$ at each fixed value of $Y$, and then average
+  these values over the (marginal) distribution of $Y$, we get the
+  same result as if we compute the (marginal) mean of $X$ directly.
 
 
 ## Categorical distributions
