@@ -166,8 +166,8 @@ a _moment_ or as a _quantile_.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
   the CDF then the quantile function is $Q(p) = F^{-1}(p)$.  If $F$ is
-  not invertible then $Q(p)$ is defined as ${\rm inf}\{t | F(t) \ge
-  p\}$.  The $p^{\rm th}$ quantile answers the question "for a given
+  not invertible then $Q(p)$ is defined as ${\rm inf}\\{t | F(t) \ge
+  p\\}$.  The $p^{\rm th}$ quantile answers the question "for a given
   $p$, what is the value $t$ such that $p$ of the mass of the
   distribution falls on or below $t$".
 
