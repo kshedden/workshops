@@ -174,8 +174,8 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
     of the standardized variate $(X - EX)/{\rm SD}(X)$
 
   - The third standardized moment $E[Z^3]$ where
-    $Z = (X - EX)/{\rm SD}(X)$ is a measure of _skewness_.  The fourth
-    moment measures _kurtosis_, higher order moments are subtle to
+    $Z = (X - EX)/{\rm SD}(X)$ is a measure of [skewness](https://en.wikipedia.org/wiki/Skewness).  The fourth
+    moment measures [kurtosis](https://en.wikipedia.org/wiki/Kurtosis), higher order moments are subtle to
     interpret.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
@@ -199,7 +199,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
     $(Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).$
 
-    The theory of _L-moments_ provides a
+    The theory of [L-moments](https://en.wikipedia.org/wiki/L-moment) provides a
     general means for constructing higher order summary statistics from
     quantiles.
 
@@ -224,7 +224,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
 
   - The conditional distribution $P(Y | X)$ is the distribution of
     $Y$ that results when the value of $X$ is known.  Suppose that
-    there is a joint density $f(x, y)$.  Then the densithy of the
+    there is a joint density $f(x, y)$.  Then the density of the
     conditional distribution $P(Y | X)$ is $f(x, y) / f(x)$.
 
 * Conditional expectation
@@ -333,7 +333,7 @@ a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
   present in the case of finite dimensional random vectors.
 
 * A [finite dimensional distribution](https://en.wikipedia.org/wiki/Finite-dimensional_distribution)
-  of a stochastic process $Y$ is $Y[T] = [Y[T_1], \ldots, Y[T_m]]]$,
+  of a stochastic process $Y$ is $Y[T] = [Y[T_1], \ldots, Y[T_m]]$,
   where $T$ is a fixed sequence of $m$ index values.
 
 * A [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) is a stochastic process whose finite-dimensional distributions are
