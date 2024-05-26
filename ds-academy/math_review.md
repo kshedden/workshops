@@ -50,9 +50,8 @@
     common), then the probability of the union of $A$ and $B$ is the
     sum of the probability of $A$ and the probability of $B$.
 
-* The term [random
-  variable](https://en.wikipedia.org/wiki/Random_variable) is used to
-  refer to a symbol such as $X$ that represents a value drawn from a
+* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is
+  a symbol such as $X$ that represents a value drawn from a
   probability distribution.  We can write expressions such as $P(X \le
   3)$, $P(X = 4)$, $P(1 \le X < 2)$, etc.  Keep in mind that $X$ has
   no fixed value, every time we view or refer to $X$ its value
@@ -98,7 +97,7 @@ There are several effective ways to represent a probability distribution.
   [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
   in which every
   atom has the same probability (for finite sample spaces), or (for
-  distributions on a real interval $(a, b)$), a
+  distributions on a real interval (a, b)), a
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) in which
   the probability of any interval is proportional to its length.
 
@@ -122,7 +121,7 @@ There are several effective ways to represent a probability distribution.
 
 * For a random variable with a density $f(x)$, the expectation $E[X]$ is
   $\int xf(x)dx$.  For a random variable with a mass function the
-  expectation is $\sum xf(x)$, where $x$ ranges over the domain of $X$.
+  expectation is $E[X] = \sum xf(x)$, where $x$ ranges over the domain of $X$.
 
 * The expectation solves the optimization problem ${\rm argmin}_\theta
   E[(X-\theta)^2]$
@@ -153,7 +152,8 @@ There are several effective ways to represent a probability distribution.
 ## Quantiles and moments
 
 Most summary statistics have one of two mathematical forms, as either
-a _moment_ or as a _quantile_.
+a [moment](https://en.wikipedia.org/wiki/Moment_(mathematics)) or as a
+[quantile](https://en.wikipedia.org/wiki/Quantile).
 
 * Moments are expectations of (possibly) transformed values.
 
@@ -163,7 +163,7 @@ a _moment_ or as a _quantile_.
   - The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$
     central moment is $E[(X - EX)^k]$.
 
-  - The _variance_ is the second central moment $E(X - EX)^2$.  It is a
+  - The [variance](https://en.wikipedia.org/wiki/Variance) is the second central moment $E(X - EX)^2$.  It is a
     measure of dispersion but its units are the square of the units of
     $X$.  Therefore we often use the _standard deviation_ which is the
     square root of the variance.  It has the same units as the data.
@@ -187,8 +187,10 @@ a _moment_ or as a _quantile_.
     $Q(1/2)$.
 
   - Quantiles can be used to define measures of dispersion, e.g. the
-    _interquartile range_ which is $Q(3/4) - Q(1/4)$ or the _median
-    absolute deviation (MAD)_ which is the median of $|X - EX|$.
+    [interquartile range](https://en.wikipedia.org/wiki/Interquartile_range)
+    which is $Q(3/4) - Q(1/4)$ or the
+    [median absolute deviation (MAD)](https://en.wikipedia.org/wiki/Median_absolute_deviation)
+    which is the median of $|X - EX|$.
 
   - Quantile anaolgues of higher order moments exist, e.g. a
     quantile-based measure of skewness is
@@ -202,8 +204,9 @@ a _moment_ or as a _quantile_.
 ## Conditional distributions, expectations and variances
 
 * In most research we are working with more than one quantity at a
-  time.  This leads to the concept of a _random vector_ that has a
-  _joint distribution_.
+  time.  This leads to the concept of a
+  [random vector](https://en.wikipedia.org/wiki/Multivariate_random_variable) that has a
+  [joint distribution](https://en.wikipedia.org/wiki/Joint_probability_distribution).
   Suppose that we have two jointly-distributed random variables $X$
   and $Y$, yielding a random vector $[X, Y]$.
 
@@ -271,7 +274,7 @@ a _moment_ or as a _quantile_.
 ## Independence and measures of association
 
 * Two jointly distributed random variables $X$ and $Y$ are
-  _independent_ if
+  [independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)) if
 
   $P(X \in E_1 & Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
@@ -281,7 +284,8 @@ a _moment_ or as a _quantile_.
 * If $X$ and $Y$ are independent then $E[Y|X=x] = E[Y]$ for all values
   of $x$, and ${\rm Var}[Y|X=x] = {\rm Var}[Y]$ for all values of $x$.
 
-* The _covariance_ is a measure of the relationship between $X$ and
+* The [covariance](https://en.wikipedia.org/wiki/Covariance) is a
+  measure of the relationship between $X$ and
   $Y$.  It is a moment that is defined to be $E[(X-EX)(Y-EY)]$.  The
   _correlation coefficient_ is the covariance calculated for
   standardized versions of $X$ and $Y$, that is $E[(X-EX)(Y-EY)]/({\rm
@@ -295,7 +299,8 @@ a _moment_ or as a _quantile_.
   correlation coefficient is undefined if either ${\rm SD}(X) = 0$ or
   ${\rm SD}(Y) = 0$.
 
-* The correlation coefficient (often called the _Pearson_ or _product
+* The [correlation coefficient](https://en.wikipedia.org/wiki/Correlation_coefficient)
+  (often called the _Pearson_ or _product
   moment_ correlation coefficient) is a _measure of association_.
   Note that the product $(X-EX)\cdot(Y-EY)$ is positive when $X$ and
   $Y$ lie on the same side of their respective expected values, and is
