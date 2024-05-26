@@ -10,29 +10,28 @@
   This is called _discrete probability_.
 
  * We often wish to use probability in situations where the outcome is
-   quantitative (numeric, continuous).  If I scoop a volume of water
+   _quantitative_ (also known as _numeric_ or _continuous_).  If I scoop
+   a volume of water
    from the ocean, what is the probability that I scoop exactly 300ml
    of water?  Arguably it is zero.  Actually, every possible outcome
    has probability zero, yet some outcome always occurs.
 
 * With quantitative outcomes, we should only assign probabilities to
-  ranges, not specific outcomes, e.g. what is the probability that I
+  ranges, not to specific outcomes, e.g. what is the probability that I
   scoop between 300ml and 310ml of water?
 
 * It's not straightforward to use math to precisely talk about
-  randomness
-
-* Mathematical probability only became rigorous in the 20th century,
+  randomness.  Mathematical probability only became rigorous in the 20th century,
   largely due to _measure theory_.
 
 * Key terms to understand:
 
-  - Sample space: all outcomes that can be observed
+  - _Sample space_: all outcomes that can be observed
 
-  - Event: a subset of the sample space to which we can assign a
+  - _Event_: a subset of the sample space to which we can assign a
     probability.  Not all subsets are events.
 
-  - Probability measure: a function that assigns a probability to each
+  - _Probability measure_: a function that assigns a probability to each
     event.
 
 * A probability measure has these properties:
@@ -50,17 +49,18 @@
     sum of the probability of $A$ and the probability of $B$.
 
 * The term _random variable_ is used to refer to a symbol such as $X$
-  that represents a value drawn from a pronbability distribution.  We
+  that represents a value drawn from a probability distribution.  We
   can write expressions such as $P(X \le 3)$, $P(X = 4)$, $P(1 \le X <
-  2)$, etc.  A tricky issue is that $X$ has no fixed value, every time
-  we view or refer to $X$, it's value changes.
+  2)$, etc.  Keep in mind that $X$ has no fixed value, every time
+  we view or refer to $X$ its value changes.
 
 ## Probability distributions
 
 There are several effective ways to represent a probability distribution.
 
 * If the sample space is finite, we can list the points in the sample
-  space and their probabilities.  The probability distribution is a
+  space and their probabilities.  This type of probability distribution
+  takes the form of a
   table, which is often called a _probability mass function_ (pmf).
 
 * If the sample space is countable, individual "atoms" (points in the
@@ -71,8 +71,8 @@ There are several effective ways to represent a probability distribution.
   line, we have the _cumulative distribution function (CDF)_ $F(t) =
   P(X \le t)$.  The probabilities of all other events can be inferred
   from the CDF using the probabilities, e.g. the probability that $X$
-  is between $1$ and $2$ or between $6$ and $7$ is $F(2) - F(1) + F(7)
-  - F(6)$.
+  is between $1$ and $2$ or between $6$ and $7$ is
+  $F(2) - F(1) + F(7) - F(6)$.
 
 * If there is an atom with positive mass, the CDF is discontinuous at
   that point, e.g. $P(X=x)$ is the jump in the CDF at $x$.
@@ -94,30 +94,35 @@ There are several effective ways to represent a probability distribution.
 
 * The exponential distribution with CDF $P(X \le t) = 1 -
   \exp(-\lambda t)$ and density $f(x) = \lambda \exp(-\lambda x)$.
+  The value of $\lambda$ is a _parameter_, so there are actually
+  infinitely many exponential distributions, determined by the value
+  of $\lambda$.
 
 * The normal (Gaussian) distribution with density $f(x) =
-  \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$.
+  \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$.  The values
+  of $\mu$ and $\sigma$ are parameters, referring to the expected
+  value and standard deviation, respectively.
 
 ## Expectation
 
-The _expectation_ is a summary statistic of a quantitative random
-variable $X$.
+* The _expectation_ is a summary statistic of a quantitative random
+  variable $X$.
 
-For a random variable with a density $f(x)$, the expectation $E[X]$ is
-$\int xf(x)dx$.  For a random variable with a mass function the
-expectation is $\sum xf(x)$, where $x$ ranges over the domain of $X$.
+* For a random variable with a density $f(x)$, the expectation $E[X]$ is
+  $\int xf(x)dx$.  For a random variable with a mass function the
+  expectation is $\sum xf(x)$, where $x$ ranges over the domain of $X$.
 
-The expectation solves the optimization problem ${\rm argmin}_\theta
-E[(X-\theta)^2]$
+* The expectation solves the optimization problem ${\rm argmin}_\theta
+  E[(X-\theta)^2]$
 
-The expectation can be used to define the _center_ of a distribution,
-and has a physical anaalogy in being the balancing point if the mass
-is arranged along a beam.
+* The expectation can be used to define the _center_ of a distribution,
+  and has a physical anaalogy in being the balancing point if the mass
+  is arranged along a beam.
 
-The expectation may not exist, and it may be infinite.
+* The expectation may not exist, and it may be infinite.
 
-The terms _mean_ and _average_ may be used synonymously with
-"expectation."
+* The terms _mean_ and _average_ may be used synonymously with
+  "expectation."
 
 ## Measures of location and dispersion
 
@@ -140,24 +145,24 @@ a _moment_ or as a _quantile_.
 
 * Moments are expectations of (possibly) transformed values.
 
-- The expected value $E[X]$ is a moment, but so is $E[X^4]$ and
-  $E[\exp(X)]$.
+  - The expected value $E[X]$ is a moment, but so is $E[X^4]$ and
+    $E[\exp(X)]$.
 
-- The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$
-  central moment is $E[(X - EX)^k]$.
+  - The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$
+    central moment is $E[(X - EX)^k]$.
 
-- The _variance_ is the second central moment $E(X - EX)^2$.  It is a
-  measure of dispersion but its units are the square of the units of
-  $X$.  Therefore we often use the _standard deviation_ which is the
-  square root of the variance.  It has the same units as the data.
+  - The _variance_ is the second central moment $E(X - EX)^2$.  It is a
+    measure of dispersion but its units are the square of the units of
+    $X$.  Therefore we often use the _standard deviation_ which is the
+    square root of the variance.  It has the same units as the data.
 
-- The $k^{\rm th}$ standardized moment is the $k^{\rm th}$ raw moment
-  of the standardized variate $(X - EX)/{\rm SD}(X)$
+  - The $k^{\rm th}$ standardized moment is the $k^{\rm th}$ raw moment
+    of the standardized variate $(X - EX)/{\rm SD}(X)$
 
-- The third standardized moment $E[Z^3]$ where
-  $Z = (X - EX)/{\rm SD}(X)$ is a measure of _skewness_.  The fourth
-  moment measures _kurtosis_, higher order moments are quite subtle to
-  interpret.
+  - The third standardized moment $E[Z^3]$ where
+    $Z = (X - EX)/{\rm SD}(X)$ is a measure of _skewness_.  The fourth
+    moment measures _kurtosis_, higher order moments are quite subtle to
+    interpret.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
   the CDF then the quantile function is $Q(p) = F^{-1}(p)$.  If $F$ is
@@ -166,49 +171,48 @@ a _moment_ or as a _quantile_.
   $p$, what is the value $t$ such that $p$ of the mass of the
   distribution falls on or below $t$".
 
-- The median is a measure of location that is a quantile, it is
-  $Q(1/2)$.
+  - The median is a measure of location that is a quantile, it is
+    $Q(1/2)$.
 
-- Quantiles can be used to define measures of dispersion, e.g. the
-  _interquartile range_ which is $Q(3/4) - Q(1/4)$ or the _median
-  absolute deviation (MAD)_ which is the median of $|X - EX|$.
+  - Quantiles can be used to define measures of dispersion, e.g. the
+    _interquartile range_ which is $Q(3/4) - Q(1/4)$ or the _median
+    absolute deviation (MAD)_ which is the median of $|X - EX|$.
 
-- Quantile anaolgues of higher order moments exist, e.g. a
-  quantile-based measure of skewness is $Q(3/4) - 2Q(1/2) +
-  Q(1/4))/(Q(3/4) - Q(1/4))$.  The theory of _L-moments_ provides a
-  general means for constructing higher order summary statistics from
-  quantiles.
+  - Quantile anaolgues of higher order moments exist, e.g. a
+    quantile-based measure of skewness is $Q(3/4) - 2Q(1/2) +
+    Q(1/4))/(Q(3/4) - Q(1/4))$.  The theory of _L-moments_ provides a
+    general means for constructing higher order summary statistics from
+    quantiles.
 
 ## Conditional expectations and variances
 
 * Conditional expectation
 
-- In most research we are working with more than one quantity at a
-  time.  This leads to the concept of a _joint distribution_.
-  Suppose that we have two jointly-distributed random variables $X$
-  and $Y$.  The joint CDF of $X$ and $Y$ is the function
-  $F(s, t) = P(X \le s, Y \le t)$.  There is also a joint density but
-  generalizing quantiles to joint distributions is not
-  straightforward.
+  - In most research we are working with more than one quantity at a
+    time.  This leads to the concept of a _joint distribution_.
+    Suppose that we have two jointly-distributed random variables $X$
+    and $Y$.  The joint CDF of $X$ and $Y$ is the function
+    $F(s, t) = P(X \le s, Y \le t)$.  There is also a joint density but
+    generalizing quantiles to joint distributions is not
+    straightforward.
 
-- Suppose that $X$ is quantitative and is jointly distributed with
-  $Y$ (which may or may not be quantitative).  The _conditional
-  expectation_ of $X$ given $Y$, $E[X|Y=y]$ is (roughly speaking) the
-  expected value of $X$ when we know that $Y$ takes on the value $y$.
-  The rigorous definition of conditional expectation is somewhat
-  different but this is the way that most people think about
-  conditional expectation.
+  - Suppose that $X$ is quantitative and is jointly distributed with
+    $Y$ (which may or may not be quantitative).  The _conditional
+    expectation_ of $X$ given $Y$, $E[X|Y=y]$ is (roughly speaking) the
+    expected value of $X$ when we know that $Y$ takes on the value $y$.
+    The rigorous definition of conditional expectation is somewhat
+    different but this is the way that most people think about
+    conditional expectation.
 
-** A special case is when $Y$ has a finite sample space, so that $Y$
-   effectively partitions into groups. $E[X | Y=y]$ is the expected
-   value of $X$ when we are in group $y$.
+  - A special case is when $Y$ has a finite sample space, so that $Y$
+    effectively partitions into groups. $E[X | Y=y]$ is the expected
+    value of $X$ when we are in group $y$.
 
-- The _double expectation theorem_ or _smoothing theorem_ states that
-  $E E[X|Y] = E[X]$.  That is, if we compute the conditional
-  expectation of $X$ at each fixed value of $Y$, and then average
-  these values over the (marginal) distribution of $Y$, we get the
-  same result as if we compute the (marginal) mean of $X$ directly.
-
+  - The _double expectation theorem_ or _smoothing theorem_ states that
+    $E E[X|Y] = E[X]$.  That is, if we compute the conditional
+    expectation of $X$ at each fixed value of $Y$, and then average
+    these values over the (marginal) distribution of $Y$, we get the
+    same result as if we compute the (marginal) mean of $X$ directly.
 
 ## Categorical distributions
 
@@ -222,6 +226,77 @@ a _moment_ or as a _quantile_.
 
 # Linear algebra
 
+* A _vector space_ over the real numbers is a collection of abstract objects that can be added
+  together, and that can be scaled by (real) numbers.  These properties
+  of addition and (scalar) multiplication must satistfy the following axioms,
+  for vectors $x$, $y$ and real scalars $c$, $d$:
+
+  - $x + y = y + x$; $(x + y) + z = x + (y + z)$, $0 + x = x + 0 = x$; $(-x) + x = x + (-x) = 0$.
+
+  - $0x = 0$; $1x = x$; $c(dx) = (cd)x$.
+
+  - $c(x+y) = cx + cy$; $(c+d)x = cx + dx$
+
+* A basic example of a vector space is the set of all "k-tuples".  For example take $k=2$, so
+  a 2-tuple has the form $[a, b]$, e.g. $[1, 0]$, $[5, -4]$.  These can be added component-wise
+  so that, e.g. $[3, 4] + [1, 2] = [4, 6]$.  These can be scaled so that, e.g. $3\cdot [4, 5] = [12, 15]$.
+  One can verify that the axioms stated above hold for this vector space.
+
+* The vector space of $k$-tuples with real entries is denoted ${\mathbb R}^k$.  We will call $k$ the
+  _dimension_ of ${\mathbb R}^k$ but are not defining this term formally yet.
+
+* Another example of a vector space is the set of continuous real-valued functions of a real variable.
+
+* Inner products and norms
+
+  - The _dot product_ or _inner product_ between two vectors is a mapping that takes two vectors and
+    yields a scalar.  It must satisfy certain properties such as $\langle x, y\rangle = \langle y, x\rangle$,
+    $\langle x+y, z \rangle = \langle x, z \rangle + \langle y, z\rangle$, and
+    $langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are vectors and $c$ is a scalar.
+
+  - If we are working with the vector space of k-tuples, then the dot product is formed as
+    $\langle x, y\rangle = \sum_{j=1}^k x_j y_j$.
+
+  - A _norm_ on a vector space is a mapping from the vectors to the non-negative reals.  It is a way
+    of defining the length or magnitude of a vector.  A dot product always yields a norm via
+    $\|x\|^2 = \langle x, x\rangle$.
+
+  - A very fundamental result is the _Cauchy-Schwarz_ inequality $|\langle x, y\rangle| \le \|x\|\cdot \|y\|$.
+
+* Linear transformations
+
+  - A _linear transformation_ is a mapping from one vector space to another, or from a vector space to itself.
+    A transformation $T$ must satisfy $T(cx) = cT(x)$ and $T(x+y) = T(x) + T(y)$, for a scalar $c$ and vectors
+    $x$ and $y$.
+
+  - For most of the rest of this document, we focus on vector spaces consisting of k-tuples of real
+    numbers, i.e. ${\mathbb R}^k$.
+
+  - A _matrix_ is an array of numbers, with $r$ rows and $c$ columns.
+
+  - A _column vector_ is a matrix with $1$ column, i.e. an $r\times 1$
+    matrix.  A _row vector_ is a $1\times c$ matrix.  A vector that is
+    not specified to be either a row vector or a column vector can usually
+    be taken to be a column vector.
+
+  - A $r\times c$ matrix can be multiplied (on the right) with a $c$ dimensional vector, yielding a
+    $r$-dimensional vector.  Let $M$, $x$ denote such a matrix and vector, and let $y = Mx$.  Then
+    $y_i$ is the dot product of the $i^{\rm th}$ row of $M$ with $x$.  This is called
+    _matrix vector multiplication_.
+
+  - Via matrix vector multiplication, a matrix represents a linear transformation.  Specifically, a
+    $r\times c$ matrix is a transformation from ${\mathbb R}^c$ to ${\mathbb R}^r$.
+
+  - We can multiply matrices together, and this corresponds to the _composition_ of the linear transformations
+    represented by the matrices.  Recall that _composing_ two functions $f$ and $g$ yields the
+    function $h(x) = f(g(x))$.  This only makes sense when the range of $g$ is contained within the
+    domain of $f$.  If the matrices $A$ and $B$ represent linear transformations $T_A$ and $T_B$, then
+    the matrix product $AB$ represent the composition $T_A(T_B(x))$.
+
+  - Two multiply two matrices together, the matrices must have corresponding dimensions, i.e. to take
+    the product of $A$ and $B$, the the number of columns of $A$ must be equal to the number of rows of $B$.
+    Then, the product $AB$ can be formed from dot products, specifically, the element $i$, $j$ of $AB$ is
+    the dot product of the $i^{\rm th}$ row of $A$ with the $j^{\rm th}$ column of $B$.
 
 # Optimization
 
@@ -233,7 +308,7 @@ a _moment_ or as a _quantile_.
 
 ## Conjugate gradients
 
-## Global/comb inatorial optimization
+## Global/combinatorial optimization
 
 # Statistical inference
 
