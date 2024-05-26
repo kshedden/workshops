@@ -181,9 +181,7 @@ a _moment_ or as a _quantile_.
   - Quantile anaolgues of higher order moments exist, e.g. a
     quantile-based measure of skewness is
 
-    $$
-    (Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).
-    $$
+    $(Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).$
 
     The theory of _L-moments_ provides a
     general means for constructing higher order summary statistics from
