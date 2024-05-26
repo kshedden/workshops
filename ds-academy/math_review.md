@@ -161,7 +161,7 @@ a _moment_ or as a _quantile_.
 
   - The third standardized moment $E[Z^3]$ where
     $Z = (X - EX)/{\rm SD}(X)$ is a measure of _skewness_.  The fourth
-    moment measures _kurtosis_, higher order moments are quite subtle to
+    moment measures _kurtosis_, higher order moments are subtle to
     interpret.
 
 * Quantiles are based on the inverse CDF.  If $F(t) = P(X \le t)$ is
@@ -199,23 +199,47 @@ a _moment_ or as a _quantile_.
     generalizing quantiles to joint distributions is not
     straightforward.
 
-  - Suppose that $X$ is quantitative and is jointly distributed with
-    $Y$ (which may or may not be quantitative).  The _conditional
-    expectation_ of $X$ given $Y$, $E[X|Y=y]$ is (roughly speaking) the
-    expected value of $X$ when we know that $Y$ takes on the value $y$.
+  - Suppose that $Y$ is quantitative and is jointly distributed with
+    $X$ (which may or may not be quantitative).  The _conditional
+    expectation_ of $Y$ given $X$, $E[Y|X=x]$ is (roughly speaking) the
+    expected value of $Y$ when we know that $X$ takes on the value $x$.
     The rigorous definition of conditional expectation is somewhat
     different but this is the way that most people think about
     conditional expectation.
 
-  - A special case is when $Y$ has a finite sample space, so that $Y$
-    effectively partitions into groups. $E[X | Y=y]$ is the expected
-    value of $X$ when we are in group $y$.
+  - A special case is when $X$ has a finite sample space, so that it
+    effectively partitions into groups. $E[Y | X=x]$ is the expected
+    value of $Y$ when we are in group $x$.
 
   - The _double expectation theorem_ or _smoothing theorem_ states that
-    $E[E[X|Y]] = E[X]$.  That is, if we compute the conditional
-    expectation of $X$ at each fixed value of $Y$, and then average
-    these values over the (marginal) distribution of $Y$, we get the
-    same result as if we compute the (marginal) mean of $X$ directly.
+    $E[E[Y|X]] = E[Y]$.  That is, if we compute the conditional
+    expectation of $Y$ at each fixed value of $X$, and then average
+    these values over the (marginal) distribution of $X$, we get the
+    same result as if we compute the (marginal) mean of $Y$ directly.
+
+* Conditional variance
+
+  - The conditional variance is analogous to the conditional expectation.
+    ${\rm Var}[Y|X=x]$ is the variance restricted to $(X, Y)$ values such
+    that $X=x$.
+
+  - The _law of total variation_ states that
+
+    ${\rm Var}(Y) = {\rm Var}E[Y|X] + E{\rm Var}[Y|X]$
+
+    The term ${\rm Var}E[Y|X]$ is the _between variation_ while
+    the term $E{\rm Var}[Y|X]$ is the _within variation_.  The law of
+    total variation states that the overall variation is the sum of the
+    between and within variations.
+
+  - The identity can also be written as:
+
+    $1 = {\rm Var}E[Y|X]/{\rm Var}(Y) + E{\rm Var}[Y|X]/{\rm Var}(Y)$
+
+    This shows that the variance in $Y$ is the sum of the variance in $Y$
+    explained by $X$, ${\rm Var}E[Y|X]/{\rm Var}(Y)$, and the variance in
+    $Y$ that is not explained by $X$, $E{\rm Var}[Y|X]/{\rm Var}(Y)$.
+
 
 ## Categorical distributions
 
@@ -240,8 +264,8 @@ a _moment_ or as a _quantile_.
 
   - $c(x+y) = cx + cy$; $(c+d)x = cx + dx$
 
-* A basic example of a vector space is the set of all "k-tuples".  For example take $k=2$, so
-  a 2-tuple has the form $[a, b]$, e.g. $[1, 0]$, $[5, -4]$.  These can be added component-wise
+* A basic example of a vector space is the set of all "k-tuples".  For example, take $k=2$, so
+  a 2-tuple has the form $[a, b]$, e.g. $[1, 0]$ or $[5, -4]$.  These can be added component-wise
   so that, e.g. $[3, 4] + [1, 2] = [4, 6]$.  These can be scaled so that, e.g. $3\cdot [4, 5] = [12, 15]$.
   One can verify that the axioms stated above hold for this vector space.
 
@@ -255,7 +279,7 @@ a _moment_ or as a _quantile_.
   - The _dot product_ or _inner product_ between two vectors is a mapping that takes two vectors and
     yields a scalar.  It must satisfy certain properties such as $\langle x, y\rangle = \langle y, x\rangle$,
     $\langle x+y, z \rangle = \langle x, z \rangle + \langle y, z\rangle$, and
-    $langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are vectors and $c$ is a scalar.
+    $\langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are vectors and $c$ is a scalar.
 
   - If we are working with the vector space of k-tuples, then the dot product is formed as
     $\langle x, y\rangle = \sum_{j=1}^k x_j y_j$.
