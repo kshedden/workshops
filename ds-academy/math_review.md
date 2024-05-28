@@ -271,7 +271,7 @@ Most summary statistics have one of two mathematical forms, as either a
   [independent](<https://en.wikipedia.org/wiki/Independence_(probability_theory)>)
   if
 
-  $P(X \in E_1 \; \\& \; Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
+  $P(X \in E_1 \\; \\& \\; Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
   for all events $E_1$ and $E_2$. This essentially means that knowing the value
   of $X$ tells you nothing about the value of $Y$.
