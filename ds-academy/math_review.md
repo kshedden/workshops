@@ -632,9 +632,9 @@ Most summary statistics have one of two mathematical forms, as either a
     transformation (or matrix) has only real eigenvalues, and it is possible to
     construct a basis of eigenvectors. That is, for a linear transformation on a
     $d$-dimensional vector space, we can construct a sequence
-    $lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
+    $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
     eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
-    $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^&d$, and (iii) the
+    $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^dd$, and (iii) the
     $v_j$ are mutually orthogonal.
 
 - Quadratic forms
