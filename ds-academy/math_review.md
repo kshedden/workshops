@@ -93,7 +93,7 @@ There are several effective ways to represent a probability distribution.
 - The uniform distribution is either the
   [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) in
   which every atom has the same probability (for finite sample spaces), or (for
-  distributions on a real interval $(a, b)$), it is a
+  distributions on a real interval (a, b)), it is a
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
   in which the probability of any interval is proportional to its length.
 
@@ -101,15 +101,30 @@ There are several effective ways to represent a probability distribution.
   [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution)
   with CDF $P(X \le t) = 1 - \exp(-\lambda t)$ and density
   $f(x) = \lambda
-  \exp(-\lambda x)$. The value of $\lambda$ is a _parameter_, so
-  there are actually infinitely many exponential distributions, determined by
-  the value of $\lambda$.
+  \exp(-\lambda x)$. The value of $\lambda$ is a
+  [parameter](https://en.wikipedia.org/wiki/Statistical_parameter), so there are
+  actually infinitely many exponential distributions, determined by the value of
+  $\lambda$.
 
 - The
   [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution)
   with density $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$. The
   values of $\mu$ and $\sigma$ are parameters, referring to the expected value
   and standard deviation, respectively.
+
+## Measures of location and dispersion
+
+- Probability distributions are somewhat unwieldy to work with, it is helpful to
+  summarize them in a few informative numbers.
+
+- _Measures of location_ aim to capture the central value of a distribution. The
+  mean and median (discussed in more detail below) are measures of location, and
+  there are many more.
+
+- _Measures of dispersion_ aim to capture how spread out or heterogeneous are
+  the values of the distribution. The standard deviation and interquartile range
+  (discussed in more detail below) are measures of dispersion, and there are
+  many more.
 
 ## Expectation
 
@@ -131,18 +146,6 @@ There are several effective ways to represent a probability distribution.
 
 - The terms _mean_ and _average_ may be used synonymously with "expectation."
 
-## Measures of location and dispersion
-
-- Probability distributions are somewhat unwieldy to work with, it is helpful to
-  summarize them in a few informative numbers.
-
-- _Measures of location_ aim to capture the central value of a distribution. The
-  mean and median are measures of location, and there are many more.
-
-- _Measures of dispersion_ aim to capture how spread out or heterogeneous are
-  the values of the distribution. The standard deviation and interquartile range
-  are measures of dispersion, and there are many more.
-
 ## Quantiles and moments
 
 Most summary statistics have one of two mathematical forms, as either a
@@ -157,7 +160,7 @@ Most summary statistics have one of two mathematical forms, as either a
     is $E[(X - EX)^k]$.
 
   - The [variance](https://en.wikipedia.org/wiki/Variance) is the second central
-    moment $E(X - EX)^2$. It is a measure of dispersion but its units are the
+    moment $E[(X - EX)^2]$. It is a measure of dispersion but its units are the
     square of the units of $X$. Therefore we often use the _standard deviation_
     which is the square root of the variance. It has the same units as the data.
 
@@ -171,8 +174,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - Quantiles are based on the inverse CDF. If $F(t) = P(X \le t)$ is the CDF then
   the quantile function is $Q(p) = F^{-1}(p)$. If $F$ is not invertible then
-  $Q(p)$ is defined as ${\rm inf}\{t \;|\; F(t) \ge p\}$. The $p^{\rm
-  th}$
+  $Q(p)$ is defined as ${\rm inf}\\{t \;|\; F(t) \ge p\\}$. The $p^{\rm th}$
   quantile answers the question "for a given $p$, what is the value $t$ such
   that $p$ of the mass of the distribution falls on or below $t$".
 
@@ -218,7 +220,7 @@ Most summary statistics have one of two mathematical forms, as either a
     $P(Y |
     X)$ is $f(x, y) / f(x)$.
 
-- Conditional expectation
+- [Conditional expectation](https://en.wikipedia.org/wiki/Conditional_expectation)
 
   - Suppose that $Y$ is quantitative and is jointly distributed with $X$ (which
     may or may not be quantitative). The _conditional expectation_ of $Y$ given
@@ -316,11 +318,11 @@ Most summary statistics have one of two mathematical forms, as either a
   [tau correlation](https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient)
   focuses on concordant orderings of pairs of values.
 
-The
-[distance correlation](https://en.wikipedia.org/wiki/Distance_correlationhttps://en.wikipedia.org/wiki/Distance_correlation)
-is a relatively recent innovation that yields a statistic that is equal to zero
-if and only if two random variables are independent. That is, it is a measure of
-any type of dependence, not only linear dependence.
+- The
+  [distance correlation](https://en.wikipedia.org/wiki/Distance_correlationhttps://en.wikipedia.org/wiki/Distance_correlation)
+  is a relatively recent innovation that yields a statistic that is equal to
+  zero if and only if two random variables are independent. That is, it is a
+  measure of any type of dependence, not only linear dependence.
 
 ## Limits and concentration
 
@@ -386,7 +388,7 @@ any type of dependence, not only linear dependence.
   [Markov inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality),
   [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality),
   and the
-  [Benrstein inequality](<https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)>).
+  [Bernstein inequality](<https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)>).
 
 ## Stochastic processes
 
@@ -464,7 +466,7 @@ any type of dependence, not only linear dependence.
   - The size (number of elements) in any basis is the same, and this common
     value is called the dimension of the vector space.
 
-  - If a vector space has dimension $d$, then given a collection of $q<d$
+  - If a vector space has dimension $d$, then given a collection of $q < d$
     linearly independent vectors, $u_1, \ldots, u_q$, the span of the $u_j$ is a
     $q$-dimensional [subspace](https://en.wikipedia.org/wiki/Subspace) of the
     vector space.
@@ -481,12 +483,12 @@ any type of dependence, not only linear dependence.
     vectors and $c$ is a scalar.
 
   - If we are working with the vector space of k-tuples, then the dot product is
-    formed as $\langle x, y\rangle = \sum\_{j=1}^k x_j y_j$.
+    formed as $\langle x, y\rangle = \sum_{j=1}^k x_j y_j$.
 
   - A [norm](<https://en.wikipedia.org/wiki/Norm_(mathematics)>) on a vector
     space is a mapping from the vectors to the non-negative reals. It is a way
     of defining the length or magnitude of a vector. A dot product always yields
-    a norm via $|x|^2 = \langle x, x\rangle$.
+    a norm via $\|x\|^2 = \langle x, x\rangle$.
 
   - A very fundamental result is the
     [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
@@ -525,10 +527,10 @@ any type of dependence, not only linear dependence.
     _composing_ two functions $f$ and $g$ yields the function $h(x) = f(g(x))$.
     This only makes sense when the range of $g$ is contained within the domain
     of $f$. If the matrices $A$ and $B$ represent linear transformations $T_A$
-    and $T_B$, then the matrix product $AB$ represent the composition
+    and $T_B$, then the matrix product $A\cdot B$ represents the composition
     $T_A(T_B(x))$.
 
-  - Two multiply two matrices together, the matrices must have corresponding
+  - To multiply two matrices together, the matrices must have corresponding
     dimensions, i.e. to take the product of $A$ and $B$, the the number of
     columns of $A$ must be equal to the number of rows of $B$. Then, the product
     $AB$ can be formed from dot products, specifically, the element $i$, $j$ of
@@ -554,8 +556,8 @@ any type of dependence, not only linear dependence.
     $\langle x, y\rangle = \langle T(x), T(y)\rangle$ for all elements $x$, $y$
     in the vector space.
 
-  - An orthogonal transformation is norm-preserving, in that $\|x\| = \|T(x)\|$
-    for all $x$.
+  - An orthogonal transformation is norm-preserving, in that
+    $\\|x\\| = \\|T(x)\\|$ for all $x$.
 
   - If we represent an orthogonal transformation $T$ with a matrix $M$ (acting
     via left-multiplication), then the matrix $M$ is orthogonal in the sense
