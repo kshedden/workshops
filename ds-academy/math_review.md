@@ -124,7 +124,7 @@ There are several effective ways to represent a probability distribution.
   ${\rm argmin}_\theta E[(X-\theta)^2]$
 
 - The expectation can be used to define the _center_ of a distribution, and has
-  a physical anaalogy in being the balancing point if the mass is arranged along
+  a physical analogy in being the balancing point if the mass is arranged along
   a beam.
 
 - The expectation may not exist, and it may be infinite.
@@ -184,7 +184,7 @@ Most summary statistics have one of two mathematical forms, as either a
     [median absolute deviation (MAD)](https://en.wikipedia.org/wiki/Median_absolute_deviation)
     which is the median of $|X - EX|$.
 
-  - Quantile anaolgues of higher order moments exist, e.g. a quantile-based
+  - Quantile analogues of higher order moments exist, e.g. a quantile-based
     measure of skewness is
 
     $(Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).$
@@ -317,7 +317,10 @@ Most summary statistics have one of two mathematical forms, as either a
   focuses on concordant orderings of pairs of values.
 
 The
-[distance correlation](https://en.wikipedia.org/wiki/Distance_correlationhttps://en.wikipedia.org/wiki/Distance_correlation)...
+[distance correlation](https://en.wikipedia.org/wiki/Distance_correlationhttps://en.wikipedia.org/wiki/Distance_correlation)
+is a relatively recent innovation that yields a statistic that is equal to zero
+if and only if two random variables are independent. That is, it is a measure of
+any type of dependence, not only linear dependence.
 
 ## Limits and concentration
 
@@ -366,7 +369,7 @@ The
 
 - The
   [Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem)
-  states that the distrbution of $\sqrt{n}(\bar{X}_n - \mu)$ tends to a normal
+  states that the distribution of $\sqrt{n}(\bar{X}_n - \mu)$ tends to a normal
   distribution with mean $0$ and variance $\sigma^2$. Here we limit our
   discussion to IID sequences, so that $\mu = E[X_i]$ and
   $\sigma^2 = {\rm Var}[X_i]$ for any $i$. One implication of this result is
@@ -412,7 +415,7 @@ The
 - A [vector space](https://en.wikipedia.org/wiki/Vector_space) over the real
   numbers is a collection of abstract objects that can be added together, and
   that can be scaled by (real) numbers. These properties of addition and
-  (scalar) multiplication must satistfy the following axioms, for vectors $x$,
+  (scalar) multiplication must satisfy the following axioms, for vectors $x$,
   $y$ and real scalars $c$, $d$:
 
   - $x + y = y + x$; $(x + y) + z = x + (y + z)$, $0 + x = x + 0 = x$;
@@ -438,16 +441,42 @@ The
 - Another example of a vector space is the set of continuous real-valued
   functions of a real variable.
 
+- Given a collection of vectors $v_1, \ldots, v_m$, a _linear combination_ of
+  these vectors is a vector of the form $c_1v_1 + \cdots c_mv_m = 0$, where the
+  $c_i$ are scalars. Linear combinations of vectors play a very important role
+  in linear algebra. Here are some key properties of linear combinations:
+
+  - A collection of vectors $v_1, \ldots, v_m$ in a vector space can have the
+    property of
+    [linear independence](https://en.wikipedia.org/wiki/Linear_independence) if
+    for any scalars $c_1, \ldots, c_m$ such that $c_1v_1 + \cdots c_mv_m = 0$,
+    it follows that $c_1, \ldots, c_m = 0$. That is, any linear combination of a
+    set of linearly independent vectors is zero if and only if all of the scalar
+    coefficients are zero.
+
+  - A maximal set of linearly independent vectors in a vector space is called a
+    [basis](<https://en.wikipedia.org/wiki/Basis_(linear_algebra)>).
+
+  - The _span_ of a collection of vectors is the set of all vectors that can be
+    expressed as linear combinations of them. A basis has the property that its
+    span is the entire vector space.
+
+  - The size (number of elements) in any basis is the same, and this common
+    value is called the dimension of the vector space.
+
+  - If a vector space has dimension $d$, then given a collection of $q<d$
+    linearly independent vectors, $u_1, \ldots, u_q$, the span of the $u_j$ is a
+    $q$-dimensional [subspace](https://en.wikipedia.org/wiki/Subspace) of the
+    vector space.
+
 - Inner products and norms
 
   - The _dot product_ or
     [inner product](https://en.wikipedia.org/wiki/Inner_product_space) between
     two vectors is a mapping that takes two vectors and yields a scalar. It must
     satisfy certain properties such as
-    $\langle x, y\rangle = \langle y,
-    x\rangle$,
-    $\langle x+y, z \rangle = \langle x, z \rangle + \langle y,
-    z\rangle$, and
+    $\langle x, y\rangle = \langle y, x\rangle$,
+    $\langle x+y, z \rangle = \langle x, z \rangle + \langle y, z\rangle$, and
     $\langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are
     vectors and $c$ is a scalar.
 
@@ -459,17 +488,16 @@ The
     of defining the length or magnitude of a vector. A dot product always yields
     a norm via $|x|^2 = \langle x, x\rangle$.
 
-  - A very fundamental result is the _Cauchy-Schwarz_ inequality
-    $|\langle x,
-    y\rangle| \le |x|\cdot |y|$.
+  - A very fundamental result is the
+    [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
+    $|\langle x, y\rangle| \le |x|\cdot |y|$.
 
 - Linear transformations
 
   - A [linear transformation](https://en.wikipedia.org/wiki/Linear_map) is a
     mapping from one vector space to another, or from a vector space to itself.
     A transformation $T$ must satisfy $T(cx) = cT(x)$ and
-    $T(x+y) = T(x) +
-    T(y)$, for a scalar $c$ and vectors $x$ and $y$.
+    $T(x+y) = T(x) + T(y)$, for a scalar $c$ and vectors $x$ and $y$.
 
   - For most of the rest of this document, we focus on vector spaces consisting
     of k-tuples of real numbers, i.e. ${\mathbb R}^k$.
@@ -504,9 +532,52 @@ The
     dimensions, i.e. to take the product of $A$ and $B$, the the number of
     columns of $A$ must be equal to the number of rows of $B$. Then, the product
     $AB$ can be formed from dot products, specifically, the element $i$, $j$ of
-    $AB$ is the dot product of the $i^{\rm th}$ row of $A$ with the $j^{\rm
-    th}$
+    $AB$ is the dot product of the $i^{\rm th}$ row of $A$ with the $j^{\rm th}$
     column of $B$.
+
+  - A linear transformation between two vector spaces of the same dimension may
+    be [invertible](https://en.wikipedia.org/wiki/Invertibility).
+    Transformations between spaces of differing dimension can never be
+    invertible. A transformation is invertible if $T(x) = T(y)$ always implies
+    that $x = y$. When this occurs it is possible to construct another linear
+    transformation denoted $T^{-1}$ such that $T(T^{-1}(x)) = x$ and
+    $T^{-1}(T(x)) = x$. If $M$ is a matrix representing the linear
+    transformation $M$ then $M$ is invertible if there exists another matrix
+    $M^{-1}$ such that $MM^{-1} = M^{-1}M = I$, where $I$ is the
+    [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix).
+
+- Orthogonality and projections
+
+  - A linear transformation is
+    [orthogonal](https://en.wikipedia.org/wiki/Orthogonal_transformation) if it
+    preserves the inner-product, i.e.
+    $\langle x, y\rangle = \langle T(x), T(y)\rangle$ for all elements $x$, $y$
+    in the vector space.
+
+  - An orthogonal transformation is norm-preserving, in that $\|x\| = \|T(x)\|$
+    for all $x$.
+
+  - If we represent an orthogonal transformation $T$ with a matrix $M$ (acting
+    via left-multiplication), then the matrix $M$ is orthogonal in the sense
+    that $M^\prime M = I$. If $M$ is square then it also follows that
+    $MM^\prime = I$, but in general a matrix being orthogonal only implies that
+    $M^\prime M = I$.
+
+  - Given a subspace ${\cal S}$ of a vector space ${\cal T}$, there exists an
+    _orthogonal complement_ ${\cal S}^\perp$ which consists of all vectors
+    $v\in {\cal T}$ such that $\langle v, u\rangle = 0$ for all
+    $u \in {\cal S}$.
+
+  - Suppose we have a $d$-dimensional vector space ${\cal T}$ and a
+    $q$-dimensional subspace ${\cal S}$ of it. For any vector $v\in {\cal T}$,
+    there is a unique vector $s \in {\cal S}$ that is closest to $v$, i.e. it
+    minimizes the distance $\|s - v\|$. This is called the
+    [projection](<https://en.wikipedia.org/wiki/Projection_(linear_algebra)>) of
+    $v$ on ${\cal S}$. Projection is a linear transformation. Every vector $v$
+    can be uniquely written as the sum $u + u_\perp$, where $u \in {\cal S}$ and
+    $u_\perp in {\cal S}^\perp$.
+
+- eigendecompositions...
 
 # Optimization
 
@@ -539,8 +610,7 @@ The
 - If $f$ has two continuous derivatives, we can make use of calculus. For
   unconstrained minimization, the minimizer must occur at a
   [stationary point](https://en.wikipedia.org/wiki/Stationary_point)
-  $\partial
-  f/\partial x = 0$. However it is common that the
+  $\partial f/\partial x = 0$. However it is common that the
   [gradient](https://en.wikipedia.org/wiki/Gradient) is nonlinear and the
   stationary point cannot be obtained in analytic form. This converts the
   problem of numerical minimization to that of numerically solving a system of
@@ -560,22 +630,19 @@ The
 
 - The case where $f$ is defined on an interval $[a, b]$ of the real line is
   special. We can trap a minimum in a _bracket_, which is a triple of values
-  $x_1 \< x_2 \< x_3$ such that $f(x_2) \< {\rm min}(f(x_1), f(x_3))$. We can
-  then successively squeeze the bracket by testing the midpoints $(x_1 + x_2)/2$
-  and $(x_2 + x_3)/2$. One of these midpoints can always be used to create a new
-  bracket of lesser width than the preceeding bracket. This is called the
+  $x_1 < x_2 < x_3$ such that $f(x_2) < {\rm min}(f(x_1), f(x_3))$. We can then
+  successively squeeze the bracket by testing the midpoints $(x_1 + x_2)/2$ and
+  $(x_2 + x_3)/2$. One of these midpoints can always be used to create a new
+  bracket of lesser width than the preceding bracket. This is called the
   [bisection method](https://en.wikipedia.org/wiki/Bisection_method).
 
 ## Newton's method
 
 - A multivariate quadratic function has the form
-  $f(x) = c + b^\prime x +
-  x^prime A x$. We can complete the square to obtain
-  the equivalent form $f(x) =
-  (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$.
+  $f(x) = c + b^\prime x + x^prime A x$. We can complete the square to obtain
+  the equivalent form $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$.
   When $A$ is a positive semidefinite (PSD) matrix, this expression is minimized
-  when $x + A^{-1}b/2 =
-  0$ so x = -A^\{-1}b/2\$.
+  when $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
 
 - An arbitrary smooth function $f(x)$ can be approximated local to a given point
   $x_0$ with the approximation
@@ -628,13 +695,10 @@ The
 - The gradient $\nabla_f$ of the objective function points in the direction in
   the domain of the function in which the function increases fastest. Therefore,
   letting $\lambda \in {\mathbb R}$, the restricted function
-  $f(x + \lambda
-  \nabla_f(x))$ is increasing in $\lambda$ for sufficiently small
+  $f(x + \lambda\nabla_f(x))$ is increasing in $\lambda$ for sufficiently small
   $\lambda$. Since we want to minimize the objective function, we can consider
-  $f(x -
-  \lambda \nabla_f(x))$. For sufficiently small $\lambda$,
-  $f(x - \lambda
-  \nabla_f(x)) \< f(x)$. Either a
+  $f(x - \lambda \nabla_f(x))$. For sufficiently small $\lambda$,
+  $f(x - \lambda\nabla_f(x)) \< f(x)$. Either a
   [line search](https://en.wikipedia.org/wiki/Line_search) or a fixed step size
   may be used to achieve a sequence of iterates that should (in some cases)
   minimize the objective function.
@@ -645,7 +709,7 @@ The
   in the 1950's. We discuss these in the next section.
 
 - This area has had a revival over the last 10 years since a form of gradient
-  desc ent is used to fit deep learning models. Specifically, there have been
+  descent is used to fit deep learning models. Specifically, there have been
   several major new ideas in the area of
   [stochastic gradient descent](https://en.wikipedia.org/wiki/Conjugate_gradient_method),
   but we will not cover these further here.
@@ -655,12 +719,10 @@ The
 - Suppose that $H_f$ is the Hessian matrix of the objective function, and we aim
   to minimize $f$ by conducting line searches over a seqeunce of search
   directions. It turns out to be desirable for these search directions to be
-  _conjugate_, meaning that they are
-  orthogonal$ with respect to $H_f$. However
+  _conjugate_, meaning that they are orthogonal with respect to $H_f$. However
   directly constructing a conjugate basis would require explicit construction of
-  $H_f\$,
-  which would make this a second-order method in which case it might be just as
-  well to use Newton's method.
+  $H_f$, which would make this a second-order method in which case it might be
+  just as well to use Newton's method.
 
 - The key insight behind the conjugate gradient algorithm is that a set of
   conjugate directions can be constructed sequentially, using line searches but
@@ -721,11 +783,13 @@ The
   generating estimators that can be applied in many common settings. We briefly
   describe two of the most common here:
 
-  - _Method of moments:_ In this approach one identifies functions of the data
-    $m(D)$ whose expected values can be calculated and are functions of the
-    parameters. This gives us equations of the form $E[m(D)] = g(\theta)$, which
-    in turn yields _estimating equations_ $m(D) - g(\theta) = 0$. These
-    equations can in principal be solved to yield estimates of the parameters.
+  - [Method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>):\_
+    In this approach one identifies functions of the data $m(D)$ whose expected
+    values can be calculated and are functions of the parameters. This gives us
+    equations of the form $E[m(D)] = g(\theta)$, which in turn yields
+    [estimating equations](https://en.wikipedia.org/wiki/Estimating_equations)
+    $m(D) - g(\theta) = 0$. These equations can in principle be solved to yield
+    estimates of the parameters.
 
     - If there is a single parameter, we can use a single estimating equation.
 
@@ -753,11 +817,12 @@ The
       $\hat{\mu} = (X_1 + \cdots + X_n)/n$ and
       $\hat{\sigma}^2 = ((X_1-\hat{\mu})^2 + \cdots + (X_n-\hat{\mu})^2)/n$.
 
-  - _Maximum likelihood_:
+  - [Maximum likelihood](https://en.wikipedia.org/wiki/Maximum_likelihood),
 
     - Maximum likelihood begins with the specification of a data generating
       model $P_\theta(D)$ where $\theta$ is the parameter and $D$ is the data.
-      From this we obtain the _log-likelihood function_
+      From this we obtain the
+      [log likelihood](https://en.wikipedia.org/wiki/Likelihood_function)
       $L(\theta; D) = \log P_\theta(D)$.
 
     - The maximum likelihood estimator $\hat{\theta}_{\rm mle}$ is
@@ -872,6 +937,12 @@ The
     negative
     [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of
     the score function.
+
+- Combining the results above we can conclude that the MLE is (under certain
+  conditions) asymptotically normal, asymptoptically unbiased, and has sampling
+  covariance matrix equal to the inverse of the Fisher information matrix.
+  Furthermore, this implies that the MLE achieves the Cramer-Rao lower bound and
+  hence is efficient.
 
 ## Confidence sets
 
