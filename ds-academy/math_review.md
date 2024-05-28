@@ -119,14 +119,15 @@ There are several effective ways to represent a probability distribution.
 - Probability distributions are somewhat unwieldy to work with, it is helpful to
   summarize them in a few informative numbers.
 
-- _Measures of location_ aim to capture the central value of a distribution. The
-  mean and median (discussed in more detail below) are measures of location, and
-  there are many more.
+- _Measures of [location](https://en.wikipedia.org/wiki/Central_tendency)_ aim
+  to capture the central value of a distribution. The mean and median (discussed
+  in more detail below) are measures of location, and there are many more.
 
-- _Measures of dispersion_ aim to capture how spread out or heterogeneous are
-  the values of the distribution. The standard deviation and interquartile range
-  (discussed in more detail below) are measures of dispersion, and there are
-  many more.
+- _Measures of
+  [dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)_ aim to
+  capture how spread out or heterogeneous are the values of the distribution.
+  The standard deviation and interquartile range (discussed in more detail
+  below) are measures of dispersion, and there are many more.
 
 ### Expectation
 
