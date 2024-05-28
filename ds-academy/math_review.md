@@ -326,6 +326,8 @@ Most summary statistics have one of two mathematical forms, as either a
   zero if and only if two random variables are independent. That is, it is a
   measure of any type of dependence, not only linear dependence.
 
+- Covariance matrix \[TODO\]
+
 ### Limits and concentration
 
 - Some of the most powerful tools in probability are theoretical results that
@@ -581,7 +583,61 @@ Most summary statistics have one of two mathematical forms, as either a
     can be uniquely written as the sum $u + u_\perp$, where $u \in {\cal S}$ and
     $u_\perp in {\cal S}^\perp$.
 
-- eigendecompositions...
+- The Singular Value Decomposition
+
+  - Let $X$ denote an arbitrary $n \times p$ matrix, where without loss of
+    generality $p < n$. The matrix $X$ can always be factored as
+    $X = USV^\prime$, where $U$ is $n \times p$, $S$ is $p \times p$, and $V$ is
+    $p \times p$. Further, $U$ is orthogonal ($U^\prime U = I$), $V$ is square
+    and orthogonal ($V^\prime V = VV^\prime = I$), and $S$ is diagonal with
+    non-increasing positive diagonal values, i.e.
+    $S
+    = {\rm diag}(S_11, \ldots, S_{nn})$ with $S_{11} \ge S_{22} \ge
+    \cdots$.
+
+  - If we view $X$ as a linear transformation from
+    ${\mathbb R}^p \rightarrow {\mathbb R}^n$, then the SVD shows that the
+    action of $X$ involves (i) an orthogonal change of coordinates on
+    ${\mathbb R}^p$, expressed by $V$, (ii) scaling along each axis, expressed
+    by $S$, and (iii) an orthogonal change of coordinates on ${\mathbb R}^n$,
+    expressed by $U$.
+
+  - The SVD has many important applications in data analysis, mostly due to its
+    ability to produce low rank approximations to $X$. If we truncate the SVD to
+    the first $j$ terms, i.e. let $U^{(j)}$ represent the $n\times j$ matrix
+    consisting of the first $j$ columns of $U$, $S^{(j)}$ represent the
+    $j\times j$ upper left submatrix of $S$, and $V^{(j)}$ represent the
+    $d\times j$ matrix consisting of the first $j$ columns of $V$, then
+    $X^{(j)} \equiv U^{(j)}S^{(j)}V^{(j)\prime}$ is the best rank $j$
+    approximation to $X$. This fact is the basis for the
+    [Eckart-Young theorem](https://en.wikipedia.org/wiki/Low-rank_approximation).
+
+- Eigendecompositions and invariant spaces
+
+  - An [invariant subspace](https://en.wikipedia.org/wiki/Invariant_subspace)
+    for a linear transformation $T$ is a subspace ${\cal S}$ such that
+    $T(x) \in {\cal S}$ for all $x\in{\cal S}$.
+
+  - A one-dimensional invariant subspace is spanned by a vector $v$ such that
+    $T(v) = \lambda v$. That is, $T$ acts by scaling on $v$. Such a vector $v$
+    is called an
+    [eigenvector](https://en.wikipedia.org/wiki/Eigenvectors_and_eigenvalues)
+    and the value of $\lambda$ is its associated _eigenvalue_.
+
+  - It is very useful to be able to identify all invariance subspaces of a given
+    linear transformation $T$. Unfortunately the general situation is quite
+    complex, in that $T$ may have no (nontrivial) invariance subspaces.
+
+  - When $T$ is symmetric the situation is much more favorable. A symmetric
+    transformation (or matrix) has only real eigenvalues, and it is possible to
+    construct a basis of eigenvectors. That is, for a linear transformation on a
+    $d$-dimensional vector space, we can construct a sequence
+    $lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
+    eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
+    $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^&d$, and (iii) the
+    $v_j$ are mutually orthogonal.
+
+- Quadratic forms
 
 ## Optimization
 
@@ -951,6 +1007,169 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ### Confidence sets
 
+- A major consideration in statistical inference is to understand how much
+  information we have (from the data) about parameters that have meaning in the
+  "real world". When we estimate a parameter from a sample of data, we know that
+  the estimate is never exactly correct. Formally, if $\theta$ is the parameter
+  and $\hat{\theta}$ is the estimate of the parameter, we can be sure that
+  $\hat{\theta} \ne \theta$.
+
+- The standard error of a parameter gives us a sense of how far a parameter
+  estimate is likely to fall from the true parameter value. Especially when
+  $\hat{\theta}$ is (asymptotically) normal and unbiased, knowing the standard
+  error tells us everything we can possibly know about the distribution of
+  _estimation errors_ $\hat{\theta} - \theta$.
+
+- A [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) is
+  a more quantitative and explicit way to summarize the uncertainty in a
+  parameter estimate.
+
+- Formally, a confidence interval (CI) consists of two functions of the data,
+  the _lower confidence bound_ (LCB) and the _upper confidence bound_ (UCB).
+  Since these are functions of the data, they are random quantities and
+  therefore have probability distributions. We will write $L(D)$ for the lower
+  confidence bound and $U(D)$ for the upper confidence bound.
+
+- A CI is defined in relation to a _coverage probability_, conventionally 95%,
+  which is the probability that the interval covers the target (true) value of
+  the parameter. That is, if $\alpha$ is the coverage probability, then
+  $\alpha = P(L(D) \le \theta \le U(D))$.
+
+- There can be some confusion about the probabistic interpretation of the
+  probability expression $P(L(D) \le \theta \le U(D))$. The parameter $\theta$
+  is a fixed quantity, but the confidence limits $L(D)$ and $U(D)$ are random.
+  The randomness in this probability statement follows from the randomness in
+  $L(D)$ and $U(D)$, not in $\theta$ itself.
+
+- There are many ways to construct a confidence interval, we discuss here only
+  the most basic approach that uses a
+  [pivotal quantity](https://en.wikipedia.org/wiki/Pivotal_quantity). Suppose we
+  have a parameter estimate $\hat{\theta}$ that is unbiased for the parameter of
+  interest $\theta$, and we know (or can estimate) the standard error of
+  $\hat{\theta}$, which we denote $s$. Then the expression
+  $(\hat{\theta} - \theta)/s$ is a Z-score, and is a pivotal quantity. In
+  particular, if $\hat{\theta}$ is (asymptotically) Gaussian, then we know that
+  $P(-2 < (\hat{\theta} - \theta)/s < 2) \approx 0.95$. This expression can be
+  algebraically rearranged to
+  $P(\hat{\theta} - 2s < \theta < \hat{\theta} + 2s) \approx 0.95$, which
+  provides us with the (approximate) 95% CI $\hat{\theta} \pm 2s$.
+
+- The standard error $s$ often involves nuisance parameters, and it is common to
+  _plug-in_ estimates of the nuisance parameters when forming a CI. For larger
+  sample sizes it is often viable to treat these estimated nuisance parameters
+  as if they were actually the true values, but for small sample sizes, this
+  plug-in step can have major consequences for coverage. For example, if the
+  Z-score $(\hat{\theta) - \theta})/s$ is standard normal, the plug-in Z-score
+  $(\hat{\theta} - \theta)/\hat{s}$ may follow a distribution with heavier tails
+  such as the
+  [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution). If
+  this fact is ignored, the CI will have lower coverage probability than
+  intended.
+
+- For vector-valued parameters $\theta$, it is possible to generalize the
+  concept of a confidence interval to that of a
+  [confidence region](https://en.wikipedia.org/wiki/Confidence_region) (or
+  confidence set). While useful, these are somewhat challenging to interpret.
+
 ### Hypothesis testing
 
+- A framework for
+  [formal testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_test) of
+  hypotheses based on data was developed in the early 20th century, and
+  subsequently became a major tool in applied research. While it has been
+  extensively criticized, it remains an important tool in data analysis.
+
+- The starting point for formal hypothesis testing is the specification of a
+  null hypothesis. It is of interest to falsify this hypothesis using data.
+
+- The null hypothesis is expressed as a statement about a parameter $\theta$
+  that relates to the data generating model. A _point null hypothesis_ is a
+  statement $\theta = \theta_0$ but we also often encounter the setting where
+  the null hypothesis is $\theta \in \Theta_0$, where $\Theta_0$ is a subset of
+  the parameter space.
+
+- We require a quantity known as the _test statistic_ $T(D)$ that summarizes the
+  evidence in the data in relation to the null hypothesis. By convention, we
+  construct $T$ so that larger values of $T$ reflect greater evidence against
+  the null hypothesis.
+
+- It remains to calibrate the evidence reflected in $T$. This is done by
+  considering the sampling distribution of $T(D)$ when the null hypothesis is
+  true. Often, we are able to construct $T(D)$ so that when the null hypothesis
+  is true, $T(D)$ follows a known distribution such as the standard normal
+  distribution.
+
+- Once we know the distribution of $T(D)$ under the null hypothesis, we can
+  construct the [p-value](https://en.wikipedia.org/wiki/P_value) which is
+  $P_0(T(D) > T(D_{\rm obs}))$, where $P_0$ indicates that the probability is
+  calculated as if the null hypothesis is true. Here we use $D_{\rm obs}$ to
+  represent the observed data, which may or may not follow the null
+  distribution, and $D$ to represent a random dataset that follows the null
+  distribution.
+
 ### Prediction
+
+- A statistical model that relates two quantities, denoted $X$ and $Y$, can be
+  used to make predictions of one quantity from the other. This is usually done
+  using conditional distributions, which are typically estimated or
+  approximated.
+
+#### Unbiased assessment of prediction accuracy
+
+- In the conventional setting, we observe _training data_
+  $\\{(X_i, Y_i), i=1, \ldots, n\\}$ consisting of joint observations of $X$ and
+  $Y$. The goal is to estimate the conditional distribution $P(Y|X)$ from the
+  training data. We can then use the estimated conditional distributikon
+  $\hat{P}(Y|X)$ to predict $Y$ from a given value of $X$. This is often done
+  using the conditional mean $E[Y|X]$. But it is also possible to use other
+  conditional quantities.
+
+- In practice, we usually take the perspective that
+  ["all models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong),
+  attributed to George Box. Thus, the estimated conditional distribution
+  $\hat{P}$ is likely biased as well as subject to random variation.
+
+- Our predictions, say $\hat{E}[Y|X]$ are thefore both biased and variable. We
+  can reduce the bias by using more complex (flexible) models, but this
+  increases the variability. This is the bias/variance tradeoff.
+
+- We often wish to objectively quantify the performance of a predictive model.
+  Suppose that the prediction target is quantitative, and we wish to evaluate
+  the root mean squared error (RMSE), $(E[(\hat{y} - y)^2])^{1/2}$. A naive
+  approach is to train the model on a dataset, and then use this same dataset to
+  produce an estimate of the RMSE as $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
+
+- This "plug-in" estimate of the RMSE is optimisically biased (i.e. its expected
+  value is smaller than the true RMSE).
+
+- There are various ways to address this issue. We present two here.
+
+  - We can split the training data into two subsets referred to as _training_
+    and _testing_ data. The model is then trained only to the training data, and
+    the RMSE is unbiasedly estimated using the testing data.
+
+  - We can split the data randomly many times into training and testing sets,
+    estimate the RMSE unbiasedly for each, and then pool these unbiased
+    estimates (say by averaging). This procedure is called _cross validation_.
+
+#### Overfitting and regularization
+
+- Basic predictive models minimize a loss function, e.g.
+  $\sum_i (y_i - \hat{y}_i)^2$. It is important to remember here that
+  $\hat{y}_i = \hat{y}_i(x_i)$ is a function of $x_i$, and a model for
+  $\hat{y}(x)$ has been specified.
+
+- In the 1960's it became recognized that relying exclusively on a data-driven
+  loss function yields suboptimal results. This is related to the
+  [Stein paradox](https://en.wikipedia.org/wiki/Stein%27s_example).
+
+- In modern predictive modeling, one usually combines a loss function with a
+  [regularizer](<https://en.wikipedia.org/wiki/Regularization_(mathematics)>),
+  which usually takles the form of a function $R(\theta)$ of the parameters that
+  does not involve the data. If $L(D, \theta)$ is the loss function, then the
+  parameter is estimated by minimizing $L(D, \theta) + \lambda R(\theta)$.
+
+- Surprisingly, small gains in performance can be obtained using almost any
+  regularizer, but in practice we want the regularizer to penalize against
+  parameter values $\theta$ that are unlikely to be the true values of the
+  parameter.
