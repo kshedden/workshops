@@ -1,6 +1,8 @@
-# Probability
+# Foundations of data science
 
-## Basic concepts of probability
+## Probability
+
+### Basic concepts of probability
 
 - How do we formally study outcomes that occur "at random"?
 
@@ -56,7 +58,7 @@
   Keep in mind that $X$ has no fixed value, every time we view or refer to $X$
   its value changes.
 
-## Probability distributions
+### Probability distributions
 
 There are several effective ways to represent a probability distribution.
 
@@ -88,7 +90,7 @@ There are several effective ways to represent a probability distribution.
   [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and its
   [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
 
-## Examples of probability distributions
+### Examples of probability distributions
 
 - The uniform distribution is either the
   [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) in
@@ -112,7 +114,7 @@ There are several effective ways to represent a probability distribution.
   values of $\mu$ and $\sigma$ are parameters, referring to the expected value
   and standard deviation, respectively.
 
-## Measures of location and dispersion
+### Measures of location and dispersion
 
 - Probability distributions are somewhat unwieldy to work with, it is helpful to
   summarize them in a few informative numbers.
@@ -126,7 +128,7 @@ There are several effective ways to represent a probability distribution.
   (discussed in more detail below) are measures of dispersion, and there are
   many more.
 
-## Expectation
+### Expectation
 
 - The [expectation](https://en.wikipedia.org/wiki/Expected_value) is a summary
   statistic of a quantitative random variable $X$.
@@ -146,7 +148,7 @@ There are several effective ways to represent a probability distribution.
 
 - The terms _mean_ and _average_ may be used synonymously with "expectation."
 
-## Quantiles and moments
+### Quantiles and moments
 
 Most summary statistics have one of two mathematical forms, as either a
 [moment](<https://en.wikipedia.org/wiki/Moment_(mathematics)>) or as a
@@ -195,7 +197,7 @@ Most summary statistics have one of two mathematical forms, as either a
     general means for constructing higher order summary statistics from
     quantiles.
 
-## Conditional distributions, expectations and variances
+### Conditional distributions, expectations and variances
 
 - In most research we are working with more than one quantity at a time. This
   leads to the concept of a
@@ -267,7 +269,7 @@ Most summary statistics have one of two mathematical forms, as either a
     variance in $Y$ that is not explained by $X$,
     $E[{\rm Var}[Y|X]] / {\rm Var}(Y)$.
 
-## Independence and measures of association
+### Independence and measures of association
 
 - Two jointly distributed random variables $X$ and $Y$ are
   [independent](<https://en.wikipedia.org/wiki/Independence_(probability_theory)>)
@@ -324,7 +326,7 @@ Most summary statistics have one of two mathematical forms, as either a
   zero if and only if two random variables are independent. That is, it is a
   measure of any type of dependence, not only linear dependence.
 
-## Limits and concentration
+### Limits and concentration
 
 - Some of the most powerful tools in probability are theoretical results that
   provide an understanding of how a complex distribution can be approximated by
@@ -390,7 +392,7 @@ Most summary statistics have one of two mathematical forms, as either a
   and the
   [Bernstein inequality](<https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)>).
 
-## Stochastic processes
+### Stochastic processes
 
 - A [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) is a
   random object indexed by a variable $t$ that is well-ordered. Usually $t$ is
@@ -412,7 +414,7 @@ Most summary statistics have one of two mathematical forms, as either a
   [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion) is a Gaussian
   process with continuous sample paths.
 
-# Linear algebra
+## Linear algebra
 
 - A [vector space](https://en.wikipedia.org/wiki/Vector_space) over the real
   numbers is a collection of abstract objects that can be added together, and
@@ -483,12 +485,12 @@ Most summary statistics have one of two mathematical forms, as either a
     vectors and $c$ is a scalar.
 
   - If we are working with the vector space of k-tuples, then the dot product is
-    formed as $\langle x, y\rangle = \sum_{j=1}^k x_j y_j$.
+    formed as $\langle x, y\rangle = \sum_j x_j y_j$.
 
   - A [norm](<https://en.wikipedia.org/wiki/Norm_(mathematics)>) on a vector
     space is a mapping from the vectors to the non-negative reals. It is a way
     of defining the length or magnitude of a vector. A dot product always yields
-    a norm via $\|x\|^2 = \langle x, x\rangle$.
+    a norm via $\\|x\\|^2 = \langle x, x\rangle$.
 
   - A very fundamental result is the
     [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
@@ -581,7 +583,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - eigendecompositions...
 
-# Optimization
+## Optimization
 
 - Many data analysis tasks involve
   [optimization](https://en.wikipedia.org/wiki/Optimization). A very common
@@ -628,7 +630,7 @@ Most summary statistics have one of two mathematical forms, as either a
   [KKT conditions](https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions)
   define a solution.
 
-## The one-dimensional case
+### The one-dimensional case
 
 - The case where $f$ is defined on an interval $[a, b]$ of the real line is
   special. We can trap a minimum in a _bracket_, which is a triple of values
@@ -638,10 +640,10 @@ Most summary statistics have one of two mathematical forms, as either a
   bracket of lesser width than the preceding bracket. This is called the
   [bisection method](https://en.wikipedia.org/wiki/Bisection_method).
 
-## Newton's method
+### Newton's method
 
 - A multivariate quadratic function has the form
-  $f(x) = c + b^\prime x + x^prime A x$. We can complete the square to obtain
+  $f(x) = c + b^\prime x + x^\prime A x$. We can complete the square to obtain
   the equivalent form $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$.
   When $A$ is a positive semidefinite (PSD) matrix, this expression is minimized
   when $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
@@ -673,11 +675,12 @@ Most summary statistics have one of two mathematical forms, as either a
   matrix, Newton's method is used much less than some other _first order_
   methods that do not require calculation of the Hessian matrix.
 
-## Convexity
+### Convexity
 
-- A function is strictly convex if every secant line lies strictly below the
-  function. Formally, this means that for any points $x \ne y$ in the domain of
-  the function,
+- A function is strictly
+  [convex](https://en.wikipedia.org/wiki/Convex_function). if every secant line
+  lies strictly below the function. Formally, this means that for any points
+  $x \ne y$ in the domain of the function,
 
   $f(\lambda x + (1-\lambda)y) \< \lambda f(x) + (1 - \lambda)f(y)$
 
@@ -692,7 +695,7 @@ Most summary statistics have one of two mathematical forms, as either a
 - A strongly convex function on ${\mathbb R}^d$ is guaranteed to have a unique
   global minimum.
 
-## Gradient descent
+### Gradient descent
 
 - The gradient $\nabla_f$ of the objective function points in the direction in
   the domain of the function in which the function increases fastest. Therefore,
@@ -716,7 +719,7 @@ Most summary statistics have one of two mathematical forms, as either a
   [stochastic gradient descent](https://en.wikipedia.org/wiki/Conjugate_gradient_method),
   but we will not cover these further here.
 
-## Conjugate gradients
+### Conjugate gradients
 
 - Suppose that $H_f$ is the Hessian matrix of the objective function, and we aim
   to minimize $f$ by conducting line searches over a seqeunce of search
@@ -730,7 +733,7 @@ Most summary statistics have one of two mathematical forms, as either a
   conjugate directions can be constructed sequentially, using line searches but
   without requiring explict calculation of the Hessian matrix.
 
-## Global/combinatorial optimization
+### Global/combinatorial optimization
 
 - For smooth functions, it is almost always advantageous to make use of the
   information in the gradient. However for some highly irregular functions, or
@@ -739,7 +742,7 @@ Most summary statistics have one of two mathematical forms, as either a
   function has many optima. For these reasons a large collection of methods that
   do not employ gradient descent have been developed.
 
-# Statistical inference
+## Statistical inference
 
 - Statistical inference refers to all aspects of learning from data. Here we
   consider statistical inference using probability models. The standard process
@@ -776,7 +779,7 @@ Most summary statistics have one of two mathematical forms, as either a
   modern settings, the class of models is directly constructed to vary (grow in
   size) with increasing data set size, so can be denoted $P_{\theta_n}$.
 
-## Parameter estimation
+### Parameter estimation
 
 - Most statistical inference begins with applying a scheme to estimate the
   parameters from the data. Formally, an _estimator_ is a function of the data.
@@ -845,7 +848,7 @@ Most summary statistics have one of two mathematical forms, as either a
       estimating equations for the method of moments, but in general this is not
       the case.
 
-## Sampling distributions and properties of estimators
+### Sampling distributions and properties of estimators
 
 - An estimator is a function of data, and since the data are random, an
   estimator is random. The distribution of an estimator is called the _sampling
@@ -908,7 +911,7 @@ Most summary statistics have one of two mathematical forms, as either a
       efficiency_, which is the ratio of the variance of an estimator to the
       Cramer-Rao lower bound for this variance.
 
-## Asymptotic analysis of estimators
+### Asymptotic analysis of estimators
 
 - It can be difficult to exactly ascertain the properties of an estimator when
   it is applied using a fixed sample size of data. Therefore it is very common
@@ -946,8 +949,8 @@ Most summary statistics have one of two mathematical forms, as either a
   Furthermore, this implies that the MLE achieves the Cramer-Rao lower bound and
   hence is efficient.
 
-## Confidence sets
+### Confidence sets
 
-## Hypothesis testing
+### Hypothesis testing
 
-## Prediction
+### Prediction
