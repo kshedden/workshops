@@ -155,7 +155,7 @@ Most summary statistics have one of two mathematical forms, as either a
 [moment](<https://en.wikipedia.org/wiki/Moment_(mathematics)>) or as a
 [quantile](https://en.wikipedia.org/wiki/Quantile).
 
-- Moments are expectations of (possibly) transformed values.
+- Moments are expectations of (possibly) transformed random values.
 
   - The expected value $E[X]$ is a moment, but so is $E[X^4]$ and $E[\exp(X)]$.
 
@@ -327,7 +327,15 @@ Most summary statistics have one of two mathematical forms, as either a
   zero if and only if two random variables are independent. That is, it is a
   measure of any type of dependence, not only linear dependence.
 
-- Covariance matrix \[TODO\]
+- In many cases we wish to characterize the associations among several (more
+  than two) random variables. One wayh to do this is using the
+  [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix). If we
+  have $d$-random variables, then the covariance matrix is a $d\times d$ matrix
+  $C$ such that $C_{ij}$ is the covariance between the $i^{\rm th}$ and
+  $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$ is
+  the variance of the $j^{\rm th}$ random variable. Covariance matrices have
+  some special properties as matrices, which we will explore below in the review
+  of linear algebra.
 
 ### Limits and concentration
 
@@ -609,7 +617,7 @@ Most summary statistics have one of two mathematical forms, as either a
     consisting of the first $j$ columns of $U$, $S^{(j)}$ represent the
     $j\times j$ upper left submatrix of $S$, and $V^{(j)}$ represent the
     $d\times j$ matrix consisting of the first $j$ columns of $V$, then
-    $X^{(j)} \equiv U^{(j)}S^{(j)}V^{(j)\prime}$ is the best rank $j$
+    $X^{(j)} \equiv U^{(j)}S^{(j)}V^{(j)\prime}$ is the best possible rank $j$
     approximation to $X$. This fact is the basis for the
     [Eckart-Young theorem](https://en.wikipedia.org/wiki/Low-rank_approximation).
 
@@ -639,6 +647,30 @@ Most summary statistics have one of two mathematical forms, as either a
     $v_j$ are mutually orthogonal.
 
 - Quadratic forms
+
+  - If $T$ is a linear transformation from ${\mathbb R}^d$ to ${\mathbb R}^d$,
+    then the mapping $x \rightarrow \langle T(x), x\rangle$ is called a
+    [quadratic form](https://en.wikipedia.org/wiki/Optimization). In matrix
+    notation, this takes the form $x \rightarrow x^\prime A x$, where $A$ is a
+    square matrix.
+
+  - Without loss of generality $A$ is symmetric, since $A$ and $(A + A\prime)/2$
+    yield the same quadratic form.
+
+  - $A$ is
+    [positive semidefinite matrix](https://en.wikipedia.org/wiki/Definite_matrix)
+    if $x^\prime A x \ge 0$ for all $x$. $A$ is a _positive definite matrix_ if
+    $x^\prime A x > 0$ for all $x\ne 0$.
+
+  - Since $A$ is symmetric, it has a full set of real eigenvalues, and $A$ is
+    positive-semidefinite if and only if all of these eigenvalues are
+    non-negative. Further, $A$ is positive definite if and only if all its
+    eigenvalues are strictly positive.
+
+  - A covariance matrix is always positive semidefinite. Further, if $X$ is a
+    random vector of length $d$ and $v$ is a fixed vector of length $d$, and $C$
+    is the $d\times d$ covariance matrix of $X$, then the variance of
+    $\langle v, X\rangle$ is equal to $v^\prime C v$.
 
 ## Optimization
 
