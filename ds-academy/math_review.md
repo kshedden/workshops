@@ -101,17 +101,17 @@
     [series](<https://en.wikipedia.org/wiki/Series_(mathematics)>) can be
     summable. For example, $(1 - r)(1 + r + r^2 + r^3 + \cdots) = 1$ for
     $0 < r < 1$, so we can create a PMF on the countably infinite sample space
-    $0, 1, 2, \ldots$ as \$P(X=j) = (1-r)r^j.
+    $0, 1, 2, \ldots$ as $P(X=j) = (1-r)r^j$.
 
   - [Uncountable infinity](https://en.wikipedia.org/wiki/Uncountable_set) is a
-    more challenging concept. For our purpose we can focus on the
+    more challenging concept. For our purposes we can focus on the
     [real numbers](https://en.wikipedia.org/wiki/Real_number). The real numbers
     are not countable but we still wish to work with them in applied analysis.
     When working with the real numbers, we must contend with the unavoidable
     fact that there will always be
     [non-measurable sets](https://en.wikipedia.org/wiki/Non-measurable_set),
     i.e. subsets ${\cal S} \subset {\mathbb R}$ to which it is impossible to
-    ascribe a probability.
+    assign a probability.
 
 ### Examples of probability distributions
 
@@ -256,18 +256,18 @@ Most summary statistics have one of two mathematical forms, as either a
     $X$, $E[Y|X=x]$ is (roughly speaking) the expected value of $Y$ when we know
     that $X$ takes on the value $x$. The rigorous definition of conditional
     expectation is somewhat different but this is the way that most people think
-    about conditional expectation.
+    about conditional expectation intuitively.
 
   - A special case is when $X$ has a finite sample space, so that it effectively
-    partitions into groups. $E[Y | X=x]$ is the expected value of $Y$ when we
-    are in group $x$.
+    partitions the population into groups. In this case, $E[Y | X=x]$ is the
+    expected value of $Y$ when we are in group $x$.
 
   - The _double expectation theorem_ or _smoothing theorem_ or
     [law of total expectation](https://en.wikipedia.org/wiki/Law_of_total_expectation)
     states that $E[E[Y|X]] = E[Y]$. That is, if we compute the conditional
     expectation of $Y$ at each fixed value of $X$, and then average these values
-    over the (marginal) distribution of $X$, we get the same result as if we
-    compute the (marginal) mean of $Y$ directly.
+    over the marginal distribution of $X$, we get the same result as if we
+    compute the marginal mean of $Y$ directly.
 
 - Conditional variance
 
@@ -295,6 +295,10 @@ Most summary statistics have one of two mathematical forms, as either a
     ${\rm Var}[E[Y|X]] / {\rm Var}(Y)$ is complementary to the proportion of
     variance in $Y$ that is not explained by $X$,
     $E[{\rm Var}[Y|X]] / {\rm Var}(Y)$.
+
+  - In regression analysis, ${\rm Var}[E[Y|X]] / {\rm Var}(Y)$ is known as the
+    [coefficient of determination](https://en.wikipedia.org/wiki/Law_of_total_variance),
+    the proportion of explained variance, or the $R^2$.
 
 ### Independence and measures of association
 
@@ -336,6 +340,10 @@ Most summary statistics have one of two mathematical forms, as either a
   _uncorrelated_. The correlation coefficient is undefined if either
   ${\rm SD}(X) = 0$ or ${\rm SD}(Y) = 0$.
 
+- Two independent random variables are necessarily uncorrelated. But the
+  converse is not true. Two random variables can be uncorrelated, but not be
+  independent.
+
 - The
   [correlation coefficient](https://en.wikipedia.org/wiki/Correlation_coefficient)
   (often called the _Pearson_ or _product moment_ correlation coefficient) is a
@@ -367,14 +375,14 @@ Most summary statistics have one of two mathematical forms, as either a
   measure of any type of dependence, not only linear dependence.
 
 - In many cases we wish to characterize the associations among several (more
-  than two) random variables. One wayh to do this is using the
+  than two) random variables. One way to do this is using the
   [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix). If we
-  have $d$-random variables, then the covariance matrix is a $d\times d$ matrix
+  have $d$ random variables, then the covariance matrix is a $d\times d$ matrix
   $C$ such that $C_{ij}$ is the covariance between the $i^{\rm th}$ and
-  $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$ is
-  the variance of the $j^{\rm th}$ random variable. Covariance matrices have
-  some special properties as matrices, which we will explore below in the review
-  of linear algebra.
+  $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$ (a
+  diagonal element of $C$) is the variance of the $j^{\rm th}$ random variable.
+  Covariance matrices have some special properties as matrices, which we will
+  explore below in the review of linear algebra.
 
 ### Limits and concentration
 
@@ -402,10 +410,10 @@ Most summary statistics have one of two mathematical forms, as either a
   - An
     [exchangeable sequence](https://en.wikipedia.org/wiki/Exchangeable_random_variables)
     has the property that the joint distribution of any subset of a given size
-    is the same. That is, if $I, J \subset 1, 2, \ldots$, then
+    is the same. That is, if $I, J \subset 1, 2, \ldots$ with $|I|=|J|$, then
     $P(X[I]) = P(X][J])$.
 
-  - An _m dependent sequence_ is one in which elements of the sequence are
+  - An _m-dependent sequence_ is one in which elements of the sequence are
     independent as long as no two values are within $m$ positions of each other.
     If $I, J \subset 1, 2, \ldots$ and ${\rm max}(I) < {\rm min}(J) - m$, then
     $X[I]$ and $X[J]$ are independent.
@@ -435,9 +443,9 @@ Most summary statistics have one of two mathematical forms, as either a
   theory and statistics, and there are many versions of the CLT that apply in
   different situations.
 
-- There are many additional tools in probability theory that are used to obtain more
-  subtle results along the lines of the LLN and CLT. We will not discuss this
-  more here, except to note the very important roles of the
+- There are many additional tools in probability theory that are used to obtain
+  more subtle results along the lines of the LLN and CLT. We will not discuss
+  this more here, except to note the very important roles of the
   [Markov inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality),
   [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality),
   and the
