@@ -60,35 +60,58 @@
 
 ### Probability distributions
 
-There are several effective ways to represent a probability distribution.
+- There are several effective ways to represent a probability distribution.
 
-- If the sample space is finite, we can list the points in the sample space and
-  their probabilities. This type of probability distribution takes the form of a
-  table, which is often called a
-  [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function).
+  - If the sample space is finite, we can list the points in the sample space
+    and their probabilities. This type of probability distribution takes the
+    form of a table, which is often called a
+    [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function).
 
-- If the sample space is countable, individual "atoms" (points in the sample
-  space) have positive probability and there is a probability mass function
-  mapping each atom to its probability.
+  - If the sample space is countable, individual "atoms" (points in the sample
+    space) have positive probability and there is a probability mass function
+    mapping each atom to its probability.
 
-- If the sample space is the real line, or an interval on the real line, we have
-  the
-  [cumulative distribution function (CDF)](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
-  $F(t) = P(X \le t)$. The probabilities of all events can be inferred from the
-  CDF, e.g. the probability that $X$ is between $1$ and $2$ or between $6$ and
-  $7$ is $F(2) - F(1) + F(7) - F(6)$.
+  - If the sample space is the real line, or an interval on the real line, we
+    have the
+    [cumulative distribution function (CDF)](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
+    $F(t) = P(X \le t)$. The probabilities of all events can be inferred from
+    the CDF, e.g. the probability that $X$ is between $1$ and $2$ or between $6$
+    and $7$ is $F(2) - F(1) + F(7) - F(6)$.
 
-- If there is an atom with positive mass, the CDF is discontinuous at that
-  point, e.g. $P(X=x)$ is the jump in the CDF at $x$.
+  - If there is an atom with positive mass, the CDF is discontinuous at that
+    point, e.g. $P(X=x)$ is the jump in the CDF at $x$.
 
-- Many common distributions whose sample space is the real numbers have a
-  [density](https://en.wikipedia.org/wiki/Probability_density_function), which
-  is a function $f$ such that $\int_a^bf(x)dx = F(b) - F(a)$ is the probability
-  that $X$ falls between $a$ and $b$.
+  - Many common distributions whose sample space is the real numbers have a
+    [density](https://en.wikipedia.org/wiki/Probability_density_function), which
+    is a function $f$ such that $\int_a^bf(x)dx = F(b) - F(a)$ is the
+    probability that $X$ falls between $a$ and $b$.
 
-- Some other ways to represent a probability distribution are through its
-  [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and its
-  [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
+  - Some other ways to represent a probability distribution are through its
+    [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and its
+    [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
+
+- To better understand the challenges of representing probability distribution,
+  we need to disinguish between different types of
+  [infinity](https://en.wikipedia.org/wiki/Infinity).
+
+  - [Countable infinity](https://en.wikipedia.org/wiki/Countable_set) refers to
+    a set such as the integers (actually, the definition of _countable_ is that
+    the set is in one-to-one correspondence with the integers). It is possible
+    to have a mass function on a countably infinite set since a
+    [series](<https://en.wikipedia.org/wiki/Series_(mathematics)>) can be
+    summable. For example, $(1 - r)(1 + r + r^2 + r^3 + \cdots) = 1$ for
+    $0 < r < 1$, so we can create a PMF on the countably infinite sample space
+    $0, 1, 2, \ldots$ as \$P(X=j) = (1-r)r^j.
+
+  - [Uncountable infinity](https://en.wikipedia.org/wiki/Uncountable_set) is a
+    more challenging concept. For our purpose we can focus on the
+    [real numbers](https://en.wikipedia.org/wiki/Real_number). The real numbers
+    are not countable but we still wish to work with them in applied analysis.
+    When working with the real numbers, we must contend with the unavoidable
+    fact that there will always be
+    [non-measurable sets](https://en.wikipedia.org/wiki/Non-measurable_set),
+    i.e. subsets ${\cal S} \subset {\mathbb R}$ to which it is impossible to
+    ascribe a probability.
 
 ### Examples of probability distributions
 
@@ -146,6 +169,9 @@ There are several effective ways to represent a probability distribution.
   a beam.
 
 - The expectation may not exist, and it may be infinite.
+
+- Expectations are linear. If $X$ and $Y$ are random variables, and $c$ is a
+  constant, then $E[X + cY] = E[X] + cE[Y]$.
 
 - The terms _mean_ and _average_ may be used synonymously with "expectation."
 
@@ -286,9 +312,22 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - The [covariance](https://en.wikipedia.org/wiki/Covariance) is a measure of the
   relationship between $X$ and $Y$. It is a moment that is defined to be
-  $E[(X-EX)\cdot (Y-EY)]$. The _correlation coefficient_ is the covariance
-  calculated for standardized versions of $X$ and $Y$, that is
-  $E[(X-EX)\cdot (Y-EY)]/({\rm SD}(X)\cdot {\rm SD}(Y))$.
+  $E[(X-EX)\cdot (Y-EY)]$. The covariance has some important properties:
+
+  - The covariance of a random variable with itself is the variance:
+    ${\rm Cov}(X, X) = {\rm Var}(X)$.
+
+  - The covariance is symmetric: ${\rm Cov}(X, Y) = {\rm Cov}(Y, X)$
+
+  - The covariance is [bilinear](https://en.wikipedia.org/wiki/Bilinear_form).
+    This means that ${\rm Cov}(X+Y, Z) = {\rm Cov}(X, Z) + {\rm Cov}(Y, Z)$.
+
+- The _standardized_ or _Z-scored_ version of a random variable is the variable
+  $(X - E[X]) / {\rm SD}(X)$.
+
+- The _correlation coefficient_ is the covariance calculated for standardized
+  versions of $X$ and $Y$, that is
+  $\rho \equiv E[(X-EX)\cdot (Y-EY)]/({\rm SD}(X)\cdot {\rm SD}(Y))$.
 
 - The correlation coefficient always lies between $-1$ and $1$. When it is equal
   to $1$, $Y$ is a linear function of $X$ with positive slope. When it is equal
@@ -345,10 +384,9 @@ Most summary statistics have one of two mathematical forms, as either a
   converge in some limiting sense to a simpler distribution.
 
 - To facilitate discussion of limiting distributions, we will first introduce
-  the notion of a sequence of random variables (or equivalently of
-  distributions). A sequence of random variables of length $n$, denoted
-  $X_1, X_2, \ldots, X_n$, may belong to one or more of the following important
-  classes.
+  the notion of a sequence of random variables. A sequence of random variables
+  of length $n$, denoted $X_1, X_2, \ldots, X_n$, may belong to one or more of
+  the following important classes.
 
   - An
     [independent and identically distributed (IID) sequence](https://en.wikipedia.org/wiki/independent_and_identically_distributed_random_variables)
@@ -378,9 +416,11 @@ Most summary statistics have one of two mathematical forms, as either a
   expected value. The most basic form of the LLN applies to IID sequences. If we
   write $\bar{X}_n = (X_1 + \cdots + X_n)/n$ then the LLN states that
   $\bar{X}_n \rightarrow E[X_1]$. Exactly what is meant by the "convergence"
-  $\rightarrow$ involves a discussion of modes of convergence that we will not
-  cover further here. Also note that in an IID sequence every term has the same
-  expected value, so the sample means converge to $E[X_j]$ for any $j$.
+  $\rightarrow$ involves a discussion of
+  [modes of convergence](https://en.wikipedia.org/wiki/Modes_of_convergence)
+  that we will not cover further here. Also note that in an IID sequence every
+  term has the same expected value, so the LLN states that the sample means
+  converge to $E[X_j]$ for any $j$.
 
 - The
   [Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem)
@@ -395,7 +435,7 @@ Most summary statistics have one of two mathematical forms, as either a
   theory and statistics, and there are many versions of the CLT that apply in
   different situations.
 
-- There are many more tools in probability theory that are used to obtain more
+- There are many additional tools in probability theory that are used to obtain more
   subtle results along the lines of the LLN and CLT. We will not discuss this
   more here, except to note the very important roles of the
   [Markov inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality),
