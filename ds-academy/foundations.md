@@ -91,13 +91,13 @@
     [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
 
 - To better understand the challenges of representing probability distribution,
-  we need to disinguish between different types of
+  we need to distinguish between different types of
   [infinity](https://en.wikipedia.org/wiki/Infinity).
 
   - [Countable infinity](https://en.wikipedia.org/wiki/Countable_set) refers to
-    a set such as the integers (actually, the definition of _countable_ is that
-    the set is in one-to-one correspondence with the integers). It is possible
-    to have a mass function on a countably infinite set since a
+    a set such as the integers (the definition of _countable_ is that the set is
+    in one-to-one correspondence with the integers). It is possible to have a
+    mass function on a countably infinite set since a
     [series](<https://en.wikipedia.org/wiki/Series_(mathematics)>) can be
     summable. For example, $(1 - r)(1 + r + r^2 + r^3 + \cdots) = 1$ for
     $0 < r < 1$, so we can create a PMF on the countably infinite sample space
@@ -106,9 +106,9 @@
   - [Uncountable infinity](https://en.wikipedia.org/wiki/Uncountable_set) is a
     more challenging concept. For our purposes we can focus on the
     [real numbers](https://en.wikipedia.org/wiki/Real_number). The real numbers
-    are not countable but we still wish to work with them in applied analysis.
-    When working with the real numbers, we must contend with the unavoidable
-    fact that there will always be
+    are not countable but we frequently wish to work with them in applied
+    analysis. When working with the real numbers, we must contend with the
+    unavoidable fact that there will always be
     [non-measurable sets](https://en.wikipedia.org/wiki/Non-measurable_set),
     i.e. subsets ${\cal S} \subset {\mathbb R}$ to which it is impossible to
     assign a probability.
@@ -198,14 +198,15 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - The third standardized moment $E[Z^3]$ where $Z = (X - EX)/{\rm SD}(X)$ is a
     measure of [skewness](https://en.wikipedia.org/wiki/Skewness). The fourth
-    moment measures [kurtosis](https://en.wikipedia.org/wiki/Kurtosis), higher
-    order moments are subtle to interpret.
+    standardized moment measures
+    [kurtosis](https://en.wikipedia.org/wiki/Kurtosis), higher order moments are
+    subtle to interpret.
 
 - Quantiles are based on the inverse CDF. If $F(t) = P(X \le t)$ is the CDF then
-  the quantile function is $Q(p) = F^{-1}(p)$. If $F$ is not invertible then
-  $Q(p)$ is defined as ${\rm inf}\\{t \;|\; F(t) \ge p\\}$. The $p^{\rm th}$
-  quantile answers the question "for a given $p$, what is the value $t$ such
-  that $p$ of the mass of the distribution falls on or below $t$".
+  the quantile function is $Q(p) \equiv F^{-1}(p)$. If $F$ is not invertible
+  then $Q(p)$ is defined as ${\rm inf}\\{t \\;|\\; F(t) \ge p\\}$. The
+  $p^{\rm th}$ quantile answers the question "for a given $p$, what is the value
+  $t$ such that $p$ of the mass of the distribution falls on or below $t$".
 
   - The median is a measure of location that is a quantile, it is $Q(1/2)$.
 
@@ -277,11 +278,9 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - The
     [law of total variation](https://en.wikipedia.org/wiki/Law_of_total_variance)
-    states that
+    states that ${\rm Var}(Y) = {\rm Var}[E[Y|X]] + E[{\rm Var}[Y|X]]$
 
-    ${\rm Var}(Y) = {\rm Var}[E[Y|X]] + E[{\rm Var}[Y|X]]$
-
-    The term ${\rm Var}[E[Y|X]]$ is the _between variation_ while the term
+  - The term ${\rm Var}[E[Y|X]]$ is the _between variation_ while the term
     $E[{\rm Var}[Y|X]]$ is the _within variation_. The law of total variation
     states that the overall variation is the sum of the between and within
     variations.
@@ -333,12 +332,12 @@ Most summary statistics have one of two mathematical forms, as either a
   versions of $X$ and $Y$, that is
   $\rho \equiv E[(X-EX)\cdot (Y-EY)]/({\rm SD}(X)\cdot {\rm SD}(Y))$.
 
-- The correlation coefficient always lies between $-1$ and $1$. When it is equal
-  to $1$, $Y$ is a linear function of $X$ with positive slope. When it is equal
-  to $-1$ $Y$ is a linear function of $X$ with negative slope. If the
-  correlation coefficient is equal to zero then $X$ and $Y$ are said to be
-  _uncorrelated_. The correlation coefficient is undefined if either
-  ${\rm SD}(X) = 0$ or ${\rm SD}(Y) = 0$.
+- The correlation coefficient always lies between $-1$ and $1$. When the
+  correlation coefficient is equal to $1$, $Y$ is a linear function of $X$ with
+  positive slope. When the correlation coefficient is equal to $-1$ $Y$ is a
+  linear function of $X$ with negative slope. If the correlation coefficient is
+  equal to zero then $X$ and $Y$ are said to be _uncorrelated_. The correlation
+  coefficient is undefined if either ${\rm SD}(X) = 0$ or ${\rm SD}(Y) = 0$.
 
 - Two independent random variables are necessarily uncorrelated. But the
   converse is not true. Two random variables can be uncorrelated, but not be
@@ -382,7 +381,7 @@ Most summary statistics have one of two mathematical forms, as either a
   $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$ (a
   diagonal element of $C$) is the variance of the $j^{\rm th}$ random variable.
   Covariance matrices have some special properties as matrices, which we will
-  explore below in the review of linear algebra.
+  explore below in our review of linear algebra.
 
 ### Limits and concentration
 
@@ -411,12 +410,13 @@ Most summary statistics have one of two mathematical forms, as either a
     [exchangeable sequence](https://en.wikipedia.org/wiki/Exchangeable_random_variables)
     has the property that the joint distribution of any subset of a given size
     is the same. That is, if $I, J \subset 1, 2, \ldots$ with $|I|=|J|$, then
-    $P(X[I]) = P(X][J])$.
+    $P(X[I]) = P(X[J])$.
 
-  - An _m-dependent sequence_ is one in which elements of the sequence are
+  - An _m-dependent sequence_ is one in which subsets of the sequence are
     independent as long as no two values are within $m$ positions of each other.
-    If $I, J \subset 1, 2, \ldots$ and ${\rm max}(I) < {\rm min}(J) - m$, then
-    $X[I]$ and $X[J]$ are independent.
+    In an m-dependent sequence, if $I, J \subset 1, 2, \ldots$ and
+    ${\rm max}(I) < {\rm min}(J) - m$, then $X[I]$ and $X[J]$ must be
+    independent.
 
 - The
   [Law of Large Numbers (LLN)](https://en.wikipedia.org/wiki/Law_of_large_numbers)
@@ -438,10 +438,10 @@ Most summary statistics have one of two mathematical forms, as either a
   $\sigma^2 = {\rm Var}[X_i]$ for any $i$. One implication of this result is
   that the sample means (which are natural estimators of the population mean)
   have estimation errors on the order of $\sqrt{n}$, since we have to "blow up"
-  the sample means by a factor of $\sqrt{n}$ to overcome the concentrating
-  effect of the LLN. The CLT is a fundamentally important tool in probability
-  theory and statistics, and there are many versions of the CLT that apply in
-  different situations.
+  the difference between the sample and population means by a factor of
+  $\sqrt{n}$ to overcome the concentrating effect of the LLN. The CLT is a
+  fundamentally important tool in probability theory and statistics, and there
+  are many versions of the CLT that apply in different situations.
 
 - There are many additional tools in probability theory that are used to obtain
   more subtle results along the lines of the LLN and CLT. We will not discuss
@@ -477,13 +477,18 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - A [vector space](https://en.wikipedia.org/wiki/Vector_space) over the real
   numbers is a collection of abstract objects that can be added together, and
-  that can be scaled by (real) numbers. These properties of addition and
-  (scalar) multiplication must satisfy the following axioms, for vectors $x$,
-  $y$ and real scalars $c$, $d$:
+  that can be scaled by (real) numbers. It is important to keep in mind the
+  distinction between the vectors in a vector space and the scalars, which for
+  our purposes will always be the real numbers.
+
+  - All vector spaces must contain an element denoted $0$ that has certain
+    properties as stated below.
+
+  - Addition and scalar multiplication must satisfy the following axioms, for
+    vectors $x$, $y$ and real scalars $c$, $d$:
 
   - $x + y = y + x$; $(x + y) + z = x + (y + z)$, $0 + x = x + 0 = x$;
-    $(-x) + x
-    = x + (-x) = 0$.
+    $(-x) + x = x + (-x) = 0$.
 
   - $0x = 0$; $1x = x$; $c(dx) = (cd)x$.
 
@@ -505,14 +510,14 @@ Most summary statistics have one of two mathematical forms, as either a
   functions of a real variable.
 
 - Given a collection of vectors $v_1, \ldots, v_m$, a _linear combination_ of
-  these vectors is a vector of the form $c_1v_1 + \cdots c_mv_m = 0$, where the
-  $c_i$ are scalars. Linear combinations of vectors play a very important role
-  in linear algebra. Here are some key properties of linear combinations:
+  these vectors is a vector of the form $c_1v_1 + \cdots + c_mv_m = 0$, where
+  the $c_i$ are scalars. Linear combinations of vectors play a very important
+  role in linear algebra. Here are some key properties of linear combinations:
 
-  - A collection of vectors $v_1, \ldots, v_m$ in a vector space can have the
+  - A collection of vectors $v_1, \ldots, v_m$ in a vector space has the
     property of
     [linear independence](https://en.wikipedia.org/wiki/Linear_independence) if
-    for any scalars $c_1, \ldots, c_m$ such that $c_1v_1 + \cdots c_mv_m = 0$,
+    for any scalars $c_1, \ldots, c_m$ such that $c_1v_1 + \cdots + c_mv_m = 0$,
     it follows that $c_1, \ldots, c_m = 0$. That is, any linear combination of a
     set of linearly independent vectors is zero if and only if all of the scalar
     coefficients are zero.
@@ -525,10 +530,12 @@ Most summary statistics have one of two mathematical forms, as either a
     span is the entire vector space.
 
   - The size (number of elements) in any basis is the same, and this common
-    value is called the dimension of the vector space.
+    value is called the
+    [dimension](<https://en.wikipedia.org/wiki/Dimension_(vector_space)>) of the
+    vector space.
 
   - If a vector space has dimension $d$, then given a collection of $q < d$
-    linearly independent vectors, $u_1, \ldots, u_q$, the span of the $u_j$ is a
+    linearly independent vectors $u_1, \ldots, u_q$, the span of the $u_j$ is a
     $q$-dimensional [subspace](https://en.wikipedia.org/wiki/Subspace) of the
     vector space.
 
@@ -543,13 +550,22 @@ Most summary statistics have one of two mathematical forms, as either a
     $\langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are
     vectors and $c$ is a scalar.
 
-  - If we are working with the vector space of k-tuples, then the dot product is
-    formed as $\langle x, y\rangle = \sum_j x_j y_j$.
+  - If we are working with the vector space of k-tuples, then the canonical dot
+    product is formed as $\langle x, y\rangle = \sum_j x_j y_j$. Other possible
+    dot products on this space would, for example, have the form
+    $\langle x, y\rangle = \sum_j w_jx_j y_j$ for non-negative scalars $w_j$.
 
   - A [norm](<https://en.wikipedia.org/wiki/Norm_(mathematics)>) on a vector
     space is a mapping from the vectors to the non-negative reals. It is a way
     of defining the length or magnitude of a vector. A dot product always yields
-    a norm via $\\|x\\|^2 = \langle x, x\rangle$.
+    a norm via $\\|x\\|^2 = \langle x, x\rangle$. All norms have the following
+    properties:
+
+    - \[Triangle inequality\]: $\|x + y\| \le \|x\| + \|y\|$
+
+    - \[Homogeneity\]: $\\|c\cdot x\\| = \|c\|\cdot \\|x\\|$
+
+    - \[Positiveness\]: $\\|x\\| = 0$ implies that $x=0$
 
   - A very fundamental result is the
     [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
@@ -559,7 +575,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - A [linear transformation](https://en.wikipedia.org/wiki/Linear_map) is a
     mapping from one vector space to another, or from a vector space to itself.
-    A transformation $T$ must satisfy $T(cx) = cT(x)$ and
+    A linear transformation $T$ must satisfy $T(cx) = cT(x)$ and
     $T(x+y) = T(x) + T(y)$, for a scalar $c$ and vectors $x$ and $y$.
 
   - For most of the rest of this document, we focus on vector spaces consisting
@@ -576,10 +592,10 @@ Most summary statistics have one of two mathematical forms, as either a
   - A $r\times c$ matrix can be multiplied (on the right) with a $c$ dimensional
     vector, yielding a $r$-dimensional vector. Let $M$, $x$ denote such a matrix
     and vector, and let $y = Mx$. Then $y_i$ is the dot product of the
-    $i^{\rm th}$ row of $M$ with $x$. This is called _matrix vector
+    $i^{\rm th}$ row of $M$ with $x$. This is called _matrix-vector
     multiplication_.
 
-  - Via matrix vector multiplication, a matrix represents a linear
+  - Via matrix-vector multiplication, a matrix represents a linear
     transformation. Specifically, a $r\times c$ matrix is a transformation from
     ${\mathbb R}^c$ to ${\mathbb R}^r$.
 
@@ -634,11 +650,14 @@ Most summary statistics have one of two mathematical forms, as either a
   - Suppose we have a $d$-dimensional vector space ${\cal T}$ and a
     $q$-dimensional subspace ${\cal S}$ of it. For any vector $v\in {\cal T}$,
     there is a unique vector $s \in {\cal S}$ that is closest to $v$, i.e. it
-    minimizes the distance $\|s - v\|$. This is called the
+    minimizes the distance $\\|s - v\\|$. This is called the
     [projection](<https://en.wikipedia.org/wiki/Projection_(linear_algebra)>) of
-    $v$ on ${\cal S}$. Projection is a linear transformation. Every vector $v$
-    can be uniquely written as the sum $u + u_\perp$, where $u \in {\cal S}$ and
-    $u_\perp in {\cal S}^\perp$.
+    $v$ onto ${\cal S}$.
+
+    - Projection is a linear transformation.
+
+    - Every vector $v$ can be uniquely written as the sum $u + u_\perp$, where
+      $u \in {\cal S}$ and $u_\perp in {\cal S}^\perp$.
 
 - The Singular Value Decomposition
 
@@ -660,8 +679,8 @@ Most summary statistics have one of two mathematical forms, as either a
     expressed by $U$.
 
   - The SVD has many important applications in data analysis, mostly due to its
-    ability to produce low rank approximations to $X$. If we truncate the SVD to
-    the first $j$ terms, i.e. let $U^{(j)}$ represent the $n\times j$ matrix
+    ability to produce _low rank approximations_ to $X$. If we truncate the SVD
+    to the first $j$ terms, i.e. let $U^{(j)}$ represent the $n\times j$ matrix
     consisting of the first $j$ columns of $U$, $S^{(j)}$ represent the
     $j\times j$ upper left submatrix of $S$, and $V^{(j)}$ represent the
     $d\times j$ matrix consisting of the first $j$ columns of $V$, then
@@ -673,7 +692,8 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - An [invariant subspace](https://en.wikipedia.org/wiki/Invariant_subspace)
     for a linear transformation $T$ is a subspace ${\cal S}$ such that
-    $T(x) \in {\cal S}$ for all $x\in{\cal S}$.
+    $T(x) \in {\cal S}$ for all $x\in{\cal S}$. The subspace spanned by $0$ and
+    the entire vector space are always invariant subspaces.
 
   - A one-dimensional invariant subspace is spanned by a vector $v$ such that
     $T(v) = \lambda v$. That is, $T$ acts by scaling on $v$. Such a vector $v$
@@ -681,18 +701,58 @@ Most summary statistics have one of two mathematical forms, as either a
     [eigenvector](https://en.wikipedia.org/wiki/Eigenvectors_and_eigenvalues)
     and the value of $\lambda$ is its associated _eigenvalue_.
 
-  - It is very useful to be able to identify all invariance subspaces of a given
+  - It is very useful to be able to identify all invariant subspaces of a given
     linear transformation $T$. Unfortunately the general situation is quite
     complex, in that $T$ may have no (nontrivial) invariance subspaces.
 
-  - When $T$ is symmetric the situation is much more favorable. A symmetric
-    transformation (or matrix) has only real eigenvalues, and it is possible to
-    construct a basis of eigenvectors. That is, for a linear transformation on a
-    $d$-dimensional vector space, we can construct a sequence
-    $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
-    eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
-    $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^dd$, and (iii) the
-    $v_j$ are mutually orthogonal.
+  - When $T$ is symmetric the situation is much more favorable.
+
+    - A symmetric transformation (or matrix) has only real eigenvalues.
+
+    - It is possible to construct a basis of eigenvectors. That is, for a linear
+      transformation on a $d$-dimensional vector space, we can construct a
+      sequence $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
+      eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
+      $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^d$, and (iii)
+      the $v_j$ are mutually orthogonal.
+
+    - The
+      [Schur decomposition](https://en.wikipedia.org/wiki/Schur_decomposition)
+      states that a symmetric matrix $A$ can be written in the form
+      $Q\Lambda Q^\prime$, where $Q$ is orthogonal and $\Lambda$ is diagonal.
+      The elements of $\Lambda$ are the eigenvalues of $A$ and the columns of
+      $Q$ are the corresponding eigenvectors.
+
+- The determinant and trace
+
+  - The [determinant](https://en.wikipedia.org/wiki/Determinant) is a real
+    number characteristic of a square matrix. One of several equivalent
+    definitions of the determinant is that it is the product of the eigenvalues.
+
+  - A square matrix is invertible if and only if all of its eigenvalues are
+    non-zero, which in turn holds if and only if its determinant is non-zero.
+
+  - The determinant of a linear transformation has important geometric
+    properties, in that it defines how volumes change under mapping by the
+    transformation. If $A$ is a matrix representing a linear transformation and
+    $S$ is the unit hypercube, then the volume of
+    $\\{A(s) \; | \; s\in {\cal S}\\}$ is ${\rm det}(A)$ times the volume of
+    ${\cal S}$.
+
+  - The determinant of an orthogonal matrix is $1$.
+
+  - The determinant is multiplicative with respect to matrix multiplication:
+    ${\rm det}(AB) = {\rm det}(A)\cdot{\rm det}(B)$.
+
+  - The [trace](https://en.wikipedia.org/wiki/Trace) is a real number
+    characteristic of a square matrix defined to be the sum of the diagonal
+    elements.
+
+  - The trace has cyclic invariance:
+    ${\rm tr}(ABC) = {\rm tr}(CAB) = {\rm tr}(BCA)$, as long as the dimensions
+    are such that the matrix products are defined.
+
+  - The trace is the sum of the eigenvalues.
 
 - Quadratic forms
 
@@ -702,8 +762,8 @@ Most summary statistics have one of two mathematical forms, as either a
     notation, this takes the form $x \rightarrow x^\prime A x$, where $A$ is a
     square matrix.
 
-  - Without loss of generality $A$ is symmetric, since $A$ and $(A + A\prime)/2$
-    yield the same quadratic form.
+  - Without loss of generality $A$ is symmetric, since $A$ and
+    $(A + A^\prime)/2$ yield the same quadratic form.
 
   - $A$ is
     [positive semidefinite matrix](https://en.wikipedia.org/wiki/Definite_matrix)
@@ -724,13 +784,32 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - Many data analysis tasks involve
   [optimization](https://en.wikipedia.org/wiki/Optimization). A very common
-  example is fitting models to data, but there are other roles that optimization
-  plays in data analysis as well.
+  example is fitting models to data, but there are other important roles that
+  optimization plays in data analysis as well.
 
 - Formally, a mathematical optimization problem involves an _objective function_
   $f$ defined on a domain $\Omega$ that takes on values in ${\mathbb R}$. The
   goal of _unconstrained optimization_ is to find $x\in \Omega$ that minimizes
   $f$.
+
+- If we wish to maximize $f$ we can minimize $-f$.
+
+- If $f$ has two continuous derivatives, we can make use of calculus. For
+  unconstrained minimization, the minimizer must occur at a
+  [stationary point](https://en.wikipedia.org/wiki/Stationary_point),
+  $\partial f/\partial x = 0$. However it is common that the
+  [gradient](https://en.wikipedia.org/wiki/Gradient) is nonlinear and the
+  stationary point cannot be obtained in analytic form. This converts the
+  problem of numerical minimization to that of numerically solving a system of
+  nonlinear equations.
+
+- Not all optimization problems have a unique solution. Some problems have
+  multiple solutions, i.e. there are multiple distinct $x$ that minimize $f$. In
+  other cases there may be a sequence of points $x_i$ such that $f(x_i)$
+  approaches a minimizer $f$ but does not achieve the minimum on $\Omega$ (or on
+  ${\cal S}$).
+
+### Constrained optimization
 
 - In _constrained optimization_ there is a set ${\cal S} \subset \Omega$ and the
   goal is to minimize $f$ subject to the constraint $x \in {\cal S}$. In
@@ -740,30 +819,15 @@ Most summary statistics have one of two mathematical forms, as either a
   to approach constrained optimization directly rather than by recasting the
   problem as an unconstrained one.
 
-- If we wish to maximize $f$ we can minimize $-f$.
-
-- Not all optimization problems have a unique solution. Some problems have
-  multiple solutions, i.e. there are multiple distinct $x$ that minimize $f$. In
-  other cases there may be a sequence of points $x_i$ such that $f(x_i)$
-  approaches a minimizer $f$ but does not achieve the minimum on $\Omega$ (or on
-  ${\cal S}$).
-
-- If $f$ has two continuous derivatives, we can make use of calculus. For
-  unconstrained minimization, the minimizer must occur at a
-  [stationary point](https://en.wikipedia.org/wiki/Stationary_point)
-  $\partial f/\partial x = 0$. However it is common that the
-  [gradient](https://en.wikipedia.org/wiki/Gradient) is nonlinear and the
-  stationary point cannot be obtained in analytic form. This converts the
-  problem of numerical minimization to that of numerically solving a system of
-  nonlinear equations.
-
 - For constrained minimization we consider how the constraints are defined. In
   many cases the constraint set is defined by a combination of _equality
-  constraints_ ($g(x) = 0$) and _inequality constraints_ ($g(x) > 0$). If there
-  are only equality constraints, then the method of
+  constraints_ ($g(x) = 0$) and _inequality constraints_ ($g(x) > 0$).
+
+- If there are only equality constraints, then the method of
   [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) can
-  be used. In the more general case with both equality and inequality
-  constraints, the
+  be used.
+
+- In the more general case with both equality and inequality constraints, the
   [KKT conditions](https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions)
   define a solution.
 
@@ -814,20 +878,19 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ### Convexity
 
-- A function is strictly
-  [convex](https://en.wikipedia.org/wiki/Convex_function). if every secant line
-  lies strictly below the function. Formally, this means that for any points
-  $x \ne y$ in the domain of the function,
+- A function is strictly [convex](https://en.wikipedia.org/wiki/Convex_function)
+  if every secant line lies strictly below the function. Formally, this means
+  that for any points $x \ne y$ in the domain of the function,
 
   $f(\lambda x + (1-\lambda)y) \< \lambda f(x) + (1 - \lambda)f(y)$
 
-  for $0 \< \lambda \< 1$.
+  for all $0 \< \lambda \< 1$.
 
 - A strictly convex function can have at most one local minimum, and if a local
   minimum exists it is also a global minimum.
 
-- If a function has two continuous derivatives, it is strictly convex if its
-  Hessian matrix is positive definite.
+- If a function has two continuous derivatives, it is strictly convex if and
+  only if its Hessian matrix is positive definite for all $x$.
 
 - A strongly convex function on ${\mathbb R}^d$ is guaranteed to have a unique
   global minimum.
@@ -856,19 +919,45 @@ Most summary statistics have one of two mathematical forms, as either a
   [stochastic gradient descent](https://en.wikipedia.org/wiki/Conjugate_gradient_method),
   but we will not cover these further here.
 
-### Conjugate gradients
+### Conjugate gradient methods
 
 - Suppose that $H_f$ is the Hessian matrix of the objective function, and we aim
-  to minimize $f$ by conducting line searches over a seqeunce of search
-  directions. It turns out to be desirable for these search directions to be
-  _conjugate_, meaning that they are orthogonal with respect to $H_f$. However
-  directly constructing a conjugate basis would require explicit construction of
-  $H_f$, which would make this a second-order method in which case it might be
-  just as well to use Newton's method.
+  to minimize $f$ by conducting
+  [line searches](https://en.wikipedia.org/wiki/Line_search) over a sequence of
+  _search directions_. It turns out to be desirable for these search directions
+  to be _conjugate_, meaning that they are orthogonal with respect to $H_f$.
 
-- The key insight behind the conjugate gradient algorithm is that a set of
+- For a quadratic function on a domain of dimension $d$, searching along
+  conjugate directions will yield the exact solution in $d$ line searches.
+
+- Since smooth functions are approximately quadratic (via Taylor expansion),
+  conjugate directions with respect to the Hessian matrix are generally much
+  better search directions than non-conjugate directions.
+
+- Directly constructing a conjugate basis would require explicit construction of
+  the Hessian matrix $H_f$, which would yield a second-order method, in which
+  case it might be just as well to use Newton's method.
+
+- The key insight behind the conjugate gradient methods is that a set of
   conjugate directions can be constructed sequentially, using line searches but
-  without requiring explict calculation of the Hessian matrix.
+  without requiring explicit calculation of the Hessian matrix. Hence this
+  yields a first-order method.
+
+### Quasi-Newton methods
+
+- [Quasi-Newton](https://en.wikipedia.org/wiki/Quasi-Newton_method) methods are
+  first-order methods that approximate Newton's method by using an approximation
+  to the Hessian matrix. The approximate Hessian is obtained over a sequence of
+  line searches, using the gradients that are calculated at each step of the
+  optimization.
+
+- Suppose we have two points $x_i$, $x_{i+1}$ and their gradients $g_i$,
+  $g_{i+1}$. The _secant equation_ $g_{i+1} - g_i \approx H(x_{i+1}-x_i)$ is
+  used to update the Hessian approximation $H$.
+
+- The most popular algorithm in this class is arguably the
+  [LBFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which stands for
+  "limited memory Fletcher-Goldfarb-Shanno" algorithm.
 
 ### Global/combinatorial optimization
 
@@ -888,7 +977,7 @@ Most summary statistics have one of two mathematical forms, as either a
   [population](https://en.wikipedia.org/wiki/Statistical_population) from which
   the data were sampled.
 
-- The premimse that the observed data are a
+- The premise that the observed data are a
   [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>) from the
   population is central to this framework.
 
@@ -897,7 +986,7 @@ Most summary statistics have one of two mathematical forms, as either a
   parameter is usually constrained to lie in a _parameter space_ $\Theta$. This
   setting is referred to as
   [frequentist inference](https://en.wikipedia.org/wiki/Frequentist_inference).
-  The most commonly encountered non-frequenist approach to inference is
+  The most commonly encountered non-frequentist approach to inference is
   [Bayesian inference](https://en.wikipedia.org/wiki/Bayesian_inference).
 
 - In the most basic setting, the parameter is a single scalar value.
@@ -944,9 +1033,9 @@ Most summary statistics have one of two mathematical forms, as either a
       parameters, but the parameters will not be identified if we have fewer
       estimating equations than the number of parameters.
 
-    - The methood of moments does not require specification of a _data
-      generating model_, and therefore may have fewer assumptions than
-      alternatives based on a specified data generating model.
+    - The method of moments does not require specification of a _data generating
+      model_, and therefore may have fewer assumptions than alternatives based
+      on a specified data generating model.
 
     - A very basic example of the method of moments is estimation of the
       variance $\sigma^2$. Estimating the variance requires us to also estimate
@@ -967,8 +1056,7 @@ Most summary statistics have one of two mathematical forms, as either a
       [log likelihood](https://en.wikipedia.org/wiki/Likelihood_function)
       $L(\theta; D) = \log P_\theta(D)$.
 
-    - The maximum likelihood estimator $\hat{\theta}_{\rm mle}$ is
-      ${\rm argmax}_\theta L(\theta; D)$.
+    - The maximum likelihood estimator is ${\rm argmax}_\theta L(\theta; D)$.
 
     - Like any optimization problem, there may be zero, one, or multiple
       solutions to the optimization, including local and global optima, and it
@@ -1024,7 +1112,7 @@ Most summary statistics have one of two mathematical forms, as either a
     errors.
 
   - A basic identity is that the MSE of an estimator is equal to the sum of its
-    squared bias and its variance. Arguably low MSE is the most important
+    squared bias and its variance. Arguably, low MSE is the most important
     characteristic for an estimator to have, and we see from this identity that
     low MSE can be achieved by having a smaller squared bias with a larger
     variance, or a smaller variance with a larger squared bias. This is a
@@ -1081,7 +1169,7 @@ Most summary statistics have one of two mathematical forms, as either a
     the score function.
 
 - Combining the results above we can conclude that the MLE is (under certain
-  conditions) asymptotically normal, asymptoptically unbiased, and has sampling
+  conditions) asymptotically normal, asymptotically unbiased, and has sampling
   covariance matrix equal to the inverse of the Fisher information matrix.
   Furthermore, this implies that the MLE achieves the Cramer-Rao lower bound and
   hence is efficient.
@@ -1116,7 +1204,7 @@ Most summary statistics have one of two mathematical forms, as either a
   the parameter. That is, if $\alpha$ is the coverage probability, then
   $\alpha = P(L(D) \le \theta \le U(D))$.
 
-- There can be some confusion about the probabistic interpretation of the
+- There can be some confusion about the probabilistic interpretation of the
   probability expression $P(L(D) \le \theta \le U(D))$. The parameter $\theta$
   is a fixed quantity, but the confidence limits $L(D)$ and $U(D)$ are random.
   The randomness in this probability statement follows from the randomness in
@@ -1200,7 +1288,7 @@ Most summary statistics have one of two mathematical forms, as either a
 - In the conventional setting, we observe _training data_
   $\\{(X_i, Y_i), i=1, \ldots, n\\}$ consisting of joint observations of $X$ and
   $Y$. The goal is to estimate the conditional distribution $P(Y|X)$ from the
-  training data. We can then use the estimated conditional distributikon
+  training data. We can then use the estimated conditional distribution
   $\hat{P}(Y|X)$ to predict $Y$ from a given value of $X$. This is often done
   using the conditional mean $E[Y|X]$. But it is also possible to use other
   conditional quantities.
@@ -1210,7 +1298,7 @@ Most summary statistics have one of two mathematical forms, as either a
   attributed to George Box. Thus, the estimated conditional distribution
   $\hat{P}$ is likely biased as well as subject to random variation.
 
-- Our predictions, say $\hat{E}[Y|X]$ are thefore both biased and variable. We
+- Our predictions, say $\hat{E}[Y|X]$ are therefore both biased and variable. We
   can reduce the bias by using more complex (flexible) models, but this
   increases the variability. This is the bias/variance tradeoff.
 
@@ -1220,8 +1308,8 @@ Most summary statistics have one of two mathematical forms, as either a
   approach is to train the model on a dataset, and then use this same dataset to
   produce an estimate of the RMSE as $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
 
-- This "plug-in" estimate of the RMSE is optimisically biased (i.e. its expected
-  value is smaller than the true RMSE).
+- This "plug-in" estimate of the RMSE is optimistically biased (i.e. its
+  expected value is smaller than the true RMSE).
 
 - There are various ways to address this issue. We present two here.
 
@@ -1246,7 +1334,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - In modern predictive modeling, one usually combines a loss function with a
   [regularizer](<https://en.wikipedia.org/wiki/Regularization_(mathematics)>),
-  which usually takles the form of a function $R(\theta)$ of the parameters that
+  which usually takes the form of a function $R(\theta)$ of the parameters that
   does not involve the data. If $L(D, \theta)$ is the loss function, then the
   parameter is estimated by minimizing $L(D, \theta) + \lambda R(\theta)$.
 
