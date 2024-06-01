@@ -478,8 +478,8 @@ Most summary statistics have one of two mathematical forms, as either a
 - A [vector space](https://en.wikipedia.org/wiki/Vector_space) over the real
   numbers is a collection of abstract objects that can be added together, and
   that can be scaled by (real) numbers. It is important to keep in mind the
-  distinction between the vectors in a vector space and the scalars, which for
-  our purposes will always be the real numbers.
+  distinction between the _vectors_ in a vector space and the _scalars_, which
+  for our purposes will always be the real numbers.
 
   - All vector spaces must contain an element denoted $0$ that has certain
     properties as stated below.
@@ -487,12 +487,12 @@ Most summary statistics have one of two mathematical forms, as either a
   - Addition and scalar multiplication must satisfy the following axioms, for
     vectors $x$, $y$ and real scalars $c$, $d$:
 
-  - $x + y = y + x$; $(x + y) + z = x + (y + z)$, $0 + x = x + 0 = x$;
-    $(-x) + x = x + (-x) = 0$.
+    - $x + y = y + x$; $(x + y) + z = x + (y + z)$, $0 + x = x + 0 = x$;
+      $(-x) + x = x + (-x) = 0$.
 
-  - $0x = 0$; $1x = x$; $c(dx) = (cd)x$.
+    - $0x = 0$; $1x = x$; $c(dx) = (cd)x$.
 
-  - $c(x+y) = cx + cy$; $(c+d)x = cx + dx$
+    - $c(x+y) = cx + cy$; $(c+d)x = cx + dx$
 
 - A basic example of a vector space is the set of all "k-tuples". For example,
   take $k=2$, so a 2-tuple has the form $[a, b]$, e.g. $[1, 0]$ or $[5,
@@ -561,15 +561,15 @@ Most summary statistics have one of two mathematical forms, as either a
     a norm via $\\|x\\|^2 = \langle x, x\rangle$. All norms have the following
     properties:
 
-    - \[Triangle inequality\]: $\|x + y\| \le \|x\| + \|y\|$
+    - Triangle inequality: $\|x + y\| \le \|x\| + \|y\|$
 
-    - \[Homogeneity\]: $\\|c\cdot x\\| = \|c\|\cdot \\|x\\|$
+    - Homogeneity: $\\|c\cdot x\\| = \|c\|\cdot \\|x\\|$
 
-    - \[Positiveness\]: $\\|x\\| = 0$ implies that $x=0$
+    - Positiveness: $\\|x\\| = 0$ implies that $x=0$
 
   - A very fundamental result is the
     [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
-    $|\langle x, y\rangle| \le |x|\cdot |y|$.
+    $|\langle x, y\rangle| \le \\|x\\|\cdot \\|y\\|$.
 
 - Linear transformations
 
@@ -657,7 +657,7 @@ Most summary statistics have one of two mathematical forms, as either a
     - Projection is a linear transformation.
 
     - Every vector $v$ can be uniquely written as the sum $u + u_\perp$, where
-      $u \in {\cal S}$ and $u_\perp in {\cal S}^\perp$.
+      $u \in {\cal S}$ and $u_\perp \in {\cal S}^\perp$.
 
 - The Singular Value Decomposition
 
@@ -668,7 +668,8 @@ Most summary statistics have one of two mathematical forms, as either a
     and orthogonal ($V^\prime V = VV^\prime = I$), and $S$ is diagonal with
     non-increasing positive diagonal values, i.e.
     $S
-    = {\rm diag}(S_11, \ldots, S_{nn})$ with $S_{11} \ge S_{22} \ge
+    = {\rm diag}(S_{11}, \ldots, S_{nn})$ with
+    $S_{11} \ge S_{22} \ge
     \cdots$.
 
   - If we view $X$ as a linear transformation from
@@ -709,9 +710,10 @@ Most summary statistics have one of two mathematical forms, as either a
 
     - A symmetric transformation (or matrix) has only real eigenvalues.
 
-    - It is possible to construct a basis of eigenvectors. That is, for a linear
-      transformation on a $d$-dimensional vector space, we can construct a
-      sequence $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
+    - It is always possible to construct a basis of eigenvectors for a symmetric
+      matrix. That is, for a linear transformation on a $d$-dimensional vector
+      space, we can construct a sequence
+      $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
       eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
       $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^d$, and (iii)
       the $v_j$ are mutually orthogonal.
@@ -748,7 +750,7 @@ Most summary statistics have one of two mathematical forms, as either a
     characteristic of a square matrix defined to be the sum of the diagonal
     elements.
 
-  - The trace has cyclic invariance:
+  - The trace exhibits cyclic invariance:
     ${\rm tr}(ABC) = {\rm tr}(CAB) = {\rm tr}(BCA)$, as long as the dimensions
     are such that the matrix products are defined.
 
@@ -765,7 +767,7 @@ Most summary statistics have one of two mathematical forms, as either a
   - Without loss of generality $A$ is symmetric, since $A$ and
     $(A + A^\prime)/2$ yield the same quadratic form.
 
-  - $A$ is
+  - $A$ is a
     [positive semidefinite matrix](https://en.wikipedia.org/wiki/Definite_matrix)
     if $x^\prime A x \ge 0$ for all $x$. $A$ is a _positive definite matrix_ if
     $x^\prime A x > 0$ for all $x\ne 0$.
@@ -844,13 +846,15 @@ Most summary statistics have one of two mathematical forms, as either a
 ### Newton's method
 
 - A multivariate quadratic function has the form
-  $f(x) = c + b^\prime x + x^\prime A x$. We can complete the square to obtain
-  the equivalent form $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$.
-  When $A$ is a positive semidefinite (PSD) matrix, this expression is minimized
-  when $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
+  $f(x) = c + b^\prime x + x^\prime A x$. If $A$ is invertible we can complete
+  the square to obtain the equivalent form
+  $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$. When $A$ is a positive
+  semidefinite (PSD) matrix, this expression is minimized when
+  $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
 
-- An arbitrary smooth function $f(x)$ can be approximated local to a given point
-  $x_0$ with the approximation
+- A smooth function $f(x)$ can be
+  \[approximated\]((https://en.wikipedia.org/wiki/Taylor%27s_theorem) local to a
+  given point $x_0$ with the approximation
 
   $f(x) \approx f(x_0) + (x - x_0)^\prime \nabla_f(x_0) + (x-x_0)^\prime
   H_f(x_0)(x-x_0)/2$
@@ -892,6 +896,10 @@ Most summary statistics have one of two mathematical forms, as either a
 - If a function has two continuous derivatives, it is strictly convex if and
   only if its Hessian matrix is positive definite for all $x$.
 
+- A function is strongly convex if the dterminant of its Hessian matrix is
+  bounded away from zero, that is, there exists $\epsilon>0$ such that
+  $|H_f(x)| \ge \epsilon > 0$ for all $x$.
+
 - A strongly convex function on ${\mathbb R}^d$ is guaranteed to have a unique
   global minimum.
 
@@ -901,15 +909,18 @@ Most summary statistics have one of two mathematical forms, as either a
   the domain of the function in which the function increases fastest. Therefore,
   letting $\lambda \in {\mathbb R}$, the restricted function
   $f(x + \lambda\nabla_f(x))$ is increasing in $\lambda$ for sufficiently small
-  $\lambda$. Since we want to minimize the objective function, we can consider
-  $f(x - \lambda \nabla_f(x))$. For sufficiently small $\lambda$,
-  $f(x - \lambda\nabla_f(x)) \< f(x)$. Either a
+  $\lambda>0$.
+
+- Since we want to minimize the objective function, we can consider
+  $f(x - \lambda \nabla_f(x))$. For sufficiently small $\lambda>0$,
+  $f(x - \lambda\nabla_f(x)) < f(x)$. Either a
   [line search](https://en.wikipedia.org/wiki/Line_search) or a fixed step size
   may be used to achieve a sequence of iterates that should (in some cases)
   minimize the objective function.
 
-- Basic gradient descent often converges quite slowly. A major breakthrough was
-  the discovery of
+- Basic gradient descent often converges quite slowly, especially if the Hessian
+  matrix has a large condsition number. A major breakthrough was the discovery
+  of
   [conjugate gradient methods](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
   in the 1950's. We discuss these in the next section.
 
@@ -928,7 +939,10 @@ Most summary statistics have one of two mathematical forms, as either a
   to be _conjugate_, meaning that they are orthogonal with respect to $H_f$.
 
 - For a quadratic function on a domain of dimension $d$, searching along
-  conjugate directions will yield the exact solution in $d$ line searches.
+  conjugate directions will yield the exact solution to the optimization problem
+  in $d$ line searches. That is, $d$ line searches is equivalent to one Newton
+  step (since Newton's method converges exactly in one step for quadratic
+  functions).
 
 - Since smooth functions are approximately quadratic (via Taylor expansion),
   conjugate directions with respect to the Hessian matrix are generally much
@@ -955,7 +969,7 @@ Most summary statistics have one of two mathematical forms, as either a
   $g_{i+1}$. The _secant equation_ $g_{i+1} - g_i \approx H(x_{i+1}-x_i)$ is
   used to update the Hessian approximation $H$.
 
-- The most popular algorithm in this class is arguably the
+- The most popular algorithm in this class is arguably
   [LBFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which stands for
   "limited memory Fletcher-Goldfarb-Shanno" algorithm.
 
@@ -1025,7 +1039,7 @@ Most summary statistics have one of two mathematical forms, as either a
     - If there is a single parameter, we can use a single estimating equation.
 
     - If there are $q$ parameters, we need at least $q$ moment equations
-      $E[m_j(D)] = g_j(\theta)$, $j=1,\ldots, q$.
+      $E[m_j(D)] = g_j(\theta)$, $j=1,\ldots, q$ to identify the parameters.
 
     - Using the
       [generalized method of moments (GMM)](https://en.wikipedia.org/wiki/Generalized_method_of_moments),
@@ -1034,8 +1048,8 @@ Most summary statistics have one of two mathematical forms, as either a
       estimating equations than the number of parameters.
 
     - The method of moments does not require specification of a _data generating
-      model_, and therefore may have fewer assumptions than alternatives based
-      on a specified data generating model.
+      model_, and therefore may have fewer assumptions than approaches based on
+      a specified data generating model.
 
     - A very basic example of the method of moments is estimation of the
       variance $\sigma^2$. Estimating the variance requires us to also estimate
@@ -1092,7 +1106,7 @@ Most summary statistics have one of two mathematical forms, as either a
     if its average value is greater than its target, and is negatively biased if
     its average value is less than its target. It is good for an estimator to be
     unbiased, but in practice many estimators are somewhat biased as other
-    considerations besides bias such as precision are also important to
+    considerations besides bias (such as precision) are also important to
     consider. Bias is related to the notion of
     [accuracy](https://en.wikipedia.org/wiki/Accuracy_and_precision), which
     reflects the possible presence of _systematic errors_ when estimating a
@@ -1151,9 +1165,16 @@ Most summary statistics have one of two mathematical forms, as either a
   $\sqrt{n}(g(X_n) - g(\theta))$ is asymptotically normal with mean zero and
   covariance matrix $\nabla_g^\prime \Sigma \nabla_g$.
 
-- Suppose we have a collection of $n$ independent observations. If we are using
-  maximum likelihood analysis, the log-likelihood function for the overall
-  sample is the sum of contributions from the observations:
+- Suppose we have a collection of $n$ independent observations. In this setting,
+  many commonly-encountered estimators are
+  [m-estimators](https://en.wikipedia.org/wiki/M-estimator). This is an
+  estimator that arises by minimizing a sample average (or sum) of contributions
+  from the observations. That is, out estimator can be written
+  $\hat{\theta} = {\rm argmin}_\theta \sum_i g(\theta; x_i)$. Maximum likelihood
+  is an m-estimator if the observations are independent.
+
+- If we are using maximum likelihood analysis, the log-likelihood function for
+  the overall sample is the sum of contributions from the observations:
   $L(\theta | D) = \sum L(\theta | X_i)$. The same is true of the score
   function: $s(\theta | D) = \sum s(\theta | X_i)$. When the parameter $\theta$
   is fixed at its true value, the score function has two key properties (recall
@@ -1163,8 +1184,8 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - The variance of the score function is the
     [Fisher information](https://en.wikipedia.org/wiki/Fisher_information),
-    which is the negative Hessian of the log-likelihood, or (equivalently), the
-    negative
+    which is the negative Hessian of the log-likelihood, $-\nabla_L^2(x)$, or
+    (equivalently), the negative
     [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of
     the score function.
 
@@ -1177,21 +1198,22 @@ Most summary statistics have one of two mathematical forms, as either a
 ### Confidence sets
 
 - A major consideration in statistical inference is to understand how much
-  information we have (from the data) about parameters that have meaning in the
-  "real world". When we estimate a parameter from a sample of data, we know that
-  the estimate is never exactly correct. Formally, if $\theta$ is the parameter
-  and $\hat{\theta}$ is the estimate of the parameter, we can be sure that
-  $\hat{\theta} \ne \theta$.
+  information we have gained (from the data) about parameters that have meaning
+  in relation to a research question. When we estimate a parameter from a sample
+  of data, we know that the estimate is never exactly correct. Formally, if
+  $\theta$ is the parameter and $\hat{\theta}$ is the estimate of the parameter,
+  we can be sure that $\hat{\theta} \ne \theta$. The _estimation error_ is
+  $\hat{\theta} - \theta$, which is a random quantity.
 
 - The standard error of a parameter gives us a sense of how far a parameter
   estimate is likely to fall from the true parameter value. Especially when
   $\hat{\theta}$ is (asymptotically) normal and unbiased, knowing the standard
   error tells us everything we can possibly know about the distribution of
-  _estimation errors_ $\hat{\theta} - \theta$.
+  estimation errors $\hat{\theta} - \theta$.
 
 - A [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) is
-  a more quantitative and explicit way to summarize the uncertainty in a
-  parameter estimate.
+  a quantitative and explicit way to summarize the uncertainty in a parameter
+  estimate.
 
 - Formally, a confidence interval (CI) consists of two functions of the data,
   the _lower confidence bound_ (LCB) and the _upper confidence bound_ (UCB).
@@ -1201,8 +1223,12 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - A CI is defined in relation to a _coverage probability_, conventionally 95%,
   which is the probability that the interval covers the target (true) value of
-  the parameter. That is, if $\alpha$ is the coverage probability, then
+  the parameter. If $\alpha$ is the coverage probability, then
   $\alpha = P(L(D) \le \theta \le U(D))$.
+
+- Besides the coverage probability, the other important characteristic of a CI
+  is its _average width_. Wide confidence intervals indicate that we have little
+  information about the value of a parameter.
 
 - There can be some confusion about the probabilistic interpretation of the
   probability expression $P(L(D) \le \theta \le U(D))$. The parameter $\theta$
@@ -1219,7 +1245,7 @@ Most summary statistics have one of two mathematical forms, as either a
   $(\hat{\theta} - \theta)/s$ is a Z-score, and is a pivotal quantity. In
   particular, if $\hat{\theta}$ is (asymptotically) Gaussian, then we know that
   $P(-2 < (\hat{\theta} - \theta)/s < 2) \approx 0.95$. This expression can be
-  algebraically rearranged to
+  algebraically rearranged to yield the expression
   $P(\hat{\theta} - 2s < \theta < \hat{\theta} + 2s) \approx 0.95$, which
   provides us with the (approximate) 95% CI $\hat{\theta} \pm 2s$.
 
@@ -1228,7 +1254,7 @@ Most summary statistics have one of two mathematical forms, as either a
   sample sizes it is often viable to treat these estimated nuisance parameters
   as if they were actually the true values, but for small sample sizes, this
   plug-in step can have major consequences for coverage. For example, if the
-  Z-score $(\hat{\theta) - \theta})/s$ is standard normal, the plug-in Z-score
+  Z-score $(\hat{\theta} - \theta})/s$ is standard normal, the plug-in Z-score
   $(\hat{\theta} - \theta)/\hat{s}$ may follow a distribution with heavier tails
   such as the
   [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution). If
@@ -1248,14 +1274,18 @@ Most summary statistics have one of two mathematical forms, as either a
   subsequently became a major tool in applied research. While it has been
   extensively criticized, it remains an important tool in data analysis.
 
+- The "Neyman-Pearson" framework for "null hypothesis significance testing"
+  (NHST) was an important historical advance. An alternative approach was
+  advocated by Fisher, and the modern approach is a synthesis of the two.
+
 - The starting point for formal hypothesis testing is the specification of a
   null hypothesis. It is of interest to falsify this hypothesis using data.
 
 - The null hypothesis is expressed as a statement about a parameter $\theta$
   that relates to the data generating model. A _point null hypothesis_ is a
-  statement $\theta = \theta_0$ but we also often encounter the setting where
-  the null hypothesis is $\theta \in \Theta_0$, where $\Theta_0$ is a subset of
-  the parameter space.
+  statement $\theta = \theta_0$. We also often encounter the setting where the
+  null hypothesis is $\theta \in \Theta_0$, where $\Theta_0$ is a subset of the
+  parameter space.
 
 - We require a quantity known as the _test statistic_ $T(D)$ that summarizes the
   evidence in the data in relation to the null hypothesis. By convention, we
@@ -1264,8 +1294,11 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - It remains to calibrate the evidence reflected in $T$. This is done by
   considering the sampling distribution of $T(D)$ when the null hypothesis is
-  true. Often, we are able to construct $T(D)$ so that when the null hypothesis
-  is true, $T(D)$ follows a known distribution such as the standard normal
+  true. When the null hypothesis true, any evidence against the null reflected
+  in the value of $T(D)$ is "by chance" or "spurious".
+
+- Often, we are able to construct $T(D)$ so that when the null hypothesis is
+  true, $T(D)$ follows a known distribution such as the standard normal
   distribution.
 
 - Once we know the distribution of $T(D)$ under the null hypothesis, we can
@@ -1275,6 +1308,16 @@ Most summary statistics have one of two mathematical forms, as either a
   represent the observed data, which may or may not follow the null
   distribution, and $D$ to represent a random dataset that follows the null
   distribution.
+
+- There has been a lot of discussion and debate about the strengths and
+  weaknesses of relying on standard errors, confidence intervals, or null
+  hypothesis significance tests for statistical inference (the three pillars of
+  frequentist inference). One point of view is that these approaches are more
+  similar than they are different. For example, in many settings you can easily
+  convert a confidence interval into a hypothesis test. If the CI does not
+  contain a given null value of the parameter $\theta_0$, then you can reject
+  the null hypothesis that $\theta=\theta_0$, with a p-value equal to 1 minus
+  the coverage probability of the CI.
 
 ### Prediction
 
@@ -1291,22 +1334,24 @@ Most summary statistics have one of two mathematical forms, as either a
   training data. We can then use the estimated conditional distribution
   $\hat{P}(Y|X)$ to predict $Y$ from a given value of $X$. This is often done
   using the conditional mean $E[Y|X]$. But it is also possible to use other
-  conditional quantities.
+  conditional quantities for prediction.
 
 - In practice, we usually take the perspective that
   ["all models are wrong but some are useful"](https://en.wikipedia.org/wiki/All_models_are_wrong),
   attributed to George Box. Thus, the estimated conditional distribution
   $\hat{P}$ is likely biased as well as subject to random variation.
 
-- Our predictions, say $\hat{E}[Y|X]$ are therefore both biased and variable. We
-  can reduce the bias by using more complex (flexible) models, but this
-  increases the variability. This is the bias/variance tradeoff.
+- When the model is wrong, out predictions, say $\hat{E}[Y|X]$, are both biased
+  and variable. We can reduce the bias by using more complex (flexible) models,
+  but this increases the variability. This is a consequence of the bias/variance
+  tradeoff.
 
 - We often wish to objectively quantify the performance of a predictive model.
   Suppose that the prediction target is quantitative, and we wish to evaluate
-  the root mean squared error (RMSE), $(E[(\hat{y} - y)^2])^{1/2}$. A naive
-  approach is to train the model on a dataset, and then use this same dataset to
-  produce an estimate of the RMSE as $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
+  the root mean squared error of prediction (RMSE),
+  $(E[(\hat{y} - y)^2])^{1/2}$. A naive approach is to train the model on a
+  dataset, and then use this same dataset to produce an estimate of the RMSE as
+  $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
 
 - This "plug-in" estimate of the RMSE is optimistically biased (i.e. its
   expected value is smaller than the true RMSE).
@@ -1319,7 +1364,8 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - We can split the data randomly many times into training and testing sets,
     estimate the RMSE unbiasedly for each, and then pool these unbiased
-    estimates (say by averaging). This procedure is called _cross validation_.
+    estimates (say by averaging). This procedure is called
+    [cross validation](<https://en.wikipedia.org/wiki/Cross-validation_(statistics)>).
 
 #### Overfitting and regularization
 
