@@ -65,7 +65,8 @@
   - If the sample space is finite, we can list the points in the sample space
     and their probabilities. This type of probability distribution takes the
     form of a table, which is often called a
-    [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function).
+    [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+    (pmf).
 
   - If the sample space is countable, individual "atoms" (points in the sample
     space) have positive probability and there is a probability mass function
@@ -90,8 +91,8 @@
     [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and its
     [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
 
-- To better understand the challenges of representing probability distribution,
-  we need to distinguish between different types of
+- To better understand the challenges of representing a probability
+  distribution, we need to distinguish between different types of
   [infinity](https://en.wikipedia.org/wiki/Infinity).
 
   - [Countable infinity](https://en.wikipedia.org/wiki/Countable_set) refers to
@@ -898,7 +899,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - A function is strongly convex if the dterminant of its Hessian matrix is
   bounded away from zero, that is, there exists $\epsilon>0$ such that
-  $|H_f(x)| \ge \epsilon > 0$ for all $x$.
+  $\\|H_f(x)\\| \ge \epsilon > 0$ for all $x$.
 
 - A strongly convex function on ${\mathbb R}^d$ is guaranteed to have a unique
   global minimum.
@@ -1062,7 +1063,7 @@ Most summary statistics have one of two mathematical forms, as either a
       $\hat{\mu} = (X_1 + \cdots + X_n)/n$ and
       $\hat{\sigma}^2 = ((X_1-\hat{\mu})^2 + \cdots + (X_n-\hat{\mu})^2)/n$.
 
-  - [Maximum likelihood](https://en.wikipedia.org/wiki/Maximum_likelihood),
+  - [Maximum likelihood](https://en.wikipedia.org/wiki/Maximum_likelihood)
 
     - Maximum likelihood begins with the specification of a data generating
       model $P_\theta(D)$ where $\theta$ is the parameter and $D$ is the data.
@@ -1254,9 +1255,9 @@ Most summary statistics have one of two mathematical forms, as either a
   sample sizes it is often viable to treat these estimated nuisance parameters
   as if they were actually the true values, but for small sample sizes, this
   plug-in step can have major consequences for coverage. For example, if the
-  Z-score $(\hat{\theta} - \theta})/s$ is standard normal, the plug-in Z-score
-  $(\hat{\theta} - \theta)/\hat{s}$ may follow a distribution with heavier tails
-  such as the
+  Z-score $(\hat{\theta} - \theta)/s$ follows a standard normal distribution,
+  the plug-in Z-score $(\hat{\theta} - \theta)/\hat{s}$ may follow a
+  distribution with heavier tails such as the
   [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution). If
   this fact is ignored, the CI will have lower coverage probability than
   intended.
