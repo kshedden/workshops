@@ -47,7 +47,7 @@
 
   - Data collection refers to the process of making and recording measurements.
 
-  - Data analysis refers to the executation of a data analysis plan, which
+  - Data analysis refers to the execution of a data analysis plan, which
     includes carrying out the analysis, interpreting the results, and formally
     assessing the [uncertainty](https://en.wikipedia.org/wiki/Uncertainty) of
     all findings.
@@ -75,7 +75,7 @@
     [observational study](https://en.wikipedia.org/wiki/Observational_study),
     the experimental units are not manipulated by the researcher. Any
     differences that form the basis for comparison arise naturalistically and
-    are subject to [confouinding](https://en.wikipedia.org/wiki/Confounding).
+    are subject to [confounding](https://en.wikipedia.org/wiki/Confounding).
 
   - A _controlled_ study involves a comparison to a group (arm) that is
     untreated, or that is treated with a conventional well-understood treatment
@@ -97,9 +97,9 @@
   - In a [cohort study](https://en.wikipedia.org/wiki/Cohort_study), a group of
     units are followed over time. The units are initially either similar, or
     differ primarily with respect to a specific factor of interest (but they are
-    not selected based on this factor). Exposures happpen naturalistically and
+    not selected based on this factor). Exposures happen naturalistically and
     we can assess at the end of the study which exposures occurred and what
-    outcomes followed the occurence of these exposures.
+    outcomes followed the occurrence of these exposures.
 
     - A
       [prospective cohort study](https://en.wikipedia.org/wiki/Prospective_cohort_study)
@@ -145,7 +145,7 @@
   [social desirability bias](https://en.wikipedia.org/wiki/Social-desirability_bias),
   among other issues.
 
-- Technology is rapidly tranforming the landscape for measurements of human
+- Technology is rapidly transforming the landscape for measurements of human
   behaviors ([wearables](https://en.wikipedia.org/wiki/Wearable_technology) for
   activity and sleep, real time monitors for blood glucose, bio-assays for
   nicotine use).
@@ -170,7 +170,7 @@
     _dimensionality_, i.e. whether there exists only one versus multiple
     independent constructs underlying a collection of measured items. Scales
     have been developed for numerous traits such as depression, overall physical
-    health, hopefullness, and political ideology.
+    health, hopefulness, and political ideology.
 
   - The [Delphi method](https://en.wikipedia.org/wiki/Delphi_method) is used to
     objectively produce items that can be used to construct novel scales.
@@ -193,7 +193,7 @@
     these random errors may depend on the skill of the person doing the
     measurement.
 
-  - Random errors can futher be classified as classical errors and
+  - Random errors can further be classified as classical errors and
     [Berkson errors](https://en.wikipedia.org/wiki/Berkson_error_model).
 
     - Classical errors arise due to additive random measurement error that is
@@ -264,7 +264,7 @@
     relationship have been identified.
 
   - At a high level, when designing a study, one or more of the following
-    strategies are usually employed to mitigate the risks of condfounding. They
+    strategies are usually employed to mitigate the risks of confounding. They
     are listed in decreasing order of rigor:
 
     - Randomization is usually the best way to limit or eliminate the risk of
@@ -277,6 +277,20 @@
 
     - If we cannot achieve balance then various statistical adjustments are made
       in a _post-hoc_ manner.
+
+- Another role for a "third variable" is as a _collider_. A collider is a
+  variable that is causally influenced by both the exposure and an outcome.
+  Colliders are not confounders and in fact controlling for a collider
+  introduces _collider stratification bias_. If a variable is a collider it
+  should generally be ignored in the analysis.
+
+- Formal analysis of confounding often takes place in the context of the
+  [Neyman-Rubin causal model](https://en.wikipedia.org/wiki/Rubin_causal_model),
+  which posits the existence of
+  [potential outcomes](https://en.wikipedia.org/wiki/Counterfactual_conditional).
+  In brief, every unit has potential outcomes under every possible treatment. We
+  only observe one of these potential outcomes, along with the indicator of
+  which outcome we observe. This indicator is endogenous in most cases.
 
 ## Randomization
 
@@ -295,7 +309,7 @@
   balance.
 
 - Bias can result from lack of balance due to chance, even in the absence of
-  counfounding.
+  confounding.
 
 - For measured (potential) confounders, we can quantify and compensate for any
   lack of balance. For unmeasured or unknown confounders, randomization is
@@ -318,28 +332,24 @@
     study of a treatment for kidney disease we may partition the population into
     people with and without hypertension. Say we plan to recruit 60 people with
     hypertension and 30 people without hypertension. In 1:1 stratified
-    randomization we woould assign exactly 30 of the people with hypertension to
+    randomization we would assign exactly 30 of the people with hypertension to
     the treatment arm, and exactly 15 of the people without hypertension to the
     treatment arm.
 
-  - Minimization is a class of methods that addresses the practical issue that
+  - _Minimization_ is a class of methods that addresses the practical issue that
     in many research studies, subjects are recruited over time, and we do not
     have a listing of the subjects and their measured confounders at the outset
     of the study. For this reason, we cannot use stratified randomization.
-    Minimization uses a "biased coin" to allocate units to arms in a way that
-    corrects for biases that arise during the recuitment process of a study.
+    Minimization uses a "biased coin" to allocate units to study arms in a way
+    that corrects for biases that arise during subject recruitment.
 
 - A concern in studies where units are recruited sequentially is bias on the
-  part of the research team in any subjective decisions that could influence
-  recruitment or treatment assignment based on subject characteristics. If the
-  research team knows that the next subject to be recruited will be assigned the
-  treatment, and the next subject appears to be someone who is less likely to do
-  well on the treatment, the research team may elect to interpret the
-  eligibility requirements strictly so that this subject is not recruited into
-  the study. Conversely, if it is knownm that the next subject to be assigned
-  will be in the control arm, there may be a bias to include subjects who are
-  sicker or less likely to benefit for some reason. Maintaining some degree of
-  randomness in the assignments helps to mitigate this issue.
+  part of the research team in any decisions that could influence recruitment of
+  subjects. The research team has an incentive to exclude subjects who would be
+  assigned to the active treatment arm if those students seem likely to do
+  poorly. Analogously, there is an incentive to exclude subjects who will be
+  assigned to the control arm if they appear likely to do well. Maintaining some
+  degree of randomness in the assignments helps to mitigate this issue.
 
 ## Foundations of statistical inference
 
@@ -349,15 +359,19 @@
   [parameter](https://en.wikipedia.org/wiki/Statistical_parameter) that captures
   aspects of the scientific research question.
 
-- Probability theory considers the properties of a sample $D$ from a given
-  probability model $P$. Statistical inference is the reverse of this -- given a
-  random sample $D$, what can we say about the probability distribution $P$?
+- A probability model should capture all _sources of variation_ influencing the
+  data.
+
+- _Probability theory_ considers the properties of a sample $D$ from a given
+  probability model $P$. _Statistical inference_ is the reverse of this - given
+  a random sample $D$, what can we say about the probability distribution $P$
+  from which $D$ was sampled?
 
 - Statistical inference generally begins with
-  [estimation](https://en.wikipedia.org/wiki/Estimation). Formally, this inolves
+  [estimation](https://en.wikipedia.org/wiki/Estimation). Formally, this involves
   devising a function $\hat{\theta}(D)$, where $D$ is the _observed data_, such
   that $\hat{\theta}(D)$ is likely to be close to the true parameter value
-  $\theta$.
+  $\theta$. This function is called an _estimator_.
 
 - It is common to refer to $P_\theta$ as the
   [population](https://en.wikipedia.org/wiki/Statistical_population), $D$ as the
@@ -385,11 +399,15 @@
 - If the sampling distribution of $\hat{\theta}$ is approximately
   [Gaussian](https://en.wikipedia.org/wiki/Normal_distribution), then the
   standard error is all one needs to fully characterize the estimation errors of
-  an unbiased estimator.
+  an unbiased estimator. Due to the
+  [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem),
+  many estimators behave approximately like Gaussian random variables. In cases
+  that this does not hold, with additional work an approximation to the
+  non-Gaussian sampling distribution can usually be obtained.
 
 - Many research questions cannot be reduced to a single scalar parameter, so the
-  parameter is often a vector. Vector-valued parameters can often be partitioned
-  into parameters of primary interest and
+  parameter of interest is often a vector. Vector-valued parameters can often be
+  partitioned into parameters of primary interest and
   [nuisance parameters](https://en.wikipedia.org/wiki/Nuisance_parameter).
 
 ## Statistical power
@@ -406,21 +424,23 @@
   true (that is the
   [level](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) of a test.
 
-- The power says nothing about the possible biases in a study, for example, we
-  could have high power to reject the null hypothesis in a situation where due
-  to bias rejecting the null does not reflect the claimed level of evidence.
+- The power says nothing about the possible biases in a study. For example, we
+  could have high power to reject the null hypothesis in a situation where, due
+  to bias, rejecting the null does not reflect the claimed level of evidence.
 
 - A broader definition of statistical power includes other measures of study
   success, such as achieving a smaller standard error, a narrower confidence
   interval, or more accurate predictions.
 
 - Power analysis is strongly linked to the notion of
-  [effect size](https://en.wikipedia.org/wiki/Effect_size), which is a
-  quantitation of the strength of an effect relative to all sources of
-  variation. A basic example of an effect size is _Cohen's D_, which can be
-  defined in a two-group comparison as $(E[X] - E[Y]) / s_p$, where $s_p^2$ is a
-  pooled variance such as $({\rm Var}[X] + {\rm Var}[Y])/2$. A key property of
-  an effect size is that it is independent of the sample size.
+  [effect size](https://en.wikipedia.org/wiki/Effect_size), which quantifies the
+  strength of an effect relative to all sources of variation. A basic example of
+  an effect size is _Cohen's D_, which can be defined in a two-group comparison
+  as $(E[X] - E[Y]) / s_p$, where $s_p^2$ is a pooled variance such as
+  $({\rm Var}[X] + {\rm Var}[Y])/2$.
+
+  - A key property of an effect size is that it is independent of the sample
+    size.
 
 - Power analysis can be conducted based on a stated design for data collection
   and data analysis. Typically this involves one of the following:
@@ -435,12 +455,18 @@
   of the factors that influence the power in any given setting. Often this comes
   down to assessment of the standard error for an estimator of interest.
 
-- Some of the factors that influence power are:
+- As a basic example, the standard error of the mean is $\sigma/\sqrt{n}$, where
+  $\sigma^2$ is the variance and $n$ is the sample size. Based on this
+  expression, we know that the only factors that determine the standard error
+  for mean estimation are the sample size and the variance, and that they
+  combine as a specific rational function.
+
+- Some of the factors that typically influence power are:
 
   - Larger sample sizes almost always lead to greater power. In a multi-arm
     study, there are multiple sample sizes. While greater sample sizes in any
-    group improve power, the smallest group generally has the greatest impact on
-    power.
+    group corresponds to improved power, the sample size of the smallest group
+    generally has the greatest impact on power.
 
   - Greater scatter in the data (residual variance) almost invariably decreases
     power. Often, group-wise sample size and variance are inversely related to
@@ -450,7 +476,14 @@
     by a factor of two have equal impacts on the power.
 
   - In many regression-type analyses,
-    [collinearity](https://en.wikipedia.org/wiki/Multicollinearity)...
+    [collinearity](https://en.wikipedia.org/wiki/Multicollinearity) is a major
+    determinant of power. A typical example of collinearity can arise when we
+    wish to control for confounder $Z$ while assessing the effect of a treatment
+    variable $X$. In an observational study, $X$ and $Z$ can be strongly
+    correlated. For example, suppose we wish to study the association of alcohol
+    consumption ($X$) with an outcome $Y$, adjusting for tobacco use ($Z$). In
+    many populations, alcohol and tobacco use will be correlated. This leads to
+    reduced power when controlling for the confounder.
 
 ## Experimental design
 
@@ -459,7 +492,7 @@
   their own treatments (either explicitly or implicitly).
 
 - In some experiments, treatments are assigned at random, but if units are
-  heterogenous it is usually advisable to explicitly assign the treatments in a
+  heterogeneous it is usually advisable to explicitly assign the treatments in a
   way that balances with respect to this heterogeneity.
 
 - A common setting is when the experimental units are clustered into _blocks_ of
@@ -469,11 +502,23 @@
   etc.). To address this, each plot can be divided in half, and the two halves
   are randomly assigned, one to the treatment and one to the control.
 
+- In current medical research, many factors arise that could serve as blocking
+  factors, such as batches of reagents, litters of animals, plates or batches of
+  assays, technician effects, and drifting instrument calibration.
+
 ## Surveys
 
 - A _sample survey_ is a research tool in which the goal is to quantify the
   state of a population, with a primary focus on achieving low bias for a
   defined target population.
+
+- The term "survey" usually should refer to any overall research effort that
+  aims to characterize a population unbiasedly. This could refer to a study with
+  human subjects but could also refer to surveying, say, the distribution of
+  tree species in a geographic area. In the case of surveys that involve
+  interviewing human subjects, a _questionnaire_, _survey form_, or _survey
+  instrument_ refers to the actual assessment items that are used for each
+  unit.
 
 - Unlike most trials and studies (cohort, case/control, etc.) the goal of a
   survey is not usually to assess the effect of an exposure or intervention, and
@@ -484,7 +529,7 @@
   sample is called a _probability sample_.
 
 - A special type of survey is a [census](https://en.wikipedia.org/wiki/Census),
-  which aims to measure the entire population, rather than measureing only a
+  which aims to measure the entire population, rather than measuring only a
   sample of a population.
 
   - In most cases a census is either impossible or impractical. A well-conducted
@@ -494,18 +539,20 @@
 ## Sampling
 
 - In surveys, as well as in some other contexts, it is important to carefully
-  sample units from a population in such a way that unbiased results can be
-  obtained from the sample.
+  sample units from a population in such a way that unbiased and precise results
+  can be obtained from the sample.
 
-- The most basic type of sampling is a _simple random sample_ (SRS), which is a
-  sample of size $k$ from a population of size $n$ in which any subset of size
-  $k$ is equally likely to be selected.
+- The most basic type of sampling is a
+  [simple random sample (SRS)](https://en.wikipedia.org/wiki/Simple_random_sample),
+  which is a sample of size $k$ from a population of size $n$ in which any
+  subset of size $k$ is equally likely to be selected.
 
-- An SRS can be obtained if we have a _sampling frame_ which is a complete list
-  of all units in the population. For example, if we want to sample thje
-  employees of a company or the students at a school, a sampling frame would
-  generally be available and it would be practical to obtain a simple random
-  sample from it.
+- An SRS can be obtained if we have a
+  [sampling frame](https://en.wikipedia.org/wiki/Sampling_frame) which is a
+  complete list of all units in the population. For example, if we want to
+  sample the employees of a company or the students enrolled in a school, a
+  sampling frame would generally be available and it would be practical to
+  obtain a simple random sample from it.
 
   - For larger or more intangible populations, like the total population of a
     geographic region, a sampling frame is usually not available. Even if a
@@ -514,12 +561,12 @@
 
 - A common type of survey is a _cluster sample_. In a cluster sample, the
   population is partitioned into many _primary sampling units_ (PSU), which
-  often are geographic areas. Then, a limited number of PSUs are selected at
-  random (possibly with probabilities proportional to size), and units are
-  selected from the PSUs using simple random sampling (or something that
-  approximates it). In some cases there are two or more levels, e.g. randomly
-  select cities, then randomly select schools within cities, then randomly
-  select students within schools.
+  often correspond to geographic areas. Then, a limited number of PSUs are
+  selected at random (possibly with probabilities proportional to size), and
+  units are selected from the PSUs using simple random sampling (or something
+  that approximates it). In some cases there are two or more levels, e.g.
+  randomly select cities, then randomly select schools within cities, then
+  randomly select students within schools.
 
 - In a _stratified sample_, the population is partitioned into groups, e.g.
   people are stratified by race, and separate samples are drawn for each
@@ -538,7 +585,7 @@
   between these two races (if the variances within the two races are equal -- if
   the variances are unequal we would want $n_b/\sigma_b^2 = n_w/\sigma_w^2$,
   where $n_b$ and $n_w$ are the Black and White sample sizes and $\sigma_b^2$
-  and $\sigma_w^2$ are the Black and White variances).
+  and $\sigma_w^2$ are the response variances for Black and White subjects).
 
 - If sampling weights are used to maximize power for inter-group comparisons,
   weighting at the analysis level can be used to unbiasedly estimate population
@@ -547,31 +594,36 @@
   parameters), we would weight the White respondents 3 times more than the Black
   respondents to compensate for the biased sampling.
 
-- Another role for sampling weights is to compensate for non-response. Supppose
-  that subjects were sampled in a representative manner, but males were
-  responded at 4/5 the rate of females. In this case we would weight male
-  responses by a factor of 5/4 to compensate for the lower response rate.
+- Another role for sampling weights is to compensate for non-response (a form of
+  missing data). Suppose that subjects were sampled in a representative manner,
+  but males were responded at 4/5 the rate of females. In this case we would
+  weight male responses by a factor of 5/4 to compensate for the lower response
+  rate.
 
 ## Missing data and selection bias
 
 - [Missing data](https://en.wikipedia.org/wiki/Missing_data) refers to data that
   exist but are not known to the researcher.
 
-- Truncation and censoring arise in studies in which we are concerned with the
-  times at which one or more events occur.
+- [Truncation](<https://en.wikipedia.org/wiki/Truncation_(statistics)>) and
+  [censoring](<https://en.wikipedia.org/wiki/Censoring_(statistics)>) arise in
+  studies in which we are concerned with the times at which one or more events
+  occur.
 
-  - Truncation refers to a form of selection bias in which an observation cannot
+  - We will focus on one type of truncation called _left truncation_ here. Left
+    truncation refers to a form of selection bias in which an observation cannot
     be made unless the event of interest occurs after a _truncation time_. For
     example, if we are considering death due to a specific disease, using
-    records from a particulare health care system, we can never observe people
+    records from a particular health care system, we can never observe people
     who died of the disease without enrolling in the health care system. The age
     at which a person enrolls in the system is thus a (left) truncation time.
 
-  - Right censoring refers to a form of partially observed data in which we know
-    that an event of interest did not occur before a specific time, but we do
-    not know when the event occured (if ever). Right censoring is very common in
-    health studies where some units in the sample have not yet had an event at a
-    particular time, e.g. the time when the data were obtained for analysis.
+  - Right censoring refers to a form of _partially observed data_ in which we
+    know that an event of interest did not occur before a specific time, but we
+    do not know when the event occurred (if ever). Right censoring is very common
+    in health studies where some units in the sample have not yet had an event
+    at a particular time, e.g. the time when the data were obtained for
+    analysis.
 
   - Left censoring is less common than right censoring, but it can occur, for
     example, if a measurement falls below a "limit of detection" (e.g. the
@@ -584,43 +636,44 @@
     data (both observed and unobserved). $X[I]$ is therefore the observed data
     and $X[I^c]$ is the unobserved data.
 
-  - Missing completely at random (MCAR) means that $I$ is indepenednt of $X$.
+  - _Missing completely at random (MCAR)_ means that $I$ is independent of $X$.
 
-  - Missing at random (MAR) means that $I$ is independent of $X[I^c]$ given
+  - _Missing at random (MAR)_ means that $I$ is independent of $X[I^c]$ given
     $X[I]$.
 
-  - Missing not at random (MNAR) refers to all cases that are not MAR.
+  - _Missing not at random (MNAR)_ refers to all situations that are not MAR.
 
-- Approaches to handling missing data.
+- Approaches to handling missing data
 
   - _Complete case analysis_, or
     [listwise deletion](https://en.wikipedia.org/wiki/Listwise_deletion) is a
-    method for handling missing data any dropping all observations that have
+    method for handling missing data by dropping all observations that have any
     missing data. Complete case analysis will yield biased results unless the
-    data are MCAR. Complete case analysis also sacrifices precion and
+    data are MCAR. Complete case analysis also sacrifices precision and
     efficiency.
 
   - _Single imputation_ is any procedure that replaces each missing value with a
-    prediction of it. The analysis then proceeds as if the imputed data were
-    actually observed data. Single imnputation can yield biased point estimates
-    and nearly always leads to understatement of the uncertatinty.
+    prediction of it based on available data. The analysis then proceeds as if
+    the imputed data were actually observed data. Single imputation can yield
+    biased point estimates and nearly always leads to understatement of the
+    uncertainty.
 
   - [Multiple imputation](https://en.wikipedia.org/wiki/Multiple_imputation) is
     a framework in which multiple datasets are created, each one of which has
-    the missing data imputed randomply from a distribution that correctly
+    the missing data imputed randomly from a distribution that correctly
     reflects its conditional mean and variance, i.e. from
     $P(X_{\rm miss} | X_{\rm obs})$. The analysis is them conducted
     independently on each imputed data set, and the point estimates and sampling
     variances for each imputed data set are pooled to a single point estimate
     and single sampling variance using a _combining rule_.
 
-  - _Full information maximum likelihood_ is an approach in which a likelihood
-    for the "complete data" is marginalized to a likelihood for the observed
-    data. This _observed data likelihood_ is then used for maximum-likelihood
-    estimation (or some other likelihood-based estimation procedure). This
-    _FIML_ approach can be statistically and computationally efficient, and
-    gives unbiased point estimates and uncertainty assessments under MCAR and
-    MAR.
+  - _Full information maximum likelihood (FIML)_ is an approach in which a
+    likelihood for the "complete data" is marginalized to a likelihood for the
+    observed data. This _observed data likelihood_ is then used for
+    maximum-likelihood estimation (or some other likelihood-based estimation
+    procedure). This _FIML_ approach can be statistically and computationally
+    efficient, and gives unbiased point estimates and uncertainty assessments
+    under MCAR and MAR.
 
   - MNAR (missing not at random) is usually the most difficult situation, and
     generally requires some "side information" about the structure of any
@@ -628,8 +681,6 @@
 
   - There are many other ways to handle missing data including many Bayesian
     approaches.
-
-- Collider stratification bias
 
 ## Methods for observational data
 
@@ -671,8 +722,9 @@
   and follow-up measurements for subjects in the treated arm. Let
   $d^c_i = b^c_i - a^c_i$ and $d^t_i = b^t_i - a^t_i$ denote the within-subject
   differences for the $i^{\rm th}$ treated and $i^{\rm th}$ control subjects,
-  respectively. We can compare these two differences, yielding a "difference in
-  difference" or "diff in diff" analysis.
+  respectively (these are different people). We can compare the two average
+  differences, $\bar{d}^c - \bar{d}^t$, yielding a "difference in difference" or
+  "diff in diff" analysis.
 
 - In a diff in diff analysis, the "inner differences" $b^c_i - a^c_i$ and
   $b^t_i - a^t_i$ account for any _stable confounders_ that vary little within
@@ -699,14 +751,16 @@
   moderate. The loss of power is less if there are fewer strata and the sample
   size per stratum is larger.
 
-- If confounding is present, the effect may be _attenuated_ (shifted toward the
-  null value) when comparing the estimate obtained using stratification to the
-  naive estimate. In some cases the effect may be statistically significant in
-  the non-stratified analysis but loose significance in the stratified analysis.
-  The opposite can happen as well (the evidence against the null becomes
-  stronger following stratification). It is even possible that the effect can
-  change sign (e.g. a statistically significant positive association can become
-  statistically significant and negative after stratification).
+- If confounding is present, the specific bias can take different forms. A
+  common situation is that the treatment effect estimate is _attenuated_
+  (shifted toward the null value) when comparing the estimate obtained using
+  stratification to the naive estimate. In some cases the effect may be
+  statistically significant in the non-stratified analysis but lose significance
+  in the stratified analysis. The opposite can happen as well - the evidence
+  against the null becomes stronger following stratification. It is even
+  possible that the effect can change sign (e.g. a statistically significant
+  positive association can become statistically significant and negative after
+  stratification).
 
 ### Regression adjustment
 
@@ -730,13 +784,12 @@
   confounding. It involves strong structural assumptions about the relationships
   among $X$, $Z$, and $Y$.
 
-- With sufficient data, some generalizations and alternatives to linear
-  regression can be used to make it more broadly effective at identifying
-  treatment effects. These methods resemble linear regression at a high level
-  but introduce specific modifications to address known weaknesses of the
-  method.
+- With sufficient data, some alternatives to linear regression can be used to be
+  more broadly effective at identifying treatment effects. These methods
+  resemble linear regression at a high level but introduce specific
+  modifications to address known weaknesses of the method.
 
-  - More flexible regression models can be fit using linear least squares, for
+  - Flexible regression models can be fit using linear least squares, for
     example using basis functions and interactions.
 
   - Methods that account for _mean/variance relationships_ and non-linear link
@@ -744,7 +797,8 @@
     [Generalized Linear Models (GLMs)](https://en.wikipedia.org/wiki/Generalized_linear_model)
     are an important class of such methods.
 
-  - Methods that focus on alternative estimation targets such as
+  - Methods that focus on alternative estimation targets (other than the
+    conditional mean) such as
     [quantile regression](https://en.wikipedia.org/wiki/Quantile_regression) may
     have better power and/or perform well under weaker assumptions.
 
@@ -757,19 +811,19 @@
 ### Natural experiments
 
 - [Natural experiments](https://en.wikipedia.org/wiki/Natural_experiment) are
-  observational studies that exploit natural circumstances that resemble the
-  conditions of an experiment. They are sometimes referred to as
-  _quasi-experimental_ studies.
+  observational studies that exploit incidental circumstances that resemble the
+  conditions of an experiment (i.e. that resemble random assignment). They are
+  sometimes referred to as _quasi-experimental_ studies.
 
 - Many natural experiments arise due to the staggered timing of events leading
   to different units being exposed at different times. Numerous studies
   examining the impact of media exposure (television, internet, etc.) have been
   conducted that attempt to exploit the staggered construction of networks. For
   example, when cable television was being introduced to the US during the
-  1980s, some counties reeived access to cable TV before others. One may argue
+  1980s, some counties gained access to cable TV before others. One may argue
   that this is a natural experiment since the factors that led to earlier
   introduction of cable services may be primarily driven by logistical factors
-  and that the people who gained access to cable TV in, say, 1984 may not be
+  so that the people who gained access to cable TV in, say, 1984 may not be
   systematically different from those who gained access to cable TV in 1985.
   However this can be contested since geographic factors and the degree of
   urbanicity may influence choices about network investments and there certainly
@@ -782,27 +836,27 @@
   - Suppose that a blood pressure medication is recommended to anyone whose
     systolic blood pressure (SBP) falls over a threshold, say 130 mm Hg. We have
     access to a follow-up SBP measurement taken one year after the treatments
-    are assigned. We cannot compare the SBP values for all treated people to all
-    untreated people, since these two groups were highly unbalanced for baseline
-    SBP (the treated people have systematically higher SBP at baseline).
-    However, we can consider only the subset of people with, say, baseline SBP
-    equal to 129 compared to the subset with baseline SBP equal to 130. Given
-    the inherent measurement error in a single SBP reading, we might argue that
-    for people with baseline SBP between 129 and 130, the treatment assignment
-    is effectively random.
+    are assigned. We should not compare the SBP values for all treated people to
+    all untreated people, since these two groups were highly unbalanced for
+    baseline SBP (the treated people have systematically higher SBP at
+    baseline). However, we can consider only the subset of people with, say,
+    baseline SBP equal to 129 compared to the subset with baseline SBP equal to
+    130\. Given the inherent measurement error in a single SBP reading, we might
+    argue that for people with baseline SBP between 129 and 130, the treatment
+    assignment is effectively random.
 
 ### Matching
 
 - Matching is a strategy that aims to estimate treatment effects (unbiasedly and
   consistently) while accounting for observed confounders.
 
-- Matching aims to have very weak assumptions to yield meaningful results. The
-  tradeoff for achieving this is usually that the statistical power is less for
-  matching compared to, say, regression adjustment.
+- Matching aims to yield meaningful results under weak assumptions. The tradeoff
+  for achieving this robustness is usually that the statistical power is less
+  for matching compared to, say, regression adjustment.
 
 - A simple matching analysis is one in which we have an outcome $y_i$ on units
   indexed by $i=1,2,\ldots,n$, and for each unit we have an exposure indicator
-  $x_i \in \\{0, 1\\}$, and covariates $z_i$. The goal of 1-1 matching is to
+  $x_i \in \\{0, 1\\}$, and covariates $z_i$. The goal of 1:1 matching is to
   identify a set of pairs $1 \le j_{1i}, j_{2i} \le n$ such that subject
   $j_{1i}$ is exposed, i.e. $x_{j_{1i}}=1$, subject $j_{2i}$ is not exposed,
   i.e. $x_{j_{2i}}=0$, and subjects $j_{1i}$ and $j_{2i}$ are similar in terms
@@ -811,9 +865,9 @@
 - As a consequence of the matching, the matched treated subjects should be
   approximately balanced with respect to the matched untreated subjects, i.e.
   for each covariate $\ell$,
-  $\bar{z_{j_{1\cdot},\ell} \approx \bar{z_{j_{2\cdot},\ell}$.
+  $\bar{z_{j_{1\cdot},\ell} \approx \bar{z_{j_{2\cdot},\ell}}$.
 
-- Mathing requires the treated and untreated subjects to have a _common support_
+- Matching requires the treated and untreated subjects to have a _common support_
   in the domain of the covariates. For example, consider age as a balancing
   covariate in a study using matching, with 50 exposed units and 50 unexposed
   units. If the treated units are much older than the untreated units, and only
@@ -821,19 +875,19 @@
   is very little common support and matching is unlikely to be effective.
 
 - In a matching analysis, some of the controls may be unused, and some of the
-  controls may be used in multiple matched sets. This can lead to readuced
-  power, but is unavoidable if the distributions of certain covariates have only
-  a mininal common support.
+  controls may be used in multiple matched sets. This can lead to reduced power,
+  but is unavoidable if the distributions of certain covariates have only a
+  minimal common support.
 
 - The term _caliper_ is used to refer to constraints on how the matching is
-  done. For example, we have impose a caiper that requires a matched treated and
+  done. For example, we may impose a caliper that requires a matched treated and
   control subject to have ages that differ by no more than 5 years.
 
 ### Propensity scores
 
 - Suppose we have a situation where treatments are assigned non-randomly. Let
   $t_i \in \\{0, 1\\}$ denote the treatment arm for subject $i$, let $y_i$
-  denote the ouctome for subject $i$, and let $x_i$ denote covariates for
+  denote the outcome for subject $i$, and let $x_i$ denote covariates for
   subject $i$. For simplicity, we take here the treatment to have two levels,
   but this can easily be generalized.
 
@@ -851,7 +905,7 @@
     $t_{j_k} = 0$. These are two units that had the same propensity to be
     treated, but only one of them was actually treated.
 
-  - Stratified analyses can be conducted in which we partition the samples into,
+  - Stratified analyses can be conducted in which we partition the sample into,
     say, 5 strata based on the propensity scores, estimate treatment effects
     within each stratum, and then pool the results to yield an overall estimate.
 
@@ -867,23 +921,25 @@
   "counterfactual" value that the unit would have had had it not been treated.
 
 - Let $x^*$ denote the $p$-dimensional vector of covariates associated with a
-  treated unit and let $X$ denote the $m\times p$ vector of covariate values for
-  all units observed to be untreated (in many cases only untreated units with
+  treated unit and let $X$ denote the $m\times p$ matrix of covariate values for
+  all units assigned to the control arm (in many cases only untreated units with
   covariates "sufficiently similar" to $x^*$ are included). The goal is to
   construct a vector $w$ such that $x^* \approx X^\prime w$, under the
   constraint that $w^\prime 1_m = 1$ and $0 \le w_j \le 1$ for $j=1, \ldots, m$.
-  That is, we approximate $x^*$ with a convex combination of the untreated
-  units.
+  That is, we approximate $x^*$ with a
+  [convex combination](https://en.wikipedia.org/wiki/Convex_combination) of the
+  untreated units.
 
-- The construction of the weights $w$ is a quadratic program with linear
-  constraints and can be handled with standard solvers.
+- The construction of the weights $w$ is a
+  [quadratic program](https://en.wikipedia.org/wiki/Quadratic_programming) with
+  linear constraints and can be handled with standard solvers.
 
 - Once the weight vector $w$ is constructed, we estimate the counterfactual
   control value $y^*$ using $w^\prime y$, where $y$ is the $m\times 1$ vector
-  containing the response values for the controles in $X$.
+  containing the response values for the controls in $X$.
 
-- Synthetic controls are related to a technique in which linear regression is
-  used to estimate the counterfactual control value corresponding to each
-  treated unit. However when using linear regression, the weights $w^*$ can be
-  negative, and therefore the synthetic control may not lie within the domain of
-  the data (i.e. it may be an extrapolation).
+- Synthetic controls are related to a technique in which (local) linear
+  regression is used to estimate the counterfactual control value corresponding
+  to each treated unit. However when using linear regression, the weights $w^*$
+  can be negative, and therefore the synthetic control may not lie within the
+  domain of the data (i.e. it may be an extrapolation).
