@@ -1,20 +1,19 @@
 # Rigorous statistical design
 
 - What is the goal of conducting
-  [research](https://en.wikipedia.org/wiki/Research)?
+  [research](https://en.wikipedia.org/wiki/Research) using the
+  [scientific method](https://en.wikipedia.org/wiki/Scientific_method)?
 
   - To gain insight into the the mechanisms underlying the natural world.
 
   - To describe and characterize the state of the natural world.
 
-  - To produce new scientific knowledge.
+  - To produce new scientific
+    [knowledge](https://en.wikipedia.org/wiki/Knowledge).
 
   - To test theories about mechanisms that explain the natural world.
 
   - To produce new concepts, methods, and theories.
-
-- Everything else we discuss in this workshop is subservient to the goals stated
-  above.
 
 - How (at a very high level) should we go about the process of conducting
   research?
@@ -26,14 +25,14 @@
 
   - For those interested, here is a readable account of the work of the very
     influential philosopher of science
-    [Karl Popper](https://iep.utm.edu/pop-sci/#:~:text=Popper's%20deductive%20account%20of%20theory,are%20likely%20to%20be%20true).
+    [Karl Popper](https://iep.utm.edu/pop-sci).
 
 - At a very high level, most research is either
   [inductive](https://en.wikipedia.org/wiki/Inductive_reasoning) or
   [deductive](https://en.wikipedia.org/wiki/Deductive_reasoning). Inductive
   research is data-driven and empirical, that is our focus here. Deductive
-  research emphasizes starting with "first principles", and seeing what can be
-  derived logically from them.
+  research starts with "first principles", and derives new findings logically
+  from them.
 
   - Many researchers combine data-driven and first principles approaches in
     their work.
@@ -46,27 +45,37 @@
     [hypotheses](https://en.wikipedia.org/wiki/Hypothesis), and documenting how
     the data will be collected, analyzed, and interpreted.
 
-  - Data collection refers to everything involved with making and recording
-    measurements.
+  - Data collection refers to the process of making and recording measurements.
 
   - Data analysis refers to the executation of a data analysis plan, which
-    includes carrying out the analysis, interpreting the results in relation to
-    the (ideally) pre-specified hypotheses, and formally assessing the
-    uncertainty in all findings.
+    includes carrying out the analysis, interpreting the results, and formally
+    assessing the [uncertainty](https://en.wikipedia.org/wiki/Uncertainty) of
+    all findings.
+
+- Our focus here is on learning about entities that exist with some form of
+  replication. For example, if we are interested in a certain type of human
+  being, there are generally many "replicates" of such a person that we can
+  potentially study. In this case, a human is the
+  [unit](https://en.wikipedia.org/wiki/Unit_of_analysis) (or _unit of
+  analysis_). The set of all humans of interest is the
+  [population](https://en.wikipedia.org/wiki/Statistical_population) and the
+  specific humans that we observe and (potentially) manipulate is the
+  [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>)).
 
 - There are many different types of research "studies". We are not aiming here
   to produce a typology for all possible situations. Here are some of the major
   features that differentiate designs of research studies.
 
-  - In an _interventional study_, the units are manipulated by the researcher.
-    This is also sometimes called an
-    [experiment](https://en.wikipedia.org/wiki/Experiment).
+  - In an _interventional study_, the units are manipulated by the researcher,
+    treatment assignments are
+    [exogenous](https://en.wikipedia.org/wiki/Exogeny). This is also sometimes
+    called an [experiment](https://en.wikipedia.org/wiki/Experiment).
 
   - In an
     [observational study](https://en.wikipedia.org/wiki/Observational_study),
     the experimental units are not manipulated by the researcher. Any
     differences that form the basis for comparison arise naturalistically and
-    are subject to confounding.
+    are subject to [confouinding](https://en.wikipedia.org/wiki/Confounding).
 
   - A _controlled_ study involves a comparison to a group (arm) that is
     untreated, or that is treated with a conventional well-understood treatment
@@ -87,10 +96,10 @@
 
   - In a [cohort study](https://en.wikipedia.org/wiki/Cohort_study), a group of
     units are followed over time. The units are initially either similar, or
-    differ primarily with respect to a specific factor of interest. Exposures
-    happpen naturalistically and we can assess at the end of the study which
-    exposures occurred and what outcomes followed the occurence of these
-    exposures.
+    differ primarily with respect to a specific factor of interest (but they are
+    not selected based on this factor). Exposures happpen naturalistically and
+    we can assess at the end of the study which exposures occurred and what
+    outcomes followed the occurence of these exposures.
 
     - A
       [prospective cohort study](https://en.wikipedia.org/wiki/Prospective_cohort_study)
@@ -130,36 +139,45 @@
   the subjects (invasive diagnostic tests).
 
 - Some measurements require human subjects to report behaviors, for example food
-  intake, sleep, or substance use. These are burdensome and notoriously
-  inaccurate. They are subject to
+  intake, sleep, or substance use. These are burdensome and often biased and
+  imprecise. They are subject to
   [recall bias](https://en.wikipedia.org/wiki/Recall_bias) and
   [social desirability bias](https://en.wikipedia.org/wiki/Social-desirability_bias),
   among other issues.
 
 - Technology is rapidly tranforming the landscape for measurements of human
-  behaviors (wearables for activity and sleep, real time monitors for e.g. blood
-  glucose, bio-assays e.g. for nicotine use).
+  behaviors ([wearables](https://en.wikipedia.org/wiki/Wearable_technology) for
+  activity and sleep, real time monitors for blood glucose, bio-assays for
+  nicotine use).
 
 - Some quantities are difficult to measure because they are abstract and there
-  is debate about exactly what the quantity means. The term "construct" is used
-  in many cases to refer to things like social attitudes, or skills (language or
-  math skills) that cannot be simply and directly measured.
+  is debate about exactly what the quantity means. The term
+  [construct](<https://en.wikipedia.org/wiki/Construct_(psychology)>) is used in
+  many cases to refer to things like social attitudes, or skills (e.g. language
+  or math skills) that cannot be simply and directly measured.
+
+  - A _scale_ is a quantitative value that captures the state of a construct in
+    a single unit. It is usually formed by aggregating several _items_ that can
+    be measured directly.
 
   - There is a branch of
-    [psychometric theory](https://en.wikipedia.org/wiki/Psychometrics) that
-    deals with methods for forming constructs out of item-level (scalar)
-    variables.
+    [psychometrics](https://en.wikipedia.org/wiki/Psychometrics) that deals with
+    methods for forming scales out of item-level (scalar) variables.
 
   - Statistical methods such as
     [factor analysis](https://en.wikipedia.org/wiki/Factor_analysis) can be used
-    to produce _scales_ from a collection of items, e.g. depression, overall
-    physical health, hopefullness.
+    to produce scales from a collection of items, and assess to
+    _dimensionality_, i.e. whether there exists only one versus multiple
+    independent constructs underlying a collection of measured items. Scales
+    have been developed for numerous traits such as depression, overall physical
+    health, hopefullness, and political ideology.
 
   - The [Delphi method](https://en.wikipedia.org/wiki/Delphi_method) is used to
     objectively produce items that can be used to construct novel scales.
 
-- Most values that are measured are measured with some level of error.
-  Measurement errors can be classified into two broad types.
+- Most values that are measured are measured with some level of
+  [error](https://en.wikipedia.org/wiki/Observational_error). Measurement errors
+  can be classified into two broad types.
 
   - _Systematic errors_ reflect bias in the data. These are errors that occur
     persistently in one direction upon repeated sampling. For example, in the
@@ -179,7 +197,7 @@
     [Berkson errors](https://en.wikipedia.org/wiki/Berkson_error_model).
 
     - Classical errors arise due to additive random measurement error that is
-      independent of the true value. Classical errors arise from the model
+      independent of the true value. Classical errors arise from the error model
       $X_{\rm obs} = X_{\rm true} + \eta$, where $E[\eta | X_{\rm true}] = 0$,
       with $\eta$ being the random measurement error.
 
@@ -200,14 +218,16 @@
   manipulations.
 
 - If $X$ is an exposure and $Y$ is an outcome, there is an _association_ between
-  $X$ and $Y$ if $X$ and $Y$ are not statistically independent. A _causal_
-  association is one in which manipulation of $X$ would lead to a change in $Y$
-  (on average or in some statistical sense). One of the fundamental tenets of
-  empirical research is that
+  $X$ and $Y$ if $X$ and $Y$ are not statistically
+  [independent](<https://en.wikipedia.org/wiki/Independence_(probability_theory)>)).
+  A [causal](https://en.wikipedia.org/wiki/Causality) association is one in
+  which manipulation of $X$ would lead to a change in $Y$ (on average or in some
+  statistical sense). One of the fundamental tenets of empirical research is
+  that
   [correlation is not causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation).
 
-- A [spurious](https://en.wikipedia.org/wiki/Spurious_relationship) is a
-  non-causal associations. Below are some examples of (presumably) spurious
+- A [spurious relationship](https://en.wikipedia.org/wiki/Spurious_relationship)
+  is a non-causal associations. Below are some examples of (presumably) spurious
   relationships.
 
   - More ice cream is consumed on days in which the number of drowning deaths is
@@ -239,16 +259,24 @@
   - A confounder can be either known or unknown, and can be either measured or
     unmeasured.
 
-  - Unfortunately there is no automatic process for identifying confounders.
+  - Unfortunately there is no automatic process for identifying confounders, and
+    there is rarely any way to know whether all confounders of a given
+    relationship have been identified.
 
-  - Randomization is the best way to limit or eliminate the risk of confounding.
-    If the treatment is assigned at random, it is impossible for it to be
-    causally influenced by any factor (regardless of whether the factor is known
-    or unknown, measured or unmeasured).
+  - At a high level, when designing a study, one or more of the following
+    strategies are usually employed to mitigate the risks of condfounding. They
+    are listed in decreasing order of rigor:
 
-  - If randomization is impossible, the next best approach is to achieve
-    _balance_ of all measured confounders between the exposure (or treatment)
-    arms.
+    - Randomization is usually the best way to limit or eliminate the risk of
+      confounding. If the treatment is assigned at random, it is impossible for
+      it to be causally influenced by any factor (regardless of whether the
+      factor is known or unknown, measured or unmeasured).
+
+    - If randomization is impossible, the next best approach is usually to
+      achieve _balance_ of all measured confounders between the arms.
+
+    - If we cannot achieve balance then various statistical adjustments are made
+      in a _post-hoc_ manner.
 
 ## Randomization
 
@@ -259,11 +287,12 @@
   the units.
 
 - _Balance_ refers to the extent to which covariates have equal distributions
-  across treatment arms. Confounding will generally lead to a lack of balance,
-  but even if there is no confounding, there can be a lack of balance,
-  especially when the sample size is small. The is because randomization (which
-  guarantees no confounding) produces balance on average, but in any given study
-  randomization will usually not produce perfect balance.
+  across treatment arms within the study data (the sample). Confounding will
+  generally lead to a lack of balance, but even if there is no confounding,
+  there can be a lack of balance, especially when the sample size is small. The
+  is because randomization (which guarantees no confounding) produces balance on
+  average, but in any given study randomization will usually not produce perfect
+  balance.
 
 - Bias can result from lack of balance due to chance, even in the absence of
   counfounding.
@@ -274,7 +303,7 @@
 
 - The most basic type of randomization is simple randomization, where each unit
   is independently assigned to a treatment group, either with uniform
-  probabilities (equal porobability of assignment to each arm) or with
+  probabilities (equal probability of assignment to each arm) or with
   probabilities that are pre-determined to achieve desired relative group sizes
   (e.g. assigning to treatment with twice the probability of assigning to
   control).
@@ -283,20 +312,34 @@
   the benefits of randomization, while also producing balance with respect to
   observed confounders. Some of these approaches are:
 
-  - [Stratified randomization](https://en.wikipedia.org/wiki/Stratified_randomization)
+  - In
+    [stratified randomization](https://en.wikipedia.org/wiki/Stratified_randomization)
+    the units are partitioned into more homogeneous groups. For example, in a
+    study of a treatment for kidney disease we may partition the population into
+    people with and without hypertension. Say we plan to recruit 60 people with
+    hypertension and 30 people without hypertension. In 1:1 stratified
+    randomization we woould assign exactly 30 of the people with hypertension to
+    the treatment arm, and exactly 15 of the people without hypertension to the
+    treatment arm.
 
-  - Minimization
+  - Minimization is a class of methods that addresses the practical issue that
+    in many research studies, subjects are recruited over time, and we do not
+    have a listing of the subjects and their measured confounders at the outset
+    of the study. For this reason, we cannot use stratified randomization.
+    Minimization uses a "biased coin" to allocate units to arms in a way that
+    corrects for biases that arise during the recuitment process of a study.
 
 - A concern in studies where units are recruited sequentially is bias on the
-  part of the research team in deciding how to interpret eligibility criteria.
-  If the research team knows that the next subject to be recruited will be
-  assigned the treatment, and the next subject appears to be someone who is less
-  likely to do well on the treatment, the research team may elect to interpret
-  the eligibility requirements strictly so that this subject is not recruited
-  into the study. Conversely, if it is knownm that the next subject to be
-  assigned will be in the control arm, there may be a bias to include subjects
-  who are sicker or less likely to benefit for some reason. Maintaining some
-  degree of randomness in the assignments helps to mitigate this issue.
+  part of the research team in any subjective decisions that could influence
+  recruitment or treatment assignment based on subject characteristics. If the
+  research team knows that the next subject to be recruited will be assigned the
+  treatment, and the next subject appears to be someone who is less likely to do
+  well on the treatment, the research team may elect to interpret the
+  eligibility requirements strictly so that this subject is not recruited into
+  the study. Conversely, if it is knownm that the next subject to be assigned
+  will be in the control arm, there may be a bias to include subjects who are
+  sicker or less likely to benefit for some reason. Maintaining some degree of
+  randomness in the assignments helps to mitigate this issue.
 
 ## Foundations of statistical inference
 
@@ -839,8 +882,8 @@
   control value $y^*$ using $w^\prime y$, where $y$ is the $m\times 1$ vector
   containing the response values for the controles in $X$.
 
-- Synthetic controls are related to a technique in which linear regression
-  is used to estimate the counterfactual control value corresponding to
-  each treated unit.  However when using linear regression, the weights
-  $w^*$ can be negative, and therefore the synthetic control may not lie
-  within the domain of the data (i.e. it may be an extrapolation).
+- Synthetic controls are related to a technique in which linear regression is
+  used to estimate the counterfactual control value corresponding to each
+  treated unit. However when using linear regression, the weights $w^*$ can be
+  negative, and therefore the synthetic control may not lie within the domain of
+  the data (i.e. it may be an extrapolation).
