@@ -870,10 +870,7 @@
   of the covariates, i.e. $z_{j_{1i}}\approx z_{j_{2i}}$.
 
 - As a consequence of the matching, the matched treated subjects should be
-  approximately balanced with respect to the matched untreated subjects, i.e.
-  for each covariate $\ell$,
-  $\bar{z}_{j_{1\cdot},\ell}$
-  $\bar{z_{j_{1\cdot},\ell} \approx \bar{z_{j_{2\cdot},\ell}}$.
+  approximately balanced with respect to the matched untreated subjects.
 
 - Matching requires the treated and untreated subjects to have a _common support_
   in the domain of the covariates. For example, consider age as a balancing
