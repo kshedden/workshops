@@ -62,6 +62,13 @@
   specific humans that we observe and (potentially) manipulate is the
   [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>)).
 
+- In some areas of research, replication is challenging or impossible.  For
+  example, in research on the Earth's climate history, "treatments" such as
+  changes to greenhouse gas emissions are essentially historical "one-offs".
+  In public policy, singular events like changes to federal laws are similarly
+  non-replicable.  At best we can look for "pseudo-replicates" when somewhat
+  similar events happened at another historical moment.
+
 - There are many different types of research "studies". We are not aiming here
   to produce a typology for all possible situations. Here are some of the major
   features that differentiate designs of research studies.

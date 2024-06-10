@@ -3,34 +3,35 @@
 ## Overview of research synthesis
 
 - [Research synthesis](https://en.wikipedia.org/wiki/Research_synthesis) is a
-  form of research that combines results from multiple previously completed
-  research studies.
+  form of [research](https://en.wikipedia.org/wiki/Research) that combines
+  results from multiple previously completed research studies.
 
 - [Meta analysis](https://en.wikipedia.org/wiki/Meta-analysis) is a specific
   type of research synthesis in which the aim is to quantify a specific
-  parameter of interest, using results from multiple sources reflecting
-  well-conducted
-  [quantitative](https://en.wikipedia.org/wiki/Quantitative_research) research
-  studies.
+  parameter or test a specific hypothesis of interest, using results from
+  multiple [quantitative](https://en.wikipedia.org/wiki/Quantitative_research)
+  sources.
 
 - Pooling research results almost always leads to more
-  [precise](<https://en.wikipedia.org/wiki/Precision_(statistics)>) estimates.
-  In some cases, [bias](https://en.wikipedia.org/wiki/Bias_of_an_estimator) is
-  reduced by meta analysis but this is not always the case.
+  [precise](<https://en.wikipedia.org/wiki/Precision_(statistics)>) estimation,
+  and to a better understanding of effect
+  [moderators](<https://en.wikipedia.org/wiki/Moderation_(statistics)>). In some
+  cases, [bias](https://en.wikipedia.org/wiki/Bias_of_an_estimator) is reduced
+  by meta analysis but this is not always the case.
 
 - A [systematic review](https://en.wikipedia.org/wiki/Systematic_review) is
-  another type of research synthesis that we will not discuss further here. It
-  integrates [qualitative](https://en.wikipedia.org/wiki/Qualitative_research)
-  research studies while our focus here is on integration of quantitative
-  research findings. Further, meta-analyses are usually focused on a specific
-  quantitative aim (estimation or hypothesis testing), whereas systematic
-  reviews are often more open-ended.
+  another type of research synthesis that is not our focus here. It integrates
+  [qualitative](https://en.wikipedia.org/wiki/Qualitative_research) research
+  studies while our emphasis here is on integration of quantitative research
+  findings. Further, meta-analyses are usually focused on a specific
+  quantitative aim (estimation of a specific parameter or testing a specific
+  hypothesis), whereas systematic reviews are often more open-ended.
 
 - Research synthesis can be used to consolidate and unify findings that are
   mostly consistent with each other, but can also reveal novel insights and
   suggest alternative theories.
 
-## Pooling estimates asnd standard errors
+## Pooling estimates and standard errors
 
 - Suppose we have estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, say of the
   association between an exposure and an outcome, obtained from two independent
@@ -38,28 +39,24 @@
   [standard errors](https://en.wikipedia.org/wiki/Standard_error) are $s_1$ and
   $s_2$.
 
-- We will _pool_ the estimates, first by simple averaging to obtain
-  $\hat{\theta}_p \equiv (\hat{\theta}_1 + \hat{\theta}_2)/2$.
+- We will _pool_ the estimates using unweighted or weighted averaging.
 
-- A fundamental fact that underlies a lot of meta analysis is that the standard
-  error of $\hat{\theta}_p$ is $\sqrt{(s_1^2 + s_2^2)/2}/\sqrt{2}$.
+- If the standard errors are equal, i.e. $s_1=s_2$, then the pooled estimate can
+  be the simple average of the estimates,
+  $\hat{\theta}_a = (\hat{\theta}_1 + \hat{\theta}_2)/2$.
 
-  - The logic behind this fact is that variances add, so
-    ${\rm Var}(\hat{\theta}_1 + \hat{\theta}_2) = s_1^2 + s_2^2$. Further, the
-    variance of the mean is half of the average variance, and the standard
-    deviation of the mean is $1/\sqrt{2}$ times the average variance.
+- The standard error of this simple pooled estimate is
+  $\sqrt{(s_1^2 + s_2^2)/2}/\sqrt{2}$.
 
-  - We can generalize this result to allow weights. Let $w_1$ and $w_2$ denote
-    weights and define
-    $\hat{theta}_p = (w_1\hat{\theta}_1 + w_2\hat{\theta}_2) / (w_1 + w_2)$.
-    Then the standard error of $\hat{\theta}_p$ is
+- If the standard errors differ, then the optimal pooled estimator is
+  [weighted](https://en.wikipedia.org/wiki/Inverse-variance_weighting) by the
+  inverse variances:
+  $\hat{\theta}_w = (\hat{\theta}_1/s_1^2 + \hat{\theta}_2/s_2^2) / (1/s_1^2 + 1/s_2^2)$.
 
-$$\sqrt{w_1^2s_1^2 + w_2^2s_2^2}/(w_1 + w_2)$ = \sqrt{(w_1^2s_1^2 + w_2^2s_2^2) /  (w_1^2 + w_2^2)} \cdot \sqrt{(w_1^2 + w_2^2)/(w_1 + w_2)^2}.$$
+- The standard error of the inverse variance weighted average is
+  $1 / (1/s_1^2 + 1/s_2^2)^{1/2}$.
 
-- The factor $\sqrt{(w_1^2 + w_2^2)/(w_1 + w_2)^2}$ is a measure of the gain in
-  precision from pooling. Note that if the weights are equal, $w_1 = w_2 = 1$,
-  then this factor is equal to $1/\sqrt{2}$ as in the special case of simple
-  averaging.
+- The above pooling rules can be extended to three or more estimates.
 
 ## Data integration
 
@@ -67,26 +64,69 @@ $$\sqrt{w_1^2s_1^2 + w_2^2s_2^2}/(w_1 + w_2)$ = \sqrt{(w_1^2s_1^2 + w_2^2s_2^2) 
   individual studies (usually extracted from publications). What if we have
   access to some or all of the raw data from the individual studies?
 
--
+- We can pool the data and re-analyze it as a single data set, but it is
+  important to be aware of heterogeneity (systematic differences) among the
+  studies.
+
+- Pooling data from multiple studies raises similar issues as a single study in
+  which the data are drawn from heterogeneous clusters (e.g. a multi-center
+  research trial).
+
+- There are many ways to account for study heterogeneity in an integrated
+  analysis. Here are a few popular approaches:
+
+  - A regression analysis can employ
+    [fixed effects](https://en.wikipedia.org/wiki/Fixed_effects_model) for the
+    different studies being pooled.
+
+  - A multilevel regression analysis can employ random effects for the different
+    studies being pooled. Random effects require somewhat stronger assumptions
+    to be effective (compared to fixed effects), but typically provides better
+    statistical power.
+
+  - There are many forms of _stratified analysis_. These approaches essentially
+    conduct independent analyses in each study and pool the results.
+
+  - The generic stratified analysis pools parameter estimates and standard
+    errors as discussed above.
+
+  - In some settings, special-purpose stratified analysis methods have been
+    devised, one of these is the
+    [Mantel-Haenszel test](https://en.wikipedia.org/wiki/Cochran-Mantel-Haenszel_statistics)
+    for integrating contingency tables. This approach essentially pools the
+    [odds ratios](https://en.wikipedia.org/wiki/Odds_ratio) from multiple
+    studies.
 
 ## Study selection
 
-- "Garbage in garbage out"
+- [Garbage in garbage out](https://en.wikipedia.org/wiki/Garbage_in_garbage_out)
 
-- No universal rules, but consider the following
+- There are no universal rules, but consider the following
 
   - Do the outcome and exposures match your research aims?
 
-  - Year of publication
+  - Include both negative and positive findings
+
+  - Detailed reporting of quantitative findings (point estimates, standard
+    errors)
+
+  - Detailed reporting of methods
+
+  - Precise statement of target study population, and inclusion/exclusion
+    criteria
 
   - Handling of confounding factors
 
-  - Adequate information provided in the publication (or made available by
-    authors)
-
   - Generally exclude studies that are themselves research syntheses
 
-  - Multiple studies of the same subject pool
+  - Multiple studies of the same subject pool are not independent
+
+  - Multiple studies by the same research team may not be independent
+
+  - Is it possible to include unpublished studies (pre-registration may make
+    this possible)
+
+  - Include all studies published after a specific date
 
 ## Integration of p-values
 
@@ -108,7 +148,61 @@ $$\sqrt{w_1^2s_1^2 + w_2^2s_2^2}/(w_1 + w_2)$ = \sqrt{(w_1^2s_1^2 + w_2^2s_2^2) 
   $p\le 0.05$ to be significant. However this _dichotomization of evidence_ is
   controversial and any particular threshold is usually arbitrary.
 
-- In the context of
+- There are several ways to integrate independent p-values, that is, to produce
+  an overall p-value that combines the evidence in the individual p-values. This
+  p-value reflects the _global_ or _omnibus_ null hypothesis that the null
+  hypothesis is true in all studies being combined.
+
+  - The fact that underpins most p-value combining procedures is that if the
+    null hypothesis is true, the p-value follows a uniform distribution on the
+    interval $(0, 1)$.
+
+  - [Fisher's method](https://en.wikipedia.org/wiki/Fisher%27s_method)
+    constructs a statistic $T = -2\sum_j \log(p_j)$, where $p_1, \ldots, p_m$
+    are the independent p-values from the studies being analyzed via
+    meta-analysis. Under the global null hypothesis, $T$ follows a
+    [chi-squared](https://en.wikipedia.org/wiki/Chi-squared_distribution)
+    distribution with $2m$ degrees of freedom. A p-value can then be constructed
+    from $T$ based on this reference distribution.
+
+  - Most p-values are derived from Z-scores, particularly when the p-value
+    derives from a [Wald test](https://en.wikipedia.org/wiki/Wald_test) of a
+    single parameter. If we have independent Z-scores $Z_1, \ldots, Z_m$, we can
+    obtain a global p-value by first pooling the Z-scores to obtain _Stouffer's
+    Z_, which is $Z_p = m^{-1/2}\sum_j Z_j$. Under the global null hypothesis,
+    $Z_p$ has a standard normal distribution, and it is straightforward to
+    obtain a p-value from $Z_p$ if desired.
+
+  - If the p-values are independent, we can use the
+    [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
+    which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
+    p-value.
+
+- More recently, some progress has been made on the much harder problem of
+  combining p-values that are not independent (e.g. from tests that may be
+  correlated).
+
+  - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
+    geometric, and harmonic mean p-values can be used as "meta p-values" if they
+    are rescaled appropriately. Specifically, $2{\rm Avg}(p_1, \ldots, p_m)$,
+    $e{\rm GM}(p_1, \ldots, p_m)$, and ${\rm log(m)}{\rm HM}(p_1, \ldots, p_m)$
+    can be used to assess the global null hypothesis, for the arithmetic,
+    geometric, and harmonic means, respectively.
+
+  - Under the
+    [Cauchy combining rule](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7531765),
+    the p-values are combined using $T = \sum_j \tan(\pi(1/2 - p_j))$. Under the
+    global null hypothesis, $T$ follows a standard Cauchy distribution, and
+    therefore can be transformed to a p-value using the CDF of the reference
+    distribution.
+
+- Sometimes it is desirable to to produce a "reject/accept" decision regarding a
+  null hypothesis, rather than producing a meta p-value. One way to do this is
+  using the
+  [Holm Bonferroni stepdown method](https://en.wikipedia.org/wiki/Holm-Bonferroni_method).
+  First, suppose that the p-values have been sorted in ascending order. If for
+  any $j$, $p_j < \alpha / (m + 1 - j)$, the null hypothesis is rejected. This
+  procedure controls the false positive rate for the global test at $\alpha$.
 
 ## Heterogeneous effects
 
@@ -126,13 +220,169 @@ $$\sqrt{w_1^2s_1^2 + w_2^2s_2^2}/(w_1 + w_2)$ = \sqrt{(w_1^2s_1^2 + w_2^2s_2^2) 
 
 - It is almost always impossible to exactly replicate a research study. Even
   when using a common study protocol, two studies will inevitably differ in
-  terms of how the design is implemented. In research with human subjects, study
-  populations almost inevitably change based on location or over time,
-  ascertainment criteria can be interpreted in slightly different ways by
-  different implementation teamns, and social and environmental confounders will
-  generally vary from one study to another, even if identical protocols are
-  followed.
+  terms of how the design is implemented. Here are some reasons why
+  heterogeneity may be present:
 
-## Heterogeneous designs
+  - Study populations vary based on geographic location or over time in terms of
+    comorbidities, genetic background, environmental risks, demographics,
+    socioeconomic status, medication histories, and the severity and type of
+    disease.
+
+  - The treatment can be implemented differently in different locations or
+    different historical periods.
+
+  - Ascertainment (inclusion/exclusion) criteria can be interpreted in different
+    ways by different implementation teams.
+
+- Some degree of study heterogeneity is presumably always present, but we can
+  still test the null hypothesis of no heterogeneity. Further, it is desirable
+  to quantify the amount of heterogeneity in a particular meta-analysis.
+
+- Cochrane's Q-statistic was an early measure of study heterogeneity. The
+  statistic is defined as
+  $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. If there is
+  no heterogeneity (all $\theta_i$ are equal), $Q$ follows a $\chi^2$
+  distribution with $m-1$ degrees of freedom. This can be used to formally test
+  a null hypothesis of no heterogeneity.
+
+- Suppose we have a collection of effect estimates
+  $\hat{\theta}_1, \ldots, \hat{\theta}_m$ and their corresponding standard
+  errors $s_1, \ldots, s_m$. Let
+  $\tau^2 = {\rm Var}(\theta_1, \ldots, \theta_m)$ denote the variance of the
+  true (unknown) effects, and let $\sigma^2 = (s_1^2 + \cdots + s_m^2)/m$ denote
+  the average sampling variance. According to the
+  [law of total variation](https://en.wikipedia.org/wiki/Law_of_total_variance),
+  the population variance of the $\hat{\theta}_j$ is $\sigma^2 + \tau^2$. The
+  statistic $I^2 = \tau^2 / (\tau^2 + \sigma^2)$ is a measure of the proportion
+  of total variance due to study heterogeneity.
+
+- $I^2$ can be estimated as $\hat{I}^2 = 1 - (m-1)/Q$. Although $I^2$ always
+  lies between 0 and 1, $\hat{I}^2$ can be negative, and indeed when $I^2 = 0$
+  (no heterogeneity), $\hat{I}^2$ is negative around half of the time.
+
+- Confidence intervals for $I^2$ can be constructed, the details of construction
+  are too complex to include here.
+
+- Inference for variance fractions and
+  [intra class correlations](https://en.wikipedia.org/wiki/Intraclass_correlation)
+  are known to be a challenging problem. In a small meta-analysis (with few
+  studies), the estimate $\hat{I}^2$ is biased and its confidence under-covers
+  the true $I^2$, see
+  [here](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0024-z)
+  for more details.
+
+- The bias in $I^2$ depends on whether negative values of $\hat{I}^2$ are
+  truncated to zero. If no truncation is performed, the bias when $I^2=0$ is
+  negative, approximately $-2/(m-2)$. If truncation is performed, the bias is
+  positive, and is around 0.15 for very small meta-analyses, and becomes smaller
+  as the number of studies in the meta-analysis grows. These are worst-case
+  biases at $I^2=0$. If heterogeneity is present, the bias is less. For example,
+  if we have 50 studies and truncate at zero, the bias is approximately 0.06.
+
+## Fixed effects approaches
+
+- An alternative approach to understanding heterogeneity among studies is to use
+  an approach that treats the effect sizes $\theta_i$ as parameters, rather than
+  summarizing the variance in a large collection of effect sizes. This may be
+  useful if a small number of "famous" studies are being considered in the
+  meta-analysis, and it is of interest to quantify the evidence for differences
+  among specific pairs of studies.
+
+- The statistical framework for this analysis is essentially a one-way analysis
+  of variance with unequal variances. Any two studies can be compared with a
+  t-test and multiple testing corrections can be applied to account for
+  assessment of many pairs of studies.
+
+## Meta regression
+
+- When study characteristics have been quantified in a consistent way across
+  studies, it is possible to partial out the contributions of specific study
+  characteristics to the overall heterogeneity.
+
+- For example, suppose we have a meta-analysis that considers the effect of a
+  primary treatment ($X=0,1$), with some studies excluding people with prior
+  treatment (i.e. only enrolling newly-diagnosed subjects) while others do not
+  make such an exclusion. Let $Z=0,1$ based on whether subjects with prior
+  treatment are excluded ($Z=1$) or when no such restriction is imposed ($Z=0$).
+  We can then fit a linear model $E[Y] = \beta_0 + \beta_1X + \beta_2Z$, where
+  $Y$ is the reported treatment effect. This model should be fit with
+  [generalized least squares](https://en.wikipedia.org/wiki/Generalized_least_squares)
+  using inverse variance weights, with the variances being the squares of the
+  reported standard error for each study effect.
+
+- This framework can also be used to consider treatment effect modifiers.
+  Continuing with the preceding example, we can fit the model
+  $E[Y] = \beta_0 + \beta_1X + \beta_2Z + \beta_3XZ$. Then the treatment effect
+  for populations excluding subjects with prior treatment is
+  $\beta_1 + \beta_3$, while the treatment effect for populations that do not
+  make this exclusion is $\beta_1$.
+
+## Network meta-analysis
+
+- In a basic two-arm study, the treatment effect is often estimated by taking
+  the average response among treated subjects and subtracting from it the
+  average response among control subjects. That is, the treatment effect is
+  $D = \bar{Y}(X=1) - \bar{Y}(X=0)$. An alternative approach is to model the
+  average responses for the various arms as separate observations. Suppose we
+  have $K$ possible treatments, and let $Y_{ij}$ denote the average response of
+  subjects in arm $j$ who were enrolled in study $i$.
+
+- We can posit a mean-structure model $E[Y_{ij}] = \mu + \alpha_i + \beta_j$,
+  where $\mu$ is an intercept, $\alpha_i$ is a study effect, and $\beta_j$ is an
+  arm effect. If study or study/arm characteristics are known, let $Z_{ij}$ be a
+  vector of characteristics for arm $j$ in study $i$, and use a mean structure
+  model such as $E[Y_{ij}] = \mu + \alpha_i + \beta_j + \gamma^\prime Z_{ij}$
+
+- In many cases $\alpha_i$ will be modeled as a random effect, with variance
+  $\tau_\alpha^2$, although fixed effects analysis is also an option.
+
+- The variance for this model should be heteroscedastic, with
+  ${\rm Var}[Y_{ij}]$ being equal to the reported standard error for arm $j$ in
+  study $i$. If sample sizes are reported but standard errors are not, it is
+  possible to model the variance as ${\rm Var}[Y_{ij}] \propto 1/n_{ij}$, where
+  $n_{ij}$ is the sample size.
+
+- This type of approach can be used even when each study uses only a subset of
+  the arms. When there are large number of treatments, we can visualize the data
+  as a [graph](<https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)>),
+  where treatments $j$ and $k$ are connected in the graph if these two
+  treatments are ever present in the same trial. This opens up the possibility
+  of making _indirect comparisons_ between pairs of treatments that have never
+  been compared _directly_ in a single trial. This framework has been referred
+  to as a _network meta analysis_.
 
 ## Reporting biases
+
+- A high-quality meta-analysis should assess the extent to which the selection
+  of source materials does not introduce bias.
+
+- One potential source of selection bias in meta-analysis at the level of the
+  studies (not the subjects) is
+  [publication bias](https://en.wikipedia.org/wiki/Publication_bias). This
+  refers to the possibility that inconclusive studies or studies that contradict
+  the dominant narrative are less likely to be published than studies that
+  support the consensus point of view.
+
+- In recent years, efforts have been made to encourage _pre-registration_ of
+  both interventional and observational studies. With pre-registration, it
+  becomes possible to assess at least the study characteristics (if not the
+  results) of all studies conducted to address a specific question, even if they
+  never are published.
+
+- If no publication bias is present, and all studies are assessing the same
+  effect, then the scatter of the precision of the estimated treatment effect
+  (the reciprocal of the standard error) against the estimated treatment effect
+  can be used to assess publication bias. This is called a
+  [funnel plot](https://en.wikipedia.org/wiki/Funnel_plot). The logic here is
+  that any given quantile of the effect estimates should scale linearly with the
+  precision. Thus, the effect estimates should be distributed in a cone with
+  vertex at the origin.
+
+- Funnel plots can be interpreted visually, or a test such as _Egger's test_ can
+  be used. Funnel plots can be useful but have been criticized for having low
+  power. Moreover, funnel plots can be misleading if there are systematic
+  differences in the effect being estimated between larger and smaller studies.
+
+## Case studies
+
+[Meta analysis of cannabis associated psyhcotic symptoms](https://www.nature.com/articles/s44220-024-00261-x)
