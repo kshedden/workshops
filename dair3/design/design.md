@@ -927,7 +927,7 @@
   is a calculated value for each treated unit that estimates the
   "counterfactual" value that the unit would have had had it not been treated.
 
-- Let $x^*$ denote the $p$-dimensional vector of covariates associated with a
+- Let  denote the $p$-dimensional vector of covariates associated with a
   treated unit and let $X$ denote the $m\times p$ matrix of covariate values for
   all units assigned to the control arm (in many cases only untreated units with
   covariates "sufficiently similar" to $x^*$ are included). The goal is to
