@@ -930,10 +930,10 @@
 - Let $x^\star$ denote the $p$-dimensional vector of covariates associated with a
   treated unit and let $X$ denote the $m\times p$ matrix of covariate values for
   all units assigned to the control arm (in many cases only untreated units with
-  covariates "sufficiently similar" to $x^*$ are included). The goal is to
+  covariates "sufficiently similar" to $x^\star$ are included). The goal is to
   construct a vector $w$ such that $x^* \approx X^\prime w$, under the
   constraint that $w^\prime 1_m = 1$ and $0 \le w_j \le 1$ for $j=1, \ldots, m$.
-  That is, we approximate $x^*$ with a
+  That is, we approximate $x^\star$ with a
   [convex combination](https://en.wikipedia.org/wiki/Convex_combination) of the
   untreated units.
 
