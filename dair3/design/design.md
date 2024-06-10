@@ -872,6 +872,7 @@
 - As a consequence of the matching, the matched treated subjects should be
   approximately balanced with respect to the matched untreated subjects, i.e.
   for each covariate $\ell$,
+  $\bar{z_{j_{1\cdot},\ell}$
   $\bar{z_{j_{1\cdot},\ell} \approx \bar{z_{j_{2\cdot},\ell}}$.
 
 - Matching requires the treated and untreated subjects to have a _common support_
