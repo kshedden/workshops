@@ -21,7 +21,7 @@ for root, dirs, files in os.walk("raw_data"):
     di[ro] = {}
     for f in files:
         df = pd.read_csv(os.path.join(root, f))
-        di[ro][f] = df.to_csv()
+        di[ro][f] = df.to_csv(index=None)
 
 with gzip.open("mouse_data.json.gz", "wt") as io:
     json.dump(di, io)
