@@ -62,11 +62,11 @@
   specific humans that we observe and (potentially) manipulate is the
   [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>)).
 
-- In some areas of research, replication is challenging or impossible.  For
+- In some areas of research, replication is challenging or impossible. For
   example, in research on the Earth's climate history, "treatments" such as
-  changes to greenhouse gas emissions are essentially historical "one-offs".
-  In public policy, singular events like changes to federal laws are similarly
-  non-replicable.  At best we can look for "pseudo-replicates" when somewhat
+  changes to greenhouse gas emissions are essentially historical "one-offs". In
+  public policy, singular events like changes to federal laws are similarly
+  non-replicable. At best we can look for "pseudo-replicates" when somewhat
   similar events happened at another historical moment.
 
 - There are many different types of research "studies". We are not aiming here
@@ -104,8 +104,8 @@
   - In a [cohort study](https://en.wikipedia.org/wiki/Cohort_study), a group of
     units are followed over time. The units are initially either similar, or
     differ primarily with respect to a specific factor of interest (but they are
-    not selected based on this factor). Exposures happen naturalistically and
-    we can assess at the end of the study which exposures occurred and what
+    not selected based on this factor). Exposures happen naturalistically and we
+    can assess at the end of the study which exposures occurred and what
     outcomes followed the occurrence of these exposures.
 
     - A
@@ -358,6 +358,30 @@
   assigned to the control arm if they appear likely to do well. Maintaining some
   degree of randomness in the assignments helps to mitigate this issue.
 
+- In some studies, especially those involving human subjects, "protocol
+  deviations" can occur for various reasons. If subjects do not actually receive
+  the treatment to which they are randomized, one of the following three
+  approaches can be adopted:
+
+  - In an
+    [intention to treat](https://en.wikipedia.org/wiki/Intention-to-treat_analysis)
+    subjects are analyzed as belonging to the treatment group to which they were
+    assigned, regardless of whether they received and fully complied with the
+    treatment. This is the most commonly employed and rigorous strategy. It is
+    the only option that retains the benefits of randomization in terms of
+    eliminating confounding from both measured and unmeasured variables.
+
+  - In a _per-protocol_ analysis, subjects who do not comply with the treatment
+    are excluded from the analysis. Such a study should not be considered to be
+    an RCT and is essentially just like any observational study in terms of risk
+    for confounding and bias.
+
+  - In an _as-treated_ analysis, subjects are analyzed as belonging to the
+    treatment that they received and complied with, even if this treatment is
+    different from the one to which they were randomized. Such a study is
+    subject to selection bias does not benefit from the presence of
+    randomization.
+
 ## Foundations of statistical inference
 
 - Most statistical data analysis is based on probability modeling. That is, we
@@ -375,10 +399,10 @@
   from which $D$ was sampled?
 
 - Statistical inference generally begins with
-  [estimation](https://en.wikipedia.org/wiki/Estimation). Formally, this involves
-  devising a function $\hat{\theta}(D)$, where $D$ is the _observed data_, such
-  that $\hat{\theta}(D)$ is likely to be close to the true parameter value
-  $\theta$. This function is called an _estimator_.
+  [estimation](https://en.wikipedia.org/wiki/Estimation). Formally, this
+  involves devising a function $\hat{\theta}(D)$, where $D$ is the _observed
+  data_, such that $\hat{\theta}(D)$ is likely to be close to the true parameter
+  value $\theta$. This function is called an _estimator_.
 
 - It is common to refer to $P_\theta$ as the
   [population](https://en.wikipedia.org/wiki/Statistical_population), $D$ as the
@@ -524,8 +548,7 @@
   human subjects but could also refer to surveying, say, the distribution of
   tree species in a geographic area. In the case of surveys that involve
   interviewing human subjects, a _questionnaire_, _survey form_, or _survey
-  instrument_ refers to the actual assessment items that are used for each
-  unit.
+  instrument_ refers to the actual assessment items that are used for each unit.
 
 - Unlike most trials and studies (cohort, case/control, etc.) the goal of a
   survey is not usually to assess the effect of an exposure or intervention, and
@@ -627,9 +650,9 @@
 
   - Right censoring refers to a form of _partially observed data_ in which we
     know that an event of interest did not occur before a specific time, but we
-    do not know when the event occurred (if ever). Right censoring is very common
-    in health studies where some units in the sample have not yet had an event
-    at a particular time, e.g. the time when the data were obtained for
+    do not know when the event occurred (if ever). Right censoring is very
+    common in health studies where some units in the sample have not yet had an
+    event at a particular time, e.g. the time when the data were obtained for
     analysis.
 
   - Left censoring is less common than right censoring, but it can occur, for
@@ -872,12 +895,13 @@
 - As a consequence of the matching, the matched treated subjects should be
   approximately balanced with respect to the matched untreated subjects.
 
-- Matching requires the treated and untreated subjects to have a _common support_
-  in the domain of the covariates. For example, consider age as a balancing
-  covariate in a study using matching, with 50 exposed units and 50 unexposed
-  units. If the treated units are much older than the untreated units, and only
-  5 of the treated units are younger than the oldest untreated unit, then there
-  is very little common support and matching is unlikely to be effective.
+- Matching requires the treated and untreated subjects to have a _common
+  support_ in the domain of the covariates. For example, consider age as a
+  balancing covariate in a study using matching, with 50 exposed units and 50
+  unexposed units. If the treated units are much older than the untreated units,
+  and only 5 of the treated units are younger than the oldest untreated unit,
+  then there is very little common support and matching is unlikely to be
+  effective.
 
 - In a matching analysis, some of the controls may be unused, and some of the
   controls may be used in multiple matched sets. This can lead to reduced power,
@@ -925,11 +949,11 @@
   is a calculated value for each treated unit that estimates the
   "counterfactual" value that the unit would have had had it not been treated.
 
-- Let $x^\star$ denote the $p$-dimensional vector of covariates associated with a
-  treated unit and let $X$ denote the $m\times p$ matrix of covariate values for
-  all units assigned to the control arm (in many cases only untreated units with
-  covariates "sufficiently similar" to $x^\star$ are included). The goal is to
-  construct a vector $w$ such that $x^* \approx X^\prime w$, under the
+- Let $x^\star$ denote the $p$-dimensional vector of covariates associated with
+  a treated unit and let $X$ denote the $m\times p$ matrix of covariate values
+  for all units assigned to the control arm (in many cases only untreated units
+  with covariates "sufficiently similar" to $x^\star$ are included). The goal is
+  to construct a vector $w$ such that $x^* \approx X^\prime w$, under the
   constraint that $w^\prime 1_m = 1$ and $0 \le w_j \le 1$ for $j=1, \ldots, m$.
   That is, we approximate $x^\star$ with a
   [convex combination](https://en.wikipedia.org/wiki/Convex_combination) of the
