@@ -387,4 +387,4 @@
 
 ## Case studies
 
-[Meta analysis of cannabis associated psyhcotic symptoms](https://www.nature.com/articles/s44220-024-00261-x)
+[Meta analysis of cannabis associated psychotic symptoms](https://www.nature.com/articles/s44220-024-00261-x)
