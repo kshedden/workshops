@@ -356,7 +356,7 @@
 ## Reporting biases
 
 - A high-quality meta-analysis should assess the extent to which the selection
-  of source materials does not introduce bias.
+  of source materials may introduce bias.
 
 - One potential source of selection bias in meta-analysis at the level of the
   studies (not the subjects) is
@@ -367,9 +367,9 @@
 
 - In recent years, efforts have been made to encourage _pre-registration_ of
   both interventional and observational studies. With pre-registration, it
-  becomes possible to assess at least the study characteristics (if not the
-  results) of all studies conducted to address a specific question, even if they
-  never are published.
+  becomes possible to assess the study characteristics of all registered studies
+  conducted to address a specific question, regardless of whether they have been
+  published.
 
 - If no publication bias is present, and all studies are assessing the same
   effect, then the scatter of the precision of the estimated treatment effect
