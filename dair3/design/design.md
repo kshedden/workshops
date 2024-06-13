@@ -365,21 +365,22 @@
 
   - In an
     [intention to treat](https://en.wikipedia.org/wiki/Intention-to-treat_analysis)
-    subjects are analyzed as belonging to the treatment group to which they were
-    assigned, regardless of whether they received and fully complied with the
-    treatment. This is the most commonly employed and rigorous strategy. It is
-    the only option that retains the benefits of randomization in terms of
-    eliminating confounding from both measured and unmeasured variables.
+    analysis, subjects are analyzed as belonging to the treatment group to which
+    they were assigned, regardless of whether they received and fully complied
+    with the treatment. This is the most commonly employed and rigorous
+    strategy. It is the only option that retains the benefits of randomization
+    in terms of eliminating confounding from both measured and unmeasured
+    variables.
 
-  - In a _per-protocol_ analysis, subjects who do not comply with the treatment
-    are excluded from the analysis. Such a study should not be considered to be
-    an RCT and is essentially just like any observational study in terms of risk
-    for confounding and bias.
+  - In a _per-protocol_ analysis, subjects who do not receive and comply with
+    the treatment are excluded from the analysis. Such a study should not be
+    considered to be an RCT and is essentially just like any observational study
+    in terms of risk for confounding and bias.
 
   - In an _as-treated_ analysis, subjects are analyzed as belonging to the
     treatment that they received and complied with, even if this treatment is
     different from the one to which they were randomized. Such a study is
-    subject to selection bias does not benefit from the presence of
+    subject to selection bias and does not benefit from the presence of
     randomization.
 
 ## Foundations of statistical inference

@@ -56,7 +56,7 @@
 - The standard error of the inverse variance weighted average is
   $1 / (1/s_1^2 + 1/s_2^2)^{1/2}$.
 
-- The above pooling rules can be extended to three or more estimates.
+- These pooling rules can be extended to three or more estimates.
 
 ## Data integration
 
@@ -68,9 +68,9 @@
   important to be aware of heterogeneity (systematic differences) among the
   studies.
 
-- Pooling data from multiple studies raises similar issues as a single study in
-  which the data are drawn from heterogeneous clusters (e.g. a multi-center
-  research trial).
+- Pooling data from multiple studies raises similar issues as arise in a single
+  study in which the data are drawn from heterogeneous clusters (e.g. a
+  multi-center research trial).
 
 - There are many ways to account for study heterogeneity in an integrated
   analysis. Here are a few popular approaches:
@@ -81,14 +81,13 @@
 
   - A multilevel regression analysis can employ random effects for the different
     studies being pooled. Random effects require somewhat stronger assumptions
-    to be effective (compared to fixed effects), but typically provides better
+    to be effective (compared to fixed effects), but typically provide better
     statistical power.
 
   - There are many forms of _stratified analysis_. These approaches essentially
-    conduct independent analyses in each study and pool the results.
-
-  - The generic stratified analysis pools parameter estimates and standard
-    errors as discussed above.
+    conduct independent analyses in each study and pool the results. The generic
+    stratified analysis pools parameter estimates and standard errors as
+    discussed above.
 
   - In some settings, special-purpose stratified analysis methods have been
     devised, one of these is the
@@ -96,6 +95,10 @@
     for integrating contingency tables. This approach essentially pools the
     [odds ratios](https://en.wikipedia.org/wiki/Odds_ratio) from multiple
     studies.
+
+  - Random effects approaches conduct a form of _partial pooling_, which is a
+    compromise between random effects, fixed effects, and naive analysis (no
+    pooling).
 
 ## Study selection
 
@@ -107,13 +110,11 @@
 
   - Include both negative and positive findings
 
-  - Detailed reporting of quantitative findings (point estimates, standard
-    errors)
+  - Reporting of quantitative findings (point estimates, standard errors)
 
-  - Detailed reporting of methods
+  - Reporting of methods
 
-  - Precise statement of target study population, and inclusion/exclusion
-    criteria
+  - Definition of target study population, and inclusion/exclusion criteria
 
   - Handling of confounding factors
 
@@ -126,7 +127,7 @@
   - Is it possible to include unpublished studies (pre-registration may make
     this possible)
 
-  - Include all studies published after a specific date
+  - Select by date? Include all studies published after a specific date
 
 ## Integration of p-values
 
@@ -140,13 +141,14 @@
 
 - The [p-value](https://en.wikipedia.org/wiki/P-value) is the most familiar
   method for summarizing evidence against a null hypothesis. Statistical
-  inference that focuses especially on the p-value is known as
+  inference that focuses primarily on the p-value is known as
   [significance testing](https://en.wikipedia.org/wiki/Statistical_significance).
 
 - A smaller p-value corresponds to stronger evidence against the null
   hypothesis. Conventionally a p-value threshold is imposed such as deeming
-  $p\le 0.05$ to be significant. However this _dichotomization of evidence_ is
-  controversial and any particular threshold is usually arbitrary.
+  $p\le 0.05$ to be significant. However this
+  [dichotomization of evidence](https://statmodeling.stat.columbia.edu/wp-content/uploads/2017/11/jasa_combined.pdf)
+  is controversial and any particular threshold is usually arbitrary.
 
 - There are several ways to integrate independent p-values, that is, to produce
   an overall p-value that combines the evidence in the individual p-values. This
@@ -173,14 +175,14 @@
     $Z_p$ has a standard normal distribution, and it is straightforward to
     obtain a p-value from $Z_p$ if desired.
 
-  - If the p-values are independent, we can use the
-    [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
-    which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
-    p-value.
-
 - More recently, some progress has been made on the much harder problem of
   combining p-values that are not independent (e.g. from tests that may be
   correlated).
+
+  - The classical method for non-independent p-values is the
+    [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
+    which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
+    p-value.
 
   - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
     geometric, and harmonic mean p-values can be used as "meta p-values" if they
