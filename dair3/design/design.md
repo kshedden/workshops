@@ -316,7 +316,7 @@
 
   Suppose that $X$ is $BMI$ and $Y$ is mortality risk, with marginal correlation
   ${\rm Cor}(X, Y) > 0$. Let $Z$ denote a comorbid risk factor like smoking
-  intensity, with ${\rm Cor}(Z, X) > 0$ and ${\rm Cor}(Z, Y) > 0$. That is
+  intensity, with ${\rm Cor}(Z, X) > 0$ and ${\rm Cor}(Z, Y) > 0$. That is,
   smoking is positively associated with both mortality risk and BMI. If the
   latter two correlations are strong compared to the first, conditioning on
   smoking can swing the apparent association between BMI and mortality from
