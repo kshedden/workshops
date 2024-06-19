@@ -27,6 +27,11 @@
     influential philosopher of science
     [Karl Popper](https://iep.utm.edu/pop-sci).
 
+  - There are many other lines of work contributing to the philososphy of
+    science including the work of Greeks such as
+    [Aristotle](https://en.wikipedia.org/wiki/) and Persians including
+    [Ibn Sina](https://en.wikipedia.org/wiki/Avicenna).
+
 - At a very high level, most research is either
   [inductive](https://en.wikipedia.org/wiki/Inductive_reasoning) or
   [deductive](https://en.wikipedia.org/wiki/Deductive_reasoning). Inductive
@@ -131,6 +136,12 @@
     design updates only impact patients not yet enrolled, while in other cases
     the design updates impact the people currently undergoing treatment (e.g. in
     a [SMART](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4167891) design).
+
+- In the contemporary era, there is more openness to _hypothesis generating_ or
+  _exploratory research_, in contrast to the "confirmatory", hypothesis-driven
+  standpoint of the classical scientific method. Nevertheless, in modern health
+  research and basic life science, the adoption of new theories remains
+  primarily the domain of hypothesis-based modes of inquiry.
 
 ## Measurement
 
@@ -464,7 +475,7 @@
   an unbiased estimator. Due to the
   [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem),
   many estimators behave approximately like Gaussian random variables. In cases
-  that this does not hold, with additional work an approximation to the
+  where this does not hold, with additional work an approximation to the
   non-Gaussian sampling distribution can usually be obtained.
 
 - Many research questions cannot be reduced to a single scalar parameter, so the
@@ -754,8 +765,8 @@
 
 - Let $a_i$ and $b_i$ denote the baseline ("pre") and follow-up ("post")
   measurements for the $i^{\rm th}$ subject, where $i=1, \ldots, n$. One natural
-  approach is to take the differences $d_i = b_i - a_i$ and assess the null
-  hypothesis that $E[d] = 0$.
+  approach to analysis is to take the differences $d_i = b_i - a_i$ and assess
+  the null hypothesis that $E[d] = 0$.
 
 - Since ${\rm Var}(d) = {\rm Var}(a) + {\rm Var}(b) - 2{\rm Cov}(a, b)$, if $a$
   and $b$ are positively correlated, the variance of $d$ is less than the sum of
