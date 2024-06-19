@@ -20,16 +20,21 @@
   by meta analysis but this is not always the case.
 
 - A [systematic review](https://en.wikipedia.org/wiki/Systematic_review) is
-  another type of research synthesis that is not our focus here. It integrates
+  another type of research synthesis that is not our focus here. A systematic
+  review summarizes a set of related findings, but does not aim to estimate a
+  specific quantitative target by pooling evidence. Also, a systematic review
+  may integrate both quantitative and
   [qualitative](https://en.wikipedia.org/wiki/Qualitative_research) research
-  studies while our emphasis here is on integration of quantitative research
-  findings. Further, meta-analyses are usually focused on a specific
-  quantitative aim (estimation of a specific parameter or testing a specific
-  hypothesis), whereas systematic reviews are often more open-ended.
+  studies, while meta-analyses usually consider only quantitative studies.
 
 - Research synthesis can be used to consolidate and unify findings that are
   mostly consistent with each other, but can also reveal novel insights and
   suggest alternative theories.
+
+- The
+  [Cochrane organization](<https://en.wikipedia.org/wiki/Cochrane_(organisation)>)
+  is highly influential in advocating for and serving as a repository for high
+  quality research synthesis in clinical care including meta-analyses.
 
 ## Pooling estimates and standard errors
 
@@ -126,6 +131,8 @@
 
   - Is it possible to include unpublished studies (pre-registration may make
     this possible)
+
+  - Publication language
 
   - Select by date? Include all studies published after a specific date
 
@@ -353,7 +360,7 @@
   been compared _directly_ in a single trial. This framework has been referred
   to as a _network meta analysis_.
 
-## Reporting biases
+## Biases in study reporting
 
 - A high-quality meta-analysis should assess the extent to which the selection
   of source materials may introduce bias.
@@ -371,20 +378,35 @@
   conducted to address a specific question, regardless of whether they have been
   published.
 
-- If no publication bias is present, and all studies are assessing the same
-  effect, then the scatter of the precision of the estimated treatment effect
-  (the reciprocal of the standard error) against the estimated treatment effect
-  can be used to assess publication bias. This is called a
-  [funnel plot](https://en.wikipedia.org/wiki/Funnel_plot). The logic here is
-  that any given quantile of the effect estimates should scale linearly with the
-  precision. Thus, the effect estimates should be distributed in a cone with
-  vertex at the origin.
+- If all studies are assessing the same effect, then the scatter of the standard
+  error of the estimated treatment effect (on the vertical axis) against the
+  estimated treatment effect (on the horizontal axis) can be used to assess
+  publication bias. This is called a
+  [funnel plot](https://en.wikipedia.org/wiki/Funnel_plot).
+
+- Some funnel plots use the precision as the vertical coordinate rather than the
+  standard error (the precision is the reciprocal of the standard error).
+
+- The logic behiond a funnel plot that any given quantile of the effect
+  estimates should scale linearly with the standard error. Thus, the effect
+  estimates should be distributed in a cone with vertex at the origin.
+
+- Publication bias may be reflected in an empty region in the funnel plot,
+  usually corresponding to studies with higher standard error that contradict
+  the hoped-for narrative.
 
 - Funnel plots can be interpreted visually, or a test such as _Egger's test_ can
   be used. Funnel plots can be useful but have been criticized for having low
   power. Moreover, funnel plots can be misleading if there are systematic
   differences in the effect being estimated between larger and smaller studies.
 
+- The
+  [trim and fill method](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6571372)
+  can be used to impute missing studies in a funnel plot, to compensate for
+  publication biases.
+
 ## Case studies
+
+[Psychiatric symptoms caused by cannabis constituents; a systematic review and meta-analysis](<https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(20)30074-2>)
 
 [Meta analysis of cannabis associated psychotic symptoms](https://www.nature.com/articles/s44220-024-00261-x)
