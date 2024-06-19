@@ -341,6 +341,33 @@
   only observe one of these potential outcomes, along with the indicator of
   which outcome we observe. This indicator is endogenous in most cases.
 
+- [Mediation](<https://en.wikipedia.org/wiki/Mediation_(statistics)>) is an
+  approach to understanding potentially causal relationships among three (or
+  more) factors. In some cases, this provides a deeper and potentially more
+  mechanistic (causal) understanding of the relationship between an exposure $X$
+  and an outcome $Y$.
+
+  - In mediation analysis, a third variable $M$ called the _mediator_ is posited
+    as a causal intermediary between the exposure and the outcome.
+
+  - For example, we could propose that an exposure such as poor childhood
+    nutrition ($X$) impacts nephron density in the kidneys (the mediator, $M$),
+    which in turn impacts adult systolic blood pressure ($Y$).
+
+  - In mediation analysis, we consider the presence of _indirect effects_, in
+    which $X$ impacts $M$ and then $M$ impacts $Y$, as well as _direct effects_,
+    in which $X$ impacts $Y$ directly, or via other routes.
+
+- [Moderation](<https://en.wikipedia.org/wiki/Moderation_(statistics)>), or
+  _effect modification_ is an approach to developing a deeper understanding of
+  the relationship between an exposure or treatment $X$ and an outcome $Y$. The
+  putative modifier $Z$ changes the manner in which $X$ and $Y$ are related. As
+  a simple example, $Z$ could be sex, and it may be that the relationship
+  between the exposure and outcome differs between females and males.
+
+  - The most commonly employed approach for understanding moderation is through
+    the incorporation of interaction terms in a regression model.
+
 ## Randomization
 
 - In research in which units are assigned to treatment arms, assigning the units
@@ -717,6 +744,11 @@
 
 - Approaches to handling missing data
 
+  - Methods from
+    [survival analysis](https://en.wikipedia.org/wiki/Survival_analysis) have
+    been extensively developed to address challenges related to censoring and
+    truncation.
+
   - _Complete case analysis_, or
     [listwise deletion](https://en.wikipedia.org/wiki/Listwise_deletion) is a
     method for handling missing data by dropping all observations that have any
@@ -1017,6 +1049,6 @@
 
 # External links
 
-[Shared document for drafting study designs](https://docs.google.com/document/d/1Jz0w-lF_iTsrf6vt7CLdtXsqqIHsfHb8xaRDePk0dq8/edit)
+[Shared document for drafting study designs and analysis plans](https://docs.google.com/document/d/1Jz0w-lF_iTsrf6vt7CLdtXsqqIHsfHb8xaRDePk0dq8/edit?usp=sharing)
 
 [Notebook for analyses of a mouse aging study](https://github.com/kshedden/workshops/blob/main/dair3/design/mouse_aging/mouse_aging.ipynb)
