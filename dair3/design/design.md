@@ -312,7 +312,7 @@
     [partial correlation coefficient](https://en.wikipedia.org/wiki/Partial_correlation),
     which in the population satisfies the relationship
 
-  ${\rm Cor}(X, Y | Z) = ({\rm Cor}(X, Y) - {\rm Cor}(X, Z)\cdot{\rm Cor}(Y, Z)) /  \sqrt{(1 - {\rm Cor}(X,Z)^2\cdot{\rm Cor}(Y, Z)^2)}$
+  ${\rm Cor}(X, Y | Z) = ({\rm Cor}(X, Y) - {\rm Cor}(X, Z)\cdot{\rm Cor}(Y, Z)) /  \sqrt{(1 - {\rm Cor}(X,Z)^2)\cdot(1 - {\rm Cor}(Y, Z)^2)}$
 
   Suppose that $X$ is $BMI$ and $Y$ is mortality risk, with marginal correlation
   ${\rm Cor}(X, Y) > 0$. Let $Z$ denote a comorbid risk factor like smoking
