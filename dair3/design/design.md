@@ -1014,3 +1014,9 @@
   to each treated unit. However when using linear regression, the weights $w^*$
   can be negative, and therefore the synthetic control may not lie within the
   domain of the data (i.e. it may be an extrapolation).
+
+# External links
+
+[Shared document for drafting study designs](https://docs.google.com/document/d/1Jz0w-lF_iTsrf6vt7CLdtXsqqIHsfHb8xaRDePk0dq8/edit)
+
+[Notebook for analyses of a mouse aging study](https://github.com/kshedden/workshops/blob/main/dair3/design/mouse_aging/mouse_aging.ipynb)
