@@ -52,20 +52,20 @@
     assessing the [uncertainty](https://en.wikipedia.org/wiki/Uncertainty) of
     all findings.
 
-- Our focus here is on learning about entities that exist with some form of
-  replication. For example, if we are interested in a certain type of human
-  being, there are generally many "replicates" of such a person that we can
-  potentially study. In this case, a human is the
+- Our focus here is on learning about observations that can be made with
+  replication. For example, if we are interested in a certain type or category
+  of human subject, there are generally many "replicates" of such a person that
+  we can potentially study. In this case, a human is the
   [unit](https://en.wikipedia.org/wiki/Unit_of_analysis) (or _unit of
   analysis_). The set of all humans of interest is the
   [population](https://en.wikipedia.org/wiki/Statistical_population) and the
   specific humans that we observe and (potentially) manipulate is the
-  [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>)).
+  [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>).
 
 - In some areas of research, replication is challenging or impossible. For
   example, in research on the Earth's climate history, "treatments" such as
-  changes to greenhouse gas emissions are essentially historical "one-offs". In
-  public policy, singular events like changes to federal laws are similarly
+  greenhouse gas emissions are essentially historical "one-offs". In public
+  policy, singular events like changes to federal laws are similarly
   non-replicable. At best we can look for "pseudo-replicates" when somewhat
   similar events happened at another historical moment.
 
@@ -165,7 +165,8 @@
 
   - A _scale_ is a quantitative value that captures the state of a construct in
     a single unit. It is usually formed by aggregating several _items_ that can
-    be measured directly.
+    be measured directly. A common scale encountered in studies of human health
+    is the [PHQ-9](https://en.wikipedia.org/wiki/PHQ-9).
 
   - There is a branch of
     [psychometrics](https://en.wikipedia.org/wiki/Psychometrics) that deals with
@@ -173,7 +174,7 @@
 
   - Statistical methods such as
     [factor analysis](https://en.wikipedia.org/wiki/Factor_analysis) can be used
-    to produce scales from a collection of items, and assess to
+    to produce scales from a collection of items, and to assess
     _dimensionality_, i.e. whether there exists only one versus multiple
     independent constructs underlying a collection of measured items. Scales
     have been developed for numerous traits such as depression, overall physical
@@ -219,10 +220,9 @@
 ## Causality and confounding
 
 - Most research aims to understand relationships among factors. In health
-  research we often speak of _exposures_ and _outcomes_, or _treatments_ and
-  outcomes. The term "exposure" is typically used when the factor occurs
-  naturalistically whereas "treatment" is used for interventions or experimental
-  manipulations.
+  research we often speak of _exposures_ (or _treatments_) and _outcomes_. The
+  term "exposure" is typically used when the factor occurs naturalistically
+  whereas "treatment" is used for interventions or experimental manipulations.
 
 - If $X$ is an exposure and $Y$ is an outcome, there is an _association_ between
   $X$ and $Y$ if $X$ and $Y$ are not statistically
@@ -274,7 +274,7 @@
     strategies are usually employed to mitigate the risks of confounding. They
     are listed in decreasing order of rigor:
 
-    - Randomization is usually the best way to limit or eliminate the risk of
+    - _Randomization_ is usually the best way to limit or eliminate the risk of
       confounding. If the treatment is assigned at random, it is impossible for
       it to be causally influenced by any factor (regardless of whether the
       factor is known or unknown, measured or unmeasured).
@@ -283,13 +283,44 @@
       achieve _balance_ of all measured confounders between the arms.
 
     - If we cannot achieve balance then various statistical adjustments are made
-      in a _post-hoc_ manner.
+      in a _post-hoc_ manner. We will discuss a few such approaches below.
 
-- Another role for a "third variable" is as a _collider_. A collider is a
-  variable that is causally influenced by both the exposure and an outcome.
-  Colliders are not confounders and in fact controlling for a collider
-  introduces _collider stratification bias_. If a variable is a collider it
-  should generally be ignored in the analysis.
+- Another possible role for a "third variable" in an observation an
+  observational study is as a
+  [collider](https://pubmed.ncbi.nlm.nih.gov/37939152). A collider is a variable
+  that is causally influenced by both the exposure and an outcome. Colliders are
+  not confounders and in fact controlling for a collider introduces _collider
+  stratification bias_. If a variable is a collider it should generally be
+  ignored in the analysis. Here are two examples of collider stsratification
+  bias:
+
+  - Suppose that we are interested in the association between social isolation
+    (an exposure) and overall health (an outcome). Suppose further that (1)
+    people who are socially isolated are less likely to agree to participate in
+    research studies, and (2) people who have poorer overall health are less
+    likely to participate in research studies. If we condition on study
+    participation (as implicitly we must do), then we will likely see a negative
+    association between social isolation and poor health, even if no such
+    association exists.
+
+  - The _obesity paradox_ refers to the finding that within some high-risk
+    populations, higher BMI is associated with lower mortality, while in the
+    general population higher BMI is robustly associated with higher mortality.
+
+  - Both of the above examples can be viewed in a stylized way by considering
+    the
+    [partial correlation coefficient](https://en.wikipedia.org/wiki/Partial_correlation),
+    which in the population satisfies the relationship
+
+  ${\rm Cor}(X, Y | Z) = ({\rm Cor}(X, Y) - {\rm Cor}(X, Z)\cdot{\rm Cor}(Y, Z)) /  \sqrt{(1 - {\rm Cor}(X,Z)^2\cdot{\rm Cor}(Y, Z)^2)}$
+
+  Suppose that $X$ is $BMI$ and $Y$ is mortality risk, with marginal correlation
+  ${\rm Cor}(X, Y) > 0$. Let $Z$ denote a comorbid risk factor like smoking
+  intensity, with ${\rm Cor}(Z, X) > 0$ and ${\rm Cor}(Z, Y) > 0$. That is
+  smoking is positively associated with both mortality risk and BMI. If the
+  latter two correlations are strong compared to the first, conditioning on
+  smoking can swing the apparent association between BMI and mortality from
+  positive to negative.
 
 - Formal analysis of confounding often takes place in the context of the
   [Neyman-Rubin causal model](https://en.wikipedia.org/wiki/Rubin_causal_model),
@@ -379,9 +410,8 @@
 
   - In an _as-treated_ analysis, subjects are analyzed as belonging to the
     treatment that they received and complied with, even if this treatment is
-    different from the one to which they were randomized. Such a study is
-    subject to selection bias and does not benefit from the presence of
-    randomization.
+    different from the one to which they were assigned. Such a study is subject
+    to selection bias and does not benefit from the presence of randomization.
 
 ## Foundations of statistical inference
 
