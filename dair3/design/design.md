@@ -1055,4 +1055,5 @@
 
 [Notebook for analyses of blood pressure in NHANES](https://github.com/kshedden/workshops/blob/main/dair3/design/nhanes/nhanes_sbp_lm.ipynb)
 
+[Miscellaneous notebooks](https://github.com/kshedden/case_studies)
 
