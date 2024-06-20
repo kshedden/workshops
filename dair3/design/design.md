@@ -1052,3 +1052,7 @@
 [Shared document for drafting study designs and analysis plans](https://docs.google.com/document/d/1Jz0w-lF_iTsrf6vt7CLdtXsqqIHsfHb8xaRDePk0dq8/edit?usp=sharing)
 
 [Notebook for analyses of a mouse aging study](https://github.com/kshedden/workshops/blob/main/dair3/design/mouse_aging/mouse_aging.ipynb)
+
+[Notebook for analyses of blood pressure in NHANES](https://github.com/kshedden/workshops/blob/main/dair3/design/nhanes/nhanes_sbp_lm.ipynb)
+
+
