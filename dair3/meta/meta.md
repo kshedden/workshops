@@ -10,7 +10,7 @@
   type of research synthesis in which the aim is to quantify a specific
   parameter or test a specific hypothesis of interest, using results from
   multiple [quantitative](https://en.wikipedia.org/wiki/Quantitative_research)
-  sources.
+  sources, and objectively assessing uncertainty for all claims.
 
 - Pooling research results almost always leads to more
   [precise](<https://en.wikipedia.org/wiki/Precision_(statistics)>) estimation,
@@ -36,6 +36,9 @@
   is highly influential in advocating for and serving as a repository for high
   quality research synthesis in clinical care including meta-analyses.
 
+- The [PRISMA statement](https://prisma-statement.org) provides guidance for
+  meta analyses that many investigators aim to follow.
+
 ## Pooling estimates and standard errors
 
 - Suppose we have estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, say of the
@@ -44,7 +47,7 @@
   [standard errors](https://en.wikipedia.org/wiki/Standard_error) are $s_1$ and
   $s_2$.
 
-- We will _pool_ the estimates using unweighted or weighted averaging.
+- We can _pool_ the estimates using unweighted or weighted averaging.
 
 - If the standard errors are equal, i.e. $s_1=s_2$, then the pooled estimate can
   be the simple average of the estimates,
@@ -68,7 +71,8 @@
   study-level variances, then the standard deviation of the inverse variance
   weighted average is $H^{1/2}/\sqrt{2}$.
 
-- These pooling rules can be extended to three or more estimates.
+- These pooling rules can be directly extended to handle estimates derived from
+  three or more studies.
 
 ## Data integration
 
@@ -166,7 +170,7 @@
 
 - There are several ways to integrate independent p-values, that is, to produce
   an overall p-value that combines the evidence in the individual p-values. This
-  p-value reflects the _global_ or _omnibus_ null hypothesis that the null
+  overall p-value reflects the _global_ or _omnibus_ null hypothesis that the null
   hypothesis is true in all studies being combined.
 
   - The fact that underpins most p-value combining procedures is that if the
