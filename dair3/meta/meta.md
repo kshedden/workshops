@@ -51,15 +51,22 @@
   $\hat{\theta}_a = (\hat{\theta}_1 + \hat{\theta}_2)/2$.
 
 - The standard error of this simple pooled estimate is
-  $\sqrt{(s_1^2 + s_2^2)/2}/\sqrt{2}$.
+  $\sqrt{(s_1^2 + s_2^2)/2}/\sqrt{2}$. The factor $\sqrt{(s_1^2 + s_2^2)/2}$ is
+  the standard deviation derived from the average variance. The factor of
+  $1/\sqrt{2}$ is the improvement in precision that results from pooling
+  evidence from two independent studies.
 
 - If the standard errors differ, then the optimal pooled estimator is
   [weighted](https://en.wikipedia.org/wiki/Inverse-variance_weighting) by the
-  inverse variances:
+  inverse variances. That is, we weight the first study by $1/s_1^2$ and the
+  second study by $1/s_2^2$. The resulting pooled effect estimate is
   $\hat{\theta}_w = (\hat{\theta}_1/s_1^2 + \hat{\theta}_2/s_2^2) / (1/s_1^2 + 1/s_2^2)$.
 
 - The standard error of the inverse variance weighted average is
-  $1 / (1/s_1^2 + 1/s_2^2)^{1/2}$.
+  $1 / (1/s_1^2 + 1/s_2^2)^{1/2}$. If $H$ is the
+  [harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) of the
+  study-level variances, then the standard deviation of the inverse variance
+  weighted average is $H^{1/2}/\sqrt{2}$.
 
 - These pooling rules can be extended to three or more estimates.
 
@@ -218,19 +225,21 @@
 - Suppose we have $m$ studies, all aiming to estimate a treatment effect. Let
   $\theta_i$ denote the true treatment effect for the $i^{\rm th}$ study.
 
+- Let $\hat{\theta}_i$ be the estimated treatment effect for the $i^{\rm th}$
+  study. Each $\hat{\theta}_i$ deviates from the corresponding true $\theta_i$
+  due to [sampling variation](https://en.wikipedia.org/wiki/Sampling_error).
+
 - In some cases, it may be reasonable to presume that there is a single common
   treatment effect, that is, all of the $\theta_i$ are equal to a common value
-  $\theta$.
+  $\theta$. This leads to the _fixed effects_ meta-analysis model
+  $\hat{\theta}_i = \theta + s_i\epsilon_i$, where $\epsilon_i$ are
+  unit-variance random deviations for each study. As discussed above, the value
+  of $\theta$ is efficiently estimated using the inverse variance weighted mean
+  of the individual study estimates.
 
-- Let $\hat{\theta}_i$ be the estimated treatment effect for the $i^{\rm th}$
-  study. Even if there is only a single common treatment effect $\theta$, the
-  $\hat{\theta}_i$ will nevertheless vary due to
-  [sampling variation](https://en.wikipedia.org/wiki/Sampling_error).
-
-- It is almost always impossible to exactly replicate a research study. Even
-  when using a common study protocol, two studies will inevitably differ in
-  terms of how the design is implemented. Here are some reasons why
-  heterogeneity may be present:
+- It is rarely possible to perfectly replicate a research study. Even when using
+  a common study protocol, two studies will generally differ in terms of how the
+  design is implemented. Here are some reasons why heterogeneity may be present:
 
   - Study populations vary based on geographic location or over time in terms of
     comorbidities, genetic background, environmental risks, demographics,
@@ -243,16 +252,26 @@
   - Ascertainment (inclusion/exclusion) criteria can be interpreted in different
     ways by different implementation teams.
 
-- Some degree of study heterogeneity is presumably always present, but we can
-  still test the null hypothesis of no heterogeneity. Further, it is desirable
-  to quantify the amount of heterogeneity in a particular meta-analysis.
+- To account for study heterogeneity, a common approach to meta-analysis is the
+  _random effects_ or _hierarchical_ approach, in which we posit the model
+  $\hat{\theta}_i = \theta_i + s_i\epsilon_i$, where the $\theta_i$ are treated
+  as random variables from a distribution with mean $\theta$ and variance
+  $\tau^2$, and the $\epsilon_i$ are also random variables that are independent
+  of the $\theta_i$ and that follow a distribution with mean $0$ and variance
+  $1$.
 
-- Cochrane's Q-statistic was an early measure of study heterogeneity. The
-  statistic is defined as
+  - Sometimes we allow the $\epsilon_i$ to have variance $\sigma^2$, to account
+    for systematic biases in the reported standard errors.
+
+- The random effects model can be fit using mixed modeling software, but it is
+  also possible to estimate it directly using Cochrane's Q-statistic, which was
+  an early measure of study heterogeneity.
+
+- The Q-statistic is defined as
   $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. If there is
   no heterogeneity (all $\theta_i$ are equal), $Q$ follows a $\chi^2$
-  distribution with $m-1$ degrees of freedom. This can be used to formally test
-  a null hypothesis of no heterogeneity.
+  distribution with $m-1$ degrees of freedom. This allows $Q$ to be used to
+  formally test a null hypothesis of no heterogeneity.
 
 - Suppose we have a collection of effect estimates
   $\hat{\theta}_1, \ldots, \hat{\theta}_m$ and their corresponding standard
@@ -265,9 +284,14 @@
   statistic $I^2 = \tau^2 / (\tau^2 + \sigma^2)$ is a measure of the proportion
   of total variance due to study heterogeneity.
 
-- $I^2$ can be estimated as $\hat{I}^2 = 1 - (m-1)/Q$. Although $I^2$ always
-  lies between 0 and 1, $\hat{I}^2$ can be negative, and indeed when $I^2 = 0$
-  (no heterogeneity), $\hat{I}^2$ is negative around half of the time.
+- $I^2$ can be estimated as $\hat{I}^2 = 1 - (m-1)/Q$. This provides a
+  [method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>)
+  estimate of $I^2$, whereas the estimates using mixed modeling software are
+  typically based on maximum likelihood estimation.
+
+- Although $I^2$ always lies between 0 and 1, $\hat{I}^2$ can be negative, and
+  indeed when $I^2 = 0$ (no heterogeneity), $\hat{I}^2$ is negative around half
+  of the time.
 
 - Confidence intervals for $I^2$ can be constructed, the details of construction
   are too complex to include here.
@@ -275,8 +299,8 @@
 - Inference for variance fractions and
   [intra class correlations](https://en.wikipedia.org/wiki/Intraclass_correlation)
   are known to be a challenging problem. In a small meta-analysis (with few
-  studies), the estimate $\hat{I}^2$ is biased and its confidence under-covers
-  the true $I^2$, see
+  studies), the sample estimate $\hat{I}^2$ is biased and its confidence
+  interval under-covers the true $I^2$, see
   [here](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0024-z)
   for more details.
 
@@ -287,20 +311,6 @@
   as the number of studies in the meta-analysis grows. These are worst-case
   biases at $I^2=0$. If heterogeneity is present, the bias is less. For example,
   if we have 50 studies and truncate at zero, the bias is approximately 0.06.
-
-## Fixed effects approaches
-
-- An alternative approach to understanding heterogeneity among studies is to use
-  an approach that treats the effect sizes $\theta_i$ as parameters, rather than
-  summarizing the variance in a large collection of effect sizes. This may be
-  useful if a small number of "famous" studies are being considered in the
-  meta-analysis, and it is of interest to quantify the evidence for differences
-  among specific pairs of studies.
-
-- The statistical framework for this analysis is essentially a one-way analysis
-  of variance with unequal variances. Any two studies can be compared with a
-  t-test and multiple testing corrections can be applied to account for
-  assessment of many pairs of studies.
 
 ## Meta regression
 
@@ -387,9 +397,9 @@
 - Some funnel plots use the precision as the vertical coordinate rather than the
   standard error (the precision is the reciprocal of the standard error).
 
-- The logic behiond a funnel plot that any given quantile of the effect
-  estimates should scale linearly with the standard error. Thus, the effect
-  estimates should be distributed in a cone with vertex at the origin.
+- The logic behind a funnel plot that any given quantile of the effect estimates
+  should scale linearly with the standard error. Thus, the effect estimates
+  should be distributed in a cone with vertex at the origin.
 
 - Publication bias may be reflected in an empty region in the funnel plot,
   usually corresponding to studies with higher standard error that contradict
