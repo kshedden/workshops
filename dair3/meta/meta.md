@@ -431,4 +431,4 @@
 
 [https://www.globaldrugsurvey.com](https://www.globaldrugsurvey.com)
 
-[https://cran.r-project.org/web/packages/metafor/index.html]
+https://cran.r-project.org/web/packages/metafor/index.html
