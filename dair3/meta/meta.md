@@ -424,3 +424,7 @@
 [Psychiatric symptoms caused by cannabis constituents; a systematic review and meta-analysis](<https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(20)30074-2>)
 
 [Meta analysis of cannabis associated psychotic symptoms](https://www.nature.com/articles/s44220-024-00261-x)
+
+[Moving on From Representativeness: Testing the Utility of the Global Drug Survey](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5595253)
+
+[Rates and correlates of cannabis-associated psychotic symptoms in over 230,000 people who use cannabis](https://www.nature.com/articles/s41398-022-02112-8)
