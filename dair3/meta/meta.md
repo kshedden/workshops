@@ -401,7 +401,7 @@
 - Some funnel plots use the precision as the vertical coordinate rather than the
   standard error (the precision is the reciprocal of the standard error).
 
-- The logic behind a funnel plot that any given quantile of the effect estimates
+- The logic behind a funnel plot is that any given quantile of the effect estimates
   should scale linearly with the standard error. Thus, the effect estimates
   should be distributed in a cone with vertex at the origin.
 
@@ -419,7 +419,7 @@
   can be used to impute missing studies in a funnel plot, to compensate for
   publication biases.
 
-## Case studies
+## Case studies and other links
 
 [Psychiatric symptoms caused by cannabis constituents; a systematic review and meta-analysis](<https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(20)30074-2>)
 
@@ -430,3 +430,5 @@
 [Rates and correlates of cannabis-associated psychotic symptoms in over 230,000 people who use cannabis](https://www.nature.com/articles/s41398-022-02112-8)
 
 [https://www.globaldrugsurvey.com](https://www.globaldrugsurvey.com)
+
+[https://cran.r-project.org/web/packages/metafor/index.html]
