@@ -429,6 +429,6 @@
 
 [Rates and correlates of cannabis-associated psychotic symptoms in over 230,000 people who use cannabis](https://www.nature.com/articles/s41398-022-02112-8)
 
-[https://www.globaldrugsurvey.com](https://www.globaldrugsurvey.com)
+https://www.globaldrugsurvey.com
 
 https://cran.r-project.org/web/packages/metafor/index.html
