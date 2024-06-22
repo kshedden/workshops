@@ -428,3 +428,5 @@
 [Moving on From Representativeness: Testing the Utility of the Global Drug Survey](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5595253)
 
 [Rates and correlates of cannabis-associated psychotic symptoms in over 230,000 people who use cannabis](https://www.nature.com/articles/s41398-022-02112-8)
+
+[https://www.globaldrugsurvey.com](https://www.globaldrugsurvey.com)
