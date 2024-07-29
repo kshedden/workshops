@@ -20,8 +20,7 @@
 
 - There is much deep and fundamental work in the
   [philosophy of science](https://en.wikipedia.org/wiki/Philosophy_of_science).
-  We will only cover this topic briefly and superficially here, in favor of more
-  pragmatic topics.
+  Our focus is on more pragmatic topics, so we only cover this topic briefly here.
 
   - For those interested, here is a readable account of the work of the very
     influential philosopher of science
@@ -35,7 +34,7 @@
 - At a very high level, most research is either
   [inductive](https://en.wikipedia.org/wiki/Inductive_reasoning) or
   [deductive](https://en.wikipedia.org/wiki/Deductive_reasoning). Inductive
-  research is data-driven and empirical, that is our focus here. Deductive
+  research is data-driven and empirical.  This type of research is our focus here. Deductive
   research starts with "first principles", and derives new findings logically
   from them.
 
@@ -57,10 +56,10 @@
     assessing the [uncertainty](https://en.wikipedia.org/wiki/Uncertainty) of
     all findings.
 
-- Our focus here is on learning about observations that can be made with
+- Our focus here is on learning through observations that can be made with
   replication. For example, if we are interested in a certain type or category
-  of human subject, there are generally many "replicates" of such a person that
-  we can potentially study. In this case, a human is the
+  of human beings, all the people in this category are viewed as "replicates" of
+  the person of interest. Each human is a
   [unit](https://en.wikipedia.org/wiki/Unit_of_analysis) (or _unit of
   analysis_). The set of all humans of interest is the
   [population](https://en.wikipedia.org/wiki/Statistical_population) and the
@@ -70,9 +69,9 @@
 - In some areas of research, replication is challenging or impossible. For
   example, in research on the Earth's climate history, "treatments" such as
   greenhouse gas emissions are essentially historical "one-offs". In public
-  policy, singular events like changes to federal laws are similarly
+  policy, singular events like changes to federal laws are generally
   non-replicable. At best we can look for "pseudo-replicates" when somewhat
-  similar events happened at another historical moment.
+  similar events to the event of interest happened at another historical moment.
 
 - There are many different types of research "studies". We are not aiming here
   to produce a typology for all possible situations. Here are some of the major
@@ -137,11 +136,11 @@
     the design updates impact the people currently undergoing treatment (e.g. in
     a [SMART](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4167891) design).
 
-- In the contemporary era, there is more openness to _hypothesis generating_ or
-  _exploratory research_, in contrast to the "confirmatory", hypothesis-driven
+- In the contemporary era, there is more openness to _hypothesis-generating_ or
+  _exploratory research_, in contrast to the "confirmatory", _hypothesis-driven_
   standpoint of the classical scientific method. Nevertheless, in modern health
-  research and basic life science, the adoption of new theories remains
-  primarily the domain of hypothesis-based modes of inquiry.
+  research and basic life science, the adoption of new theories generally
+  relies on evidence collected through a hypothesis-based mode of inquiry.
 
 ## Measurement
 
@@ -165,7 +164,7 @@
 
 - Technology is rapidly transforming the landscape for measurements of human
   behaviors ([wearables](https://en.wikipedia.org/wiki/Wearable_technology) for
-  activity and sleep, real time monitors for blood glucose, bio-assays for
+  activity and sleep, real-time monitors for blood glucose, bio-assays for
   nicotine use).
 
 - Some quantities are difficult to measure because they are abstract and there
@@ -245,7 +244,7 @@
   [correlation is not causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation).
 
 - A [spurious relationship](https://en.wikipedia.org/wiki/Spurious_relationship)
-  is a non-causal associations. Below are some examples of (presumably) spurious
+  is a non-causal association. Below are some examples of (presumably) spurious
   relationships.
 
   - More ice cream is consumed on days in which the number of drowning deaths is
@@ -281,7 +280,7 @@
     there is rarely any way to know whether all confounders of a given
     relationship have been identified.
 
-  - At a high level, when designing a study, one or more of the following
+  - When designing a study, one or more of the following
     strategies are usually employed to mitigate the risks of confounding. They
     are listed in decreasing order of rigor:
 
@@ -302,7 +301,7 @@
   that is causally influenced by both the exposure and an outcome. Colliders are
   not confounders and in fact controlling for a collider introduces _collider
   stratification bias_. If a variable is a collider it should generally be
-  ignored in the analysis. Here are two examples of collider stsratification
+  ignored in the analysis. Here are two examples of collider stratification
   bias:
 
   - Suppose that we are interested in the association between social isolation
@@ -391,7 +390,7 @@
   lack of balance. For unmeasured or unknown confounders, randomization is
   usually the only practical way to avoid bias due to confounding.
 
-- The most basic type of randomization is simple randomization, where each unit
+- The most basic type of randomization is _simple randomization_, where each unit
   is independently assigned to a treatment group, either with uniform
   probabilities (equal probability of assignment to each arm) or with
   probabilities that are pre-determined to achieve desired relative group sizes
@@ -404,7 +403,7 @@
 
   - In
     [stratified randomization](https://en.wikipedia.org/wiki/Stratified_randomization)
-    the units are partitioned into more homogeneous groups. For example, in a
+    the units are first partitioned into more homogeneous groups. For example, in a
     study of a treatment for kidney disease we may partition the population into
     people with and without hypertension. Say we plan to recruit 60 people with
     hypertension and 30 people without hypertension. In 1:1 stratified
