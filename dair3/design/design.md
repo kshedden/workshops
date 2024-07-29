@@ -20,7 +20,8 @@
 
 - There is much deep and fundamental work in the
   [philosophy of science](https://en.wikipedia.org/wiki/Philosophy_of_science).
-  Our focus is on more pragmatic topics, so we only cover this topic briefly here.
+  Our focus is on more pragmatic topics, so we only cover this topic briefly
+  here.
 
   - For those interested, here is a readable account of the work of the very
     influential philosopher of science
@@ -34,9 +35,9 @@
 - At a very high level, most research is either
   [inductive](https://en.wikipedia.org/wiki/Inductive_reasoning) or
   [deductive](https://en.wikipedia.org/wiki/Deductive_reasoning). Inductive
-  research is data-driven and empirical.  This type of research is our focus here. Deductive
-  research starts with "first principles", and derives new findings logically
-  from them.
+  research is data-driven and empirical. This type of research is our focus
+  here. Deductive research starts with "first principles", and derives new
+  findings logically from them.
 
   - Many researchers combine data-driven and first principles approaches in
     their work.
@@ -139,8 +140,8 @@
 - In the contemporary era, there is more openness to _hypothesis-generating_ or
   _exploratory research_, in contrast to the "confirmatory", _hypothesis-driven_
   standpoint of the classical scientific method. Nevertheless, in modern health
-  research and basic life science, the adoption of new theories generally
-  relies on evidence collected through a hypothesis-based mode of inquiry.
+  research and basic life science, the adoption of new theories generally relies
+  on evidence collected through a hypothesis-based mode of inquiry.
 
 ## Measurement
 
@@ -280,9 +281,9 @@
     there is rarely any way to know whether all confounders of a given
     relationship have been identified.
 
-  - When designing a study, one or more of the following
-    strategies are usually employed to mitigate the risks of confounding. They
-    are listed in decreasing order of rigor:
+  - When designing a study, one or more of the following strategies are usually
+    employed to mitigate the risks of confounding. They are listed in decreasing
+    order of rigor:
 
     - _Randomization_ is usually the best way to limit or eliminate the risk of
       confounding. If the treatment is assigned at random, it is impossible for
@@ -373,40 +374,38 @@
   [randomly](https://en.wikipedia.org/wiki/Randomization) guarantees that there
   is no confounding at the population level. That is, there can be no
   statistical dependence between the assigned treatments and characteristics of
-  the units.
+  the units (either meeasured or unmeasured).
 
-- _Balance_ refers to the extent to which covariates have equal distributions
-  across treatment arms within the study data (the sample). Confounding will
-  generally lead to a lack of balance, but even if there is no confounding,
-  there can be a lack of balance, especially when the sample size is small. The
-  is because randomization (which guarantees no confounding) produces balance on
-  average, but in any given study randomization will usually not produce perfect
-  balance.
-
-- Bias can result from lack of balance due to chance, even in the absence of
-  confounding.
+- _Balance_ refers to the extent to which covariates have equal empirical
+  distributions across treatment arms within the study data (the sample).
+  Confounding will generally lead to a lack of balance, but even if there is no
+  confounding, there can be a lack of balance, especially when the sample size
+  is small. The is because randomization (which guarantees no confounding)
+  produces balance on average, but in any given study randomization will usually
+  not produce perfect balance.
 
 - For measured (potential) confounders, we can quantify and compensate for any
   lack of balance. For unmeasured or unknown confounders, randomization is
   usually the only practical way to avoid bias due to confounding.
 
-- The most basic type of randomization is _simple randomization_, where each unit
-  is independently assigned to a treatment group, either with uniform
+- The most basic type of randomization is _simple randomization_, where each
+  unit is independently assigned to a treatment group, either with uniform
   probabilities (equal probability of assignment to each arm) or with
   probabilities that are pre-determined to achieve desired relative group sizes
   (e.g. assigning to treatment with twice the probability of assigning to
   control).
 
 - Numerous approaches to randomization have been devised that aim to preserve
-  the benefits of randomization, while also producing balance with respect to
-  observed confounders. Some of these approaches are:
+  the benefits of randomization (protection on average from unmeasured
+  confounders), while also producing near-exact balance with respect to observed
+  confounders. Some of these approaches are:
 
   - In
     [stratified randomization](https://en.wikipedia.org/wiki/Stratified_randomization)
-    the units are first partitioned into more homogeneous groups. For example, in a
-    study of a treatment for kidney disease we may partition the population into
-    people with and without hypertension. Say we plan to recruit 60 people with
-    hypertension and 30 people without hypertension. In 1:1 stratified
+    the units are first partitioned into more homogeneous groups. For example,
+    in a study of a treatment for kidney disease we may partition the population
+    into people with and without hypertension. Say we plan to recruit 60 people
+    with hypertension and 30 people without hypertension. In 1:1 stratified
     randomization we would assign exactly 30 of the people with hypertension to
     the treatment arm, and exactly 15 of the people without hypertension to the
     treatment arm.
@@ -640,7 +639,7 @@
   sample units from a population in such a way that unbiased and precise results
   can be obtained from the sample.
 
-- The most basic type of sampling is a
+- The most basic type of sampling is to obtain a
   [simple random sample (SRS)](https://en.wikipedia.org/wiki/Simple_random_sample),
   which is a sample of size $k$ from a population of size $n$ in which any
   subset of size $k$ is equally likely to be selected.
@@ -876,7 +875,7 @@
   (i.e. to estimate the model parameters).
 
 - A basic example is the linear model
-  $E[Y|X,Z] = \beta_0 + \beta_1 X + \beta_2 X$, where $Y$ is the outcome, $X$ is
+  $E[Y|X,Z] = \beta_0 + \beta_1 X + \beta_2 Z$, where $Y$ is the outcome, $X$ is
   the treatment or exposure, and $Z$ is a potential confounder. Under certain
   rather strong assumptions, an estimate of the coefficient $\beta_1$ can be
   used to assess the relationship between the exposure $X$ and the outcome $Y$,
@@ -1055,4 +1054,3 @@
 [Notebook for analyses of blood pressure in NHANES](https://github.com/kshedden/workshops/blob/main/dair3/design/nhanes/nhanes_sbp_lm.ipynb)
 
 [Miscellaneous notebooks](https://github.com/kshedden/case_studies)
-
