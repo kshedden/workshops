@@ -170,8 +170,8 @@
 
 - There are several ways to integrate independent p-values, that is, to produce
   an overall p-value that combines the evidence in the individual p-values. This
-  overall p-value reflects the _global_ or _omnibus_ null hypothesis that the null
-  hypothesis is true in all studies being combined.
+  overall p-value reflects the _global_ or _omnibus_ null hypothesis that the
+  null hypothesis is true in all studies being combined.
 
   - The fact that underpins most p-value combining procedures is that if the
     null hypothesis is true, the p-value follows a uniform distribution on the
@@ -235,11 +235,11 @@
 
 - In some cases, it may be reasonable to presume that there is a single common
   treatment effect, that is, all of the $\theta_i$ are equal to a common value
-  $\theta$. This leads to the _fixed effects_ meta-analysis model
+  $\theta$. This leads to the meta-analysis model
   $\hat{\theta}_i = \theta + s_i\epsilon_i$, where $\epsilon_i$ are
   unit-variance random deviations for each study. As discussed above, the value
   of $\theta$ is efficiently estimated using the inverse variance weighted mean
-  of the individual study estimates.
+  of the individual study estimates, which we denote $\hat{\theta}$.
 
 - It is rarely possible to perfectly replicate a research study. Even when using
   a common study protocol, two studies will generally differ in terms of how the
@@ -267,9 +267,10 @@
   - Sometimes we allow the $\epsilon_i$ to have variance $\sigma^2$, to account
     for systematic biases in the reported standard errors.
 
-- The random effects model can be fit using mixed modeling software, but it is
-  also possible to estimate it directly using Cochrane's Q-statistic, which was
-  an early measure of study heterogeneity.
+- The parameters of the random effects model can be estimated using methods for
+  fitting mixed models (maximum likelihood and restricted maximum likelilhood),
+  but it is also possible to perform the estimation using Cochrane's
+  Q-statistic, which was an early measure of study heterogeneity.
 
 - The Q-statistic is defined as
   $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. If there is
@@ -319,7 +320,7 @@
 ## Meta regression
 
 - When study characteristics have been quantified in a consistent way across
-  studies, it is possible to partial out the contributions of specific study
+  studies, it is possible to "partial out" the contributions of specific study
   characteristics to the overall heterogeneity.
 
 - For example, suppose we have a meta-analysis that considers the effect of a
@@ -401,9 +402,9 @@
 - Some funnel plots use the precision as the vertical coordinate rather than the
   standard error (the precision is the reciprocal of the standard error).
 
-- The logic behind a funnel plot is that any given quantile of the effect estimates
-  should scale linearly with the standard error. Thus, the effect estimates
-  should be distributed in a cone with vertex at the origin.
+- The logic behind a funnel plot is that any given quantile of the effect
+  estimates should scale linearly with the standard error. Thus, the effect
+  estimates should be distributed in a cone with vertex at the origin.
 
 - Publication bias may be reflected in an empty region in the funnel plot,
   usually corresponding to studies with higher standard error that contradict
