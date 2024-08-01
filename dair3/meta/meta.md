@@ -356,6 +356,10 @@
   arm effect. If study or study/arm characteristics are known, let $Z_{ij}$ be a
   vector of characteristics for arm $j$ in study $i$, and use a mean structure
   model such as $E[Y_{ij}] = \mu + \alpha_i + \beta_j + \gamma^\prime Z_{ij}$
+  The overall model would be $Y_{ij} = E[Y_{ij}] + s_{ij}\epsilon_{ij}$, where
+  $s_{ij}$ is the reported standard error for $Y_{ij}$ and the $\epsilon_{ij}$
+  are independent unit-standard deviation random terms capturing unexplained
+  variation.
 
 - In many cases $\alpha_i$ will be modeled as a random effect, with variance
   $\tau_\alpha^2$, although fixed effects analysis is also an option.
