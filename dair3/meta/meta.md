@@ -4,7 +4,7 @@
 
 - [Research synthesis](https://en.wikipedia.org/wiki/Research_synthesis) is a
   form of [research](https://en.wikipedia.org/wiki/Research) that combines
-  results from multiple previously completed research studies.
+  results from multiple completed research studies.
 
 - [Meta analysis](https://en.wikipedia.org/wiki/Meta-analysis) is a specific
   type of research synthesis in which the aim is to quantify a specific
@@ -19,22 +19,22 @@
   some cases, [bias](https://en.wikipedia.org/wiki/Bias_of_an_estimator) is
   reduced by meta analysis but this is not always the case.
 
-- There are both practical and deeply conceptual aspects of meta analysis.
+- There are both practical and conceptual aspects of meta analysis.
 
-  - At a practical level, we are concerned with understanding the real-world
-    context of research, in which the quality of individual sources of
-    evidence can be affected by researcher behavior, the culture of rigor in
-    different fields, blindspots and sensitivities about threats to rigor in
-    different fields, resource constraints, and technical capabilities and
-    limitations for data collection and measurement.
+  - At a practical level, we must understand the real-world context of
+    research, in which the quality of individual sources of evidence can be
+    affected by researcher behavior, biases and incentives, the culture of
+    rigor in different fields, differing blindspots and sensitivities about
+    threats to rigor in different fields, resource constraints, and technical
+    capabilities and limitations for data collection and measurement.
 
-  - Assuming that we can quantify the quality (normally operationalized
-    through _bias_ and _precision_ of individual sources of evidence), we then
-    need to consider how to formally and quantitatively integrate this
+  - Assuming that we can quantify the quality of individual sources of
+    evidence (normally operationalized through _bias_ and _precision_), we
+    then need to consider how to formally and quantitatively integrate this
     information into a holistic finding that reflects the overall state of
     knowledge. This turns out to be extremely challenging, especially since in
     practice there is not only uncertainty about the results of any given
-    evidence source, but there is also uncertainty about the level of
+    evidence source, but there is also uncertainty about this level of
     uncertainty.
 
 - A [systematic review](https://en.wikipedia.org/wiki/Systematic_review) is
@@ -60,22 +60,22 @@
 ## Pooling estimates and standard errors
 
 - In many settings where meta-analysis is applied, the focus is on a single
-  quantitative parameter $\theta$. We have multiple estimates of $\theta$ from
-  different studies, which we write $\hat{\theta}_1$, $\hat{\theta}_2$,
-  $\ldots$. In addition we have estimates of uncertainty about each of these
-  estimates which usually take the form of
+  quantitative parameter $\theta$. Supose that we have multiple estimates of
+  $\theta$ from different studies, which we write $\hat{\theta}_1$,
+  $\hat{\theta}_2$, $\ldots$, $\hat{\theta}_m$. In addition we have estimates
+  of uncertainty about each of these estimates which usually take the form of
   [standard errors](https://en.wikipedia.org/wiki/Standard_error), and we will
-  denote them $\hat{s}_1$, $\hat{s}_2$, $\ldots$.
+  denote them $\hat{s}_1$, $\hat{s}_2$, $\ldots$, $\hat{s}_m$.
 
-- It is important to note that the standard errors are almost always
-  themselves estimates, which is why we put a "hat" over them. In some cases,
-  we have one more layer of evidence which takes the form of
-  [degrees of freedom](<https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)>)
-  $k_1$, $k_2$, $\ldots$. The degrees of freedom quantifies the confidence
-  that we have in the standard errors, with greater degrees of freedom
-  corresponding to greater confidence. If the degrees of freedom $k_i$ for the
-  estimator $\hat{\theta}_i$ is infinite, then the standard error $\hat{s}_i$
-  can be considered to be known exactly.
+  - It is important to note that the standard errors are almost always
+    themselves estimates, which is why we put a "hat" over them. In some
+    cases, we have even one more layer of evidence that takes the form of
+    [degrees of freedom](<https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)>)
+    $k_1$, $k_2$, $\ldots$, $k_m$. The degrees of freedom quantifies the
+    confidence that we have in the standard errors, with greater degrees of
+    freedom corresponding to greater confidence. If the degrees of freedom
+    $k_i$ for the estimator $\hat{\theta}_i$ is infinite, then the standard
+    error $\hat{s}_i$ can be considered to be known exactly.
 
 - Let's consider the special cas of a meta-analysis of two studies, which
   produed estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, with standard
@@ -111,23 +111,24 @@
 
 - If we are pooling $m$ independent estimates, the standard error of the
   inverse variance weighted average is $H^{1/2}/\sqrt{m}$, where $H$ is the
-  harmonic mean of the $k$ study-level variances.
+  harmonic mean of the $m$ study-level variances.
 
 - Things become much more complicated when the $s_i$ are not known exactly
   (i.e. when the degrees of freedom are finite). In this case, it is still
   common to use the inverse variance weighted mean as a consensus estimate,
-  using plug-in weights $\hat{s}_i^{-2}/\sum_j \hat{s}_j^{-2}$. But in this
-  case it becomes much more difficult to quantify the uncertainty of the
+  using plug-in weights $w_i = \hat{s}_i^{-2}/\sum_j \hat{s}_j^{-2}$. But in
+  this case it becomes much more difficult to quantify the uncertainty of the
   pooled estimate.
 
   - The standard error below approximately captures the inflation of
     uncertainty due to estimation of the weights:
 
-  $\sqrt{H(1 + 4n^2H^{-1}\sum_j n_j^\prime w_j(H/n - w_j))} / \sqrt{n}$
+  $\sqrt{H(1 + 4m^{-2}H^{2}\sum_j k_j^\prime w_j(m/H - w_j))} / \sqrt{m}$
 
-  This estimate can be taken to have degrees of freedom
+  where $n^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
+  degrees of freedom
 
-  $n^{-2}H^2 / \sum_j w_i^2/k_j$.
+  $m^{2}H^{-2} / \sum_j w_j^2/k_j$.
 
   - It is difficult to account for possible statistical dependence between
     $\hat{\theta}_i$ and $\hat{s}_i$.
