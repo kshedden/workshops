@@ -72,13 +72,13 @@
     cases, we have even one more layer of evidence that takes the form of
     [degrees of freedom](<https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)>)
     $k_1$, $k_2$, $\ldots$, $k_m$. The degrees of freedom quantifies the
-    confidence that we have in the standard errors, with greater degrees of
-    freedom corresponding to greater confidence. If the degrees of freedom
-    $k_i$ for the estimator $\hat{\theta}_i$ is infinite, then the standard
-    error $\hat{s}_i$ can be considered to be known exactly.
+    confidence that we have in the standard errors ($\hat{s}_j$), with greater
+    degrees of freedom corresponding to greater confidence. If the degrees of
+    freedom $k_i$ for the estimator $\hat{\theta}_i$ is infinite, then the
+    standard error $\hat{s}_i$ can be considered to be known exactly.
 
 - Let's consider the special cas of a meta-analysis of two studies, which
-  produed estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, with standard
+  produced estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, with standard
   errors $s_1$ and $s_2$. For now, consider the degrees of freedom to be
   infinite so we omit the hats over $s_1$ and $s_2$ to convey that they are
   exact.
@@ -136,7 +136,7 @@
   - Since many statistics are asymptotically normal, it is common to treat the
     $\hat{\theta}_i$ as following normal distributions. However some
     statistics converge very slowly to their limiting distribution. An example
-    of this would be the rate of occurrence of a rare event.
+    of this would be the etimated rate of occurrence of a rare event.
 
   - If a
     [variance-stabilzing transformation](https://en.wikipedia.org/wiki/Variance-stabilizing_transformation)
@@ -349,17 +349,19 @@
   likelilhood), but it is also possible to perform the estimation using
   Cochrane's Q-statistic, which was an early measure of study heterogeneity.
 
-- The Q-statistic is defined as
-  $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. If there
-  is no heterogeneity (all $\theta_i$ are equal), $Q$ asymptotically follows a
-  $\chi^2$ distribution with $m-1$ degrees of freedom under the null
+- The Cochran Q-statistic is defined as
+  $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. Note that
+  there is another (unrelated) "Cochran Q" statistic that deals with binary
+  outcomes.
+
+  -If there is no heterogeneity (all $\theta_i$ are equal), $Q$ asymptotically
+  follows a $\chi^2$ distribution with $m-1$ degrees of freedom under the null
   hypothesis of no heterogeneity (i.e. when $\tau^2=0$).
 
-  - In principle, this allows $Q$ to be used to formally test a null
-    hypothesis of no heterogeneity. However $Q$ is only asymptotically
-    $\chi^2$ and it has long been known that the $\chi^2$ approximation is
-    poor unless you have a large number of studies, and the studies themselves
-    are large.
+  - In principle, $Q$ can be used to formally test a null hypothesis of no
+    heterogeneity. However $Q$ is only asymptotically $\chi^2$ and it has long
+    been known that the $\chi^2$ approximation is poor unless you have a large
+    number of studies, and the studies themselves are large.
 
   - Some empirical work suggests that the null distribution of $Q$ might
     approximately follow a
@@ -409,9 +411,9 @@
   approximately 0.06.
 
 - An alternative to working with $I^2$ is to focus directly on $\tau^2$.
-  Arguably this was favored by Cochran himself. A methof of moments estimate
+  Arguably this was favored by Cochran himself. A method of moments estimate
   for $\tau^2$ is
-  $\widehat{\rm var}(\hat{\theta}_1, \ldots, \hat{\theta}_m) - {\rm Avg}(\hat{s}_1, \ldots, \hat{s}_m)$.
+  $\widehat{\rm var}(\hat{\theta}_1, \ldots, \hat{\theta}_m) - {\rm Avg}(\hat{s}^2_1, \ldots, \hat{s}^2_m)$.
   It is possible to put a confidence interval around this value using the
   method of jackknife empirical likelihood.
 
