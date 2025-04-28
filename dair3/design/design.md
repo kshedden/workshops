@@ -60,19 +60,19 @@
 - Our focus here is on learning through observations that can be made with
   replication. For example, if we are interested in a certain type or category
   of human beings, all the people in this category are viewed as "replicates" of
-  the person of interest. Each human is a
-  [unit](https://en.wikipedia.org/wiki/Unit_of_analysis) (or _unit of
+  the idealized person of interest. Each human subject in this setting is known as a
+  [unit](https://en.wikipedia.org/wiki/Unit_of_analysis) (for _unit of
   analysis_). The set of all humans of interest is the
   [population](https://en.wikipedia.org/wiki/Statistical_population) and the
-  specific humans that we observe and (potentially) manipulate is the
+  specific humans that we observe and (potentially) manipulate or intervene on is the
   [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>).
 
-- In some areas of research, replication is challenging or impossible. For
-  example, in research on the Earth's climate history, "treatments" such as
-  greenhouse gas emissions are essentially historical "one-offs". In public
-  policy, singular events like changes to federal laws are generally
-  non-replicable. At best we can look for "pseudo-replicates" when somewhat
-  similar events to the event of interest happened at another historical moment.
+  - In some areas of research, replication is challenging or impossible. For
+    example, in research on the Earth's climate history, "treatments" such as
+    greenhouse gas emissions are essentially historical "one-offs". In public
+    policy, singular events like changes to federal laws are generally
+    non-replicable. At best we can look for "pseudo-replicates" when somewhat
+    similar events to the event of interest happened at another historical moment.
 
 - There are many different types of research "studies". We are not aiming here
   to produce a typology for all possible situations. Here are some of the major
@@ -174,8 +174,8 @@
   many cases to refer to things like social attitudes, or skills (e.g. language
   or math skills) that cannot be simply and directly measured.
 
-  - A _scale_ is a quantitative value that captures the state of a construct in
-    a single unit. It is usually formed by aggregating several _items_ that can
+  - A _scale_ is a systematic way to quantitatively capture the state of a construct in
+    each unit. It is usually formed by aggregating several _items_ that can
     be measured directly. A common scale encountered in studies of human health
     is the [PHQ-9](https://en.wikipedia.org/wiki/PHQ-9).
 
@@ -207,10 +207,8 @@
 
   - _Random errors_ are a type of error that is transient or specific to one
     instance of making a measurement. Using blood pressure again as an example,
-    there are substantial random errors due to the skill required to accurately
-    detect a pulse as the blood pressure cuff is depressurized. The variance of
-    these random errors may depend on the skill of the person doing the
-    measurement.
+    there are substantial random errors due to the difficulty of accurately
+    ascertaining the subject's pulse.
 
   - Random errors can further be classified as classical errors and
     [Berkson errors](https://en.wikipedia.org/wiki/Berkson_error_model).
@@ -230,14 +228,14 @@
 
 ## Causality and confounding
 
-- Most research aims to understand relationships among factors. In health
+- Most research aims to understand relationships among measureable traits. In health
   research we often speak of _exposures_ (or _treatments_) and _outcomes_. The
   term "exposure" is typically used when the factor occurs naturalistically
   whereas "treatment" is used for interventions or experimental manipulations.
 
 - If $X$ is an exposure and $Y$ is an outcome, there is an _association_ between
   $X$ and $Y$ if $X$ and $Y$ are not statistically
-  [independent](<https://en.wikipedia.org/wiki/Independence_(probability_theory)>)).
+  [independent](<https://en.wikipedia.org/wiki/Independence_(probability_theory)>).
   A [causal](https://en.wikipedia.org/wiki/Causality) association is one in
   which manipulation of $X$ would lead to a change in $Y$ (on average or in some
   statistical sense). One of the fundamental tenets of empirical research is
@@ -1047,10 +1045,3 @@
 
 # External links
 
-[Shared document for drafting study designs and analysis plans](https://docs.google.com/document/d/1Jz0w-lF_iTsrf6vt7CLdtXsqqIHsfHb8xaRDePk0dq8/edit?usp=sharing)
-
-[Notebook for analyses of a mouse aging study](https://github.com/kshedden/workshops/blob/main/dair3/design/mouse_aging/mouse_aging.ipynb)
-
-[Notebook for analyses of blood pressure in NHANES](https://github.com/kshedden/workshops/blob/main/dair3/design/nhanes/nhanes_sbp_lm.ipynb)
-
-[Miscellaneous notebooks](https://github.com/kshedden/case_studies)
