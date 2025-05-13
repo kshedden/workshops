@@ -1,5 +1,7 @@
 # Rigorous statistical design
 
+## Foundations of scientific research
+
 - What is the goal of conducting
   [research](https://en.wikipedia.org/wiki/Research) using the
   [scientific method](https://en.wikipedia.org/wiki/Scientific_method)?
@@ -76,9 +78,12 @@
     similar events to the event of interest happened at another historical
     moment.
 
-- There are many different types of research "studies". We are not aiming here
-  to produce a typology for all possible situations. Here are some of the
-  major features that differentiate designs of research studies.
+## Typology of research studies
+
+- There are many different types of research studies. We are not aiming here
+  to exhaustively enumerate all possible situations, but here are some of the
+  major features that differentiate different designs that are commmonly used
+  in research studies.
 
   - In an _interventional study_, the units are manipulated by the researcher,
     treatment assignments are
@@ -1081,4 +1086,71 @@
   the weights $w^*$ can be negative, and therefore the synthetic control may
   not lie within the domain of the data (i.e. it may be an extrapolation).
 
-# External links
+## Longitudinal, multivariate, and correlated data
+
+- This is a broad set of topics that we will only briefly introduce here,
+  focusing mainly on the setting of longitudinal analysis.
+
+- Longitudinal studies are one example of a broader class of settings where we
+  have _repeated measures_, i.e. multiple measurements are made on each
+  subject, and these measurements are likely to be correlated.
+
+- As noted above, longitidudinal studies are one of the main designs for
+  research studies, especially those involving human subjects. Longitudinal
+  studies are often contrasted with cross-sectional studies. Longitudinal
+  studies are usually seen as being methodologically superior to
+  cross-sectional studies, but cross-sectional studies can be very informative
+  and play an important role in modern research.
+
+- In a longitudinal study, subjects are observed at a sequence of time points.
+  In a _regular_ design, all subjects are observed at the same time points,
+  whereas in an _irregular_ design different studies are observed at different
+  time points.
+
+- Longitudinal studies are popular partly because an observational
+  longitudinal study is seen as providing stronger causal evidence than a
+  longitudinal cross-sectional study. However, both are observational studies,
+  and hence are subject to confounding bias.
+
+- In a longitudinal study, if a change in an exposure preceeds a change in an
+  outcome, this is seen as being suggestive of causality. However it remains
+  possible that the exposure and outcome are influenced by a (possibly
+  unmeasured) _common cause_ (another term for a confounder), and hence any
+  association between an exposure and an outcome, even if temporally ordered,
+  may not indicate a causal relationship (unless the exposure results from a
+  randomized intervention).
+
+- Longitudinal studies offer the possibility to study either the level of an
+  outcome, or the rate of change of an outcome. In a cross-sectional study we
+  can only consider the level of an outcome.
+
+- Analysis of longitudinal studies often proceeds using either a _multilevel_
+  approach or a _marginal_ approach. Arguably, multilevel approaches are more
+  widely used, but both approaches are valid and informative. Multilevel
+  analysis is an important topic but too complex to consider further here, so
+  instead we focus (briefly) on marginal approaches to modeling and analyzing
+  longitudinal data.
+
+- Marginal regression allows us to use familiar ideas from the setting of
+  non-longitudinal analyses, particularly linear and generalized linear
+  models. To apply these approaches to lonmgitudinal data, we would first put
+  the data into _long form_, meaning that the data should be structured so
+  that there is one row of data per observation (not one row of data per
+  subject, which would be _wide form_).
+
+- Once the data are in long form, we can model the outcome given the exposures
+  using a linear or generalized linear model, as appropriate for the
+  mean/variance relationship and effect structure. However, if we analyze the
+  data while ignoring the longitudinal structure, the point estimates will be
+  valid, but the inferences are not.
+
+- The easiest (but still rigorous) way to analyze longitudinal data with
+  regression is to use _estimating equations regression_, most commonly in the
+  form of _generalized estimating equations_, or _GEE_.
+
+- GEE allows us to fit a model that to the user appears nearly identical to a
+  conventional linear or generalized linear model (i.e. one that would be used
+  for non-longitudinal data). However the GEE approach adjusts the parameter
+  estimates and especially the standard errors. The parameter estimates are
+  adjusted to make them more statistically efficient, and the standard errors
+  are adjusted to make them valid.

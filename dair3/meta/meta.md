@@ -24,17 +24,18 @@
   - At a practical level, we must understand the real-world context of
     research, in which the quality of individual sources of evidence can be
     affected by researcher behavior, biases and incentives, the culture of
-    rigor in different fields, differing blindspots and sensitivities about
-    threats to rigor in different fields, resource constraints, and technical
-    capabilities and limitations for data collection and measurement.
+    research rigor in different fields, differing blindspots and sensitivities
+    about threats to rigor in different fields, resource constraints, and
+    technical capabilities and limitations for data collection and
+    measurement.
 
   - Assuming that we can quantify the quality of individual sources of
     evidence (normally operationalized through _bias_ and _precision_), we
     then need to consider how to formally and quantitatively integrate this
     information into a holistic finding that reflects the overall state of
-    knowledge. This turns out to be extremely challenging, especially since in
-    practice there is not only uncertainty about the results of any given
-    evidence source, but there is also uncertainty about this level of
+    knowledge. This turns out to be technically quite challenging, especially
+    since in practice there is not only uncertainty about the results of any
+    given evidence source, but there is also uncertainty about this level of
     uncertainty.
 
 - A [systematic review](https://en.wikipedia.org/wiki/Systematic_review) is
@@ -60,7 +61,7 @@
 ## Pooling estimates and standard errors
 
 - In many settings where meta-analysis is applied, the focus is on a single
-  quantitative parameter $\theta$. Supose that we have multiple estimates of
+  quantitative parameter $\theta$. Suppose that we have multiple estimates of
   $\theta$ from different studies, which we write $\hat{\theta}_1$,
   $\hat{\theta}_2$, $\ldots$, $\hat{\theta}_m$. In addition we have estimates
   of uncertainty about each of these estimates which usually take the form of
@@ -72,21 +73,23 @@
     cases, we have even one more layer of evidence that takes the form of
     [degrees of freedom](<https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)>)
     $k_1$, $k_2$, $\ldots$, $k_m$. The degrees of freedom quantifies the
-    confidence that we have in the standard errors ($\hat{s}_j$), with greater
-    degrees of freedom corresponding to greater confidence. If the degrees of
-    freedom $k_i$ for the estimator $\hat{\theta}_i$ is infinite, then the
-    standard error $\hat{s}_i$ can be considered to be known exactly.
+    confidence that we have in the estimated standard errors ($\hat{s}_j$).
+    Greater degrees of freedom corresponds to greater confidence. If the
+    degrees of freedom $k_i$ for the estimator $\hat{\theta}_i$ is infinite,
+    then the standard error $\hat{s}_i$ can be considered to be known exactly,
+    and we may write it $s_i$.
 
-- Let's consider the special cas of a meta-analysis of two studies, which
+- Let's consider the special case of a meta-analysis of two studies, which
   produced estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, with standard
   errors $s_1$ and $s_2$. For now, consider the degrees of freedom to be
   infinite so we omit the hats over $s_1$ and $s_2$ to convey that they are
   exact.
 
-- We can _pool_ the estimates using unweighted or weighted averaging.
+- We can _pool_ the estimates $\hat{\theta}_1$ and $\hat{\theta}_2$ using
+  unweighted or weighted averaging.
 
-- One version of a pooled estimate is the simple average of the estimates,
-  $\hat{\theta}_a = (\hat{\theta}_1 + \hat{\theta}_2)/2$.
+- One version of a pooled estimate is the simple (unweighted) average of the
+  estimates, $\hat{\theta}_a = (\hat{\theta}_1 + \hat{\theta}_2)/2$.
 
 - The standard error of this simple pooled estimate is
   $\sqrt{(s_1^2 + s_2^2)/2}/\sqrt{2}$. The factor $\sqrt{(s_1^2 + s_2^2)/2}$
@@ -98,7 +101,7 @@
   [weighted](https://en.wikipedia.org/wiki/Inverse-variance_weighting) by the
   inverse variances. That is, we weight the first study by $1/s_1^2$ and the
   second study by $1/s_2^2$. The resulting pooled effect estimate is
-  $\hat{\theta}_w = (\hat{\theta}_1/s_1^2 + \hat{\theta}_2/s_2^2) / (1/s_1^2 + 1/s_2^2)$.
+  $\hat{\theta}_p = (\hat{\theta}_1/s_1^2 + \hat{\theta}_2/s_2^2) / (1/s_1^2 + 1/s_2^2)$.
 
 - If the standard errors are equal, i.e. $s_1 = s_2$, then the unweighted and
   weighted pooled estimators are the same.
@@ -113,22 +116,30 @@
   inverse variance weighted average is $H^{1/2}/\sqrt{m}$, where $H$ is the
   harmonic mean of the $m$ study-level variances.
 
+- If we use the unweighted average $\hat{\theta}_a$ of $m$ studies, the
+  standard error is $A^{1/2}/\sqrt{m}$, where $A$ is the
+  [arithmetic mean](https://en.wikipedia.org/wiki/Harmonic_mean) of the
+  study-level variances. Since the harmonic mean is
+  [never larger than](https://en.wikipedia.org/wiki/QM-AM-GM-HM_inequalities)
+  the arithmetic mean, the inverse variance weighted average is always more
+  precise (or at least as precise as) the unweighted average.
+
 - Things become much more complicated when the $s_i$ are not known exactly
   (i.e. when the degrees of freedom are finite). In this case, it is still
   common to use the inverse variance weighted mean as a consensus estimate,
-  using plug-in weights $w_i = \hat{s}_i^{-2}/\sum_j \hat{s}_j^{-2}$. But in
+  using "plug-in" weights $w_i = \hat{s}_i^{-2}/\sum_j \hat{s}_j^{-2}$. But in
   this case it becomes much more difficult to quantify the uncertainty of the
   pooled estimate.
 
-  - The standard error below approximately captures the inflation of
-    uncertainty due to estimation of the weights:
+  - The (approximate) standard error for $\hat{\theta}_p$ below captures the
+    inflation of uncertainty due to estimation of the weights:
 
   $\sqrt{H(1 + 4m^{-2}H^{2}\sum_j k_j^\prime w_j(m/H - w_j))} / \sqrt{m}$
 
   where $n^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
   degrees of freedom
 
-  $m^{2}H^{-2} / \sum_j w_j^2/k_j$.
+  $m^{2}H^{-2} / \sum_j (w_j^2/k_j)$.
 
   - It is difficult to account for possible statistical dependence between
     $\hat{\theta}_i$ and $\hat{s}_i$.
@@ -136,10 +147,10 @@
   - Since many statistics are asymptotically normal, it is common to treat the
     $\hat{\theta}_i$ as following normal distributions. However some
     statistics converge very slowly to their limiting distribution. An example
-    of this would be the etimated rate of occurrence of a rare event.
+    of this would be the estimated rate of occurrence of a rare event.
 
   - If a
-    [variance-stabilzing transformation](https://en.wikipedia.org/wiki/Variance-stabilizing_transformation)
+    [variance-stabilizing transformation](https://en.wikipedia.org/wiki/Variance-stabilizing_transformation)
     is available, then it may be advisable to pool evidence using the
     transformed estimates.
 
@@ -313,8 +324,7 @@
   $\hat{\theta}_i = \theta + s_i\epsilon_i$, where $\epsilon_i$ are
   unit-variance random deviations for each study. As discussed above, the
   value of $\theta$ is efficiently estimated using the inverse variance
-  weighted mean of the individual study estimates, which we denote
-  $\hat{\theta}$.
+  weighted mean $\hat{\theta}_p$ of the individual study estimates.
 
 - It is rarely possible to perfectly replicate a research study. Even when
   using a common study protocol, two studies will generally differ in terms of
@@ -346,10 +356,10 @@
 
 - The parameters of the random effects model can be estimated using methods
   for fitting mixed models (maximum likelihood and restricted maximum
-  likelilhood), but it is also possible to perform the estimation using
-  Cochrane's Q-statistic, which was an early measure of study heterogeneity.
+  likelihood), but it is also possible to perform the estimation using
+  Cochran's Q-statistic, which was an early measure of study heterogeneity.
 
-- The Cochran Q-statistic is defined as
+- The Cochran (meta-analysis) Q-statistic is defined as
   $Q \equiv \sum (\hat{\theta}_j - \hat{\theta}_p)^2 / \hat{s}_j^2$. Note that
   there is another (unrelated) "Cochran Q" statistic that deals with binary
   outcomes.
@@ -370,7 +380,7 @@
     the [method of moments](https://en.wikipedia.org/wiki/Method_of_moments)
     to estimate the particular gamma distribution that best matches the null
     distribution, but this requires estimation of moments of $Q$ which is
-    quite complicated. Another option might be to use bootstrap or jaccknife
+    quite complicated. Another option might be to use bootstrap or jackknife
     approaches to calibrate the gamma distribution.
 
 - Suppose we have a collection of effect estimates
@@ -382,37 +392,38 @@
   [law of total variation](https://en.wikipedia.org/wiki/Law_of_total_variance),
   the population variance of the $\hat{\theta}_j$ is $\sigma^2 + \tau^2$. The
   statistic $I^2 = \tau^2 / (\tau^2 + \sigma^2)$ is a measure of the
-  proportion of total variance due to study heterogeneity.
+  proportion of total variance due to study heterogeneity. When $I^2=0$ there
+  is no heterogeneity, and when $I^2=1$ there is complete heterogeneity.
 
 - $I^2$ can be estimated as $\hat{I}^2 = 1 - (m-1)/Q$. This provides a
   [method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>)
   estimate of $I^2$, whereas the estimates using mixed modeling software are
   typically based on maximum likelihood estimation.
 
-- Although $I^2$ always lies between 0 and 1, $\hat{I}^2$ can be negative, and
-  indeed when $I^2 = 0$ (no heterogeneity), $\hat{I}^2$ is negative around
-  half of the time.
+  - Although $I^2$ always lies between 0 and 1, $\hat{I}^2$ can be negative,
+    and indeed when $I^2 = 0$ (no heterogeneity), $\hat{I}^2$ is negative
+    around half of the time.
 
-- Inference for variance fractions and
-  [intra class correlations](https://en.wikipedia.org/wiki/Intraclass_correlation)
-  are known to be a challenging problem. In a small meta-analysis (with few
-  studies), the sample estimate $\hat{I}^2$ is biased and its confidence
-  interval under-covers the true $I^2$, see
-  [here](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0024-z)
-  for more details.
+  - Inference for variance fractions and
+    [intra class correlations](https://en.wikipedia.org/wiki/Intraclass_correlation)
+    are known to be a challenging problem. In a small meta-analysis (with few
+    studies), the sample estimate $\hat{I}^2$ is biased and its confidence
+    interval under-covers the true $I^2$, see
+    [here](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0024-z)
+    for more details.
 
-- The bias in $I^2$ depends on whether negative values of $\hat{I}^2$ are
-  truncated to zero. If no truncation is performed, the bias when $I^2=0$ is
-  negative, approximately $-2/(m-2)$. If truncation is performed, the bias is
-  positive, and is around 0.15 for very small meta-analyses, and becomes
-  smaller as the number of studies in the meta-analysis grows. These are
-  worst-case biases at $I^2=0$. If heterogeneity is present, the bias is less.
-  For example, if we have 50 studies and truncate at zero, the bias is
-  approximately 0.06.
+  - The bias in $\hat{I}^2$ depends on whether negative values of $\hat{I}^2$
+    are truncated to zero. If no truncation is performed, the bias when
+    $I^2=0$ is negative, approximately $-2/(m-2)$. If truncation is performed,
+    the bias is positive, and is around 0.15 for very small meta-analyses, and
+    becomes smaller as the number of studies in the meta-analysis grows. These
+    are worst-case biases at $I^2=0$. If heterogeneity is present, the bias is
+    less. For example, if we have 50 studies and truncate at zero, the bias is
+    approximately 0.06.
 
 - An alternative to working with $I^2$ is to focus directly on $\tau^2$.
-  Arguably this was favored by Cochran himself. A method of moments estimate
-  for $\tau^2$ is
+  Arguably this approach was favored by Cochran himself. A method of moments
+  estimate for $\tau^2$ is
   $\widehat{\rm var}(\hat{\theta}_1, \ldots, \hat{\theta}_m) - {\rm Avg}(\hat{s}^2_1, \ldots, \hat{s}^2_m)$.
   It is possible to put a confidence interval around this value using the
   method of jackknife empirical likelihood.
@@ -424,16 +435,20 @@
   characteristics to the overall heterogeneity.
 
 - For example, suppose we have a meta-analysis that considers the effect of a
-  primary treatment ($X=0,1$), with some studies excluding people with prior
-  treatment (i.e. only enrolling newly-diagnosed subjects) while others do not
-  make such an exclusion. Let $Z=0,1$ based on whether subjects with prior
-  treatment are excluded ($Z=1$) or when no such restriction is imposed
-  ($Z=0$). We can then fit a linear model
-  $E[Y] = \beta_0 + \beta_1X + \beta_2Z$, where $Y$ is the reported treatment
-  effect. This model should be fit with
-  [generalized least squares](https://en.wikipedia.org/wiki/Generalized_least_squares)
-  using inverse variance weights, with the variances being the squares of the
-  reported standard error for each study effect.
+  treatment ($X=0,1$), with some studies excluding people with prior treatment
+  (i.e. only enrolling newly-diagnosed subjects) while others do not make such
+  an exclusion. Let $Z=0,1$ based on whether subjects with prior treatment are
+  excluded ($Z=1$) or when no such restriction is imposed ($Z=0$). We can then
+  fit a linear model $E[Y] = \beta_0 + \beta_1X + \beta_2Z$, where $Y$ is the
+  reported treatment effect.
+
+  - This model should be fit with
+    [generalized least squares](https://en.wikipedia.org/wiki/Generalized_least_squares)
+    (GLS) using inverse variance weights, with the variances being the squares
+    of the reported standard error for each study effect.
+
+  - GLS with inverse variance weights is the generalization of inverse
+    variance averaging to the regression setting.
 
 - This framework can also be used to consider treatment effect modifiers.
   Continuing with the preceding example, we can fit the model
