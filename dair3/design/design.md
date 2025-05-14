@@ -29,7 +29,7 @@
     influential philosopher of science
     [Karl Popper](https://iep.utm.edu/pop-sci).
 
-  - There are many other lines of work contributing to the philososphy of
+  - There are many other lines of work contributing to the philosophy of
     science including the work of Greeks such as
     [Aristotle](https://en.wikipedia.org/wiki/) and Persians including
     [Ibn Sina](https://en.wikipedia.org/wiki/Avicenna).
@@ -82,8 +82,8 @@
 
 - There are many different types of research studies. We are not aiming here
   to exhaustively enumerate all possible situations, but here are some of the
-  major features that differentiate different designs that are commmonly used
-  in research studies.
+  major features that characterize different study designs that are commonly
+  used in research studies.
 
   - In an _interventional study_, the units are manipulated by the researcher,
     treatment assignments are
@@ -240,7 +240,7 @@
 
 ## Causality and confounding
 
-- Most research aims to understand relationships among measureable traits. In
+- Most research aims to understand relationships among measurable traits. In
   health research we often speak of _exposures_ (or _treatments_) and
   _outcomes_. The term "exposure" is typically used when the factor occurs
   naturalistically whereas "treatment" is used for interventions or
@@ -324,17 +324,25 @@
     people who are socially isolated are less likely to agree to participate
     in research studies, and (2) people who have poorer overall health are
     less likely to participate in research studies. If we condition on study
-    participation (as implicitly we must do), then we will likely see a
-    negative association between social isolation and poor health, even if no
-    such association exists.
+    participation (as implicitly we must do), then the association between
+    social isolation and poor health will be biased in the positive direction.
+    Since the anticipated association between social isolation and health
+    would be negative, this positive bias may mask the true negative
+    association.
 
-  - The _obesity paradox_ refers to the finding that within some high-risk
-    populations, higher BMI is associated with lower mortality, while in the
-    general population higher BMI is robustly associated with higher
-    mortality.
+  - Suppose that we are interested in the relationship between BMI and
+    mortality, and are considering controlling for a comorbidity such as
+    cancer. While BMI may increase the risk for certain types of cancer,
+    people who currently have cancer may have lower BMI, and the BMI may serve
+    as a proxy for the cancer severity. As a result, controlling for cancer
+    may bias the association between BMI and mortality in a positive
+    direction, possibly producing a spurious or inflated association. This is
+    related to the _obesity paradox_, which refers to the fact that within
+    some high-risk populations, higher BMI is associated with lower mortality,
+    while in the general population higher BMI is robustly associated with
+    higher mortality.
 
-  - Both of the above examples can be viewed in a stylized way by considering
-    the
+  - Both of the above examples can be viewed more formally by considering the
     [partial correlation coefficient](https://en.wikipedia.org/wiki/Partial_correlation),
     which in the population satisfies the relationship
 
@@ -390,7 +398,7 @@
   units [randomly](https://en.wikipedia.org/wiki/Randomization) guarantees
   that there is no confounding at the population level. That is, there can be
   no statistical dependence between the assigned treatments and
-  characteristics of the units (either meeasured or unmeasured).
+  characteristics of the units (either measured or unmeasured).
 
 - _Balance_ refers to the extent to which covariates have equal empirical
   distributions across treatment arms within the study data (the sample).
@@ -1095,7 +1103,7 @@
   have _repeated measures_, i.e. multiple measurements are made on each
   subject, and these measurements are likely to be correlated.
 
-- As noted above, longitidudinal studies are one of the main designs for
+- As noted above, longitudinal studies are one of the main designs for
   research studies, especially those involving human subjects. Longitudinal
   studies are often contrasted with cross-sectional studies. Longitudinal
   studies are usually seen as being methodologically superior to
@@ -1112,7 +1120,7 @@
   longitudinal cross-sectional study. However, both are observational studies,
   and hence are subject to confounding bias.
 
-- In a longitudinal study, if a change in an exposure preceeds a change in an
+- In a longitudinal study, if a change in an exposure precedes a change in an
   outcome, this is seen as being suggestive of causality. However it remains
   possible that the exposure and outcome are influenced by a (possibly
   unmeasured) _common cause_ (another term for a confounder), and hence any
@@ -1133,7 +1141,7 @@
 
 - Marginal regression allows us to use familiar ideas from the setting of
   non-longitudinal analyses, particularly linear and generalized linear
-  models. To apply these approaches to lonmgitudinal data, we would first put
+  models. To apply these approaches to longitudinal data, we would first put
   the data into _long form_, meaning that the data should be structured so
   that there is one row of data per observation (not one row of data per
   subject, which would be _wide form_).
