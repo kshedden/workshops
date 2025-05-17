@@ -364,9 +364,10 @@
   there is another (unrelated) "Cochran Q" statistic that deals with binary
   outcomes.
 
-  -If there is no heterogeneity (all $\theta_i$ are equal), $Q$ asymptotically
-  follows a $\chi^2$ distribution with $m-1$ degrees of freedom under the null
-  hypothesis of no heterogeneity (i.e. when $\tau^2=0$).
+  - If there is no heterogeneity (all $\theta_i$ are equal), $Q$
+    asymptotically follows a $\chi^2$ distribution with $m-1$ degrees of
+    freedom under the null hypothesis of no heterogeneity (i.e. when
+    $\tau^2=0$).
 
   - In principle, $Q$ can be used to formally test a null hypothesis of no
     heterogeneity. However $Q$ is only asymptotically $\chi^2$ and it has long
