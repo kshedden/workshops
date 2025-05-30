@@ -6,23 +6,24 @@
 
 - How do we formally study outcomes that occur "at random"?
 
-- The most basic example is a random outcome that can have only two states, e.g.
-  flipping a coin. We can talk about the "probability of observing a head" and
-  the "probability of observing a tail". This is called _discrete probability_.
+- The most basic example is a random outcome that can have only two states,
+  e.g. flipping a coin. We can talk about the "probability of observing a
+  head" and the "probability of observing a tail". This is called _discrete
+  probability_.
 
 - We often wish to use probability in situations where the outcome is
-  _quantitative_ (also known as _numeric_ or _continuous_). If I scoop a volume
-  of water from the ocean, what is the probability that I scoop exactly 300ml of
-  water? Arguably it is zero. Actually, every possible outcome has probability
-  zero, yet some outcome always occurs.
+  _quantitative_ (also known as _numeric_ or _continuous_). If I scoop a
+  volume of water from the ocean, what is the probability that I scoop exactly
+  300ml of water? Arguably it is zero. Actually, every possible outcome has
+  probability zero, yet some outcome always occurs.
 
-- With quantitative outcomes, we should only assign probabilities to ranges, not
-  to specific outcomes, e.g. what is the probability that I scoop between 300ml
-  and 310ml of water?
+- With quantitative outcomes, we should only assign probabilities to ranges,
+  not to specific outcomes, e.g. what is the probability that I scoop between
+  300ml and 310ml of water?
 
 - It's not straightforward to use math to precisely talk about randomness.
-  Mathematical probability only became rigorous in the 20th century, largely due
-  to the formal development of
+  Mathematical probability only became rigorous in the 20th century, largely
+  due to the formal development of
   [measure theory](<https://en.wikipedia.org/wiki/Measure_(mathematics)>) and
   the work of [Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov).
 
@@ -35,15 +36,15 @@
     subset of the sample space to which we can assign a probability. Not all
     subsets are events.
 
-  - [Probability measure](https://en.wikipedia.org/wiki/Probability_measure): a
-    function that assigns a probability to each event.
+  - [Probability measure](https://en.wikipedia.org/wiki/Probability_measure):
+    a function that assigns a probability to each event.
 
 - A probability measure has these properties:
 
   - The probability of every event is non-negative.
 
-  - The probability of the event that includes the entire sample space is equal
-    to 1.
+  - The probability of the event that includes the entire sample space is
+    equal to 1.
 
   - If $E$ is an event and $E^c$ is its complement, then the probability of
     $E^c$ is 1 minus the probability of $E$.
@@ -52,11 +53,11 @@
     then the probability of the union of $A$ and $B$ is the sum of the
     probability of $A$ and the probability of $B$.
 
-- A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a symbol
-  such as $X$ that represents a value drawn from a probability distribution. We
-  can write expressions such as $P(X \le 3)$, $P(X = 4)$, $P(1 \le X < 2)$, etc.
-  Keep in mind that $X$ has no fixed value, every time we view or refer to $X$
-  its value changes.
+- A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a
+  symbol such as $X$ that represents a value drawn from a probability
+  distribution. We can write expressions such as $P(X \le 3)$, $P(X = 4)$,
+  $P(1 \le X < 2)$, etc. Keep in mind that $X$ has no fixed value, every time
+  we view or refer to $X$ its value changes.
 
 ### Probability distributions
 
@@ -76,29 +77,30 @@
     have the
     [cumulative distribution function (CDF)](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
     $F(t) = P(X \le t)$. The probabilities of all events can be inferred from
-    the CDF, e.g. the probability that $X$ is between $1$ and $2$ or between $6$
-    and $7$ is $F(2) - F(1) + F(7) - F(6)$.
+    the CDF, e.g. the probability that $X$ is between $1$ and $2$ or between
+    $6$ and $7$ is $F(2) - F(1) + F(7) - F(6)$.
 
   - If there is an atom with positive mass, the CDF is discontinuous at that
     point, e.g. $P(X=x)$ is the jump in the CDF at $x$.
 
   - Many common distributions whose sample space is the real numbers have a
-    [density](https://en.wikipedia.org/wiki/Probability_density_function), which
-    is a function $f$ such that $\int_a^bf(x)dx = F(b) - F(a)$ is the
+    [density](https://en.wikipedia.org/wiki/Probability_density_function),
+    which is a function $f$ such that $\int_a^bf(x)dx = F(b) - F(a)$ is the
     probability that $X$ falls between $a$ and $b$.
 
   - Some other ways to represent a probability distribution are through its
-    [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and its
+    [quantile function](https://en.wikipedia.org/wiki/Quantile_function) and
+    its
     [characteristic function](<https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)>).
 
 - To better understand the challenges of representing a probability
   distribution, we need to distinguish between different types of
   [infinity](https://en.wikipedia.org/wiki/Infinity).
 
-  - [Countable infinity](https://en.wikipedia.org/wiki/Countable_set) refers to
-    a set such as the integers (the definition of _countable_ is that the set is
-    in one-to-one correspondence with the integers). It is possible to have a
-    mass function on a countably infinite set since a
+  - [Countable infinity](https://en.wikipedia.org/wiki/Countable_set) refers
+    to a set such as the integers (the definition of _countable_ is that the
+    set is in one-to-one correspondence with the integers). It is possible to
+    have a mass function on a countably infinite set since a
     [series](<https://en.wikipedia.org/wiki/Series_(mathematics)>) can be
     summable. For example, $(1 - r)(1 + r + r^2 + r^3 + \cdots) = 1$ for
     $0 < r < 1$, so we can create a PMF on the countably infinite sample space
@@ -106,10 +108,10 @@
 
   - [Uncountable infinity](https://en.wikipedia.org/wiki/Uncountable_set) is a
     more challenging concept. For our purposes we can focus on the
-    [real numbers](https://en.wikipedia.org/wiki/Real_number). The real numbers
-    are not countable but we frequently wish to work with them in applied
-    analysis. When working with the real numbers, we must contend with the
-    unavoidable fact that there will always be
+    [real numbers](https://en.wikipedia.org/wiki/Real_number). The real
+    numbers are not countable but we frequently wish to work with them in
+    applied analysis. When working with the real numbers, we must contend with
+    the unavoidable fact that there will always be
     [non-measurable sets](https://en.wikipedia.org/wiki/Non-measurable_set),
     i.e. subsets ${\cal S} \subset {\mathbb R}$ to which it is impossible to
     assign a probability.
@@ -117,9 +119,9 @@
 ### Examples of probability distributions
 
 - The uniform distribution is either the
-  [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) in
-  which every atom has the same probability (for finite sample spaces), or (for
-  distributions on a real interval (a, b)), it is a
+  [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
+  in which every atom has the same probability (for finite sample spaces), or
+  (for distributions on a real interval (a, b)), it is a
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
   in which the probability of any interval is proportional to its length.
 
@@ -128,9 +130,9 @@
   with CDF $P(X \le t) = 1 - \exp(-\lambda t)$ and density
   $f(x) = \lambda
   \exp(-\lambda x)$. The value of $\lambda$ is a
-  [parameter](https://en.wikipedia.org/wiki/Statistical_parameter), so there are
-  actually infinitely many exponential distributions, determined by the value of
-  $\lambda$.
+  [parameter](https://en.wikipedia.org/wiki/Statistical_parameter), so there
+  are actually infinitely many exponential distributions, determined by the
+  value of $\lambda$.
 
 - The
   [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution)
@@ -140,12 +142,13 @@
 
 ### Measures of location and dispersion
 
-- Probability distributions are somewhat unwieldy to work with, it is helpful to
-  summarize them in a few informative numbers.
+- Probability distributions are somewhat unwieldy to work with, it is helpful
+  to summarize them in a few informative numbers.
 
 - _Measures of [location](https://en.wikipedia.org/wiki/Central_tendency)_ aim
-  to capture the central value of a distribution. The mean and median (discussed
-  in more detail below) are measures of location, and there are many more.
+  to capture the central value of a distribution. The mean and median
+  (discussed in more detail below) are measures of location, and there are
+  many more.
 
 - _Measures of
   [dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)_ aim to
@@ -159,15 +162,15 @@
   statistic of a quantitative random variable $X$.
 
 - For a random variable with a density $f(x)$, the expectation $E[X]$ is
-  $\int xf(x)dx$. For a random variable with a mass function the expectation is
-  $E[X] = \sum xf(x)$, where $x$ ranges over the domain of $X$.
+  $\int xf(x)dx$. For a random variable with a mass function the expectation
+  is $E[X] = \sum xf(x)$, where $x$ ranges over the domain of $X$.
 
 - The expectation solves the optimization problem
   ${\rm argmin}_\theta E[(X-\theta)^2]$
 
-- The expectation can be used to define the _center_ of a distribution, and has
-  a physical analogy in being the balancing point if the mass is arranged along
-  a beam.
+- The expectation can be used to define the _center_ of a distribution, and
+  has a physical analogy in being the balancing point if the mass is arranged
+  along a beam.
 
 - The expectation may not exist, and it may be infinite.
 
@@ -184,30 +187,33 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - Moments are expectations of (possibly) transformed random values.
 
-  - The expected value $E[X]$ is a moment, but so is $E[X^4]$ and $E[\exp(X)]$.
+  - The expected value $E[X]$ is a moment, but so is $E[X^4]$ and
+    $E[\exp(X)]$.
 
-  - The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$ central moment
-    is $E[(X - EX)^k]$.
+  - The $k^{\rm th}$ raw moment is $E[X^k]$ and the $k^{\rm th}$ central
+    moment is $E[(X - EX)^k]$.
 
-  - The [variance](https://en.wikipedia.org/wiki/Variance) is the second central
-    moment $E[(X - EX)^2]$. It is a measure of dispersion but its units are the
-    square of the units of $X$. Therefore we often use the _standard deviation_
-    which is the square root of the variance. It has the same units as the data.
+  - The [variance](https://en.wikipedia.org/wiki/Variance) is the second
+    central moment $E[(X - EX)^2]$. It is a measure of dispersion but its
+    units are the square of the units of $X$. Therefore we often use the
+    _standard deviation_ which is the square root of the variance. It has the
+    same units as the data.
 
   - The $k^{\rm th}$ standardized moment is the $k^{\rm th}$ raw moment of the
     standardized variate $(X - EX)/{\rm SD}(X)$
 
-  - The third standardized moment $E[Z^3]$ where $Z = (X - EX)/{\rm SD}(X)$ is a
-    measure of [skewness](https://en.wikipedia.org/wiki/Skewness). The fourth
-    standardized moment measures
-    [kurtosis](https://en.wikipedia.org/wiki/Kurtosis), higher order moments are
-    subtle to interpret.
+  - The third standardized moment $E[Z^3]$ where $Z = (X - EX)/{\rm SD}(X)$ is
+    a measure of [skewness](https://en.wikipedia.org/wiki/Skewness). The
+    fourth standardized moment measures
+    [kurtosis](https://en.wikipedia.org/wiki/Kurtosis), higher order moments
+    are subtle to interpret.
 
-- Quantiles are based on the inverse CDF. If $F(t) = P(X \le t)$ is the CDF then
-  the quantile function is $Q(p) \equiv F^{-1}(p)$. If $F$ is not invertible
-  then $Q(p)$ is defined as ${\rm inf}\\{t \\;|\\; F(t) \ge p\\}$. The
-  $p^{\rm th}$ quantile answers the question "for a given $p$, what is the value
-  $t$ such that $p$ of the mass of the distribution falls on or below $t$".
+- Quantiles are based on the inverse CDF. If $F(t) = P(X \le t)$ is the CDF
+  then the quantile function is $Q(p) \equiv F^{-1}(p)$. If $F$ is not
+  invertible then $Q(p)$ is defined as ${\rm inf}\\{t \\;|\\; F(t) \ge p\\}$.
+  The $p^{\rm th}$ quantile answers the question "for a given $p$, what is the
+  value $t$ such that $p$ of the mass of the distribution falls on or below
+  $t$".
 
   - The median is a measure of location that is a quantile, it is $Q(1/2)$.
 
@@ -222,8 +228,8 @@ Most summary statistics have one of two mathematical forms, as either a
 
     $(Q(3/4) - 2Q(1/2) + Q(1/4)) / (Q(3/4) - Q(1/4)).$
 
-    The theory of [L-moments](https://en.wikipedia.org/wiki/L-moment) provides a
-    general means for constructing higher order summary statistics from
+    The theory of [L-moments](https://en.wikipedia.org/wiki/L-moment) provides
+    a general means for constructing higher order summary statistics from
     quantiles.
 
 ### Conditional distributions, expectations and variances
@@ -237,13 +243,13 @@ Most summary statistics have one of two mathematical forms, as either a
   yielding a random vector $[X, Y]$.
 
   - The joint CDF of $X$ and $Y$ is the function
-    $F(s, t) = P(X \le s, Y \le t)$. There is also a concept of a joint density
-    (which does not always exist). But generalizing quantiles to joint
+    $F(s, t) = P(X \le s, Y \le t)$. There is also a concept of a joint
+    density (which does not always exist). But generalizing quantiles to joint
     distributions is not straightforward.
 
-  - If $f(x, y)$ is the joint density of $(X, Y)$, then the marginal density of
-    $X$ is $f(x) = \int f(x, y)dy$, and an analogous result gives the marginal
-    density of $Y$.
+  - If $f(x, y)$ is the joint density of $(X, Y)$, then the marginal density
+    of $X$ is $f(x) = \int f(x, y)dy$, and an analogous result gives the
+    marginal density of $Y$.
 
   - The conditional distribution $P(Y | X)$ is the distribution of $Y$ that
     results when the value of $X$ is known. Suppose that there is a joint
@@ -253,23 +259,23 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - [Conditional expectation](https://en.wikipedia.org/wiki/Conditional_expectation)
 
-  - Suppose that $Y$ is quantitative and is jointly distributed with $X$ (which
-    may or may not be quantitative). The _conditional expectation_ of $Y$ given
-    $X$, $E[Y|X=x]$ is (roughly speaking) the expected value of $Y$ when we know
-    that $X$ takes on the value $x$. The rigorous definition of conditional
-    expectation is somewhat different but this is the way that most people think
-    about conditional expectation intuitively.
+  - Suppose that $Y$ is quantitative and is jointly distributed with $X$
+    (which may or may not be quantitative). The _conditional expectation_ of
+    $Y$ given $X$, $E[Y|X=x]$ is (roughly speaking) the expected value of $Y$
+    when we know that $X$ takes on the value $x$. The rigorous definition of
+    conditional expectation is somewhat different but this is the way that
+    most people think about conditional expectation intuitively.
 
-  - A special case is when $X$ has a finite sample space, so that it effectively
-    partitions the population into groups. In this case, $E[Y | X=x]$ is the
-    expected value of $Y$ when we are in group $x$.
+  - A special case is when $X$ has a finite sample space, so that it
+    effectively partitions the population into groups. In this case,
+    $E[Y | X=x]$ is the expected value of $Y$ when we are in group $x$.
 
   - The _double expectation theorem_ or _smoothing theorem_ or
     [law of total expectation](https://en.wikipedia.org/wiki/Law_of_total_expectation)
     states that $E[E[Y|X]] = E[Y]$. That is, if we compute the conditional
-    expectation of $Y$ at each fixed value of $X$, and then average these values
-    over the marginal distribution of $X$, we get the same result as if we
-    compute the marginal mean of $Y$ directly.
+    expectation of $Y$ at each fixed value of $X$, and then average these
+    values over the marginal distribution of $X$, we get the same result as if
+    we compute the marginal mean of $Y$ directly.
 
 - Conditional variance
 
@@ -308,14 +314,14 @@ Most summary statistics have one of two mathematical forms, as either a
 
   $P(X \in E_1 \\; \\& \\; Y \in E_2) = P(X \in E_1) \cdot P(Y \in E_2)$
 
-  for all events $E_1$ and $E_2$. This essentially means that knowing the value
-  of $X$ tells you nothing about the value of $Y$.
+  for all events $E_1$ and $E_2$. This essentially means that knowing the
+  value of $X$ tells you nothing about the value of $Y$.
 
 - If $X$ and $Y$ are independent then $E[Y|X=x] = E[Y]$ for all values of $x$,
   and ${\rm Var}[Y|X=x] = {\rm Var}[Y]$ for all values of $x$.
 
-- The [covariance](https://en.wikipedia.org/wiki/Covariance) is a measure of the
-  relationship between $X$ and $Y$. It is a moment that is defined to be
+- The [covariance](https://en.wikipedia.org/wiki/Covariance) is a measure of
+  the relationship between $X$ and $Y$. It is a moment that is defined to be
   $E[(X-EX)\cdot (Y-EY)]$. The covariance has some important properties:
 
   - The covariance of a random variable with itself is the variance:
@@ -326,19 +332,20 @@ Most summary statistics have one of two mathematical forms, as either a
   - The covariance is [bilinear](https://en.wikipedia.org/wiki/Bilinear_form).
     This means that ${\rm Cov}(X+Y, Z) = {\rm Cov}(X, Z) + {\rm Cov}(Y, Z)$.
 
-- The _standardized_ or _Z-scored_ version of a random variable is the variable
-  $(X - E[X]) / {\rm SD}(X)$.
+- The _standardized_ or _Z-scored_ version of a random variable is the
+  variable $(X - E[X]) / {\rm SD}(X)$.
 
 - The _correlation coefficient_ is the covariance calculated for standardized
   versions of $X$ and $Y$, that is
   $\rho \equiv E[(X-EX)\cdot (Y-EY)]/({\rm SD}(X)\cdot {\rm SD}(Y))$.
 
 - The correlation coefficient always lies between $-1$ and $1$. When the
-  correlation coefficient is equal to $1$, $Y$ is a linear function of $X$ with
-  positive slope. When the correlation coefficient is equal to $-1$ $Y$ is a
-  linear function of $X$ with negative slope. If the correlation coefficient is
-  equal to zero then $X$ and $Y$ are said to be _uncorrelated_. The correlation
-  coefficient is undefined if either ${\rm SD}(X) = 0$ or ${\rm SD}(Y) = 0$.
+  correlation coefficient is equal to $1$, $Y$ is a linear function of $X$
+  with positive slope. When the correlation coefficient is equal to $-1$ $Y$
+  is a linear function of $X$ with negative slope. If the correlation
+  coefficient is equal to zero then $X$ and $Y$ are said to be _uncorrelated_.
+  The correlation coefficient is undefined if either ${\rm SD}(X) = 0$ or
+  ${\rm SD}(Y) = 0$.
 
 - Two independent random variables are necessarily uncorrelated. But the
   converse is not true. Two random variables can be uncorrelated, but not be
@@ -346,19 +353,21 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - The
   [correlation coefficient](https://en.wikipedia.org/wiki/Correlation_coefficient)
-  (often called the _Pearson_ or _product moment_ correlation coefficient) is a
-  _measure of association_. Note that the product $(X-EX)\cdot(Y-EY)$ is
+  (often called the _Pearson_ or _product moment_ correlation coefficient) is
+  a _measure of association_. Note that the product $(X-EX)\cdot(Y-EY)$ is
   positive when $X$ and $Y$ lie on the same side of their respective expected
   values, and is greater when they both lie far on the same side of their
   expected values. Thus, the correlation coefficient tends to be positive and
   larger when this happens frequently.
 
 - The (Pearson) correlation coefficient is often said to be a measure of the
-  _linear_ association between $X$ and $Y$, and strictly speaking this is true.
-  [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet) shows
-  many different joint distributions that have the same linear correlation and
-  hence the same correlation coefficient. However the correlation coefficient is
-  able to detect many forms of dependence beyond that which is strictly linear.
+  _linear_ association between $X$ and $Y$, and strictly speaking this is
+  true.
+  [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet)
+  shows many different joint distributions that have the same linear
+  correlation and hence the same correlation coefficient. However the
+  correlation coefficient is able to detect many forms of dependence beyond
+  that which is strictly linear.
 
 - There are many other measures of association besides the product moment
   correlation.
@@ -377,19 +386,19 @@ Most summary statistics have one of two mathematical forms, as either a
 - In many cases we wish to characterize the associations among several (more
   than two) random variables. One way to do this is using the
   [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix). If we
-  have $d$ random variables, then the covariance matrix is a $d\times d$ matrix
-  $C$ such that $C_{ij}$ is the covariance between the $i^{\rm th}$ and
-  $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$ (a
-  diagonal element of $C$) is the variance of the $j^{\rm th}$ random variable.
-  Covariance matrices have some special properties as matrices, which we will
-  explore below in our review of linear algebra.
+  have $d$ random variables, then the covariance matrix is a $d\times d$
+  matrix $C$ such that $C_{ij}$ is the covariance between the $i^{\rm th}$ and
+  $j^{\rm th}$ of the random variables. Note that this implies that $C_{jj}$
+  (a diagonal element of $C$) is the variance of the $j^{\rm th}$ random
+  variable. Covariance matrices have some special properties as matrices,
+  which we will explore below in our review of linear algebra.
 
 ### Limits and concentration
 
 - Some of the most powerful tools in probability are theoretical results that
-  provide an understanding of how a complex distribution can be approximated by
-  a simpler distribution, or how a sequence of more complex distributions may
-  converge in some limiting sense to a simpler distribution.
+  provide an understanding of how a complex distribution can be approximated
+  by a simpler distribution, or how a sequence of more complex distributions
+  may converge in some limiting sense to a simpler distribution.
 
 - To facilitate discussion of limiting distributions, we will first introduce
   the notion of a sequence of random variables. A sequence of random variables
@@ -414,16 +423,16 @@ Most summary statistics have one of two mathematical forms, as either a
     $P(X[I]) = P(X[J])$.
 
   - An _m-dependent sequence_ is one in which subsets of the sequence are
-    independent as long as no two values are within $m$ positions of each other.
-    In an m-dependent sequence, if $I, J \subset 1, 2, \ldots$ and
+    independent as long as no two values are within $m$ positions of each
+    other. In an m-dependent sequence, if $I, J \subset 1, 2, \ldots$ and
     ${\rm max}(I) < {\rm min}(J) - m$, then $X[I]$ and $X[J]$ must be
     independent.
 
 - The
   [Law of Large Numbers (LLN)](https://en.wikipedia.org/wiki/Law_of_large_numbers)
   states that the averages of increasingly long subsequences converge to the
-  expected value. The most basic form of the LLN applies to IID sequences. If we
-  write $\bar{X}_n = (X_1 + \cdots + X_n)/n$ then the LLN states that
+  expected value. The most basic form of the LLN applies to IID sequences. If
+  we write $\bar{X}_n = (X_1 + \cdots + X_n)/n$ then the LLN states that
   $\bar{X}_n \rightarrow E[X_1]$. Exactly what is meant by the "convergence"
   $\rightarrow$ involves a discussion of
   [modes of convergence](https://en.wikipedia.org/wiki/Modes_of_convergence)
@@ -433,20 +442,20 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - The
   [Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem)
-  states that the distribution of $\sqrt{n}(\bar{X}_n - \mu)$ tends to a normal
-  distribution with mean $0$ and variance $\sigma^2$. Here we limit our
+  states that the distribution of $\sqrt{n}(\bar{X}_n - \mu)$ tends to a
+  normal distribution with mean $0$ and variance $\sigma^2$. Here we limit our
   discussion to IID sequences, so that $\mu = E[X_i]$ and
   $\sigma^2 = {\rm Var}[X_i]$ for any $i$. One implication of this result is
   that the sample means (which are natural estimators of the population mean)
-  have estimation errors on the order of $\sqrt{n}$, since we have to "blow up"
-  the difference between the sample and population means by a factor of
+  have estimation errors on the order of $\sqrt{n}$, since we have to "blow
+  up" the difference between the sample and population means by a factor of
   $\sqrt{n}$ to overcome the concentrating effect of the LLN. The CLT is a
   fundamentally important tool in probability theory and statistics, and there
   are many versions of the CLT that apply in different situations.
 
-- There are many additional tools in probability theory that are used to obtain
-  more subtle results along the lines of the LLN and CLT. We will not discuss
-  this more here, except to note the very important roles of the
+- There are many additional tools in probability theory that are used to
+  obtain more subtle results along the lines of the LLN and CLT. We will not
+  discuss this more here, except to note the very important roles of the
   [Markov inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality),
   [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality),
   and the
@@ -454,25 +463,25 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ### Stochastic processes
 
-- A [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) is a
-  random object indexed by a variable $t$ that is well-ordered. Usually $t$ is
-  either integer-valued or real-valued.
+- A [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) is
+  a random object indexed by a variable $t$ that is well-ordered. Usually $t$
+  is either integer-valued or real-valued.
 
 - The domain for the index $t$ is usually infinite, either countable (in the
   case of integers) or uncountable (in the case of a real index). Thus
   stochastic processes lie in infinite dimensional vector spaces, which
-  introduces many issues that are not present in the case of finite dimensional
-  random vectors.
+  introduces many issues that are not present in the case of finite
+  dimensional random vectors.
 
 - A
   [finite dimensional distribution](https://en.wikipedia.org/wiki/Finite-dimensional_distribution)
-  of a stochastic process $Y$ is $Y[T] = [Y[T_1], \ldots, Y[T_m]]$, where $T$ is
-  a fixed sequence of $m$ index values.
+  of a stochastic process $Y$ is $Y[T] = [Y[T_1], \ldots, Y[T_m]]$, where $T$
+  is a fixed sequence of $m$ index values.
 
 - A [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) is a
   stochastic process whose finite-dimensional distributions are Gaussian.
-  [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion) is a Gaussian
-  process with continuous sample paths.
+  [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion) is a
+  Gaussian process with continuous sample paths.
 
 ## Linear algebra
 
@@ -504,8 +513,8 @@ Most summary statistics have one of two mathematical forms, as either a
   that the axioms stated above hold for this vector space.
 
 - The vector space of $k$-tuples with real entries is denoted ${\mathbb R}^k$.
-  We will call $k$ the _dimension_ of ${\mathbb R}^k$ but are not defining this
-  term formally yet.
+  We will call $k$ the _dimension_ of ${\mathbb R}^k$ but are not defining
+  this term formally yet.
 
 - Another example of a vector space is the set of continuous real-valued
   functions of a real variable.
@@ -517,50 +526,50 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - A collection of vectors $v_1, \ldots, v_m$ in a vector space has the
     property of
-    [linear independence](https://en.wikipedia.org/wiki/Linear_independence) if
-    for any scalars $c_1, \ldots, c_m$ such that $c_1v_1 + \cdots + c_mv_m = 0$,
-    it follows that $c_1, \ldots, c_m = 0$. That is, any linear combination of a
-    set of linearly independent vectors is zero if and only if all of the scalar
-    coefficients are zero.
+    [linear independence](https://en.wikipedia.org/wiki/Linear_independence)
+    if for any scalars $c_1, \ldots, c_m$ such that
+    $c_1v_1 + \cdots + c_mv_m = 0$, it follows that $c_1, \ldots, c_m = 0$.
+    That is, any linear combination of a set of linearly independent vectors
+    is zero if and only if all of the scalar coefficients are zero.
 
-  - A maximal set of linearly independent vectors in a vector space is called a
-    [basis](<https://en.wikipedia.org/wiki/Basis_(linear_algebra)>).
+  - A maximal set of linearly independent vectors in a vector space is called
+    a [basis](<https://en.wikipedia.org/wiki/Basis_(linear_algebra)>).
 
-  - The _span_ of a collection of vectors is the set of all vectors that can be
-    expressed as linear combinations of them. A basis has the property that its
-    span is the entire vector space.
+  - The _span_ of a collection of vectors is the set of all vectors that can
+    be expressed as linear combinations of them. A basis has the property that
+    its span is the entire vector space.
 
   - The size (number of elements) in any basis is the same, and this common
     value is called the
-    [dimension](<https://en.wikipedia.org/wiki/Dimension_(vector_space)>) of the
-    vector space.
+    [dimension](<https://en.wikipedia.org/wiki/Dimension_(vector_space)>) of
+    the vector space.
 
   - If a vector space has dimension $d$, then given a collection of $q < d$
-    linearly independent vectors $u_1, \ldots, u_q$, the span of the $u_j$ is a
-    $q$-dimensional [subspace](https://en.wikipedia.org/wiki/Subspace) of the
-    vector space.
+    linearly independent vectors $u_1, \ldots, u_q$, the span of the $u_j$ is
+    a $q$-dimensional [subspace](https://en.wikipedia.org/wiki/Subspace) of
+    the vector space.
 
 - Inner products and norms
 
   - The _dot product_ or
     [inner product](https://en.wikipedia.org/wiki/Inner_product_space) between
-    two vectors is a mapping that takes two vectors and yields a scalar. It must
-    satisfy certain properties such as
+    two vectors is a mapping that takes two vectors and yields a scalar. It
+    must satisfy certain properties such as
     $\langle x, y\rangle = \langle y, x\rangle$,
     $\langle x+y, z \rangle = \langle x, z \rangle + \langle y, z\rangle$, and
     $\langle cx, y\rangle = c\langle x, y\rangle$, where $x$, $y$, $z$ are
     vectors and $c$ is a scalar.
 
-  - If we are working with the vector space of k-tuples, then the canonical dot
-    product is formed as $\langle x, y\rangle = \sum_j x_j y_j$. Other possible
-    dot products on this space would, for example, have the form
+  - If we are working with the vector space of k-tuples, then the canonical
+    dot product is formed as $\langle x, y\rangle = \sum_j x_j y_j$. Other
+    possible dot products on this space would, for example, have the form
     $\langle x, y\rangle = \sum_j w_jx_j y_j$ for non-negative scalars $w_j$.
 
   - A [norm](<https://en.wikipedia.org/wiki/Norm_(mathematics)>) on a vector
     space is a mapping from the vectors to the non-negative reals. It is a way
-    of defining the length or magnitude of a vector. A dot product always yields
-    a norm via $\\|x\\|^2 = \langle x, x\rangle$. All norms have the following
-    properties:
+    of defining the length or magnitude of a vector. A dot product always
+    yields a norm via $\\|x\\|^2 = \langle x, x\rangle$. All norms have the
+    following properties:
 
     - Triangle inequality: $\|x + y\| \le \|x\| + \|y\|$
 
@@ -575,48 +584,48 @@ Most summary statistics have one of two mathematical forms, as either a
 - Linear transformations
 
   - A [linear transformation](https://en.wikipedia.org/wiki/Linear_map) is a
-    mapping from one vector space to another, or from a vector space to itself.
-    A linear transformation $T$ must satisfy $T(cx) = cT(x)$ and
+    mapping from one vector space to another, or from a vector space to
+    itself. A linear transformation $T$ must satisfy $T(cx) = cT(x)$ and
     $T(x+y) = T(x) + T(y)$, for a scalar $c$ and vectors $x$ and $y$.
 
-  - For most of the rest of this document, we focus on vector spaces consisting
-    of k-tuples of real numbers, i.e. ${\mathbb R}^k$.
+  - For most of the rest of this document, we focus on vector spaces
+    consisting of k-tuples of real numbers, i.e. ${\mathbb R}^k$.
 
-  - A [matrix](<https://en.wikipedia.org/wiki/Matrix_(mathematics)>) is an array
-    of numbers, with $r$ rows and $c$ columns.
+  - A [matrix](<https://en.wikipedia.org/wiki/Matrix_(mathematics)>) is an
+    array of numbers, with $r$ rows and $c$ columns.
 
-  - A _column vector_ is a matrix with $1$ column, i.e. an $r\times 1$ matrix. A
-    _row vector_ is a $1\times c$ matrix. A vector that is not specified to be
-    either a row vector or a column vector can usually be taken to be a column
-    vector.
+  - A _column vector_ is a matrix with $1$ column, i.e. an $r\times 1$ matrix.
+    A _row vector_ is a $1\times c$ matrix. A vector that is not specified to
+    be either a row vector or a column vector can usually be taken to be a
+    column vector.
 
-  - A $r\times c$ matrix can be multiplied (on the right) with a $c$ dimensional
-    vector, yielding a $r$-dimensional vector. Let $M$, $x$ denote such a matrix
-    and vector, and let $y = Mx$. Then $y_i$ is the dot product of the
-    $i^{\rm th}$ row of $M$ with $x$. This is called _matrix-vector
+  - A $r\times c$ matrix can be multiplied (on the right) with a $c$
+    dimensional vector, yielding a $r$-dimensional vector. Let $M$, $x$ denote
+    such a matrix and vector, and let $y = Mx$. Then $y_i$ is the dot product
+    of the $i^{\rm th}$ row of $M$ with $x$. This is called _matrix-vector
     multiplication_.
 
   - Via matrix-vector multiplication, a matrix represents a linear
-    transformation. Specifically, a $r\times c$ matrix is a transformation from
-    ${\mathbb R}^c$ to ${\mathbb R}^r$.
+    transformation. Specifically, a $r\times c$ matrix is a transformation
+    from ${\mathbb R}^c$ to ${\mathbb R}^r$.
 
-  - We can multiply matrices together, and this corresponds to the _composition_
-    of the linear transformations represented by the matrices. Recall that
-    _composing_ two functions $f$ and $g$ yields the function $h(x) = f(g(x))$.
-    This only makes sense when the range of $g$ is contained within the domain
-    of $f$. If the matrices $A$ and $B$ represent linear transformations $T_A$
-    and $T_B$, then the matrix product $A\cdot B$ represents the composition
-    $T_A(T_B(x))$.
+  - We can multiply matrices together, and this corresponds to the
+    _composition_ of the linear transformations represented by the matrices.
+    Recall that _composing_ two functions $f$ and $g$ yields the function
+    $h(x) = f(g(x))$. This only makes sense when the range of $g$ is contained
+    within the domain of $f$. If the matrices $A$ and $B$ represent linear
+    transformations $T_A$ and $T_B$, then the matrix product $A\cdot B$
+    represents the composition $T_A(T_B(x))$.
 
   - To multiply two matrices together, the matrices must have corresponding
     dimensions, i.e. to take the product of $A$ and $B$, the the number of
-    columns of $A$ must be equal to the number of rows of $B$. Then, the product
-    $AB$ can be formed from dot products, specifically, the element $i$, $j$ of
-    $AB$ is the dot product of the $i^{\rm th}$ row of $A$ with the $j^{\rm th}$
-    column of $B$.
+    columns of $A$ must be equal to the number of rows of $B$. Then, the
+    product $AB$ can be formed from dot products, specifically, the element
+    $i$, $j$ of $AB$ is the dot product of the $i^{\rm th}$ row of $A$ with
+    the $j^{\rm th}$ column of $B$.
 
-  - A linear transformation between two vector spaces of the same dimension may
-    be [invertible](https://en.wikipedia.org/wiki/Invertibility).
+  - A linear transformation between two vector spaces of the same dimension
+    may be [invertible](https://en.wikipedia.org/wiki/Invertibility).
     Transformations between spaces of differing dimension can never be
     invertible. A transformation is invertible if $T(x) = T(y)$ always implies
     that $x = y$. When this occurs it is possible to construct another linear
@@ -629,10 +638,10 @@ Most summary statistics have one of two mathematical forms, as either a
 - Orthogonality and projections
 
   - A linear transformation is
-    [orthogonal](https://en.wikipedia.org/wiki/Orthogonal_transformation) if it
-    preserves the inner-product, i.e.
-    $\langle x, y\rangle = \langle T(x), T(y)\rangle$ for all elements $x$, $y$
-    in the vector space.
+    [orthogonal](https://en.wikipedia.org/wiki/Orthogonal_transformation) if
+    it preserves the inner-product, i.e.
+    $\langle x, y\rangle = \langle T(x), T(y)\rangle$ for all elements $x$,
+    $y$ in the vector space.
 
   - An orthogonal transformation is norm-preserving, in that
     $\\|x\\| = \\|T(x)\\|$ for all $x$.
@@ -640,8 +649,8 @@ Most summary statistics have one of two mathematical forms, as either a
   - If we represent an orthogonal transformation $T$ with a matrix $M$ (acting
     via left-multiplication), then the matrix $M$ is orthogonal in the sense
     that $M^\prime M = I$. If $M$ is square then it also follows that
-    $MM^\prime = I$, but in general a matrix being orthogonal only implies that
-    $M^\prime M = I$.
+    $MM^\prime = I$, but in general a matrix being orthogonal only implies
+    that $M^\prime M = I$.
 
   - Given a subspace ${\cal S}$ of a vector space ${\cal T}$, there exists an
     _orthogonal complement_ ${\cal S}^\perp$ which consists of all vectors
@@ -652,8 +661,8 @@ Most summary statistics have one of two mathematical forms, as either a
     $q$-dimensional subspace ${\cal S}$ of it. For any vector $v\in {\cal T}$,
     there is a unique vector $s \in {\cal S}$ that is closest to $v$, i.e. it
     minimizes the distance $\\|s - v\\|$. This is called the
-    [projection](<https://en.wikipedia.org/wiki/Projection_(linear_algebra)>) of
-    $v$ onto ${\cal S}$.
+    [projection](<https://en.wikipedia.org/wiki/Projection_(linear_algebra)>)
+    of $v$ onto ${\cal S}$.
 
     - Projection is a linear transformation.
 
@@ -664,10 +673,10 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - Let $X$ denote an arbitrary $n \times p$ matrix, where without loss of
     generality $p < n$. The matrix $X$ can always be factored as
-    $X = USV^\prime$, where $U$ is $n \times p$, $S$ is $p \times p$, and $V$ is
-    $p \times p$. Further, $U$ is orthogonal ($U^\prime U = I$), $V$ is square
-    and orthogonal ($V^\prime V = VV^\prime = I$), and $S$ is diagonal with
-    non-increasing positive diagonal values, i.e.
+    $X = USV^\prime$, where $U$ is $n \times p$, $S$ is $p \times p$, and $V$
+    is $p \times p$. Further, $U$ is orthogonal ($U^\prime U = I$), $V$ is
+    square and orthogonal ($V^\prime V = VV^\prime = I$), and $S$ is diagonal
+    with non-increasing positive diagonal values, i.e.
     $S
     = {\rm diag}(S_{11}, \ldots, S_{nn})$ with
     $S_{11} \ge S_{22} \ge
@@ -680,22 +689,22 @@ Most summary statistics have one of two mathematical forms, as either a
     by $S$, and (iii) an orthogonal change of coordinates on ${\mathbb R}^n$,
     expressed by $U$.
 
-  - The SVD has many important applications in data analysis, mostly due to its
-    ability to produce _low rank approximations_ to $X$. If we truncate the SVD
-    to the first $j$ terms, i.e. let $U^{(j)}$ represent the $n\times j$ matrix
-    consisting of the first $j$ columns of $U$, $S^{(j)}$ represent the
-    $j\times j$ upper left submatrix of $S$, and $V^{(j)}$ represent the
-    $d\times j$ matrix consisting of the first $j$ columns of $V$, then
-    $X^{(j)} \equiv U^{(j)}S^{(j)}V^{(j)\prime}$ is the best possible rank $j$
-    approximation to $X$. This fact is the basis for the
+  - The SVD has many important applications in data analysis, mostly due to
+    its ability to produce _low rank approximations_ to $X$. If we truncate
+    the SVD to the first $j$ terms, i.e. let $U^{(j)}$ represent the
+    $n\times j$ matrix consisting of the first $j$ columns of $U$, $S^{(j)}$
+    represent the $j\times j$ upper left submatrix of $S$, and $V^{(j)}$
+    represent the $d\times j$ matrix consisting of the first $j$ columns of
+    $V$, then $X^{(j)} \equiv U^{(j)}S^{(j)}V^{(j)\prime}$ is the best
+    possible rank $j$ approximation to $X$. This fact is the basis for the
     [Eckart-Young theorem](https://en.wikipedia.org/wiki/Low-rank_approximation).
 
 - Eigendecompositions and invariant spaces
 
   - An [invariant subspace](https://en.wikipedia.org/wiki/Invariant_subspace)
     for a linear transformation $T$ is a subspace ${\cal S}$ such that
-    $T(x) \in {\cal S}$ for all $x\in{\cal S}$. The subspace spanned by $0$ and
-    the entire vector space are always invariant subspaces.
+    $T(x) \in {\cal S}$ for all $x\in{\cal S}$. The subspace spanned by $0$
+    and the entire vector space are always invariant subspaces.
 
   - A one-dimensional invariant subspace is spanned by a vector $v$ such that
     $T(v) = \lambda v$. That is, $T$ acts by scaling on $v$. Such a vector $v$
@@ -703,21 +712,21 @@ Most summary statistics have one of two mathematical forms, as either a
     [eigenvector](https://en.wikipedia.org/wiki/Eigenvectors_and_eigenvalues)
     and the value of $\lambda$ is its associated _eigenvalue_.
 
-  - It is very useful to be able to identify all invariant subspaces of a given
-    linear transformation $T$. Unfortunately the general situation is quite
-    complex, in that $T$ may have no (nontrivial) invariance subspaces.
+  - It is very useful to be able to identify all invariant subspaces of a
+    given linear transformation $T$. Unfortunately the general situation is
+    quite complex, in that $T$ may have no (nontrivial) invariance subspaces.
 
   - When $T$ is symmetric the situation is much more favorable.
 
     - A symmetric transformation (or matrix) has only real eigenvalues.
 
-    - It is always possible to construct a basis of eigenvectors for a symmetric
-      matrix. That is, for a linear transformation on a $d$-dimensional vector
-      space, we can construct a sequence
+    - It is always possible to construct a basis of eigenvectors for a
+      symmetric matrix. That is, for a linear transformation on a
+      $d$-dimensional vector space, we can construct a sequence
       $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d$ and associated
-      eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for all
-      $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^d$, and (iii)
-      the $v_j$ are mutually orthogonal.
+      eigenvectors $v_1, \ldots, v_d$ such that (i) $Tv_j = \lambda v_j$ for
+      all $j$, (ii) $v_1, \ldots, v_d$ are a basis for ${\mathbb R}^d$, and
+      (iii) the $v_j$ are mutually orthogonal.
 
     - The
       [Schur decomposition](https://en.wikipedia.org/wiki/Schur_decomposition)
@@ -730,15 +739,16 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - The [determinant](https://en.wikipedia.org/wiki/Determinant) is a real
     number characteristic of a square matrix. One of several equivalent
-    definitions of the determinant is that it is the product of the eigenvalues.
+    definitions of the determinant is that it is the product of the
+    eigenvalues.
 
   - A square matrix is invertible if and only if all of its eigenvalues are
     non-zero, which in turn holds if and only if its determinant is non-zero.
 
   - The determinant of a linear transformation has important geometric
     properties, in that it defines how volumes change under mapping by the
-    transformation. If $A$ is a matrix representing a linear transformation and
-    $S$ is the unit hypercube, then the volume of
+    transformation. If $A$ is a matrix representing a linear transformation
+    and $S$ is the unit hypercube, then the volume of
     $\\{A(s) \; | \; s\in {\cal S}\\}$ is ${\rm det}(A)$ times the volume of
     ${\cal S}$.
 
@@ -770,8 +780,8 @@ Most summary statistics have one of two mathematical forms, as either a
 
   - $A$ is a
     [positive semidefinite matrix](https://en.wikipedia.org/wiki/Definite_matrix)
-    if $x^\prime A x \ge 0$ for all $x$. $A$ is a _positive definite matrix_ if
-    $x^\prime A x > 0$ for all $x\ne 0$.
+    if $x^\prime A x \ge 0$ for all $x$. $A$ is a _positive definite matrix_
+    if $x^\prime A x > 0$ for all $x\ne 0$.
 
   - Since $A$ is symmetric, it has a full set of real eigenvalues, and $A$ is
     positive-semidefinite if and only if all of these eigenvalues are
@@ -779,9 +789,115 @@ Most summary statistics have one of two mathematical forms, as either a
     eigenvalues are strictly positive.
 
   - A covariance matrix is always positive semidefinite. Further, if $X$ is a
-    random vector of length $d$ and $v$ is a fixed vector of length $d$, and $C$
-    is the $d\times d$ covariance matrix of $X$, then the variance of
+    random vector of length $d$ and $v$ is a fixed vector of length $d$, and
+    $C$ is the $d\times d$ covariance matrix of $X$, then the variance of
     $\langle v, X\rangle$ is equal to $v^\prime C v$.
+
+## Calculus
+
+- [Calculus](https://en.wikipedia.org/wiki/Calculus) is the study of smooth
+  functions for which it is possible to rigorously quantify their rate of
+  change. It also develops a type of _infinitessimal summation_ for the values
+  taken on by smooth functions. These two tasks broadly correspond to the two
+  branches of calculus: differential and integral.
+
+- Given a smooth function $f$ mapping the
+  [reals](https://en.wikipedia.org/wiki/Real_number) to the reals, we can
+  define its rate of change based on the
+  [secant line](https://en.wikipedia.org/wiki/Secant_line), which is the line
+  passing through the points $(x_1, f(x_1))$ and $(x_2, f(x_2))$. This line is
+  unique as long as $x_1 \ne x_2$. The slope of the secant line characterizes
+  the rate of change of $f$ between $x_1$ and $x_2$.
+
+- The secant line is useful for describing the rate of change of a function,
+  but is awkward to work with since we have to specify both $x_1$ and $x_2$ to
+  obtain the secant line.
+
+- The [derivative](https://en.wikipedia.org/wiki/Derivative) is a limiting
+  version of the secant line in which we allow $x_2$ to take on a sequence of
+  values converging to $x_1$. If this limit exists and yields the same value
+  for all sequences convering to $x_1$, then $f$ is said to be
+  _differentiable_ at $x_1$, and the limiting slope of the secant line is the
+  _derivative_ of $f$ at $x_1$, denoted $f^\prime(x_1)$.
+
+- It turns out that many familiar functions have derivatives that can be
+  obtained using simple analytic rules, rather than requiring us to calculate
+  a limit every time we need the derivative. For example, the derivative of
+  the polynomial $x^5$ is $5x^4$ and the derivative of $\log(x)$ is $1/x$.
+
+- Given a function $f$, it may be of interest to know the area under the graph
+  of $f$ between two points, say, $x_1$ and $x_2$. The notion of area
+  considered here is _signed_ in the sense that when $f$ is negative, we
+  obtain negative areas. Calculating an area can also be viewed as
+  "ininitessimal summation" of the values of the function.
+
+- This "signed area", also called an
+  [integral](https://en.wikipedia.org/wiki/Integral), or more specifically a
+  _definite integral_, can often be calculated analytically. For example, the
+  definite integral of $x^5$ between $2$ and $3$ is $3^6/6 - 2^6/6$.
+
+- A major result known as the _fundamental theorem of calculus_ provides a
+  link between differentiation and integration. Take a function $f$ and let
+  $F(x)$ denote its definite integral from $0$ to $x$. It turns out that $F$
+  is always differentiable, and its derivative is $f$.
+
+## Function approximation
+
+- A common task in data analysis is approximating a function with a simple
+  form that is easier to work with. Three are classical examples:
+
+  - We can approximate a target function $f$ with a
+    [step function](https://en.wikipedia.org/wiki/Step_function), also known
+    as a _piecewise constant function_. This can do a very good job of
+    capturing the integrals of $f$ but does a poor job with capturing anything
+    related to the rate of change.
+
+  - We can approximate a target function $f$ with a
+    [polynomial](https://en.wikipedia.org/wiki/Polynomial). The basic theory
+    for such approximations is given by
+    [Taylor's theorem](https://en.wikipedia.org/wiki/Taylor%27stheorem).
+    Polynomial approximations can be very effective when we only need a local
+    approximation, but approximating polynomials rarely do a good job
+    representing the global behavior of a function. Although Taylor's theorem
+    seems to suggest that higher order polynomial approximations are more
+    effective, in practice, polynomimal approximations usually have degree at
+    most three.
+
+  - We can approximate a target function $f$ with a sum of
+    [trigonometric functions](https://en.wikipedia.org/wiki/Trigonometric_functions).
+    Most commonly these are functions of the form $\cos(2\pi\cdot k\cdot x)$
+    and $\sin(2\pi\cdot k\cdot x)$. These functions are mutually
+    [orthogonal](https://en.wikipedia.org/wiki/Orthogonality) and infinitely
+    differentiable. They are also periodic, and therefore are interpretable in
+    situations where periodicity is expected. The theory of such trigonometric
+    function approximations is known as
+    [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis).
+
+- Function approximation using step functions, polynomial functions, and
+  trigonometric functions all draw on both linear algebra and calculus. Linear
+  algebra is relevant since these classes of functions are all vector spaces,
+  and we are using bases for these vector spaces in our function
+  approximations. Calculus is used to bound the approximation error.
+
+- Polynomial and trigonometric function approximations are the foundations of
+  this field, but in practice both have known limitations. Therefore,
+  modifications of these approaches have been devised to improve their
+  practical performance. In the case of polynomial approximations,
+  [polynomial splines](<https://en.wikipedia.org/wiki/Spline_(mathematics)>)
+  preserve many of the advantages of polynomials, but do a much better job of
+  representing functions globally.
+  [Wavelets](https://en.wikipedia.org/wiki/Wavelet), like trigonometric
+  approxcimations, are orthogonal, but generally perform better in practice.
+  Both splines and wavelets exhibit compact support, which is considered to be
+  a desirable property.
+
+- Classical function approximation methods generally utilize sums of basis
+  functions to approximate a target function. In recent years, a different
+  approach based on function composition has become very prevalent. The
+  composition of two functions $f$ and $g$ is the function
+  $(f\circ g)(x) = f(g(x))$. Neural networks approximate functions by
+  composing layers of functions in this way, often alternating between linear
+  and (simple) non-linear functions.
 
 ## Optimization
 
@@ -790,10 +906,10 @@ Most summary statistics have one of two mathematical forms, as either a
   example is fitting models to data, but there are other important roles that
   optimization plays in data analysis as well.
 
-- Formally, a mathematical optimization problem involves an _objective function_
-  $f$ defined on a domain $\Omega$ that takes on values in ${\mathbb R}$. The
-  goal of _unconstrained optimization_ is to find $x\in \Omega$ that minimizes
-  $f$.
+- Formally, a mathematical optimization problem involves an _objective
+  function_ $f$ defined on a domain $\Omega$ that takes on values in
+  ${\mathbb R}$. The goal of _unconstrained optimization_ is to find
+  $x\in \Omega$ that minimizes $f$.
 
 - If we wish to maximize $f$ we can minimize $-f$.
 
@@ -807,15 +923,15 @@ Most summary statistics have one of two mathematical forms, as either a
   nonlinear equations.
 
 - Not all optimization problems have a unique solution. Some problems have
-  multiple solutions, i.e. there are multiple distinct $x$ that minimize $f$. In
-  other cases there may be a sequence of points $x_i$ such that $f(x_i)$
-  approaches a minimizer $f$ but does not achieve the minimum on $\Omega$ (or on
-  ${\cal S}$).
+  multiple solutions, i.e. there are multiple distinct $x$ that minimize $f$.
+  In other cases there may be a sequence of points $x_i$ such that $f(x_i)$
+  approaches a minimizer $f$ but does not achieve the minimum on $\Omega$ (or
+  on ${\cal S}$).
 
 ### Constrained optimization
 
-- In _constrained optimization_ there is a set ${\cal S} \subset \Omega$ and the
-  goal is to minimize $f$ subject to the constraint $x \in {\cal S}$. In
+- In _constrained optimization_ there is a set ${\cal S} \subset \Omega$ and
+  the goal is to minimize $f$ subject to the constraint $x \in {\cal S}$. In
   principal we can just define $f(x) = \infty$ when $x \notin {\cal S}$ and
   treat the problem as being unconstrained. But this breaks algorithms that
   depend on the smoothness or convexity of $f$. Therefore it often makes sense
@@ -827,8 +943,8 @@ Most summary statistics have one of two mathematical forms, as either a
   constraints_ ($g(x) = 0$) and _inequality constraints_ ($g(x) > 0$).
 
 - If there are only equality constraints, then the method of
-  [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) can
-  be used.
+  [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier)
+  can be used.
 
 - In the more general case with both equality and inequality constraints, the
   [KKT conditions](https://en.wikipedia.org/wiki/Karush-Kuhn-Tucker_conditions)
@@ -838,10 +954,11 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - The case where $f$ is defined on an interval $[a, b]$ of the real line is
   special. We can trap a minimum in a _bracket_, which is a triple of values
-  $x_1 < x_2 < x_3$ such that $f(x_2) < {\rm min}(f(x_1), f(x_3))$. We can then
-  successively squeeze the bracket by testing the midpoints $(x_1 + x_2)/2$ and
-  $(x_2 + x_3)/2$. One of these midpoints can always be used to create a new
-  bracket of lesser width than the preceding bracket. This is called the
+  $x_1 < x_2 < x_3$ such that $f(x_2) < {\rm min}(f(x_1), f(x_3))$. We can
+  then successively squeeze the bracket by testing the midpoints
+  $(x_1 + x_2)/2$ and $(x_2 + x_3)/2$. One of these midpoints can always be
+  used to create a new bracket of lesser width than the preceding bracket.
+  This is called the
   [bisection method](https://en.wikipedia.org/wiki/Bisection_method).
 
 ### Newton's method
@@ -849,22 +966,22 @@ Most summary statistics have one of two mathematical forms, as either a
 - A multivariate quadratic function has the form
   $f(x) = c + b^\prime x + x^\prime A x$. If $A$ is invertible we can complete
   the square to obtain the equivalent form
-  $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$. When $A$ is a positive
-  semidefinite (PSD) matrix, this expression is minimized when
+  $f(x) = (x + A^{-1}b/2)^\prime A (x + A^{-1}b/2) - c$. When $A$ is a
+  positive semidefinite (PSD) matrix, this expression is minimized when
   $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
 
 - A smooth function $f(x)$ can be
-  \[approximated\]((https://en.wikipedia.org/wiki/Taylor%27s_theorem) local to a
-  given point $x_0$ with the approximation
+  \[approximated\]((https://en.wikipedia.org/wiki/Taylor%27s_theorem) local to
+  a given point $x_0$ with the approximation
 
   $f(x) \approx f(x_0) + (x - x_0)^\prime \nabla_f(x_0) + (x-x_0)^\prime
   H_f(x_0)(x-x_0)/2$
 
   where $\nabla_f$ is the
   [gradient function](https://en.wikipedia.org/wiki/Gradient) and $H_f$ is the
-  [Hessian](https://en.wikipedia.org/wiki/Gradient). If we treat this quadratic
-  approximation as if it were exact, we would find the minimizer to be
-  $x = x_0 - H_f(x_0)^{-1}\nabla_f(x_0)$.
+  [Hessian](https://en.wikipedia.org/wiki/Gradient). If we treat this
+  quadratic approximation as if it were exact, we would find the minimizer to
+  be $x = x_0 - H_f(x_0)^{-1}\nabla_f(x_0)$.
 
 - This gives rise to an iterative algorithm for numerically minimizing $f$, by
   iteratively setting $x\_{i+1} = x_i - H_f(x_i)^{-1}\nabla_f(x_i)$. This is
@@ -883,16 +1000,17 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ### Convexity
 
-- A function is strictly [convex](https://en.wikipedia.org/wiki/Convex_function)
-  if every secant line lies strictly below the function. Formally, this means
-  that for any points $x \ne y$ in the domain of the function,
+- A function is strictly
+  [convex](https://en.wikipedia.org/wiki/Convex_function) if every secant line
+  lies strictly below the function. Formally, this means that for any points
+  $x \ne y$ in the domain of the function,
 
   $f(\lambda x + (1-\lambda)y) \< \lambda f(x) + (1 - \lambda)f(y)$
 
   for all $0 \< \lambda \< 1$.
 
-- A strictly convex function can have at most one local minimum, and if a local
-  minimum exists it is also a global minimum.
+- A strictly convex function can have at most one local minimum, and if a
+  local minimum exists it is also a global minimum.
 
 - If a function has two continuous derivatives, it is strictly convex if and
   only if its Hessian matrix is positive definite for all $x$.
@@ -907,21 +1025,21 @@ Most summary statistics have one of two mathematical forms, as either a
 ### Gradient descent
 
 - The gradient $\nabla_f$ of the objective function points in the direction in
-  the domain of the function in which the function increases fastest. Therefore,
-  letting $\lambda \in {\mathbb R}$, the restricted function
-  $f(x + \lambda\nabla_f(x))$ is increasing in $\lambda$ for sufficiently small
-  $\lambda>0$.
+  the domain of the function in which the function increases fastest.
+  Therefore, letting $\lambda \in {\mathbb R}$, the restricted function
+  $f(x + \lambda\nabla_f(x))$ is increasing in $\lambda$ for sufficiently
+  small $\lambda>0$.
 
 - Since we want to minimize the objective function, we can consider
   $f(x - \lambda \nabla_f(x))$. For sufficiently small $\lambda>0$,
   $f(x - \lambda\nabla_f(x)) < f(x)$. Either a
-  [line search](https://en.wikipedia.org/wiki/Line_search) or a fixed step size
-  may be used to achieve a sequence of iterates that should (in some cases)
-  minimize the objective function.
+  [line search](https://en.wikipedia.org/wiki/Line_search) or a fixed step
+  size may be used to achieve a sequence of iterates that should (in some
+  cases) minimize the objective function.
 
-- Basic gradient descent often converges quite slowly, especially if the Hessian
-  matrix has a large condsition number. A major breakthrough was the discovery
-  of
+- Basic gradient descent often converges quite slowly, especially if the
+  Hessian matrix has a large condsition number. A major breakthrough was the
+  discovery of
   [conjugate gradient methods](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
   in the 1950's. We discuss these in the next section.
 
@@ -933,38 +1051,39 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ### Conjugate gradient methods
 
-- Suppose that $H_f$ is the Hessian matrix of the objective function, and we aim
-  to minimize $f$ by conducting
-  [line searches](https://en.wikipedia.org/wiki/Line_search) over a sequence of
-  _search directions_. It turns out to be desirable for these search directions
-  to be _conjugate_, meaning that they are orthogonal with respect to $H_f$.
+- Suppose that $H_f$ is the Hessian matrix of the objective function, and we
+  aim to minimize $f$ by conducting
+  [line searches](https://en.wikipedia.org/wiki/Line_search) over a sequence
+  of _search directions_. It turns out to be desirable for these search
+  directions to be _conjugate_, meaning that they are orthogonal with respect
+  to $H_f$.
 
 - For a quadratic function on a domain of dimension $d$, searching along
-  conjugate directions will yield the exact solution to the optimization problem
-  in $d$ line searches. That is, $d$ line searches is equivalent to one Newton
-  step (since Newton's method converges exactly in one step for quadratic
-  functions).
+  conjugate directions will yield the exact solution to the optimization
+  problem in $d$ line searches. That is, $d$ line searches is equivalent to
+  one Newton step (since Newton's method converges exactly in one step for
+  quadratic functions).
 
 - Since smooth functions are approximately quadratic (via Taylor expansion),
   conjugate directions with respect to the Hessian matrix are generally much
   better search directions than non-conjugate directions.
 
-- Directly constructing a conjugate basis would require explicit construction of
-  the Hessian matrix $H_f$, which would yield a second-order method, in which
-  case it might be just as well to use Newton's method.
+- Directly constructing a conjugate basis would require explicit construction
+  of the Hessian matrix $H_f$, which would yield a second-order method, in
+  which case it might be just as well to use Newton's method.
 
 - The key insight behind the conjugate gradient methods is that a set of
-  conjugate directions can be constructed sequentially, using line searches but
-  without requiring explicit calculation of the Hessian matrix. Hence this
+  conjugate directions can be constructed sequentially, using line searches
+  but without requiring explicit calculation of the Hessian matrix. Hence this
   yields a first-order method.
 
 ### Quasi-Newton methods
 
-- [Quasi-Newton](https://en.wikipedia.org/wiki/Quasi-Newton_method) methods are
-  first-order methods that approximate Newton's method by using an approximation
-  to the Hessian matrix. The approximate Hessian is obtained over a sequence of
-  line searches, using the gradients that are calculated at each step of the
-  optimization.
+- [Quasi-Newton](https://en.wikipedia.org/wiki/Quasi-Newton_method) methods
+  are first-order methods that approximate Newton's method by using an
+  approximation to the Hessian matrix. The approximate Hessian is obtained
+  over a sequence of line searches, using the gradients that are calculated at
+  each step of the optimization.
 
 - Suppose we have two points $x_i$, $x_{i+1}$ and their gradients $g_i$,
   $g_{i+1}$. The _secant equation_ $g_{i+1} - g_i \approx H(x_{i+1}-x_i)$ is
@@ -978,64 +1097,67 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - For smooth functions, it is almost always advantageous to make use of the
   information in the gradient. However for some highly irregular functions, or
-  for non-differentiable functions or discrete domains, gradient methods are not
-  applicable. Further, gradient methods tend to converge to local modes when a
-  function has many optima. For these reasons a large collection of methods that
-  do not employ gradient descent have been developed.
+  for non-differentiable functions or discrete domains, gradient methods are
+  not applicable. Further, gradient methods tend to converge to local modes
+  when a function has many optima. For these reasons a large collection of
+  methods that do not employ gradient descent have been developed.
 
 ## Statistical inference
 
 - Statistical inference refers to all aspects of learning from data. Here we
-  consider statistical inference using probability models. The standard process
-  is to fit a probability model to data, and then use the probability model to
-  answer questions about the
-  [population](https://en.wikipedia.org/wiki/Statistical_population) from which
-  the data were sampled.
+  consider statistical inference using probability models. The standard
+  process is to fit a probability model to data, and then use the probability
+  model to answer questions about the
+  [population](https://en.wikipedia.org/wiki/Statistical_population) from
+  which the data were sampled.
 
 - The premise that the observed data are a
   [sample](<https://en.wikipedia.org/wiki/Sampling_(statistics)>) from the
   population is central to this framework.
 
-- In the most common setting for statistical inference, we consider a family of
-  probability models $P\_\theta$ indexed by a _parameter_ $\theta$. The
-  parameter is usually constrained to lie in a _parameter space_ $\Theta$. This
-  setting is referred to as
+- In the most common setting for statistical inference, we consider a family
+  of probability models $P\_\theta$ indexed by a _parameter_ $\theta$. The
+  parameter is usually constrained to lie in a _parameter space_ $\Theta$.
+  This setting is referred to as
   [frequentist inference](https://en.wikipedia.org/wiki/Frequentist_inference).
   The most commonly encountered non-frequentist approach to inference is
   [Bayesian inference](https://en.wikipedia.org/wiki/Bayesian_inference).
 
 - In the most basic setting, the parameter is a single scalar value.
-  Finite-dimensional vector-valued parameters are also commonly encountered. In
-  some cases when there are multiple parameters they can be partitioned into the
-  parameters of primary interest and the
+  Finite-dimensional vector-valued parameters are also commonly encountered.
+  In some cases when there are multiple parameters they can be partitioned
+  into the parameters of primary interest and the
   [nuisance parameters](https://en.wikipedia.org/wiki/Nuisance_parameter).
 
 - A parameter may be of infinite dimension, even of
-  [uncountable](https://en.wikipedia.org/wiki/Uncountable_set) dimension. In the
-  latter case the class of models may be referred to as _nonparametric_ although
-  this term is somewhat fungible.
+  [uncountable](https://en.wikipedia.org/wiki/Uncountable_set) dimension. In
+  the latter case the class of models may be referred to as _nonparametric_
+  although this term is somewhat fungible.
 
-- In the classical setting, the class $P_\theta$ of probability models is fixed
-  and it is possible to sample data from it of various sizes. In some more
-  modern settings, the class of models is directly constructed to vary (grow in
-  size) with increasing data set size, so can be denoted $P_{\theta_n}$.
+- In the classical setting, the class $P_\theta$ of probability models is
+  fixed and it is possible to sample data from it of various sizes. In some
+  more modern settings, the class of models is directly constructed to vary
+  (grow in size) with increasing data set size, so can be denoted
+  $P_{\theta_n}$.
 
 ### Parameter estimation
 
 - Most statistical inference begins with applying a scheme to estimate the
-  parameters from the data. Formally, an _estimator_ is a function of the data.
+  parameters from the data. Formally, an _estimator_ is a function of the
+  data.
 
 - Any function of the data can be an estimator. But there are some ways of
-  generating estimators that can be applied in many common settings. We briefly
-  describe two of the most common here:
+  generating estimators that can be applied in many common settings. We
+  briefly describe two of the most common here:
 
   - [Method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>):\_
-    In this approach one identifies functions of the data $m(D)$ whose expected
-    values can be calculated and are functions of the parameters. This gives us
-    equations of the form $E[m(D)] = g(\theta)$, which in turn yields
+    In this approach one identifies functions of the data $m(D)$ whose
+    expected values can be calculated and are functions of the parameters.
+    This gives us equations of the form $E[m(D)] = g(\theta)$, which in turn
+    yields
     [estimating equations](https://en.wikipedia.org/wiki/Estimating_equations)
-    $m(D) - g(\theta) = 0$. These equations can in principle be solved to yield
-    estimates of the parameters.
+    $m(D) - g(\theta) = 0$. These equations can in principle be solved to
+    yield estimates of the parameters.
 
     - If there is a single parameter, we can use a single estimating equation.
 
@@ -1048,15 +1170,15 @@ Most summary statistics have one of two mathematical forms, as either a
       parameters, but the parameters will not be identified if we have fewer
       estimating equations than the number of parameters.
 
-    - The method of moments does not require specification of a _data generating
-      model_, and therefore may have fewer assumptions than approaches based on
-      a specified data generating model.
+    - The method of moments does not require specification of a _data
+      generating model_, and therefore may have fewer assumptions than
+      approaches based on a specified data generating model.
 
     - A very basic example of the method of moments is estimation of the
-      variance $\sigma^2$. Estimating the variance requires us to also estimate
-      the mean $\mu$. The parameter is thus a two-dimensional vector
-      $\theta = (\mu, \sigma^2)$. One way to set up the estimation is to define
-      two moment expressions: $m_1 = X_1 + \cdots + X_n$ and
+      variance $\sigma^2$. Estimating the variance requires us to also
+      estimate the mean $\mu$. The parameter is thus a two-dimensional vector
+      $\theta = (\mu, \sigma^2)$. One way to set up the estimation is to
+      define two moment expressions: $m_1 = X_1 + \cdots + X_n$ and
       $m_2 = X_1^2 + \cdots + X_n^2$. Their corresponding expected values are
       $g_1 = n\mu$ and $g_2 = n(\mu^2 + \sigma^2)$. These equations can be
       solved to yield method of moment estimators
@@ -1077,70 +1199,72 @@ Most summary statistics have one of two mathematical forms, as either a
       solutions to the optimization, including local and global optima, and it
       may be difficult to obtain them numerically.
 
-    - If the log-likelihood is smooth, the MLE will be a stationary point of the
-      score equations $\nabla_L(\theta) = 0$, where $\nabla_L(\theta)$ is the
-      gradient of the log-likelihood $L(\theta; D)$, which in this context is
-      known as the _score function_. Thus, for differentiable models finding the
-      MLE is equivalent to solving the score equations, which are therefore
-      estimating equations. We can compare this to the method of moments which
-      also involves solving estimating equations. In some cases the estimating
-      equations for maximum likelihood analysis will coincide with the
-      estimating equations for the method of moments, but in general this is not
-      the case.
+    - If the log-likelihood is smooth, the MLE will be a stationary point of
+      the score equations $\nabla_L(\theta) = 0$, where $\nabla_L(\theta)$ is
+      the gradient of the log-likelihood $L(\theta; D)$, which in this context
+      is known as the _score function_. Thus, for differentiable models
+      finding the MLE is equivalent to solving the score equations, which are
+      therefore estimating equations. We can compare this to the method of
+      moments which also involves solving estimating equations. In some cases
+      the estimating equations for maximum likelihood analysis will coincide
+      with the estimating equations for the method of moments, but in general
+      this is not the case.
 
 ### Sampling distributions and properties of estimators
 
 - An estimator is a function of data, and since the data are random, an
-  estimator is random. The distribution of an estimator is called the _sampling
-  distribution_.
+  estimator is random. The distribution of an estimator is called the
+  _sampling distribution_.
 
 - The standard deviation of an estimator is called the _standard error_. It
   plays a very important role in frequentist inferences. It essentially
-  quantifies the expected error between an estimate and its target (technically
-  it is the square root of the average squared error between an estimate and its
-  target).
+  quantifies the expected error between an estimate and its target
+  (technically it is the square root of the average squared error between an
+  estimate and its target).
 
 - Several principles are utilized to judge the quality of an estimator.
 
   - [Bias](<https://en.wikipedia.org/wiki/Bias_(statistics)>). The bias of an
     estimator is $E[\hat{\theta}] - \theta$. An estimator is positively biased
-    if its average value is greater than its target, and is negatively biased if
-    its average value is less than its target. It is good for an estimator to be
-    unbiased, but in practice many estimators are somewhat biased as other
-    considerations besides bias (such as precision) are also important to
-    consider. Bias is related to the notion of
+    if its average value is greater than its target, and is negatively biased
+    if its average value is less than its target. It is good for an estimator
+    to be unbiased, but in practice many estimators are somewhat biased as
+    other considerations besides bias (such as precision) are also important
+    to consider. Bias is related to the notion of
     [accuracy](https://en.wikipedia.org/wiki/Accuracy_and_precision), which
     reflects the possible presence of _systematic errors_ when estimating a
     parameter.
 
-  - [Mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error): The
-    mean squared error (MSE) of an estimator is $E[(\hat{\theta} - \theta)^2]$.
-    It is the average squared distance between an estimator and its target. The
-    root mean squared error (RMSE) is the square root of the mean squared error
-    and has the advantage of having the same units (scale) as the data.
+  - [Mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error):
+    The mean squared error (MSE) of an estimator is
+    $E[(\hat{\theta} - \theta)^2]$. It is the average squared distance between
+    an estimator and its target. The root mean squared error (RMSE) is the
+    square root of the mean squared error and has the advantage of having the
+    same units (scale) as the data.
 
-  - The variance of an estimator is defined the same way as the variance of any
-    other random quantity. In the context of an estimator, variance reflects
-    _precision_ -- the extent to which an estimator yields fairly similar values
-    from repeated independent samples of data. Put another way, variance
-    reflects random estimation errors while bias reflects systematic estimation
-    errors.
+  - The variance of an estimator is defined the same way as the variance of
+    any other random quantity. In the context of an estimator, variance
+    reflects _precision_ -- the extent to which an estimator yields fairly
+    similar values from repeated independent samples of data. Put another way,
+    variance reflects random estimation errors while bias reflects systematic
+    estimation errors.
 
-  - A basic identity is that the MSE of an estimator is equal to the sum of its
-    squared bias and its variance. Arguably, low MSE is the most important
-    characteristic for an estimator to have, and we see from this identity that
-    low MSE can be achieved by having a smaller squared bias with a larger
-    variance, or a smaller variance with a larger squared bias. This is a
-    reflection of a principle known as the
+  - A basic identity is that the MSE of an estimator is equal to the sum of
+    its squared bias and its variance. Arguably, low MSE is the most important
+    characteristic for an estimator to have, and we see from this identity
+    that low MSE can be achieved by having a smaller squared bias with a
+    larger variance, or a smaller variance with a larger squared bias. This is
+    a reflection of a principle known as the
     [bias/variance tradeoff](https://en.wikipedia.org/wiki/Bias-variance_tradeoff).
 
-  - [Consistency](<https://en.wikipedia.org/wiki/Consistency_(statistics)>) is a
-    property of an estimator that loosely states that as the data size grows,
-    the estimator converges to the true parameter value. It is an asymptotic
-    property that will be discussed in more detail below.
+  - [Consistency](<https://en.wikipedia.org/wiki/Consistency_(statistics)>) is
+    a property of an estimator that loosely states that as the data size
+    grows, the estimator converges to the true parameter value. It is an
+    asymptotic property that will be discussed in more detail below.
 
   - [Efficiency](<https://en.wikipedia.org/wiki/Efficiency_(statistics)>) is a
-    property asserting that the variance of an estimator is as low as possible.
+    property asserting that the variance of an estimator is as low as
+    possible.
 
     - We can consider the class of all unbiased estimators and ask what is the
       lowest possible variance within this class. The
@@ -1166,20 +1290,20 @@ Most summary statistics have one of two mathematical forms, as either a
   $\sqrt{n}(g(X_n) - g(\theta))$ is asymptotically normal with mean zero and
   covariance matrix $\nabla_g^\prime \Sigma \nabla_g$.
 
-- Suppose we have a collection of $n$ independent observations. In this setting,
-  many commonly-encountered estimators are
+- Suppose we have a collection of $n$ independent observations. In this
+  setting, many commonly-encountered estimators are
   [m-estimators](https://en.wikipedia.org/wiki/M-estimator). This is an
-  estimator that arises by minimizing a sample average (or sum) of contributions
-  from the observations. That is, out estimator can be written
-  $\hat{\theta} = {\rm argmin}_\theta \sum_i g(\theta; x_i)$. Maximum likelihood
-  is an m-estimator if the observations are independent.
+  estimator that arises by minimizing a sample average (or sum) of
+  contributions from the observations. That is, out estimator can be written
+  $\hat{\theta} = {\rm argmin}_\theta \sum_i g(\theta; x_i)$. Maximum
+  likelihood is an m-estimator if the observations are independent.
 
 - If we are using maximum likelihood analysis, the log-likelihood function for
   the overall sample is the sum of contributions from the observations:
   $L(\theta | D) = \sum L(\theta | X_i)$. The same is true of the score
-  function: $s(\theta | D) = \sum s(\theta | X_i)$. When the parameter $\theta$
-  is fixed at its true value, the score function has two key properties (recall
-  that the score function is a random vector):
+  function: $s(\theta | D) = \sum s(\theta | X_i)$. When the parameter
+  $\theta$ is fixed at its true value, the score function has two key
+  properties (recall that the score function is a random vector):
 
   - The expected value of the score function is zero.
 
@@ -1187,24 +1311,24 @@ Most summary statistics have one of two mathematical forms, as either a
     [Fisher information](https://en.wikipedia.org/wiki/Fisher_information),
     which is the negative Hessian of the log-likelihood, $-\nabla_L^2(x)$, or
     (equivalently), the negative
-    [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of
-    the score function.
+    [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant)
+    of the score function.
 
 - Combining the results above we can conclude that the MLE is (under certain
   conditions) asymptotically normal, asymptotically unbiased, and has sampling
   covariance matrix equal to the inverse of the Fisher information matrix.
-  Furthermore, this implies that the MLE achieves the Cramer-Rao lower bound and
-  hence is efficient.
+  Furthermore, this implies that the MLE achieves the Cramer-Rao lower bound
+  and hence is efficient.
 
 ### Confidence sets
 
 - A major consideration in statistical inference is to understand how much
-  information we have gained (from the data) about parameters that have meaning
-  in relation to a research question. When we estimate a parameter from a sample
-  of data, we know that the estimate is never exactly correct. Formally, if
-  $\theta$ is the parameter and $\hat{\theta}$ is the estimate of the parameter,
-  we can be sure that $\hat{\theta} \ne \theta$. The _estimation error_ is
-  $\hat{\theta} - \theta$, which is a random quantity.
+  information we have gained (from the data) about parameters that have
+  meaning in relation to a research question. When we estimate a parameter
+  from a sample of data, we know that the estimate is never exactly correct.
+  Formally, if $\theta$ is the parameter and $\hat{\theta}$ is the estimate of
+  the parameter, we can be sure that $\hat{\theta} \ne \theta$. The
+  _estimation error_ is $\hat{\theta} - \theta$, which is a random quantity.
 
 - The standard error of a parameter gives us a sense of how far a parameter
   estimate is likely to fall from the true parameter value. Especially when
@@ -1212,9 +1336,9 @@ Most summary statistics have one of two mathematical forms, as either a
   error tells us everything we can possibly know about the distribution of
   estimation errors $\hat{\theta} - \theta$.
 
-- A [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) is
-  a quantitative and explicit way to summarize the uncertainty in a parameter
-  estimate.
+- A [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval)
+  is a quantitative and explicit way to summarize the uncertainty in a
+  parameter estimate.
 
 - Formally, a confidence interval (CI) consists of two functions of the data,
   the _lower confidence bound_ (LCB) and the _upper confidence bound_ (UCB).
@@ -1228,8 +1352,8 @@ Most summary statistics have one of two mathematical forms, as either a
   $\alpha = P(L(D) \le \theta \le U(D))$.
 
 - Besides the coverage probability, the other important characteristic of a CI
-  is its _average width_. Wide confidence intervals indicate that we have little
-  information about the value of a parameter.
+  is its _average width_. Wide confidence intervals indicate that we have
+  little information about the value of a parameter.
 
 - There can be some confusion about the probabilistic interpretation of the
   probability expression $P(L(D) \le \theta \le U(D))$. The parameter $\theta$
@@ -1239,27 +1363,27 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - There are many ways to construct a confidence interval, we discuss here only
   the most basic approach that uses a
-  [pivotal quantity](https://en.wikipedia.org/wiki/Pivotal_quantity). Suppose we
-  have a parameter estimate $\hat{\theta}$ that is unbiased for the parameter of
-  interest $\theta$, and we know (or can estimate) the standard error of
-  $\hat{\theta}$, which we denote $s$. Then the expression
+  [pivotal quantity](https://en.wikipedia.org/wiki/Pivotal_quantity). Suppose
+  we have a parameter estimate $\hat{\theta}$ that is unbiased for the
+  parameter of interest $\theta$, and we know (or can estimate) the standard
+  error of $\hat{\theta}$, which we denote $s$. Then the expression
   $(\hat{\theta} - \theta)/s$ is a Z-score, and is a pivotal quantity. In
-  particular, if $\hat{\theta}$ is (asymptotically) Gaussian, then we know that
-  $P(-2 < (\hat{\theta} - \theta)/s < 2) \approx 0.95$. This expression can be
-  algebraically rearranged to yield the expression
+  particular, if $\hat{\theta}$ is (asymptotically) Gaussian, then we know
+  that $P(-2 < (\hat{\theta} - \theta)/s < 2) \approx 0.95$. This expression
+  can be algebraically rearranged to yield the expression
   $P(\hat{\theta} - 2s < \theta < \hat{\theta} + 2s) \approx 0.95$, which
   provides us with the (approximate) 95% CI $\hat{\theta} \pm 2s$.
 
-- The standard error $s$ often involves nuisance parameters, and it is common to
-  _plug-in_ estimates of the nuisance parameters when forming a CI. For larger
-  sample sizes it is often viable to treat these estimated nuisance parameters
-  as if they were actually the true values, but for small sample sizes, this
-  plug-in step can have major consequences for coverage. For example, if the
-  Z-score $(\hat{\theta} - \theta)/s$ follows a standard normal distribution,
-  the plug-in Z-score $(\hat{\theta} - \theta)/\hat{s}$ may follow a
-  distribution with heavier tails such as the
-  [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution). If
-  this fact is ignored, the CI will have lower coverage probability than
+- The standard error $s$ often involves nuisance parameters, and it is common
+  to _plug-in_ estimates of the nuisance parameters when forming a CI. For
+  larger sample sizes it is often viable to treat these estimated nuisance
+  parameters as if they were actually the true values, but for small sample
+  sizes, this plug-in step can have major consequences for coverage. For
+  example, if the Z-score $(\hat{\theta} - \theta)/s$ follows a standard
+  normal distribution, the plug-in Z-score $(\hat{\theta} - \theta)/\hat{s}$
+  may follow a distribution with heavier tails such as the
+  [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
+  If this fact is ignored, the CI will have lower coverage probability than
   intended.
 
 - For vector-valued parameters $\theta$, it is possible to generalize the
@@ -1270,8 +1394,8 @@ Most summary statistics have one of two mathematical forms, as either a
 ### Hypothesis testing
 
 - A framework for
-  [formal testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_test) of
-  hypotheses based on data was developed in the early 20th century, and
+  [formal testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_test)
+  of hypotheses based on data was developed in the early 20th century, and
   subsequently became a major tool in applied research. While it has been
   extensively criticized, it remains an important tool in data analysis.
 
@@ -1285,13 +1409,13 @@ Most summary statistics have one of two mathematical forms, as either a
 - The null hypothesis is expressed as a statement about a parameter $\theta$
   that relates to the data generating model. A _point null hypothesis_ is a
   statement $\theta = \theta_0$. We also often encounter the setting where the
-  null hypothesis is $\theta \in \Theta_0$, where $\Theta_0$ is a subset of the
-  parameter space.
+  null hypothesis is $\theta \in \Theta_0$, where $\Theta_0$ is a subset of
+  the parameter space.
 
-- We require a quantity known as the _test statistic_ $T(D)$ that summarizes the
-  evidence in the data in relation to the null hypothesis. By convention, we
-  construct $T$ so that larger values of $T$ reflect greater evidence against
-  the null hypothesis.
+- We require a quantity known as the _test statistic_ $T(D)$ that summarizes
+  the evidence in the data in relation to the null hypothesis. By convention,
+  we construct $T$ so that larger values of $T$ reflect greater evidence
+  against the null hypothesis.
 
 - It remains to calibrate the evidence reflected in $T$. This is done by
   considering the sampling distribution of $T(D)$ when the null hypothesis is
@@ -1312,27 +1436,27 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - There has been a lot of discussion and debate about the strengths and
   weaknesses of relying on standard errors, confidence intervals, or null
-  hypothesis significance tests for statistical inference (the three pillars of
-  frequentist inference). One point of view is that these approaches are more
-  similar than they are different. For example, in many settings you can easily
-  convert a confidence interval into a hypothesis test. If the CI does not
-  contain a given null value of the parameter $\theta_0$, then you can reject
-  the null hypothesis that $\theta=\theta_0$, with a p-value equal to 1 minus
-  the coverage probability of the CI.
+  hypothesis significance tests for statistical inference (the three pillars
+  of frequentist inference). One point of view is that these approaches are
+  more similar than they are different. For example, in many settings you can
+  easily convert a confidence interval into a hypothesis test. If the CI does
+  not contain a given null value of the parameter $\theta_0$, then you can
+  reject the null hypothesis that $\theta=\theta_0$, with a p-value equal to 1
+  minus the coverage probability of the CI.
 
 ### Prediction
 
 - A statistical model that relates two quantities, denoted $X$ and $Y$, can be
-  used to make predictions of one quantity from the other. This is usually done
-  using conditional distributions, which are typically estimated or
+  used to make predictions of one quantity from the other. This is usually
+  done using conditional distributions, which are typically estimated or
   approximated.
 
 #### Unbiased assessment of prediction accuracy
 
 - In the conventional setting, we observe _training data_
-  $\\{(X_i, Y_i), i=1, \ldots, n\\}$ consisting of joint observations of $X$ and
-  $Y$. The goal is to estimate the conditional distribution $P(Y|X)$ from the
-  training data. We can then use the estimated conditional distribution
+  $\\{(X_i, Y_i), i=1, \ldots, n\\}$ consisting of joint observations of $X$
+  and $Y$. The goal is to estimate the conditional distribution $P(Y|X)$ from
+  the training data. We can then use the estimated conditional distribution
   $\hat{P}(Y|X)$ to predict $Y$ from a given value of $X$. This is often done
   using the conditional mean $E[Y|X]$. But it is also possible to use other
   conditional quantities for prediction.
@@ -1342,17 +1466,17 @@ Most summary statistics have one of two mathematical forms, as either a
   attributed to George Box. Thus, the estimated conditional distribution
   $\hat{P}$ is likely biased as well as subject to random variation.
 
-- When the model is wrong, out predictions, say $\hat{E}[Y|X]$, are both biased
-  and variable. We can reduce the bias by using more complex (flexible) models,
-  but this increases the variability. This is a consequence of the bias/variance
-  tradeoff.
+- When the model is wrong, out predictions, say $\hat{E}[Y|X]$, are both
+  biased and variable. We can reduce the bias by using more complex (flexible)
+  models, but this increases the variability. This is a consequence of the
+  bias/variance tradeoff.
 
 - We often wish to objectively quantify the performance of a predictive model.
   Suppose that the prediction target is quantitative, and we wish to evaluate
   the root mean squared error of prediction (RMSE),
   $(E[(\hat{y} - y)^2])^{1/2}$. A naive approach is to train the model on a
-  dataset, and then use this same dataset to produce an estimate of the RMSE as
-  $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
+  dataset, and then use this same dataset to produce an estimate of the RMSE
+  as $(n^{-1}\sum_i (\hat{y}_i-y_i)^2)^{1/2}$.
 
 - This "plug-in" estimate of the RMSE is optimistically biased (i.e. its
   expected value is smaller than the true RMSE).
@@ -1360,8 +1484,8 @@ Most summary statistics have one of two mathematical forms, as either a
 - There are various ways to address this issue. We present two here.
 
   - We can split the training data into two subsets referred to as _training_
-    and _testing_ data. The model is then trained only to the training data, and
-    the RMSE is unbiasedly estimated using the testing data.
+    and _testing_ data. The model is then trained only to the training data,
+    and the RMSE is unbiasedly estimated using the testing data.
 
   - We can split the data randomly many times into training and testing sets,
     estimate the RMSE unbiasedly for each, and then pool these unbiased
@@ -1381,9 +1505,9 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - In modern predictive modeling, one usually combines a loss function with a
   [regularizer](<https://en.wikipedia.org/wiki/Regularization_(mathematics)>),
-  which usually takes the form of a function $R(\theta)$ of the parameters that
-  does not involve the data. If $L(D, \theta)$ is the loss function, then the
-  parameter is estimated by minimizing $L(D, \theta) + \lambda R(\theta)$.
+  which usually takes the form of a function $R(\theta)$ of the parameters
+  that does not involve the data. If $L(D, \theta)$ is the loss function, then
+  the parameter is estimated by minimizing $L(D, \theta) + \lambda R(\theta)$.
 
 - Surprisingly, small gains in performance can be obtained using almost any
   regularizer, but in practice we want the regularizer to penalize against
