@@ -314,8 +314,8 @@
 
 - Another possible role for a "third variable" in an observation an
   observational study is as a
-  \[collider\](https://pubmed.ncbi.nlm.nih.gov/37939152,
-  https://pmc.ncbi.nlm.nih.gov/articles/PMC8967310). A collider is a variable
+  [collider](https://pmc.ncbi.nlm.nih.gov/articles/PMC8967310) (see also
+  [here](https://pubmed.ncbi.nlm.nih.gov/37939152)). A collider is a variable
   that is causally influenced by both the exposure and an outcome. It is also
   known as a _common effect_ of the exposure and the outcome.
 
