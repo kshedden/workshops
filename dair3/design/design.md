@@ -272,8 +272,9 @@
 
   - The main explanation for associations being non-causal is the role of a
     _confounding variable_ (or "confounder"). This is a variable that causally
-    influences both the exposure and the outcome. Let's reconsider the two
-    examples above:
+    influences both the exposure and the outcome. It can also be referred to
+    as a _common cause_ of the exposure and the outcome. Let's reconsider the
+    two examples above:
 
     - Temperature and rainfall are likely confounding factors in the
       relationship between ice cream consumption and drowning. On warm days
@@ -288,11 +289,12 @@
       rates.
 
   - A confounder can be either known or unknown, and can be either measured or
-    unmeasured.
+    unmeasured. This is somewhat related to the notion of
+    [known knowns, known unknowns, and unknown unknowns](https://medium.com/paul-austin-murphys-essays-on-philosophy/rumsfelds-logic-of-known-knowns-known-unknowns-and-unknown-unknowns-f506db31ac74).
 
   - Unfortunately there is no automatic process for identifying confounders,
-    and there is rarely any way to know whether all confounders of a given
-    relationship have been identified.
+    and there is rarely any way to know whether all confounders have been
+    identified.
 
   - When designing a study, one or more of the following strategies are
     usually employed to mitigate the risks of confounding. They are listed in
@@ -312,12 +314,16 @@
 
 - Another possible role for a "third variable" in an observation an
   observational study is as a
-  [collider](https://pubmed.ncbi.nlm.nih.gov/37939152). A collider is a
-  variable that is causally influenced by both the exposure and an outcome.
-  Colliders are not confounders and in fact controlling for a collider
-  introduces _collider stratification bias_. If a variable is a collider it
-  should generally be ignored in the analysis. Here are two examples of
-  collider stratification bias:
+  \[collider\](https://pubmed.ncbi.nlm.nih.gov/37939152,
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8967310). A collider is a variable
+  that is causally influenced by both the exposure and an outcome. It is also
+  known as a _common effect_ of the exposure and the outcome.
+
+- Colliders are not confounders and in fact controlling for a collider
+  introduces
+  [collider stratification bias](<https://en.wikipedia.org/wiki/Collider_(statistics)>).
+  If a variable is a collider it should generally be ignored in the analysis.
+  Here are two examples of collider stratification bias:
 
   - Suppose that we are interested in the association between social isolation
     (an exposure) and overall health (an outcome). Suppose further that (1)
@@ -380,6 +386,14 @@
   - In mediation analysis, we consider the presence of _indirect effects_, in
     which $X$ impacts $M$ and then $M$ impacts $Y$, as well as _direct
     effects_, in which $X$ impacts $Y$ directly, or via other routes.
+
+  - In general, one should not adjust for mediators if the goal is to
+    understand the overall relationship between the exposure and the outcome.
+    However, in a mediation analysis, the goal is to partition the overall
+    effect of the exposure on the outcome into the direct and indirect
+    components. One way to do this is to fit a model for the outcome in terms
+    of the exposure and the mediator, and then to fit a separate model of the
+    mediator (as the dependent variable) in relation to the exposure.
 
 - [Moderation](<https://en.wikipedia.org/wiki/Moderation_(statistics)>), or
   _effect modification_ is an approach to developing a deeper understanding of
