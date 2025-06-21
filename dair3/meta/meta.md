@@ -286,7 +286,7 @@
     which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
     p-value (if the p-values are known to be independent, the
     [Sidak method](https://en.wikipedia.org/wiki/Sidak_correction)
-    can be used.
+    can be used).
 
   - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
     geometric, and harmonic mean p-values can be used as "meta p-values" if
