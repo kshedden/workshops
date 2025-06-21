@@ -284,15 +284,17 @@
   - The classical method for non-independent p-values is the
     [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
     which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
-    p-value.
+    p-value (if the p-values are known to be independent, the
+    \[https://en.wikipedia.org/wiki/%C5%A0id%C3%A1k_correction\](Sidak method)
+    can be used.
 
   - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
     geometric, and harmonic mean p-values can be used as "meta p-values" if
     they are rescaled appropriately. Specifically,
-    $2{\rm Avg}(p_1, \ldots, p_m)$, $e{\rm GM}(p_1, \ldots, p_m)$, and
-    ${\rm log(m)}{\rm HM}(p_1, \ldots, p_m)$ can be used to assess the global
-    null hypothesis, for the arithmetic, geometric, and harmonic means,
-    respectively.
+    $2\cdot {\rm Avg}(p_1, \ldots, p_m)$, $e\cdot {\rm GM}(p_1, \ldots, p_m)$,
+    and ${\rm log(m)}\cdot {\rm HM}(p_1, \ldots, p_m)$ can be used to assess
+    the global null hypothesis, for the arithmetic, geometric, and harmonic
+    means, respectively.
 
   - Under the
     [Cauchy combining rule](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7531765),
