@@ -139,7 +139,7 @@
   where $k^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
   degrees of freedom
 
-  $m^{2}H^{-2} / \sum_j (w_j^2/k_j)$.
+  $1 / \sum_j (w_j^2/k_j)$.
 
   - It is difficult to account for possible statistical dependence between
     $\hat{\theta}_i$ and $\hat{s}_i$.
