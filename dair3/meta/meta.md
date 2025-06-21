@@ -285,7 +285,7 @@
     [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
     which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
     p-value (if the p-values are known to be independent, the
-    [https://en.wikipedia.org/wiki/Sidak_correction](Sidak method)
+    [Sidak method](https://en.wikipedia.org/wiki/Sidak_correction)
     can be used.
 
   - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
