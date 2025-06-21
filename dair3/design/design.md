@@ -306,7 +306,10 @@
       the factor is known or unknown, measured or unmeasured).
 
     - If randomization is impossible, the next best approach is usually to
-      achieve _balance_ of all measured confounders between the arms.
+      achieve _balance_ of all measured confounders between the arms. This
+      means that the distribution of the confounders should be made as similar
+      as possible among the arms, usually by weighting (or by matching or
+      stratifying).
 
     - If we cannot achieve balance then various statistical adjustments are
       made in a _post-hoc_ manner. We will discuss a few such approaches
@@ -319,8 +322,7 @@
   that is causally influenced by both the exposure and an outcome. It is also
   known as a _common effect_ of the exposure and the outcome.
 
-- Colliders are not confounders and in fact controlling for a collider
-  introduces
+- Controlling for (or selecting on) a collider introduces
   [collider stratification bias](<https://en.wikipedia.org/wiki/Collider_(statistics)>).
   If a variable is a collider it should generally be ignored in the analysis.
   Here are two examples of collider stratification bias:
@@ -379,21 +381,53 @@
   - In mediation analysis, a third variable $M$ called the _mediator_ is
     posited as a causal intermediary between the exposure and the outcome.
 
-  - For example, we could propose that an exposure such as poor childhood
-    nutrition ($X$) impacts nephron density in the kidneys (the mediator,
-    $M$), which in turn impacts adult systolic blood pressure ($Y$).
+  - For example, we could propose that an exposure such as maternal smoking
+    ($X$) impacts birthweight (the mediator, $M$), which in turn impacts
+    mortality ($Y$).
 
   - In mediation analysis, we consider the presence of _indirect effects_, in
     which $X$ impacts $M$ and then $M$ impacts $Y$, as well as _direct
-    effects_, in which $X$ impacts $Y$ directly, or via other routes.
+    effects_, in which $X$ impacts $Y$ directly (or via other routes that do
+    not involve $M$).
 
   - In general, one should not adjust for mediators if the goal is to
     understand the overall relationship between the exposure and the outcome.
-    However, in a mediation analysis, the goal is to partition the overall
-    effect of the exposure on the outcome into the direct and indirect
-    components. One way to do this is to fit a model for the outcome in terms
-    of the exposure and the mediator, and then to fit a separate model of the
-    mediator (as the dependent variable) in relation to the exposure.
+    For example, the
+    [smoking paradox](https://en.wikipedia.org/wiki/Low_birth-weight_paradox)
+    refers to the observation that among children born with low birth weight,
+    those born to mothers who smoke are more likely to survive. That is,
+    maternal smoking appears to be a protective factor within the
+    sub-population of babies born with low birth weight.
+
+    - Selecting on low birth weight is a form of adjustment or control for the
+      birth weight variable. The paradox here can be seen as a form of
+      [Simpson's paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox),
+      in which within each birth weight stratum, smoking is associated with
+      lower mortality, but in the overall population, smoking is either
+      unrelated to mortality, or associated with higher mortality.
+
+    - Since having a low birth weight baby is unlikely to cause the mother to
+      smoke, it is unlikely that birth weight is a confounder of the
+      relationship between smoking and mortality. This argues against
+      controlling for birth weight when studying the relationship between
+      smoking and mortality.
+
+    - In the language of mediation analysis, the direct effect of smoking on
+      mortality is negative, but the indirect effect through birth weight is
+      positive.
+
+    - It remains interesting to consider the mechanism bethind the observed
+      negative direct effect. One possible explanation is residual confounding
+      via unmeasured variables such as a birth defect. Suppose for simplicity
+      that a certain type of birth defect $Z$ strongly causes low birth weight
+      and also strongly causes mortality. Among non-smoking mothers, it is
+      relatively more likely that a low-birth weight baby is caused by $Z$,
+      whereas among smoking mothers, smoking ($M$) is a far more common cause
+      of having a low birth weight baby than $Z$. If maternal smoking has a
+      small to neutral causal impact on mortality, the low-birth weight babies
+      born to smoking mothers will be at an advantage since they are
+      relatively less likely to have the birth defect $Z$ compared to the
+      low-birth weight babies born to non-smoking mothers.
 
 - [Moderation](<https://en.wikipedia.org/wiki/Moderation_(statistics)>), or
   _effect modification_ is an approach to developing a deeper understanding of

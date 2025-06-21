@@ -134,9 +134,9 @@
   - The (approximate) standard error for $\hat{\theta}_p$ below captures the
     inflation of uncertainty due to estimation of the weights:
 
-  $\sqrt{H(1 + 4m^{-2}H^{2}\sum_j k_j^\prime w_j(m/H - w_j))} / \sqrt{m}$
+  $\sqrt{H(1 + 4m^{-2}H^{2}\sum_j w_j(m/H - w_j)/k_j^\prime)} / \sqrt{m}$
 
-  where $n^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
+  where $k^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
   degrees of freedom
 
   $m^{2}H^{-2} / \sum_j (w_j^2/k_j)$.
