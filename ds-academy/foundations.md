@@ -1138,27 +1138,31 @@ Most summary statistics have one of two mathematical forms, as either a
 - In the classical setting, the class $\{P_\theta; \theta\in \Omega\}$ of
   probability models is fixed and it is possible to sample data of various
   sizes from the population. In some modern settings, the class of models is
-  defined depend on the data set size (sample size), so can be denoted
+  defined to depend on the data set size (sample size), so can be denoted
   $\{P_{\theta}; \theta \in \Omega_n\}$.
 
 ### Parameter estimation
 
 - Most statistical inference begins with applying a scheme to estimate the
-  parameters from the data. Formally, an _estimator_ is a function of the
-  data.
+  parameters from the data. Formally, an _estimator_ is a function of the data
+  used to estimate the parameter of interest. If $\theta$ is the parameter,
+  $\hat{\theta}$ or $\hat{\theta}(D)$ can be used to denote an estimator of
+  $\theta$. The "hat" emphasizes that this is an estimator. Writing the
+  estimator in the form $\hat{\theta}(D)$ emphasizes that the estimator is a
+  function of the data.
 
 - Any function of the data can be an estimator. But there are some ways of
   generating estimators that can be applied in many common settings. We
   briefly describe two of the most common here:
 
-  - [Method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>):\_
+  - [Method of moments](<https://en.wikipedia.org/wiki/Method_of_moments_(statistics)>):
     In this approach one identifies functions of the data $m(D)$ whose
     expected values can be calculated and are functions of the parameters.
     This gives us equations of the form $E[m(D)] = g(\theta)$, which in turn
     yields
     [estimating equations](https://en.wikipedia.org/wiki/Estimating_equations)
-    $m(D) - g(\theta) = 0$. These equations can in principle be solved to
-    yield estimates of the parameters.
+    $m(D) - g(\theta) = 0$. These equations can be solved (either analytically
+    or numerically) to yield estimates of the parameters.
 
     - If there is a single parameter, we can use a single estimating equation.
 
@@ -1177,14 +1181,17 @@ Most summary statistics have one of two mathematical forms, as either a
 
     - A very basic example of the method of moments is estimation of the
       variance $\sigma^2$. Estimating the variance requires us to also
-      estimate the mean $\mu$. The parameter is thus a two-dimensional vector
+      estimate the mean $\mu$ (a
+      [nuisance parameter](https://en.wikipedia.org/wiki/Nuisance_parameter)).
+      The parameter is thus a two-dimensional vector
       $\theta = (\mu, \sigma^2)$. One way to set up the estimation is to
       define two moment expressions: $m_1 = X_1 + \cdots + X_n$ and
       $m_2 = X_1^2 + \cdots + X_n^2$. Their corresponding expected values are
       $g_1 = n\mu$ and $g_2 = n(\mu^2 + \sigma^2)$. These equations can be
-      solved to yield method of moment estimators
-      $\hat{\mu} = (X_1 + \cdots + X_n)/n$ and
-      $\hat{\sigma}^2 = ((X_1-\hat{\mu})^2 + \cdots + (X_n-\hat{\mu})^2)/n$.
+      solved to yield method of moment estimator of $\sigma^2$
+      $\hat{\sigma}^2 = ((X_1-\hat{\mu})^2 + \cdots + (X_n-\hat{\mu})^2)/n$,
+      where $\hat{\mu} = (X_1 + \cdots + X_n)/n$ estimates the nuisance
+      parameter $\mu$.
 
   - [Maximum likelihood](https://en.wikipedia.org/wiki/Maximum_likelihood)
 
@@ -1198,18 +1205,21 @@ Most summary statistics have one of two mathematical forms, as either a
 
     - Like any optimization problem, there may be zero, one, or multiple
       solutions to the optimization, including local and global optima, and it
-      may be difficult to obtain them numerically.
+      may be impossible to obtain them analytically and difficult to obtain
+      them numerically.
 
     - If the log-likelihood is smooth, the MLE will be a stationary point of
       the score equations $\nabla_L(\theta) = 0$, where $\nabla_L(\theta)$ is
       the gradient of the log-likelihood $L(\theta; D)$, which in this context
       is known as the _score function_. Thus, for differentiable models
       finding the MLE is equivalent to solving the score equations, which are
-      therefore estimating equations. We can compare this to the method of
-      moments which also involves solving estimating equations. In some cases
-      the estimating equations for maximum likelihood analysis will coincide
-      with the estimating equations for the method of moments, but in general
-      this is not the case.
+      therefore estimating equations.
+
+      - We can compare this to the method of moments which also involves
+        solving estimating equations. In some cases the estimating equations
+        for maximum likelihood analysis will coincide with the estimating
+        equations for the method of moments, but in general this is not the
+        case.
 
 ### Sampling distributions and properties of estimators
 
