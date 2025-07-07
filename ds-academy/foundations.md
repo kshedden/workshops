@@ -1104,10 +1104,11 @@ Most summary statistics have one of two mathematical forms, as either a
 
 ## Statistical inference
 
-- Statistical inference refers to all aspects of learning from data. Here we
-  consider statistical inference using probability models. The standard
-  process is to fit a probability model to data, and then use the probability
-  model to answer questions about the
+- [Statistical inference](https://en.wikipedia.org/wiki/Statistical_inference)
+  refers to all aspects of learning from data. Here we consider statistical
+  inference using probability models. In this setting, we first fit a
+  probability model to data, and then use the probability model to answer
+  questions about the
   [population](https://en.wikipedia.org/wiki/Statistical_population) from
   which the data were sampled.
 
@@ -1134,11 +1135,11 @@ Most summary statistics have one of two mathematical forms, as either a
   the latter case the class of models may be referred to as _nonparametric_
   although this term is somewhat fungible.
 
-- In the classical setting, the class $P_\theta$ of probability models is
-  fixed and it is possible to sample data from it of various sizes. In some
-  more modern settings, the class of models is directly constructed to vary
-  (grow in size) with increasing data set size, so can be denoted
-  $P_{\theta_n}$.
+- In the classical setting, the class $\{P_\theta; \theta\in \Omega\}$ of
+  probability models is fixed and it is possible to sample data of various
+  sizes from the population. In some modern settings, the class of models is
+  defined depend on the data set size (sample size), so can be denoted
+  $\{P_{\theta}; \theta \in \Omega_n\}$.
 
 ### Parameter estimation
 
