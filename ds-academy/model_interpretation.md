@@ -238,7 +238,7 @@
   unexplained variance is too small when using the plug-in estimate, and this
   can be compensated by inflating it by a factor of $n/(n-p)$.
 
-  - The analysis above is the basis for the _adjusted $R^2$_.
+  - The analysis above is the basis for the _adjusted_ $R^2$.
 
 - For other measures of predictivity (e.g. AUC) and other ways of fitting
   models (besides least squares), there is no general way to analytically
@@ -253,9 +253,9 @@
   non-overlapping subsets (or "folds"). The model is trained on $k-1$ of the
   subsets, meaning that the model parameters are learned exclusively using
   this portion of the data (which excludes exactly one of the $k$ subsets).
-  Let $\hat{\theta}_j$ denote the model parameters trained when excluding the
+  Let $\hat{\theta}[j]$ denote the model parameters trained when excluding the
   $j^{\rm th}$ subset of data. We can now produce _prediction residuals_
-  $y_i - f_{\hat{\theta}_j}(x_i)$ for each index $i$ in fold $j$. These
+  $y_i - f_{\hat{\theta}[j]}(x_i)$ for each index $i$ in fold $j$. These
   prediction residuals are unaffected by overfitting, since the data used to
   fit the model does not include the observation being predicted.
 
@@ -280,7 +280,7 @@
   of squares), can be calculated without ever refitting the model.
 
 - The PRESS (or LOOCV) statistic for ordinary least squares is
-  $\sum_i (\hat{Y}_i - Y_i)/(1-P_{ii})$. As an approximation, rather than
+  $\sum_i (\hat{Y}[i] - Y_i)/(1-P_{ii})$. As an approximation, rather than
   dividing each residual by its corresponding $1 - P_{ii}$, we can replace
   each term of the form $1 - P_{ii}$ with their average, which is
   $1 - {\rm tr}(P)/n$. For models fit with OLS, ${\rm tr}(P) = p$, the number
