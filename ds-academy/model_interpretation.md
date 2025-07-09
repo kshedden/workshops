@@ -280,12 +280,18 @@
   of squares), can be calculated without ever refitting the model.
 
 - The PRESS (or LOOCV) statistic for ordinary least squares is
-  $\sum_i r_i/(1-P_{ii})$, wheer $r_i = \hat{Y}_i - Y_i$. As an approximation,
-  rather than dividing each residual by its corresponding $1 - P_{ii}$, we can
-  replace each term of the form $1 - P_{ii}$ with their average, which is
-  $1 - {\rm tr}(P)/n$. For models fit with OLS, ${\rm tr}(P) = p$, the number
-  of covariates, so the LOOCV statistic becomes $(1-p/n)^{-1}\sum_i r_i$. This
-  technique is known as _generalized cross validation_.
+  $\sum_i r_i^2/(1-P_{ii})$, where $r_i = \hat{Y}_i - Y_i$. As an
+  approximation, rather than dividing each residual by its corresponding
+  $1 - P_{ii}$, we can replace each term of the form $1 - P_{ii}$ with their
+  average, which is $1 - {\rm tr}(P)/n$. For models fit with OLS,
+  ${\rm tr}(P) = p$, the number of covariates, so the LOOCV statistic becomes
+  $(1-p/n)^{-1}\sum_i r_i^2$. This technique is known as _generalized cross
+  validation_.
+
+  - Since $(1-p/n)^{-1}$ increases with $p$ and decreases with $n$, we can see
+    that the net effect of LOOCV is to inflate the plug in sum of squared
+    residuals $\sum_i r_i^2$ by a factor that depends on the model complexity,
+    and the amount of data available to accommodate that complexity.
 
 - The _degrees of freedom_ aims to capture in one number the flexibility or
   complexity of a class of models. In least square regression, the degrees of
