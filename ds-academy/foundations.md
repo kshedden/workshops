@@ -797,7 +797,7 @@ Most summary statistics have one of two mathematical forms, as either a
 
 - [Calculus](https://en.wikipedia.org/wiki/Calculus) is the study of smooth
   functions for which it is possible to rigorously quantify their rate of
-  change. It also develops a type of _infinitessimal summation_ for the values
+  change. It also develops a type of _infinitesimal summation_ for the values
   taken on by smooth functions. These two tasks broadly correspond to the two
   branches of calculus: differential and integral.
 
@@ -816,7 +816,7 @@ Most summary statistics have one of two mathematical forms, as either a
 - The [derivative](https://en.wikipedia.org/wiki/Derivative) is a limiting
   version of the secant line in which we allow $x_2$ to take on a sequence of
   values converging to $x_1$. If this limit exists and yields the same value
-  for all sequences convering to $x_1$, then $f$ is said to be
+  for all sequences converging to $x_1$, then $f$ is said to be
   _differentiable_ at $x_1$, and the limiting slope of the secant line is the
   _derivative_ of $f$ at $x_1$, denoted $f^\prime(x_1)$.
 
@@ -829,7 +829,7 @@ Most summary statistics have one of two mathematical forms, as either a
   of $f$ between two points, say, $x_1$ and $x_2$. The notion of area
   considered here is _signed_ in the sense that when $f$ is negative, we
   obtain negative areas. Calculating an area can also be viewed as
-  "ininitessimal summation" of the values of the function.
+  "infinitesimal summation" of the values of the function.
 
 - This "signed area", also called an
   [integral](https://en.wikipedia.org/wiki/Integral), or more specifically a
@@ -887,7 +887,7 @@ Most summary statistics have one of two mathematical forms, as either a
   preserve many of the advantages of polynomials, but do a much better job of
   representing functions globally.
   [Wavelets](https://en.wikipedia.org/wiki/Wavelet), like trigonometric
-  approxcimations, are orthogonal, but generally perform better in practice.
+  approximations, are orthogonal, but generally perform better in practice.
   Both splines and wavelets exhibit compact support, which is considered to be
   a desirable property.
 
@@ -1015,7 +1015,7 @@ Most summary statistics have one of two mathematical forms, as either a
 - If a function has two continuous derivatives, it is strictly convex if and
   only if its Hessian matrix is positive definite for all $x$.
 
-- A function is strongly convex if the dterminant of its Hessian matrix is
+- A function is strongly convex if the determinant of its Hessian matrix is
   bounded away from zero, that is, there exists $\epsilon>0$ such that
   $\\|H_f(x)\\| \ge \epsilon > 0$ for all $x$.
 
@@ -1038,7 +1038,7 @@ Most summary statistics have one of two mathematical forms, as either a
   cases) minimize the objective function.
 
 - Basic gradient descent often converges quite slowly, especially if the
-  Hessian matrix has a large condsition number. A major breakthrough was the
+  Hessian matrix has a large condition number. A major breakthrough was the
   discovery of
   [conjugate gradient methods](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
   in the 1950's. We discuss these in the next section.
@@ -1188,7 +1188,7 @@ Most summary statistics have one of two mathematical forms, as either a
       define two moment expressions: $m_1 = X_1 + \cdots + X_n$ and
       $m_2 = X_1^2 + \cdots + X_n^2$. Their corresponding expected values are
       $g_1 = n\mu$ and $g_2 = n(\mu^2 + \sigma^2)$. These equations can be
-      solved to yield method of moment estimator of $\sigma^2$
+      solved to yield method of moment estimator of $\sigma^2$,
       $\hat{\sigma}^2 = ((X_1-\hat{\mu})^2 + \cdots + (X_n-\hat{\mu})^2)/n$,
       where $\hat{\mu} = (X_1 + \cdots + X_n)/n$ estimates the nuisance
       parameter $\mu$.
