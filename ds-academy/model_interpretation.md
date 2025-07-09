@@ -280,7 +280,7 @@
   of squares), can be calculated without ever refitting the model.
 
 - The PRESS (or LOOCV) statistic for ordinary least squares is
-  $\sum_i r_i^2/(1-P_{ii})$, where $r_i = \hat{Y}_i - Y_i$. As an
+  $\sum_i r_i^2/(1-P_{ii})$, where $r_i = \hat{Y}[i] - Y_i$. As an
   approximation, rather than dividing each residual by its corresponding
   $1 - P_{ii}$, we can replace each term of the form $1 - P_{ii}$ with their
   average, which is $1 - {\rm tr}(P)/n$. For models fit with OLS,
