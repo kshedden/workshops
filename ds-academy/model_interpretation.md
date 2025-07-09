@@ -280,13 +280,12 @@
   of squares), can be calculated without ever refitting the model.
 
 - The PRESS (or LOOCV) statistic for ordinary least squares is
-  $\sum_i (\hat{Y}[i] - Y_i)/(1-P_{ii})$. As an approximation, rather than
-  dividing each residual by its corresponding $1 - P_{ii}$, we can replace
-  each term of the form $1 - P_{ii}$ with their average, which is
+  $\sum_i r_i/(1-P_{ii})$, wheer $r_i = \hat{Y}_i - Y_i$. As an approximation,
+  rather than dividing each residual by its corresponding $1 - P_{ii}$, we can
+  replace each term of the form $1 - P_{ii}$ with their average, which is
   $1 - {\rm tr}(P)/n$. For models fit with OLS, ${\rm tr}(P) = p$, the number
-  of covariates, so the LOOCV statistic becomes
-  $(1-p/n)^{-1}\sum_i (\hat{Y}_i - Y_i)$. This technique is known as
-  _generalized cross validation_.
+  of covariates, so the LOOCV statistic becomes $(1-p/n)^{-1}\sum_i r_i$. This
+  technique is known as _generalized cross validation_.
 
 - The _degrees of freedom_ aims to capture in one number the flexibility or
   complexity of a class of models. In least square regression, the degrees of
