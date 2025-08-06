@@ -75,9 +75,9 @@
     $k_1$, $k_2$, $\ldots$, $k_m$. The degrees of freedom quantifies the
     confidence that we have in the estimated standard errors ($\hat{s}_j$).
     Greater degrees of freedom corresponds to greater confidence. If the
-    degrees of freedom $k_i$ for the estimator $\hat{\theta}_i$ is infinite,
-    then the standard error $\hat{s}_i$ can be considered to be known exactly,
-    and we may write it $s_i$.
+    degrees of freedom $k_j$ for the estimator $\hat{\theta}_j$ is infinite,
+    then the standard error $\hat{s}_j$ can be considered to be known exactly,
+    and we may write it $s_j$.
 
 - Let's consider the special case of a meta-analysis of two studies, which
   produced estimates $\hat{\theta}_1$ and $\hat{\theta}_2$, with standard
@@ -136,8 +136,13 @@
 
   $\sqrt{H(1 + 4m^{-2}H^{2}\sum_j w_j(m/H - w_j)/k_j^\prime)} / \sqrt{m}$
 
-  where $k^\prime_j = k_j - 4(m-2)/(m-1)$. This estimate can be taken to have
-  degrees of freedom
+  where $k^\prime_j = k_j - 4(m-2)/(m-1)$. Since $m/H = \sum w_i$, the factor
+  $4m^{-2}H^{2}\sum_j w_j(m/H - w_j)/k_j^\prime$ is non-negative, and
+  therefore captures the inflation in the standard error of the pooled
+  estimate due to having estimate the standard errors of the individual
+  studies.
+
+  This estimate can be taken to have degrees of freedom
 
   $1 / \sum_j (w_j^2/k_j)$.
 
@@ -177,17 +182,35 @@
 
   - A regression analysis can employ
     [fixed effects](https://en.wikipedia.org/wiki/Fixed_effects_model) for the
-    different studies being pooled.
+    different studies being pooled. A basic fixed effects model for data
+    integration of patient-level data from multiple independent studies would
+    be $E[Y_{ij}] = \alpha_i + \beta^\prime X_{ij}$, where $i$ indexes
+    studies, and $j$ indexes subjects within a study; $Y_{ij}$ is the response
+    for subject $j$ in study $i$, and $X_{ij}$ is a vector of covariates for
+    subject $j$ in study $i$. The $\alpha_i$ are study fixed effects and
+    $\beta$ captures effects of treatment and nuisance variables coded in
+    $X_{ij$}. The main interest is in the components of $\beta$ corresponding
+    to different treatments or exposures, and the study fixed effects are used
+    to control for heterogeneity among studies.
 
   - A multilevel regression analysis can employ random effects for the
     different studies being pooled. Random effects require somewhat stronger
     assumptions to be effective (compared to fixed effects), but typically
-    provide better statistical power.
+    provide better statistical power. A basic random effects model for meta
+    analysis would be
+    $Y_{ij} = \alpha_i + \beta^\prime X_{ij} + \epsilon_{ij}$, where $Y_{ij}$
+    and $X_{ij}$ are as above in the fixed effects setting. The terms
+    $\alpha_1, \alpha_2, \ldots$ are independent and identically distributed
+    (IID) random variables with mean $0$ and variance $\tau_\alpha^2$,
+    $\beta_1, \beta_2, \ldots$ are fixed effects for the study arms, and the
+    $\epsilon_{ij}$ are IID random values with mean $0$ and variance
+    $\sigma^2$.
 
-  - There are many forms of _stratified analysis_. These approaches
-    essentially conduct independent analyses in each study and pool the
-    results. The generic stratified analysis pools parameter estimates and
-    standard errors as discussed above.
+  - Distinct from regression analysis, there are many forms of _stratified
+    analysis_. These approaches essentially conduct independent analyses in
+    each study, or in blocks of related studies, and pool the results. The
+    generic stratified analysis pools parameter estimates and standard errors
+    as discussed above.
 
   - In some settings, special-purpose stratified analysis methods have been
     devised, one of these is the
@@ -285,8 +308,8 @@
     [Bonferroni method](https://en.wikipedia.org/wiki/Bonferroni_correction),
     which uses the value of $m\times {\rm min}(p_1, \ldots, p_m)$ as a meta
     p-value (if the p-values are known to be independent, the
-    [Sidak method](https://en.wikipedia.org/wiki/Sidak_correction)
-    can be used).
+    [Sidak method](https://en.wikipedia.org/wiki/Sidak_correction) can be
+    used).
 
   - Work by [Vovk](https://arxiv.org/pdf/1212.4966) shows that the arithmetic,
     geometric, and harmonic mean p-values can be used as "meta p-values" if
@@ -352,9 +375,9 @@
   independent of the $\theta_i$ and that follow a distribution with mean $0$
   and unit variance.
 
-  - Sometimes we allow the $\epsilon_i$ to have variance $\sigma^2$, to
-    account for systematic biases (e.g. inflation) in the reported standard
-    errors.
+  - Sometimes we allow the $\epsilon_i$ to have variance $\sigma^2$ (not
+    necessarily equal to 1), to account for systematic biases (e.g. inflation)
+    in the reported standard errors.
 
 - The parameters of the random effects model can be estimated using methods
   for fitting mixed models (maximum likelihood and restricted maximum

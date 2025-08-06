@@ -9,16 +9,19 @@
 
 - Suppose we sample data from a distribution $Q$, but our goal is to make
   inferences with respect to a distribution $P$. Specifically, suppose we are
-  interested in $\theta = E_P h(X)$ for a given function $h$.
+  interested in $\theta = E_P [h(X)]$ for a given function $h$.
 
-- If we sample $x_1, \ldots, x_n$ from $Q$ and average them, the result will
-  be biased.
+- If we sample $x_1, \ldots, x_n$ from $Q$ and average the $h(x_i)$, the
+  result will be biased.
 
 - If $P$ and $Q$ are known, we can weight an observed value $x$ with weight
   $w(x) = P(x)/(n\cdot Q(x))$ to compensate for the bias. The estimate
-  $\sum_i w(x_i)x_i$ is an unbiased estimate of $\theta$.
+  $\sum_i w(x_i)h(x_i)$ is an unbiased estimate of $\theta$.
 
-- The variance of the weighted estimator is $E[h(X)^2(dP(x)/dQ(x) - 1)]$
+- The variance of the weighted estimator is
+  $E[h(X)^2\cdot dP(x)/dQ(x)] - E[h(X)]^2.$
+
+  - If $P\equiv Q$, the variance is $E[h(X)^2] - E[h(X)]^2$.
 
 - Sometimes biased sampling is deliberate -- we define the distribution $Q$ to
   make the sampling more convenient, or to improve inference precision.
@@ -71,13 +74,13 @@
 - Full Information Maximum Likelihood (FIML) is an approach that works for
   model-based analyses. If $I_o$ indexes the positions in $Y$ that are
   observed and $I_m$ indexes the positions in $Y$ that are missed, we can use
-  $\int p(Y[I_o], Y[I_m] | Z)dY[I_m]$ as the likelihood for an observed case,
+  $\int p(Y[I_o], Y[I_m] | X)dY[I_m]$ as the likelihood for an observed case,
   and proceed, e.g. using maximum likelihood analysis.
 
 - FIML is unbiased as long as the data are missing at random (MAR).
 
 - The Expectation-Maximization (EM) algorithm is an approach for calculating
-  the maximum likelihood estimate when direct marginaliation is difficult.
+  the maximum likelihood estimate when direct marginalization is difficult.
 
   - Start with a parameter value $\eta$
 

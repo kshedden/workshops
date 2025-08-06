@@ -416,7 +416,7 @@
       mortality is negative, but the indirect effect through birth weight is
       positive.
 
-    - It remains interesting to consider the mechanism bethind the observed
+    - It remains interesting to consider the mechanism behind the observed
       negative direct effect. One possible explanation is residual confounding
       via unmeasured variables such as a birth defect. Suppose for simplicity
       that a certain type of birth defect $Z$ strongly causes low birth weight
@@ -428,6 +428,26 @@
       born to smoking mothers will be at an advantage since they are
       relatively less likely to have the birth defect $Z$ compared to the
       low-birth weight babies born to non-smoking mothers.
+
+- Another role for a third variable $Z$ is as a _precision variable_. This is
+  a variable that has no causal relationship with the exposure $X$, but does
+  explain some variation in the outcome $Y$. This variation can be thought of
+  as extraneous, and by adjusting for $Z$ in a regression, the statistical
+  power for ascertaining the relationship between $X$ and $Y$ is improved.
+  Failing to adjust for $Z$ does not result in bias, so precision variables
+  are related to power but not to bias.
+
+- Yet another role for a third variable is as a _suppressor_. Suppression
+  occurs when $Z$ is related to $X$, but only to the extraneous variation in
+  $X$ that is unrelated to $Y$. This would occur, for example, when $X$ is
+  observed with measurement error, so it has the form $X = \tilde{X} + \eta$,
+  where $X$ is the observed value of the exposure, $\tilde{X}$ is the ideal,
+  true value of the exposure, and $\eta$ is the random measurement error for
+  the exposure. If the variable $Z$ explains $\eta$ but is independent of both
+  $\tilde{X}$ and $Y$, it will operate as a suppressor. This means that
+  controlling for $Z$ will result in a stronger relationship between $X$ and
+  $Y$, because doing so statistically removes some of the measurement error in
+  $X$ relative to $\tilde{X}$.
 
 - [Moderation](<https://en.wikipedia.org/wiki/Moderation_(statistics)>), or
   _effect modification_ is an approach to developing a deeper understanding of
