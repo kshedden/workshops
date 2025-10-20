@@ -120,8 +120,8 @@
 
 - The uniform distribution is either the
   [distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
-  in which every atom has the same probability (for finite sample spaces), or
-  (for distributions on a real interval (a, b)), it is a
+  on a finite sample space in which every atom has the same probability, or it
+  is the
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
   with sample space $[a, b]$ in which the probability of any interval is
   proportional to its length.
