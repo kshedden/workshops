@@ -127,7 +127,7 @@
 
 - The
   [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution)
-  with CDF $P(X \le t) = 1 - \exp(-\lambda t)$ and density
+  with sample space $[0, \infty)$, CDF $P(X \le t) = 1 - \exp(-\lambda t)$, and density
   $f(x) = \lambda
   \exp(-\lambda x)$. The value of $\lambda$ is a
   [parameter](https://en.wikipedia.org/wiki/Statistical_parameter), so there
@@ -136,7 +136,7 @@
 
 - The
   [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution)
-  with density $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$. The
+  with sample space $(-\infty, \infty)$, and density $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$. The
   values of $\mu$ and $\sigma$ are parameters, referring to the expected value
   and standard deviation, respectively.
 
@@ -571,14 +571,14 @@ Most summary statistics have one of two mathematical forms, as either a
     yields a norm via $`\|x\|^2 = \langle x, x\rangle`$. All norms have the
     following properties:
 
-    - Triangle inequality: $\|x + y\| \le \|x\| + \|y\|$
+    - Triangle inequality: $`\|x + y\| \le \|x\| + \|y\|`$
 
     - Homogeneity: $\\|c\cdot x\\| = \|c\|\cdot \\|x\\|$
 
     - Positiveness: $\\|x\\| = 0$ implies that $x=0$
 
   - A very fundamental result is the
-    [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality)
+    [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy-Schwarz_inequality):
     $|\langle x, y\rangle| \le \\|x\\|\cdot \\|y\\|$.
 
 - Linear transformations
