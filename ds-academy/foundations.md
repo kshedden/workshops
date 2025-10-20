@@ -123,12 +123,13 @@
   in which every atom has the same probability (for finite sample spaces), or
   (for distributions on a real interval (a, b)), it is a
   [distribution](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
-  in which the probability of any interval is proportional to its length.
+  with sample space $[a, b]$ in which the probability of any interval is
+  proportional to its length.
 
 - The
   [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution)
-  with sample space $[0, \infty)$, CDF $P(X \le t) = 1 - \exp(-\lambda t)$, and density
-  $f(x) = \lambda
+  with sample space $[0, \infty)$, CDF $P(X \le t) = 1 - \exp(-\lambda t)$,
+  and density $f(x) = \lambda
   \exp(-\lambda x)$. The value of $\lambda$ is a
   [parameter](https://en.wikipedia.org/wiki/Statistical_parameter), so there
   are actually infinitely many exponential distributions, determined by the
@@ -136,9 +137,10 @@
 
 - The
   [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution)
-  with sample space $(-\infty, \infty)$, and density $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$. The
-  values of $\mu$ and $\sigma$ are parameters, referring to the expected value
-  and standard deviation, respectively.
+  with sample space $(-\infty, \infty)$, and density
+  $f(x) = \exp(-(x-\mu)^2/2\sigma^2)/\sqrt{2\pi\sigma^2}$. The values of $\mu$
+  and $\sigma$ are parameters, referring to the expected value and standard
+  deviation, respectively.
 
 ### Measures of location and dispersion
 
@@ -520,9 +522,9 @@ Most summary statistics have one of two mathematical forms, as either a
   functions of a real variable.
 
 - Given a collection of vectors $v_1, \ldots, v_m$, a _linear combination_ of
-  these vectors is a vector of the form $c_1v_1 + \cdots + c_mv_m$, where
-  the $c_i$ are scalars. Linear combinations of vectors play a very important
-  role in linear algebra. Here are some key properties of linear combinations:
+  these vectors is a vector of the form $c_1v_1 + \cdots + c_mv_m$, where the
+  $c_i$ are scalars. Linear combinations of vectors play a very important role
+  in linear algebra. Here are some key properties of linear combinations:
 
   - A collection of vectors $v_1, \ldots, v_m$ in a vector space has the
     property of
