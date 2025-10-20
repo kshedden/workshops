@@ -520,7 +520,7 @@ Most summary statistics have one of two mathematical forms, as either a
   functions of a real variable.
 
 - Given a collection of vectors $v_1, \ldots, v_m$, a _linear combination_ of
-  these vectors is a vector of the form $c_1v_1 + \cdots + c_mv_m = 0$, where
+  these vectors is a vector of the form $c_1v_1 + \cdots + c_mv_m$, where
   the $c_i$ are scalars. Linear combinations of vectors play a very important
   role in linear algebra. Here are some key properties of linear combinations:
 
@@ -568,7 +568,7 @@ Most summary statistics have one of two mathematical forms, as either a
   - A [norm](<https://en.wikipedia.org/wiki/Norm_(mathematics)>) on a vector
     space is a mapping from the vectors to the non-negative reals. It is a way
     of defining the length or magnitude of a vector. A dot product always
-    yields a norm via $\\|x\\|^2 = \langle x, x\rangle$. All norms have the
+    yields a norm via $`\|x\|^2 = \langle x, x\rangle`$. All norms have the
     following properties:
 
     - Triangle inequality: $\|x + y\| \le \|x\| + \|y\|$
