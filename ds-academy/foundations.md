@@ -973,7 +973,7 @@ Most summary statistics have one of two mathematical forms, as either a
   $x + A^{-1}b/2 = 0$ so $x = -A^{-1}b/2$.
 
 - A smooth function $f(x)$ can be
-  \[approximated\]((https://en.wikipedia.org/wiki/Taylor%27s_theorem) local to
+  \[approximated\](https://en.wikipedia.org/wiki/Taylor%27s_theorem) local to
   a given point $x_0$ with the approximation
 
   $f(x) \approx f(x_0) + (x - x_0)^\prime \nabla_f(x_0) + (x-x_0)^\prime
